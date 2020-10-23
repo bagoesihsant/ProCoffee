@@ -59,6 +59,12 @@
     <script src="<?= base_url(); ?>assets/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?= base_url(); ?>assets/dist/js/demo.js"></script>
+
+    <!-- Leaflet JS -->
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- AkhiranLeaflet JS -->
     
 
     <!-- page script -->
@@ -102,6 +108,18 @@
             }
         });
     });
+</script>
+
+<!-- MyMap Leaflet -->
+<script>
+var mymap = L.map('mapid').setView([-8.157619, 113.722875], 13);
+
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox/streets-v11'
+}).addTo(mymap);
 </script>
     </body>
     </html>
