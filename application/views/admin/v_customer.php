@@ -70,7 +70,7 @@
                                         <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
                                         </a>
-                                        <a href="" class="btn btn-xs btn-danger">
+                                        <a href="#" class="btn btn-xs btn-danger btnDeleteCustomer">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
                                         <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning">

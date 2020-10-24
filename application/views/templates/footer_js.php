@@ -21,6 +21,8 @@
 <script src="<?= base_url('assets/'); ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?= base_url('assets/'); ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?= base_url('assets/'); ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="<?= base_url('assets/'); ?>plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- ChartJS -->
 <script src="<?= base_url('assets/'); ?>plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
