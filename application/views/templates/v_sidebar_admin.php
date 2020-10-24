@@ -22,7 +22,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+            with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="#" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -40,16 +40,40 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="index_supplier" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-truck"></i>
                         <p>Supplier</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="#" class="nav-link ">
                         <i class="nav-icon fas fa-fw fa-boxes"></i>
-                        <p>Produk</p>
-                    </a>
+                        <p>
+                            Product
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                        </a>
+                        
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="index_product_categories" class="nav-link">
+                                <i class="nav-icon far fa-circle text-secondary"></i>
+                                <p>Categories</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="index_product_units" class="nav-link">
+                                <i class="nav-icon far fa-circle text-secondary"></i>
+                                <p>Units</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="index_product_items" class="nav-link">
+                                <i class="nav-icon far fa-circle text-secondary"></i>
+                                <p>Items</p>
+                                </a>
+                            </li>
+                        </ul>
                 </li>
                 <!-- Menu Management End -->
                 <!-- Menu Administrator -->
