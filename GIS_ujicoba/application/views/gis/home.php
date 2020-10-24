@@ -40,3 +40,33 @@
 </div>
 </section>
 </div>
+
+<?php
+
+$this->load->view('templates/custom-footer');
+$this->load->view('templates/dist-footer');
+
+?>
+<script>
+var mymap = L.map('mapid').setView([-8.157619, 113.722875], 7);
+
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    id: 'mapbox/streets-v11'
+}).addTo(mymap);
+
+<?php
+    foreach($cabang as $cb) :    
+?>
+
+    L.marker([<?= $cb['latitude'] .",". $cb['longitude']; ?>]).addTo(mymap)
+    .bindPopup("<b>Nama Cabang : <?= $cb['nama_cabang']; ?></b><br/>"
+    +"Pemilik Cabang : <?= $cb['pemilik_cabang']; ?><br/>"
+    +"Keterangan : <?= $cb['keterangan']; ?><br/>");
+
+<?php  
+    endforeach;
+?>
+</script>

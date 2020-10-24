@@ -16,12 +16,12 @@ class C_gis extends CI_Controller
         $data['title'] = 'Home GIS';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+        $data['cabang'] = $this->db->get('cabang')->result_array();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('gis/home', $data);
-        $this->load->view('templates/custom-footer', $data);
-        $this->load->view('templates/dist-footer', $data);
         $this->load->view('templates/footer', $data);
     }
     public function mapping()
@@ -85,7 +85,7 @@ class C_gis extends CI_Controller
             ];
             $this->db->insert('cabang', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Disimpan</div>');
-            redirect('gis/mapping');
+            redirect('C_gis/mapping');
         }
     }
     public function edit_mapping($id_cabang)

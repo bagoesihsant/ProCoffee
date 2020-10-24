@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="col-sm">
                         <!-- text input -->
-                            <form action="<?= base_url('gis/create_mapping'); ?>" method="post">
+                            <form action="<?= base_url('C_gis/create_mapping'); ?>" method="post">
                                 <div class="form-group">
                                     <label>Nama Cabang</label>
                                     <input type="text" name="nama_cabang" class="form-control" placeholder="Masukkan Nama Cabang" required>
