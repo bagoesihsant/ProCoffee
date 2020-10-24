@@ -73,7 +73,7 @@
                                         <a href="" class="btn btn-xs btn-danger">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
-                                        <a href="" class="btn btn-xs btn-warning">
+                                        <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
                                     </td>
@@ -192,9 +192,125 @@
                 </button>
             </div>
             <div class="modal-body">
-
+                <div class="form-group">
+                    <label for="kode">Kode Customer</label>
+                    <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="nama">
+                        Nama Customer
+                        <sup class="text-danger">*</sup>
+                    </label>
+                    <input type="text" name="nama" id="nama" class="form-control" value="John Doe" placeholder="ex: John Doe" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="jk">
+                        Jenis Kelamin
+                    </label>
+                    <select name="jk" id="jk" class="form-control custom-select" readonly>
+                        <option value="">Pilih Salah Satu</option>
+                        <option value="Laki - Laki" selected>Laki - Laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notelp">
+                        No. Telpon / HP
+                        <sup class="text-danger">*</sup>
+                    </label>
+                    <input type="text" name="notelp" id="notelp" class="form-control" value="08233158636" placeholder="ex: 082331588636" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="email">
+                        E-Mail
+                        <sup class="text-danger">*</sup>
+                    </label>
+                    <input type="text" name="email" id="email" class="form-control" value="john.doe@example.com" placeholder="ex: john.doe@example.com" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="password">
+                        Password
+                        <sup class="text-danger">*</sup>
+                    </label>
+                    <input type="password" name="password" id="password" class="form-control" value="12345678" placeholder="Password" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="alamat">
+                        Alamat
+                    </label>
+                    <textarea name="alamat" id="alamat" class="form-control" placeholder="ex: 753 Johannes. Avenue" readonly>753 Johannes. Avenue</textarea>
+                </div>
+                <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-primary">Tutup</button>
             </div>
         </div>
     </div>
 </div>
 <!-- Modal Detail End -->
+
+<!-- Modal Edit -->
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Tambah Customer</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="kode">Kode Customer</label>
+                        <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">
+                            Nama Customer
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="nama" id="nama" class="form-control" value="John Doe" placeholder="ex: John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="jk">
+                            Jenis Kelamin
+                        </label>
+                        <select name="jk" id="jk" class="form-control custom-select">
+                            <option value="">Pilih Salah Satu</option>
+                            <option value="Laki - Laki" selected>Laki - Laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notelp">
+                            No. Telpon / HP
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="notelp" id="notelp" class="form-control" value="082331588636" placeholder="ex: 082331588636">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            E-Mail
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="email" id="email" class="form-control" value="john.doe@example.com" placeholder="ex: john.doe@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">
+                            Alamat
+                        </label>
+                        <textarea name="alamat" id="alamat" class="form-control" placeholder="ex: 753 Johannes. Avenue">753 Johannes. Avenue</textarea>
+                    </div>
+                    <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary" id="btnTambahCustomer" name="tambah">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Edit End -->
