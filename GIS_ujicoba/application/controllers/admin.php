@@ -28,7 +28,9 @@ class Admin extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('admin/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/custom-footer', $data);
+        $this->load->view('templates/dist-footer', $data);
+        $this->load->view('templates/footer', $data);
     }
 
     public function role()
@@ -48,7 +50,9 @@ class Admin extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('admin/role', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/custom-footer', $data);
+            $this->load->view('templates/dist-footer', $data);
+            $this->load->view('templates/footer', $data);
         } else {
             $data = ['role' => $this->input->post('role')];
             $this->db->insert('user_role', $data);
@@ -74,7 +78,9 @@ class Admin extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('admin/roleaccess', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/custom-footer', $data);
+        $this->load->view('templates/dist-footer', $data);
+        $this->load->view('templates/footer', $data);
     }
     public function changeAccess()
     {

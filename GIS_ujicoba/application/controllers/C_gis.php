@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Gis extends CI_Controller
+class C_gis extends CI_Controller
 {
     public function __construct()
     {
@@ -19,6 +19,8 @@ class Gis extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('gis/home', $data);
+        $this->load->view('templates/custom-footer', $data);
+        $this->load->view('templates/dist-footer', $data);
         $this->load->view('templates/footer', $data);
     }
     public function mapping()
@@ -32,6 +34,8 @@ class Gis extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('gis/mapping', $data);
+        $this->load->view('templates/custom-footer', $data);
+        $this->load->view('templates/dist-footer', $data);
         $this->load->view('templates/footer', $data);
     }
     public function create_mapping()
@@ -52,6 +56,8 @@ class Gis extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('gis/create-mapping', $data);
+            $this->load->view('templates/dist-footer', $data);
+            $this->load->view('templates/custom-footer', $data);
             $this->load->view('templates/footer', $data);
         }else{
             $q = $this->db->query("SELECT * FROM cabang");

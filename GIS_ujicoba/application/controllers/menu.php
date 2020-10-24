@@ -27,7 +27,9 @@ class Menu extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('menu/index', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/custom-footer', $data);
+            $this->load->view('templates/dist-footer', $data);
+            $this->load->view('templates/footer', $data);
         }else{
             $data = [
                 'menu' => $this->input->post('menu'),
@@ -80,7 +82,9 @@ class Menu extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('menu/submenu', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/custom-footer', $data);
+            $this->load->view('templates/dist-footer', $data);
+            $this->load->view('templates/footer', $data);
         } else {
             $data = [
                 'menu_id' => $this->input->post('menu_id'),
