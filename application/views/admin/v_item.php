@@ -123,7 +123,7 @@
 <!-- Content Wrapper End -->
 
 <!-- Modal Tambah -->
-<div class="modal fade" id="tambahModal">
+    <div class="modal fade" id="tambahModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -198,11 +198,11 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 <!-- Modal Tambah End -->
 
 <!-- Modal Detail -->
-<div class="modal fade" id="detailModal">
+    <div class="modal fade" id="detailModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -273,7 +273,7 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 <!-- Modal Detail End -->
 
 <!-- Modal Edit -->
@@ -288,16 +288,64 @@
             </div>
             <div class="modal-body">
                 <form action="" method="post">
-                    <div class="form-group">
+                <div class="form-group">
+                    <label for="kode">Kode Items</label>
+                    <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
+                </div>
+                <div class="form-group">
                         <label for="kode">Kode Items</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
+                        <input type="text" name="kode" id="kode" class="form-control" value="PRM001" readonly required>
                     </div>
                     <div class="form-group">
                         <label for="nama">
                             Nama Items
                             <sup class="text-danger">*</sup>
                         </label>
+                        <input type="text" name="nama" id="nama" class="form-control" value="Kopi Hijau">
+                    </div>
+                    <div class="form-group">
+                        <label for="kategori">
+                            Kategori Items
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="kategori" id="kategori" class="form-control" value="Perbiji">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="unit">
+                            Unit Items
+                            <sup class="text-danger">*</sup>
+                        </label>
                         <input type="text" name="nama" id="nama" class="form-control" value="Perlusin">
+                    </div>
+                    <div class="form-group">
+                        <label for="harga">
+                            Harga
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="harga" id="harga" class="form-control" value="Rp 55.000">
+                    </div>
+                    <div class="form-group">
+                        <label for="berat">
+                            Berat
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="berat" id="berat" class="form-control" value="500">
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsi">
+                            Deskripsi
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <textarea class="form-control" id="deskripsi" rows="3">-</textarea>
+                    </div>
+                    <div class="form-group text-center">
+                        <td><img src="<?= base_url()."assets/dist/img/kopi1.jpg" ?>" width="300"></td>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="gambar"
+                        aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="gambar">Ubah Foto/Gambar</label>
                     </div>
             </div>
             <div class="modal-footer">
