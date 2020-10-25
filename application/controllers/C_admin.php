@@ -28,7 +28,7 @@ class C_admin extends CI_Controller
         $this->load->view('templates/v_footer_admin');
     }
 
-     // Supplier
+    // Supplier
     public function index_supplier()
     {
         $this->load->view('templates/v_header_admin');
@@ -39,7 +39,7 @@ class C_admin extends CI_Controller
         $this->load->view('templates/v_footer_admin');
     }
 
-     // Produk
+    // Produk
     public function index_product_categories()
     {
         $this->load->view('templates/v_header_admin');
@@ -50,7 +50,7 @@ class C_admin extends CI_Controller
         $this->load->view('templates/v_footer_admin');
     }
 
-       // Units
+    // Units
     public function index_product_units()
     {
         $this->load->view('templates/v_header_admin');
@@ -61,7 +61,7 @@ class C_admin extends CI_Controller
         $this->load->view('templates/v_footer_admin');
     }
 
-          // Item
+    // Item
     public function index_product_items()
     {
         $this->load->view('templates/v_header_admin');
