@@ -11,9 +11,7 @@ class C_auth extends CI_Controller
     {
         $data['title'] = 'Login Page';
         $this->load->view('login_template/v_auth_header', $data);
-
         $this->load->view('auth/v_login');
-
         $this->load->view('login_template/v_auth_footer');
     }
 
