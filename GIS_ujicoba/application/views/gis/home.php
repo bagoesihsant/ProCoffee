@@ -57,11 +57,16 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     id: 'mapbox/streets-v11'
 }).addTo(mymap);
 
+    var icon_toko = L.icon({
+        iconUrl : '<?= base_url(); ?>assets/dist/custom-icon/shop.png',
+        iconSize : [35, 35]
+    });
+
 <?php
     foreach($cabang as $cb) :    
 ?>
 
-    L.marker([<?= $cb['latitude'] .",". $cb['longitude']; ?>]).addTo(mymap)
+    L.marker([<?= $cb['latitude'] .",". $cb['longitude']; ?>],{icon:icon_toko}).addTo(mymap)
     .bindPopup("<b>Nama Cabang : <?= $cb['nama_cabang']; ?></b><br/>"
     +"Pemilik Cabang : <?= $cb['pemilik_cabang']; ?><br/>"
     +"Keterangan : <?= $cb['keterangan']; ?><br/>");
