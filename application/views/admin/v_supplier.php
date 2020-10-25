@@ -84,7 +84,7 @@
                         <!-- Tbody End -->
                         <!-- Tfoot -->
                         <tfoot>
-                        <tr>
+                            <tr>
                                 <th>No.</th>
                                 <th>Nama Supplier</th>
                                 <th>No HP</th>
@@ -273,7 +273,7 @@
                             No. Telpon / HP
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="notelp" id="notelp" class="form-control" value="082331588636" >
+                        <input type="text" name="notelp" id="notelp" class="form-control" value="082331588636">
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">
