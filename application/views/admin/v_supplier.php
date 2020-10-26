@@ -216,16 +216,8 @@
                         Deskripsi
                         <sup class="text-danger">*</sup>
                     </label>
-                    <textarea name="alamat" id="deskripsi" class="form-control"></textarea>
+                    <textarea name="alamat" id="deskripsi" class="form-control" readonly></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="password">
-                        Password
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <input type="password" name="password" id="password" class="form-control" value="12345678" readonly>
-                </div>
-                <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-primary">Tutup</button>
