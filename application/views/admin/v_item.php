@@ -67,7 +67,10 @@
                             ?>
                                 <tr>
                                     <td><?= $i; ?>.</td>
-                                    <td class="text-center">A0001 <br> <button>Cetak</button> </td>
+                                    <td class="text-center">
+                                        A0001 <br> 
+                                        <button class="btn btn-secondary">Cetak <i class="fa fa-print"></i></button> 
+                                    </td>
                                     <td>Kopi Hijau</td>
                                     <td>Perbiji</td>
                                     <td>Perlusin</td>
@@ -259,7 +262,6 @@
                     <div class="form-group">
                         <label for="deskripsi">
                             Deskripsi
-                            <sup class="text-danger">*</sup>
                         </label>
                         <textarea class="form-control" id="deskripsi" rows="3" readonly></textarea>
                     </div>
