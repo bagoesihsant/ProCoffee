@@ -75,13 +75,13 @@ class C_gis extends CI_Controller
 
             $data = [
                 'id_cabang' => $id_cabang,
-                'nama_cabang' => $this->input->post('nama_cabang'),
-                'alamat' => $this->input->post('alamat_cabang'),
-                'status_cabang' => $this->input->post('status_cabang'),
-                'pemilik_cabang' => $this->input->post('pemilik_cabang'),
-                'latitude' => $this->input->post('Latitude'),
-                'longitude' => $this->input->post('Longitude'),
-                'keterangan' => $this->input->post('keterangan')
+                'nama_cabang' => htmlspecialchars($this->input->post('nama_cabang')),
+                'alamat' => htmlspecialchars($this->input->post('alamat_cabang')),
+                'status_cabang' => htmlspecialchars($this->input->post('status_cabang')),
+                'pemilik_cabang' => htmlspecialchars($this->input->post('pemilik_cabang')),
+                'latitude' => htmlspecialchars($this->input->post('Latitude')),
+                'longitude' => htmlspecialchars($this->input->post('Longitude')),
+                'keterangan' => htmlspecialchars($this->input->post('keterangan'))
             ];
             $this->db->insert('cabang', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Disimpan</div>');
@@ -110,14 +110,14 @@ class C_gis extends CI_Controller
             $this->load->view('gis/edit-mapping', $data);
             $this->load->view('templates/footer', $data);
         }else{
-            $id_cabang = $this->input->post('id_cabang');
-            $nama_cabang = $this->input->post('nama_cabang');
-            $alamat = $this->input->post('alamat_cabang');
-            $status_cabang = $this->input->post('status_cabang');
-            $pemilik_cabang = $this->input->post('pemilik_cabang');
-            $latitude = $this->input->post('Latitude');
-            $longitude = $this->input->post('Longitude');
-            $keterangan = $this->input->post('keterangan');
+            $id_cabang = htmlspecialchars($this->input->post('id_cabang'));
+            $nama_cabang = htmlspecialchars($this->input->post('nama_cabang'));
+            $alamat = htmlspecialchars($this->input->post('alamat_cabang'));
+            $status_cabang = htmlspecialchars($this->input->post('status_cabang'));
+            $pemilik_cabang = htmlspecialchars($this->input->post('pemilik_cabang'));
+            $latitude = htmlspecialchars($this->input->post('Latitude'));
+            $longitude = htmlspecialchars($this->input->post('Longitude'));
+            $keterangan = htmlspecialchars($this->input->post('keterangan'));
 
             $this->M_mapping->edit_mapping($id_cabang, $nama_cabang, $alamat, $status_cabang, $pemilik_cabang, $latitude, $longitude, $keterangan);
             $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">Data Berhasil Disimpan</div>');
@@ -126,7 +126,7 @@ class C_gis extends CI_Controller
     }
     public function hapus_mapping()
     {
-        $id = $this->input->post('id_cabang');
+        $id = htmlspecialchars($this->input->post('id_cabang'));
         $this->M_mapping->hapus_mapping($id);
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Berhasil Dihapus</div>');
         redirect('C_gis/mapping');
