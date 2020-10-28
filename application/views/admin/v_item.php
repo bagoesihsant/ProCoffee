@@ -68,8 +68,8 @@
                                 <tr>
                                     <td><?= $i; ?>.</td>
                                     <td class="text-center">
-                                        A0001 <br> 
-                                        <button class="btn btn-secondary">Cetak <i class="fa fa-print"></i></button> 
+                                        A0001 <br>
+                                        <button class="btn btn-secondary">Cetak <i class="fa fa-print"></i></button>
                                     </td>
                                     <td>Kopi Hijau</td>
                                     <td>Perbiji</td>
