@@ -1,6 +1,7 @@
 
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+	<script src="<?= base_url() ?>assets/leaflet-locatecontrol/src/L.Control.Locate.js"></script>
 
     <!-- AkhiranLeaflet JS -->
     

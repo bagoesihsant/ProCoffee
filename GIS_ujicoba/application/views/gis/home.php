@@ -48,30 +48,39 @@ $this->load->view('templates/dist-footer');
 
 ?>
 <script>
-var mymap = L.map('mapid').setView([-8.157619, 113.722875], 7);
 
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: 'mapbox/streets-v11'
-}).addTo(mymap);
+navigator.geolocation.getCurrentPosition(function(location) {
+    var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
 
-    var icon_toko = L.icon({
-        iconUrl : '<?= base_url(); ?>assets/dist/custom-icon/shop.png',
-        iconSize : [35, 35]
-    });
+    console.log(latlng);
+    var mymap = L.map('mapid').setView([-8.157619, 113.722875], 7);
 
-<?php
-    foreach($cabang as $cb) :    
-?>
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+            '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox/streets-v11'
+    }).addTo(mymap);
 
-    L.marker([<?= $cb['latitude'] .",". $cb['longitude']; ?>],{icon:icon_toko}).addTo(mymap)
-    .bindPopup("<b>Nama Cabang : <?= $cb['nama_cabang']; ?></b><br/>"
-    +"Pemilik Cabang : <?= $cb['pemilik_cabang']; ?><br/>"
-    +"Keterangan : <?= $cb['keterangan']; ?><br/>");
+        var icon_toko = L.icon({
+            iconUrl : '<?= base_url(); ?>assets/dist/custom-icon/shop.png',
+            iconSize : [35, 35]
+        });
 
-<?php  
-    endforeach;
-?>
+    <?php
+        foreach($cabang as $cb) :    
+    ?>
+
+        L.marker([<?= $cb['latitude'] .",". $cb['longitude']; ?>],{icon:icon_toko}).addTo(mymap)
+        .bindPopup("<b>Nama Cabang : <?= $cb['nama_cabang']; ?></b><br/>"
+        +"Pemilik Cabang : <?= $cb['pemilik_cabang']; ?><br/>"
+        +"Keterangan : <?= $cb['keterangan']; ?><br/>"
+        +"<br/><center><a href='https://www.google.com/maps/dir/?api=1&origin=" + location.coords.latitude + "," + location.coords.longitude + "&destination=<?= $cb['latitude'] ?>,<?= $cb['longitude'] ?>' class='btn btn-sm btn-outline-primary' target='_blank'>Rute Alamat</a></center>"
+        );
+
+    <?php  
+        endforeach;
+    ?>
+
+});
 </script>
