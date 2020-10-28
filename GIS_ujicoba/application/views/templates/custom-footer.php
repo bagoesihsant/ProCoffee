@@ -49,3 +49,14 @@ $("#Latitude, #Longitude").change(function(){
 });
 mymap1.addLayer(marker);
 </script>
+<script>
+	$('#location-button').click(function(){
+		if(navigator.geolocation)
+			navigator.geolocation.getCurrentPosition(function(location){
+				$("#Latitude").val(location.coords.latitude);
+				$("#Longitude").val(location.coords.longitude);
+			});
+		else
+			console.log("Geolocation is not supported");
+	})
+</script>

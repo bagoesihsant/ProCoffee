@@ -77,6 +77,7 @@
                                 <div class="card-footer">
                                     <a href="<?= base_url() . 'C_gis/mapping'; ?>" class="btn btn-secondary">Batal</a>
                                     <button type="submit" class="btn btn-success">Simpan Data</button>
+                                    <button id="location-button" type="button" class="btn btn-primary">Get Location Data</button>
                                 </div>
                             </form>
                         </div>
