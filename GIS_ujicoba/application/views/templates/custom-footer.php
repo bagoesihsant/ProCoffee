@@ -45,18 +45,24 @@ $("#Latitude, #Longitude").change(function(){
 	marker.setLatLng(position, {
 	draggable : 'true'
 	}).bindPopup(position).update();
-	mymap.panTo(position);
+	mymap1.panTo(position);
 });
+
+$('#location-button').click(function(){
+	if(navigator.geolocation)
+		navigator.geolocation.getCurrentPosition(function(location){
+			$("#Latitude").val(location.coords.latitude);
+			$("#Longitude").val(location.coords.longitude);
+
+			var position =[parseInt($("#Latitude").val()), parseInt($("#Longitude").val())];
+			marker.setLatLng(position, {
+				draggable : 'true'
+			}).bindPopup(position).update()
+			mymap1.panTo(position);
+		});
+	else
+		console.log("Geolocation is not supported");
+})
+
 mymap1.addLayer(marker);
-</script>
-<script>
-	$('#location-button').click(function(){
-		if(navigator.geolocation)
-			navigator.geolocation.getCurrentPosition(function(location){
-				$("#Latitude").val(location.coords.latitude);
-				$("#Longitude").val(location.coords.longitude);
-			});
-		else
-			console.log("Geolocation is not supported");
-	})
 </script>
