@@ -81,6 +81,7 @@
                                 <div class="card-footer">
                                     <a href="<?= base_url() . 'C_gis/mapping'; ?>" class="btn btn-secondary">Batal</a>
                                     <button type="submit" class="btn btn-success">Simpan Data</button>
+                                    <button id="location-button" type="button" class="btn btn-primary">Get Location Data</button>
                                 </div>
                             </form>
                         </div>
@@ -135,8 +136,24 @@ $("#Latitude, #Longitude").change(function(){
 	marker.setLatLng(position, {
 	draggable : 'true'
 	}).bindPopup(position).update();
-	mymap.panTo(position);
+	mymap1.panTo(position);
 });
+
+$('#location-button').click(function(){
+	if(navigator.geolocation)
+		navigator.geolocation.getCurrentPosition(function(location){
+			$("#Latitude").val(location.coords.latitude);
+			$("#Longitude").val(location.coords.longitude);
+
+			var position =[parseInt($("#Latitude").val()), parseInt($("#Longitude").val())];
+			marker.setLatLng(position, {
+				draggable : 'true'
+			}).bindPopup(position).update()
+			mymap1.panTo(position);
+		});
+	else
+		console.log("Geolocation is not supported");
+})
 mymap1.addLayer(marker);
 </script>
 
