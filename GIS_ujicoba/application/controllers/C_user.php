@@ -7,7 +7,8 @@ class C_user extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
-        $this->load->model('M_mapping');
+        $this->load->library('form_validation');
+        $this->load->model('M_user');
         $this->load->helper('url');
     }
 
@@ -42,6 +43,7 @@ class C_user extends CI_Controller
                 $id_user = "USR-00" . date('dm', time()).($q_count + 1);
             }
 
+            // Configuration for upload image
             $upload_image = $_FILES['image']['name'];
 
             if($upload_image){
@@ -61,6 +63,7 @@ class C_user extends CI_Controller
             }else{
                 $gambar = 'default.jpg';
             }
+            // End of Configuration for upload image
 
             $data = [
                 'id_user' => $id_user,
@@ -78,5 +81,13 @@ class C_user extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Disimpan</div>');
             redirect('C_user');
         }
+    }
+
+    public function hapus_user()
+    {
+        $id = htmlspecialchars($this->input->post('id_user'));
+        $this->M_user->hapus_user($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Berhasil Dihapus</div>');
+        redirect('C_user');
     }
 }

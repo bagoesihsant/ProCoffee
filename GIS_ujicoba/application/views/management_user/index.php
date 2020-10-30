@@ -110,8 +110,16 @@
                         <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan email">
                     </div>
                     <div class="form-group">
-                        <label for="">Gambar</label>
-                        <input type="file" name="image" id="image" class="form-control">
+                        <label for="">Silahkan Pilih Gambar Anda</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="image" name="image">
+                                <label for="image" class="custom-file-label">Pilih File Anda</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="">About</label>
@@ -137,6 +145,7 @@
 
 <?php
 foreach ($dt_user as $i) :
+    $id = $i['id_user'];
     $nama = $i['nama'];
     $email = $i['email'];
     $image = $i['image'];
@@ -149,7 +158,65 @@ foreach ($dt_user as $i) :
 
 <!-- Modal Edit Data User -->
 
+<div class="modal fade" id="modal_edit<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">Edit Barang</h3>
+            </div>
+            <?= form_open_multipart('barang/edit_brg'); ?>
+            <input type="text" class="form-control" name="image" value="<?= $image; ?>" hidden>
+                <div class="modal-body">
+                    <input type="text" name="id_user" value="<?= $id; ?>" hidden>
+                    <div class="form-group">
+                        <label for="">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Barang" value="<?= $nama; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Silahkan Pilih Gambar Anda</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="exampleInputFile" name="gambar">
+                                <label for="exampleInputFile" class="custom-file-label">Pilih File Anda</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                        </div>
+                        <div>
+                            <br>
+                            <h6>*(Gambar Sebelumnya)</h6>
+                            <img src="<?= base_url(); ?>assets/dist/img/user/<?= $image; ?>" width="200px">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <!-- Modal Hapus User -->
-
+<div class="modal fade" id="modal_hapus<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
+            </div>
+            <form action="<?= base_url() . 'C_user/hapus_user'; ?>" method="post" class="form-horizontal">
+                <div class="modal-body">
+                    <p>Apakah Anda yakin mau menghapus data ini? <b><?= $nama; ?></b></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_user" value="<?= $id; ?>">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <?php endforeach; ?>
