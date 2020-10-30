@@ -52,56 +52,43 @@
                             Product
                             <i class="right fas fa-angle-left"></i>
                         </p>
-                        </a>
-                        
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="index_product_categories" class="nav-link">
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="index_product_categories" class="nav-link">
                                 <i class="nav-icon far fa-circle text-secondary"></i>
                                 <p>Categories</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="index_product_units" class="nav-link">
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index_product_units" class="nav-link">
                                 <i class="nav-icon far fa-circle text-secondary"></i>
                                 <p>Units</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="index_product_items" class="nav-link">
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index_product_items" class="nav-link">
                                 <i class="nav-icon far fa-circle text-secondary"></i>
                                 <p>Items</p>
-                                </a>
-                            </li>
-                        </ul>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <!-- Menu Management End -->
                 <!-- Menu Administrator -->
                 <li class="nav-header">ADMINISTRATOR</li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-fw fa-folder"></i>
-                        <p>
-                            Manage Menu
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
+                <li class="nav-item">
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fas fa-fw fa-folder-plus"></i>
+                        <p>Menu</p>
                     </a>
-                    <!-- Menu Sub Menu -->
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-fw fa-folder-plus"></i>
-                                <p>Menu</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-fw fa-folder-open"></i>
-                                <p>Sub Menu</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- Menu Sub Menu End -->
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">
+                        <i class="nav-icon fas fa-fw fa-folder-open"></i>
+                        <p>Sub Menu</p>
+                    </a>
                 </li>
                 <!-- Menu Administrator End -->
                 <!-- Menu Kasir -->
