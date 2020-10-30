@@ -18,11 +18,11 @@ class C_admin extends CI_Controller
     }
 
     // Customer
-    public function index_customer()
+    public function index_user()
     {
         $this->load->view('templates/v_header_admin');
         $this->load->view('templates/v_sidebar_admin');
-        $this->load->view('admin/v_customer');
+        $this->load->view('admin/v_user');
         $this->load->view('templates/footer_js');
         $this->load->view('admin/custom_js');
         $this->load->view('templates/v_footer_admin');
