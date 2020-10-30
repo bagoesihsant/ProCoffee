@@ -25,7 +25,7 @@
             </form>
 
             <p class="mt-3 mb-1">
-                <a href="login.html">Login</a>
+                <a href="<?= base_url('C_auth'); ?>">Login</a>
             </p>
             <p class="mb-0">
                 <a href="register.html" class="text-center">Register a new membership</a>

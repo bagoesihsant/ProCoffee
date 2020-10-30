@@ -1,7 +1,7 @@
 <script>
     $(function() {
         // Mengubah tabel customer di customer menjadi data tables
-        $('#customerTable').DataTable({
+        $('#userTable').DataTable({
             "responsive": true,
             "autoWidth": false,
         });
@@ -17,7 +17,7 @@
         });
 
         // Jika tombol delete di tabel customer di klik, maka muncul sweet alert
-        $('.btnDeleteCustomer').on('click', function() {
+        $('.btnDeleteuser').on('click', function() {
             swalBootstrap.fire({
                 title: "Apakah anda yakin ?",
                 text: "Apakah anda yakin akan menghapus data ?",
