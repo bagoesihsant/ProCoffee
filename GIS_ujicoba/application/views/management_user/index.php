@@ -99,43 +99,31 @@
                 <h5 class="modal-title" id="newroleModal">Create New Data</h5>
                 </button>   
             </div>
-            <form action="<?= base_url('C_user'); ?>" method="post">
+            <?= form_open_multipart('C_user'); ?>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="">menu</label>
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Masukkan menu">
+                        <label for="">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama">
                     </div>
                     <div class="form-group">
-                        <label for="">menu</label>
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Masukkan menu">
+                        <label for="">Email</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan email">
                     </div>
                     <div class="form-group">
-                        <label for="">menu</label>
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Masukkan menu">
+                        <label for="">Gambar</label>
+                        <input type="file" name="image" id="image" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="">menu</label>
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Masukkan menu">
+                        <label for="">About</label>
+                        <input type="text" class="form-control" id="about" name="about" placeholder="Masukkan about">
                     </div>
                     <div class="form-group">
-                        <label for="">menu</label>
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Masukkan menu">
-                    </div>
-                    <div class="form-group">
-                        <label for="">menu</label>
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Masukkan menu">
-                    </div>
-                    <div class="form-group">
-                        <label for="">menu</label>
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Masukkan menu">
-                    </div>
-                    <div class="form-group">
-                        <label for="">menu</label>
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Masukkan menu">
-                    </div>
-                    <div class="form-group">
-                        <label for="">icon</label>
-                        <input type="text" class="form-control" id="icon" name="icon" placeholder="Masukkan icon">
+                        <label for="">Role</label>
+                        <select name="role_id" id="" class="form-control">
+                            <?php foreach ($role as $rl) : ?>
+                                <option value="<?= $rl['id_role'] ?>"><?= $rl['role']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -146,3 +134,22 @@
         </div>
     </div>
 </div>
+
+<?php
+foreach ($dt_user as $i) :
+    $nama = $i['nama'];
+    $email = $i['email'];
+    $image = $i['image'];
+    $about = $i['about'];
+    $role_id = $i['role_id'];
+    $is_active = $i['is_active'];
+    $date_created = $i['date_created'];
+    $change_pass = $i['change_pass'];
+    ?>
+
+<!-- Modal Edit Data User -->
+
+
+<!-- Modal Hapus User -->
+
+<?php endforeach; ?>
