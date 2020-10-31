@@ -74,7 +74,7 @@
                                         <a href="javascript:void(0)" data-kode="<?= $menus['kode_menu']; ?>" class="btn btn-primary btn-xs mx-auto btn-view-menu" data-toggle="modal" data-target="#viewModal">
                                             <i class="fas fa-fw fa-eye"></i>
                                         </a>
-                                        <a href="javascript:void(0)" data-kode="<?= $menus['kode_menu']; ?>" class="btn btn-danger btn-xs mx-auto btn-delete-menu">
+                                        <a href="javascript:void(0)" data-kode="<?= $menus['kode_menu']; ?>" class="btn btn-danger btn-xs mx-auto btn-del">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
                                         <a href="javascript:void(0)" data-kode="<?= $menus['kode_menu']; ?>" class="btn btn-warning btn-xs mx-auto btn-edit-menu" data-toggle="modal" data-target="#editModal">
