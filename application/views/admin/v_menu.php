@@ -71,13 +71,13 @@
                                     <td><?= $menus['kode_menu']; ?></td>
                                     <td><?= $menus['menu']; ?></td>
                                     <td class="d-flex justify-content-center">
-                                        <a href="" class="btn btn-primary btn-xs mx-auto">
+                                        <a href="javascript:void(0)" data-kode="<?= $menus['kode_menu']; ?>" class="btn btn-primary btn-xs mx-auto btn-view-menu" data-toggle="modal" data-target="#viewModal">
                                             <i class="fas fa-fw fa-eye"></i>
                                         </a>
-                                        <a href="" class="btn btn-danger btn-xs mx-auto">
+                                        <a href="javascript:void(0)" data-kode="<?= $menus['kode_menu']; ?>" class="btn btn-danger btn-xs mx-auto btn-delete-menu">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
-                                        <a href="" class="btn btn-warning btn-xs mx-auto">
+                                        <a href="javascript:void(0)" data-kode="<?= $menus['kode_menu']; ?>" class="btn btn-warning btn-xs mx-auto btn-edit-menu" data-toggle="modal" data-target="#editModal">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
                                     </td>
@@ -190,17 +190,19 @@
             <!-- Modal Header End -->
             <!-- Modal Body -->
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="<?= base_url('admin/editMenu/'); ?>" method="post" id="formEditMenu">
                     <!-- Input Group -->
                     <div class="form-group">
                         <label for="kode_menu">Kode Menu</label>
                         <input type="text" name="kode_menu" id="kode_menu" class="form-control" readonly>
+                        <?= form_error("kode_menu", '<p class="text-danger ml-1 mt-1 text-sm">', '</p>') ?>
                     </div>
                     <!-- Input Group End -->
                     <!-- Input Group -->
                     <div class="form-group">
                         <label for="menu">Menu</label>
                         <input type="text" name="menu" id="menu" class="form-control" placeholder="ex: Admin">
+                        <?= form_error("menu", '<p class="text-danger ml-1 mt-1 text-sm">', '</p>') ?>
                     </div>
                     <!-- Input Group End -->
             </div>
@@ -218,3 +220,44 @@
     <!-- Modal Dialog End -->
 </div>
 <!-- Modal Edit End -->
+
+<!-- Modal View -->
+<div class="modal fade" id="viewModal">
+    <!-- Modal Dialog -->
+    <div class="modal-dialog">
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Detail Menu</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Modal Header End -->
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <!-- Input Group -->
+                <div class="form-group">
+                    <label for="kode_menu">Kode Menu</label>
+                    <input type="text" name="kode_menu" id="kode_menu" class="form-control" readonly>
+                </div>
+                <!-- Input Group End -->
+                <!-- Input Group -->
+                <div class="form-group">
+                    <label for="menu">Menu</label>
+                    <input type="text" name="menu" id="menu" class="form-control" placeholder="ex: Admin" readonly>
+                </div>
+                <!-- Input Group End -->
+            </div>
+            <!-- Modal Body End -->
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+            </div>
+            <!-- Modal Footer End -->
+        </div>
+        <!-- Modal Content End -->
+    </div>
+    <!-- Modal Dialog End -->
+</div>
+<!-- Modal View End -->
