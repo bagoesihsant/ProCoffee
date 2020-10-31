@@ -124,7 +124,10 @@
                     <!-- Input Group -->
                     <div class="form-group">
                         <label for="kode_menu">Kode Menu</label>
-                        <input type="text" name="kode_menu" id="kode_menu" class="form-control" readonly>
+                        <?php
+                        $angka = $this->hookdevlib->autonumber('MENU15102020', 4, 8);
+                        ?>
+                        <input type="text" name="kode_menu" id="kode_menu" class="form-control" value="<?= $angka; ?>" readonly>
                     </div>
                     <!-- Input Group End -->
                     <!-- Input Group -->
@@ -148,3 +151,48 @@
     <!-- Modal Dialog End -->
 </div>
 <!-- Modal Tambah End -->
+
+<!-- Modal Edit -->
+<div class="modal fade" id="editModal">
+    <!-- Modal Dialog -->
+    <div class="modal-dialog">
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Ubah Menu</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Modal Header End -->
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form action="" method="post">
+                    <!-- Input Group -->
+                    <div class="form-group">
+                        <label for="kode_menu">Kode Menu</label>
+                        <input type="text" name="kode_menu" id="kode_menu" class="form-control" readonly>
+                    </div>
+                    <!-- Input Group End -->
+                    <!-- Input Group -->
+                    <div class="form-group">
+                        <label for="menu">Menu</label>
+                        <input type="text" name="menu" id="menu" class="form-control" placeholder="ex: Admin">
+                    </div>
+                    <!-- Input Group End -->
+            </div>
+            <!-- Modal Body End -->
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                </form>
+            </div>
+            <!-- Modal Footer End -->
+        </div>
+        <!-- Modal Content End -->
+    </div>
+    <!-- Modal Dialog End -->
+</div>
+<!-- Modal Edit End -->
