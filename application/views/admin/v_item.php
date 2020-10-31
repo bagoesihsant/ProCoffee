@@ -235,39 +235,37 @@
                         <sup class="text-danger">*</sup>
                     </label>
                     <input type="text" name="kategori" id="kategori" class="form-control" value="" readonly>
-
-                </div>
-                <div class="form-group">
-                    <label for="unit">
-                        Unit Items
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <input type="text" name="nama" id="nama" class="form-control" value="" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="harga">
-                        Harga
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <input type="text" name="harga" id="harga" class="form-control" value="" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="berat">
-                        Berat
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <input type="text" name="berat" id="berat" class="form-control" value="" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="deskripsi">
-                        Deskripsi
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <textarea class="form-control" id="deskripsi" rows="3" readonly></textarea>
-                </div>
-                <div class="form-group text-center">
-                    <td><img src="<?= base_url() . "assets/dist/img/kopi1.jpg" ?>" width="300"></td>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="unit">
+                            Unit Items
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="nama" id="nama" class="form-control" value="" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="harga">
+                            Harga
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="harga" id="harga" class="form-control" value="" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="berat">
+                            Berat
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="berat" id="berat" class="form-control" value="" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsi">
+                            Deskripsi
+                        </label>
+                        <textarea class="form-control" id="deskripsi" rows="3" readonly></textarea>
+                    </div>
+                    <div class="form-group text-center">
+                        <td><img src="<?= base_url()."assets/dist/img/kopi1.jpg" ?>" width="300"></td>
+                    </div>
 
             </div>
             <div class="modal-footer">
