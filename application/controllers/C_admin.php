@@ -144,4 +144,116 @@ class C_admin extends CI_Controller
             }
         }
     }
+
+    // Menu - Ajax Edit - untuk mengambil data dari database secara asynchronous
+    public function ajaxDataEditMenu()
+    {
+        // Membuat array data dan menyimpan data yang dikirimkan oleh JavaScript
+        $data = [
+            'kode_menu' => htmlspecialchars($this->input->post('kode_menu', true))
+        ];
+
+        // Menjalankan query untuk mengambil data menu dari database
+        $result = $this->menu->getDetailMenu($data);
+
+        // Mengubah hasil dari database menjadi json
+        echo json_encode($result);
+    }
+
+    // Menu - Edit Menu
+    public function editMenu()
+    {
+
+        // Membuat rule untuk validasi form
+        $this->form_validation->set_rules('kode_menu', 'Kode Menu', 'required|trim|alpha_numeric');
+        $this->form_validation->set_rules('menu', 'Menu', 'required|trim|alpha_numeric_spaces');
+
+        // Membuat pesan kustom untuk rule validasi form
+        $this->form_validation->set_message('required', 'Field %s wajib diisi.');
+        $this->form_validation->set_message('alpha_numeric_spaces', 'Field %s hanya boleh berisikan angka dan huruf.');
+
+        // Menjalankan form_validation
+        if ($this->form_validation->run() == false) {
+            // Jika form validation mengembalikan nilai false
+            $this->index_menu();
+        } else {
+            // Jika form validation mengembalikan nilai true
+
+            // Membuat array data
+            $data = [
+                'menu' => htmlspecialchars(ucwords($this->input->post('menu', true)))
+            ];
+
+            // Membuat array where
+            $where = [
+                'kode_menu' => htmlspecialchars($this->input->post('kode_menu', true))
+            ];
+
+            // Menjalankan query untuk mengubah data menu
+            $result = $this->menu->ubahMenu($data, $where);
+
+            // Memeriksa apakah query mengubah data menu berhasil dijalankan
+            if ($result > 0) {
+                // Jika query mengubah data berhasil dijalankan
+
+                // Membuat Session
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.success("Selamat, Data berhasil diubah.")'
+                );
+
+                // Mengarahkan kembali
+                redirect('admin/menu');
+            } else {
+                // Jika query mengubah data gagal dijalankan
+
+                // Membuat session
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.error("Error, Data gagal diubah.")'
+                );
+
+                // Mengarahkan kembali
+                redirect('admin/menu');
+            }
+        }
+    }
+
+    // Menu - Hapus Menu
+    public function hapusMenu($kode)
+    {
+
+        // Membuat array data
+        $data = [
+            'kode_menu' => $kode
+        ];
+
+        // Menjalankan fungsi untuk menghapus menu
+        $result = $this->menu->hapusMenu($data);
+
+        // Memeriksa apakah menu berhasil dihapus
+        if ($result > 0) {
+            // Jika menu berhasil dihapus
+
+            // Membuat session
+            $this->session->set_flashdata(
+                'pesan_menu',
+                'toastr.success("Selamat, Data berhasil dihapus.")'
+            );
+
+            // Mengarahkan kembali
+            redirect('admin/menu');
+        } else {
+            // Jika menu gagal dihapus
+
+            // Membuat session
+            $this->session->set_flashdata(
+                'pesan_menu',
+                'toastr.error("Error, Data gagal dihapus.")'
+            );
+
+            // Mengarahkan kembali
+            redirect('admin/menu');
+        }
+    }
 }
