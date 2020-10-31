@@ -61,22 +61,32 @@
                         <!-- Thead End -->
                         <!-- Tbody -->
                         <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>MN001</td>
-                                <td>Menu</td>
-                                <td class="d-flex justify-content-center">
-                                    <a href="" class="btn btn-primary btn-xs mx-auto">
-                                        <i class="fas fa-fw fa-eye"></i>
-                                    </a>
-                                    <a href="" class="btn btn-danger btn-xs mx-auto">
-                                        <i class="fas fa-fw fa-trash-alt"></i>
-                                    </a>
-                                    <a href="" class="btn btn-warning btn-xs mx-auto">
-                                        <i class="fas fa-fw fa-edit text-white"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            <!-- Looping Data dari Database -->
+                            <?php
+                            $i = 1;
+                            foreach ($menu as $menus) :
+                            ?>
+                                <tr>
+                                    <td><?= $i; ?></td>
+                                    <td><?= $menus['kode_menu']; ?></td>
+                                    <td><?= $menus['menu']; ?></td>
+                                    <td class="d-flex justify-content-center">
+                                        <a href="" class="btn btn-primary btn-xs mx-auto">
+                                            <i class="fas fa-fw fa-eye"></i>
+                                        </a>
+                                        <a href="" class="btn btn-danger btn-xs mx-auto">
+                                            <i class="fas fa-fw fa-trash-alt"></i>
+                                        </a>
+                                        <a href="" class="btn btn-warning btn-xs mx-auto">
+                                            <i class="fas fa-fw fa-edit text-white"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php
+                                $i++;
+                            endforeach;
+                            ?>
+                            <!-- Looping Data dari Database End -->
                         </tbody>
                         <!-- Tbody End -->
                         <!-- Tfoot -->
@@ -120,20 +130,32 @@
             <!-- Modal Header End -->
             <!-- Modal Body -->
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="<?= base_url('admin/menu'); ?>" method="post">
                     <!-- Input Group -->
                     <div class="form-group">
                         <label for="kode_menu">Kode Menu</label>
                         <?php
-                        $angka = $this->hookdevlib->autonumber('MENU15102020', 4, 8);
+                        // Mengambil data terakhir di database
+                        $data = $this->menu->getLastId();
+                        // Memeriksa apakah ada kode yang didapat dari database
+                        if ($data->num_rows() > 0) {
+                            // Jika ditemukan data
+                            $kode = $data->row_array();
+                            $kode = $this->hookdevlib->autonumber($kode['kode_menu'], 4, 8);
+                        } else {
+                            // Jika tidak ditemukan data
+                            $kode = "MENU00000001";
+                        }
                         ?>
-                        <input type="text" name="kode_menu" id="kode_menu" class="form-control" value="<?= $angka; ?>" readonly>
+                        <input type="text" name="kode_menu" id="kode_menu" class="form-control" value="<?= $kode; ?>" readonly>
+                        <?= form_error("kode_menu", '<p class="text-danger ml-1 mt-1 text-sm">', '</p>') ?>
                     </div>
                     <!-- Input Group End -->
                     <!-- Input Group -->
                     <div class="form-group">
                         <label for="menu">Menu</label>
                         <input type="text" name="menu" id="menu" class="form-control" placeholder="ex: Admin">
+                        <?= form_error("menu", '<p class="text-danger ml-1 mt-1 text-sm">', '</p>') ?>
                     </div>
                     <!-- Input Group End -->
             </div>
