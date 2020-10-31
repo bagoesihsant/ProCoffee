@@ -22,8 +22,15 @@
     <div class="row">
         <div class="col-12">
             <div class="card"> 
-                <div class="card-header"> 
-                    <h3 class="card-title"><?= $title ?> Table <button data-toggle="modal" data-target="#newroleModal" class="btn btn-just-icon btn-round btn-success">Add Data <i class="fa fa-plus"></i></button></h3> 
+                <div class="card-header">
+                    <div class="row"> 
+                        <div class="col-6">
+                            <h3 class="text-dark m-0"><?= $title ?> Table </h3>
+                        </div>
+                        <div class="col-6 float-right">
+                            <button data-toggle="modal" data-target="#newroleModal" class="btn btn-just-icon btn-round btn-primary float-right">Add Data <i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
                 </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -45,6 +52,7 @@
                     <?php $i = 1; ?>
                     <?php foreach ($dt_user as $m) :
                         $id = $m['id_user'];
+                        $status = $m['is_active'];
                     ?>
                         <tr>
                             <td><?= $i; ?></td>
@@ -56,7 +64,11 @@
                             <td><?= $m['date_created']; ?></td>
                             <td class="text-right">
                                 <button class="btn btn-info btn-xs btn-round" data-toggle="modal" data-target="#modal_edit<?= $id; ?>">Edit User</button>
-                                <button class="btn btn-danger btn-xs btn-round" data-toggle="modal" data-target="#modal_hapus<?= $id; ?>">Hapus User</button>
+                                <?php if($status == 0) : ?>
+                                <button class="btn btn-success btn-xs btn-round" data-toggle="modal" data-target="#modal_aktif<?= $id; ?>">Aktifkan User</button>
+                                <?php else : ?>
+                                <button class="btn btn-danger btn-xs btn-round" data-toggle="modal" data-target="#modal_nonaktif<?= $id; ?>">Nonaktifkan User</button>
+                                <?php endif; ?>
                             </td>
                         </tr>
                         <?php $i++; ?>
@@ -248,20 +260,44 @@ foreach ($dt_user as $i) :
 </div>
 
 <!-- Modal Hapus User -->
-<div class="modal fade" id="modal_hapus<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+<!-- Aktifkan -->
+<div class="modal fade" id="modal_aktif<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
+                <h3 class="modal-title" id="myModalLabel">Akfitkan Data User</h3>
             </div>
-            <form action="<?= base_url() . 'C_user/hapus_user'; ?>" method="post" class="form-horizontal">
+            <form action="<?= base_url() . 'C_user/aktifkan'; ?>" method="post" class="form-horizontal">
                 <div class="modal-body">
-                    <p>Apakah Anda yakin mau menghapus data ini? <b><?= $nama; ?></b></p>
+                    <p>Apakah Anda yakin mau mengaktifkan data user ini? <b><?= $nama; ?></b></p>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="id_user" value="<?= $id; ?>">
+                    <input type="hidden" name="status" value="1">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
-                    <button class="btn btn-danger">Hapus</button>
+                    <button class="btn btn-success">Konfirmasi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Nonaktifkan -->
+<div class="modal fade" id="modal_nonaktif<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">Nonaktifkan Data User</h3>
+            </div>
+            <form action="<?= base_url() . 'C_user/aktifkan'; ?>" method="post" class="form-horizontal">
+                <div class="modal-body">
+                    <p>Apakah Anda yakin mau menonaktifkan data user ini? <b><?= $nama; ?></b></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_user" value="<?= $id; ?>">
+                    <input type="hidden" name="status" value="0">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-danger">Konfirmasi</button>
                 </div>
             </form>
         </div>

@@ -80,11 +80,20 @@ class C_user extends CI_Controller
         }
     }
 
-    public function hapus_user()
+    public function nonaktifkan()
     {
         $id = htmlspecialchars($this->input->post('id_user'));
-        $this->M_user->hapus_user($id);
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Berhasil Dihapus</div>');
+        $status = htmlspecialchars($this->input->post('status'));
+        $this->M_user->status($id, $status);
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Akun Berhasil Dinonaktifkan</div>');
+        redirect('C_user');
+    }
+    public function aktifkan()
+    {
+        $id = htmlspecialchars($this->input->post('id_user'));
+        $status = htmlspecialchars($this->input->post('status'));
+        $this->M_user->status($id, $status);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Akun Berhasil Diaktifkan</div>');
         redirect('C_user');
     }
 }

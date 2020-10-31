@@ -6,9 +6,12 @@ class M_user extends CI_Model
         $hasil = $this->db->query("DELETE FROM user WHERE id_user='$id'");
         return $hasil;
     }
-    function hapus_user($id)
+    function status($id, $status)
     {
-        $hasil = $this->db->query("DELETE FROM user WHERE id_user='$id'");
-        return $hasil;
+        $data = array(
+            'is_active' => $status
+        );
+        $this->db->where('id_user', $id);
+        $this->db->update('user', $data);
     }
 }
