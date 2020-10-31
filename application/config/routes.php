@@ -52,3 +52,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'C_auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// Custom Routes
+$route['admin/menu'] = "C_admin/index_menu";
