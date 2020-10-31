@@ -80,13 +80,13 @@
                         </tbody>
                         <!-- Tbody End -->
                         <!-- Tfoot -->
-                        <tfoot>
-                        <tr>
-                            <th>No.</th>
-                            <th>Nama Units</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                        </tfoot>
+                        <!-- <tfoot>
+                            <tr>
+                                <th>No.</th>
+                                <th>Nama Units</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </tfoot> -->
                         <!-- Tfoot End -->
                     </table>
                     <!-- Data Table End -->
