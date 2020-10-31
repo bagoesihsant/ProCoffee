@@ -24,4 +24,24 @@ class M_menu extends CI_Model
     {
         return $this->db->get('user_menu')->result_array();
     }
+
+    // Fungsi untuk mengambil data menu tertentu pada tabel menggunakan kode menu
+    public function getDetailMenu($data)
+    {
+        return $this->db->get_where('user_menu', $data)->row_array();
+    }
+
+    // Fungsi untuk mengubah data menu tertentu pada tabel menggunakan kode menu
+    public function ubahMenu($data, $where)
+    {
+        $this->db->update('user_menu', $data, $where);
+        return $this->db->affected_rows();
+    }
+
+    // Fungsi untuk menghapus data menu tertentu pada tabel menggunakan kode menu
+    public function hapusMenu($data)
+    {
+        $this->db->delete('user_menu', $data);
+        return $this->db->affected_rows();
+    }
 }
