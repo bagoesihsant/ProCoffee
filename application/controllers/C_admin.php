@@ -10,9 +10,11 @@ class C_admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
         // Load Model Menu
         $this->load->model('M_menu', 'menu');
+
+        // Load Model Categories
+        $this->load->model('M_products', 'mp');
     }
 
     // Index
@@ -48,7 +50,7 @@ class C_admin extends CI_Controller
         $this->load->view('templates/v_footer_admin');
     }
 
-    // Produk
+    // Produk kategori
     public function index_product_categories()
     {
         $this->load->view('templates/v_header_admin');
@@ -58,6 +60,13 @@ class C_admin extends CI_Controller
         $this->load->view('admin/custom_js');
         $this->load->view('templates/v_footer_admin');
     }
+
+    public function ReadCategoriesAjax()
+    {
+        $dataBarang = $this->mp->getData('tbl_kategori')->result();
+        echo json_encode($dataBarang);
+    }
+    // close function for product categories
 
     // Units
     public function index_product_units()

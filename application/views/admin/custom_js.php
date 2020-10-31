@@ -174,3 +174,33 @@
         })
     });
 </script>
+
+
+<!-- crud ajax lulung -->
+<script>
+    ambilData();
+
+    // awal membuat function untuk get datanya
+    function ambilData() {
+        $.ajax({
+            type: 'POST', //alamatnya adalah nama controller, lalu nama function
+            url: 'http://localhost/ProCoffee/C_admin/ReadCategoriesAjax',
+            dataType: 'json',
+            success: function(dataGet) {
+                var baris = '';
+                // dataGet.lenght maksudnya panjang dataGet dari variable"dataGet" yang ada di dalam kurung fucntion di atas
+                for (var i = 0; i < dataGet.length; i++) {
+                    baris += '<tr>' +
+                        '<td>' + (i + 1) + '</td>' +
+                        '<td>' + dataGet[i].kode_category + '</td>' +
+                        '<td>' + dataGet[i].name + '</td>' +
+                        '<td><a href="#formModal" data-toggle="modal" class="btn btn-primary" onclick="submit(' + dataGet[i].kode_category + ')" id="">Ubah</a>' +
+                        '<a  class="btn btn-danger ml-2 text-white" onclick="hapusData(' + dataGet[i].kode_category + ')" >Hapus</a>' + '</td>' +
+                        '</tr>';
+                }
+                $('#TableTarget').html(baris);
+
+            }
+        });
+    } // akhir dari function ambil data ata get data
+</script>

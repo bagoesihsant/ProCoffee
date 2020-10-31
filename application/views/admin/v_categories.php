@@ -53,40 +53,14 @@
                         </thead>
                         <!-- Thead End -->
                         <!-- Tbody -->
-                        <tbody>
+                        <tbody id="TableTarget">
                             <!-- Data Example -->
-                            <?php
-                            for ($i = 1; $i <= 3; $i++) :
-                            ?>
-                                <tr>
-                                    <td><?= $i; ?>.</td>
-                                    <td>Perkotak</td>
-                                    <td class="d-flex justify-content-around">
-                                        <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
-                                            <i class="fas fa-fw fa-eye text-white"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-xs btn-danger btnDeleteCategories">
-                                            <i class="fas fa-fw fa-trash-alt"></i>
-                                        </a>
-                                        <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning">
-                                            <i class="fas fa-fw fa-edit text-white"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php
-                            endfor;
-                            ?>
+
                             <!-- Data Example End -->
                         </tbody>
                         <!-- Tbody End -->
                         <!-- Tfoot -->
-                        <tfoot>
-                            <tr>
-                                <th>No.</th>
-                                <th>Nama Categories</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                        </tfoot>
+
                         <!-- Tfoot End -->
                     </table>
                     <!-- Data Table End -->
