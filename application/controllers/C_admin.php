@@ -51,7 +51,7 @@ class C_admin extends CI_Controller
     // Produk
     public function index_product_categories()
     {
-        $this->load->view('templates/v_header_admin');
+        $this->load->view('template/v_header_admin');
         $this->load->view('templates/v_sidebar_admin');
         $this->load->view('admin/v_categories');
         $this->load->view('templates/footer_js');
