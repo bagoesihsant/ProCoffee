@@ -6,6 +6,13 @@
             "autoWidth": false,
         });
 
+        // Mengubah tabel menu di menu menjadi data tables
+        $('#dataTableMenu').DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+
+
         // Menggunakan sweet alert untuk menghapus data
         // Kustomisasi styling tombol untuk sweet alert menggunakan bootstrap
         const swalBootstrap = Swal.mixin({
