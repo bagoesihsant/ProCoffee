@@ -35,16 +35,10 @@ class C_user extends CI_Controller
         }else{
             $q_count = $this->db->get('user')->num_rows();
 
-            if($q_count >= 10){
-                $id_user = "USR-0" . date('dm', time()).($q_count + 1);
-            }else if($q_count >= 100){
-                $id_user = "USR-" . date('dm', time()).($q_count + 1);
-            }else{
-                $id_user = "USR-00" . date('dm', time()).($q_count + 1);
-            }
+            $id_user = "USR" . ($q_count + 1) . date('Hdyims', time());
 
             // Configuration for upload image
-            $upload_image = $_FILES['image']['name'];
+            $upload_image = $_FILES['profile_image']['name'];
 
             if($upload_image){
                 $config['allowed_types'] = 'gif|jpg|jpeg|png';
@@ -53,7 +47,7 @@ class C_user extends CI_Controller
 
                 $this->load->library('upload', $config);
 
-                if($this->upload->do_upload('image')){
+                if($this->upload->do_upload('profile_image')){
                     $new_image = $this->upload->data('file_name');
                     $gambar = $new_image;
                 }else{
@@ -64,18 +58,21 @@ class C_user extends CI_Controller
                 $gambar = 'default.jpg';
             }
             // End of Configuration for upload image
-
+            $tgl_lahir = date_create($this->input->post('tanggal_lahir'));
             $data = [
-                'id_user' => $id_user,
-                'nama' => $this->input->post('nama'),
-                'email' => $this->input->post('email'),
-                'image' => $gambar,
-                'password' => time(),
-                'about' => $this->input->post('about'),
-                'role_id' => $this->input->post('role_id'),
+                'id_user' => htmlspecialchars($id_user),
+                'nama' => htmlspecialchars($this->input->post('nama')),
+                'alamat' => htmlspecialchars($this->input->post('alamat')),
+                'tanggal_lahir' => htmlspecialchars(date_format($tgl_lahir, "Y-m-d")),
+                'email' => htmlspecialchars($this->input->post('email')),
+                'username' => htmlspecialchars($this->input->post('username')),
+                'notelp' => htmlspecialchars($this->input->post('notelp')),
+                'profile_image' => htmlspecialchars($gambar),
+                'about' => htmlspecialchars($this->input->post('about')),
+                'role_id' => htmlspecialchars($this->input->post('role_id')),
                 'is_active' => 0,
-                'date_created' => time(),
-                'change_pass' => 0
+                'date_created' => htmlspecialchars(time()),
+                'update_at' => 0
             ];
             $this->db->insert('user', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Disimpan</div>');

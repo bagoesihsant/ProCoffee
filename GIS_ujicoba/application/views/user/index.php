@@ -69,7 +69,7 @@
                     <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                             <div class="text-center">
-                                <img class="profile-user-img img-fluid" src="<?= base_url() . 'assets/dist/img/user/' . $user['image']; ?>" alt="User profile picture">
+                                <img class="profile-user-img img-fluid" src="<?= base_url() . 'assets/dist/img/user/' . $user['profile_image']; ?>" alt="User profile picture">
                             </div>
 
                             <h3 class="profile-username text-center"><?= $user['nama']; ?></h3>
@@ -88,7 +88,7 @@
                                     <b>Joined Date</b> <a class="float-right"><i class="label label-success"><?= date('d F Y', $user['date_created']); ?></i></a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Change Date</b> <a class="float-right"><?= date('d F Y', $user['change_pass']); ?></i></a>
+                                    <b>Change Date</b> <a class="float-right"><?= date('d F Y', $user['update_at']); ?></i></a>
                                 </li>
                             </ul>
 

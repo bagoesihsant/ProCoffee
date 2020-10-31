@@ -50,7 +50,7 @@
                             <td><?= $i; ?></td>
                             <td><?= $m['nama']; ?></td>
                             <td><?= $m['email']; ?></td>
-                            <td><?= $m['image']; ?></td>
+                            <td><?= $m['profile_image']; ?></td>
                             <td><?= $m['role_id']; ?></td>
                             <td><?= $m['is_active']; ?></td>
                             <td><?= $m['date_created']; ?></td>
@@ -106,14 +106,30 @@
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama">
                     </div>
                     <div class="form-group">
+                        <label for="">Alamat</label>
+                        <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tanggal Lahir</label>
+                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Masukkan tanggal_lahir">
+                    </div>
+                    <div class="form-group">
                         <label for="">Email</label>
                         <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan email">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nomor Telpon</label>
+                        <input type="text" class="form-control" id="notelp" name="notelp" placeholder="Masukkan notelp">
                     </div>
                     <div class="form-group">
                         <label for="">Silahkan Pilih Gambar Anda</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="image" name="image">
+                                <input type="file" class="custom-file-input" id="profile_image" name="profile_image">
                                 <label for="image" class="custom-file-label">Pilih File Anda</label>
                             </div>
                             <div class="input-group-append">
@@ -148,12 +164,12 @@ foreach ($dt_user as $i) :
     $id = $i['id_user'];
     $nama = $i['nama'];
     $email = $i['email'];
-    $image = $i['image'];
+    $image = $i['profile_image'];
     $about = $i['about'];
     $role_id = $i['role_id'];
     $is_active = $i['is_active'];
     $date_created = $i['date_created'];
-    $change_pass = $i['change_pass'];
+    $change_pass = $i['update_at'];
     ?>
 
 <!-- Modal Edit Data User -->

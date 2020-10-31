@@ -78,7 +78,7 @@
                                     <label class="sm-0"><small>(Klik gambar untuk mengganti)</label>
                                 </div>
                                 <div>
-                                    <img src="<?= base_url(); ?>assets/dist/img/user/<?= $user['image']; ?>" onClick="triggerClick()" id="profileDisplay" width="200px">
+                                    <img src="<?= base_url(); ?>assets/dist/img/user/<?= $user['profile_image']; ?>" onClick="triggerClick()" id="profileDisplay" width="200px">
                                 </div>
                             </span>
                             <input type="file" name="image" onChange="displayImage(this)" id="profileImage" class="form-control" style="display: none;">

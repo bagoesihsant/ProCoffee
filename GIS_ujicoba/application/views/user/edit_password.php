@@ -69,10 +69,10 @@
                                     <div class="form-group">
                                         <label>Last Update Password </label>
                                     </div>
-                                    <?php if($user['change_pass']==0){?>
+                                    <?php if($user['update_at']==0){?>
                                         <i class="badge badge-secondary">--</i>
                                     <?php } else { ?>
-                                        <i class="badge badge-success col-md-1"><?= date('d F Y', $user['change_pass']); ?></i>
+                                        <i class="badge badge-success col-md-1"><?= date('d F Y', $user['update_at']); ?></i>
                                     <?php } ?>        
                                 </div>
                             </div>
