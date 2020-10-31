@@ -58,10 +58,14 @@
                             <td><?= $i; ?></td>
                             <td><?= $m['nama']; ?></td>
                             <td><?= $m['email']; ?></td>
-                            <td><?= $m['profile_image']; ?></td>
+                            <td><img src="<?= base_url('assets/dist/img/user/' . $m['profile_image']); ?>" class="img-fluid" width="50px" height="50px"></td>
                             <td><?= $m['role_id']; ?></td>
-                            <td><?= $m['is_active']; ?></td>
-                            <td><?= $m['date_created']; ?></td>
+                            <?php if($status == 0) :?>
+                                <td><small class="badge badge-danger">Nonaktif</small></td>
+                            <?php else : ?>
+                                <td><small class="badge badge-success">Aktif</small></td>
+                            <?php endif; ?>
+                            <td><?= date('d F Y', $m['date_created']); ?></td>
                             <td class="text-right">
                                 <button class="btn btn-info btn-xs btn-round" data-toggle="modal" data-target="#modal_edit<?= $id; ?>">Edit User</button>
                                 <?php if($status == 0) : ?>
@@ -69,6 +73,7 @@
                                 <?php else : ?>
                                 <button class="btn btn-danger btn-xs btn-round" data-toggle="modal" data-target="#modal_nonaktif<?= $id; ?>">Nonaktifkan User</button>
                                 <?php endif; ?>
+                                <button class="btn btn-warning btn-xs btn-round" data-toggle="modal" data-target="#send_email<?= $id; ?>"><i class="fas fa-envelope"></i></button>
                             </td>
                         </tr>
                         <?php $i++; ?>
@@ -289,7 +294,7 @@ foreach ($dt_user as $i) :
             <div class="modal-header">
                 <h3 class="modal-title" id="myModalLabel">Nonaktifkan Data User</h3>
             </div>
-            <form action="<?= base_url() . 'C_user/aktifkan'; ?>" method="post" class="form-horizontal">
+            <form action="<?= base_url() . 'C_user/nonaktifkan'; ?>" method="post" class="form-horizontal">
                 <div class="modal-body">
                     <p>Apakah Anda yakin mau menonaktifkan data user ini? <b><?= $nama; ?></b></p>
                 </div>
@@ -298,6 +303,29 @@ foreach ($dt_user as $i) :
                     <input type="hidden" name="status" value="0">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
                     <button class="btn btn-danger">Konfirmasi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Send Email Form -->
+<div class="modal fade" id="send_email<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">Send Token Password</h3>
+            </div>
+            <form action="<?= base_url() . 'C_user/verif_password'; ?>" method="post" class="form-horizontal">
+                <div class="modal-body">
+                    <p>Apakah Anda yakin mengirim token password data user ini? <b><?= $nama; ?></b></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_user" value="<?= $id; ?>">
+                    <input type="hidden" name="status" value="1">
+                    <input type="hidden" name="email" value="<?= $email; ?>">
+                    <button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                    <button class="btn btn-primary">Konfirmasi</button>
                 </div>
             </form>
         </div>

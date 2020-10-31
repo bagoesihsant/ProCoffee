@@ -96,4 +96,88 @@ class C_user extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Akun Berhasil Diaktifkan</div>');
         redirect('C_user');
     }
+
+    // Send Email & All of it Configuration
+    public function verif_password()
+    {
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        if ($this->form_validation->run() == false) {
+
+            $data['title'] = 'Management User';
+            
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('management_user/index', $data);
+            $this->load->view('templates/custom-footer', $data);
+            $this->load->view('templates/dist-footer', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+            $email = $this->input->post('email');
+            $user = $this->db->get_where('user', ['email' => $email, 'is_active' => 1])->row_array();
+
+            if ($user) {
+                $token = base64_encode(random_bytes(32));
+                $user_token = [
+                    'email' => $email,
+                    'token' => $token,
+                    'date_created' => time()
+                ];
+
+                $this->db->insert('token_user', $user_token);
+                $this->_sendEmail($token);
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="success">Silahkan Cek Email Anda Untuk Reset Password!!</div>');
+                redirect('C_user');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email Anda Belum Terdaftar! Atau Akun Belum Aktif</div>');
+                redirect('C_user');
+            }
+        }
+    }
+
+    // Config Function Sendemail_
+    private function _sendEmail($token)
+    {
+        // Config Setting 
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'emailpass49@gmail.com',
+            'smtp_pass' => 'IndowebsteR9',
+            'smtp_port' => 587,
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n"
+        ];
+        // Send Token Password
+        $emailAkun = $this->input->post('email');
+        $ResetPassword = "
+                                <html>
+                                <head>
+                                    <title>Kode Reset Password</title>
+                                </head>
+                                <body>
+                                    <h2>Silahkan Klik Link Dibawah Ini!!</h2>
+                                    <p>Akun Anda</p>
+                                    <p>Email : " . $emailAkun . "</p>
+                                    <p>Tolong Klik Link Dibawah ini untuk Reset Password!</p>
+                                    <h4><a href='" . base_url() . "auth/resetpassword?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Reset Password!!</a></h4>
+                                </body>
+                                </html>
+        ";
+        $this->load->library('email', $config);
+        $this->email->from('alfiannsx98@gmail.com', 'Reset Password');
+        $this->email->to($this->input->post('email'));
+        
+        $this->email->subject('Reset Password');
+        $this->email->message($ResetPassword);
+        $this->email->set_mailtype('html');
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
 }
