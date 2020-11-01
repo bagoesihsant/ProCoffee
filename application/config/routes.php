@@ -61,5 +61,5 @@ $route['admin/editMenu'] = "C_admin/editMenu";
 $route['admin/hapusMenu/(:any)'] = "C_admin/hapusMenu/$1";
 
 // Route Sub Menu
-$route['admin/submenu'] = "C_admin/index_sub_menu";
-$route['admin/editMenu'] = "C_admin/editMenu";
+$route['admin/submenu'] = "C_admin/index_submenu";
+$route['admin/editMenu'] = "C_admin/editSubmenu";

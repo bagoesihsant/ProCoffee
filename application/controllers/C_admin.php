@@ -270,7 +270,7 @@ class C_admin extends CI_Controller
 
         // Load View
         $this->load->view('templates/v_header_admin');
-        $this->load->view('tempates/v_sidebar_admin');
+        $this->load->view('templates/v_sidebar_admin');
         $this->load->view('admin/v_sub_menu');
         $this->load->view('templates/footer_js.php');
         $this->load->view('admin/custom_js.php');
