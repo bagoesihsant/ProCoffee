@@ -50,16 +50,17 @@
                     </thead>
                     <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($dt_user as $m) :
+                    <?php foreach ($get_user as $m) :
                         $id = $m['id_user'];
                         $status = $m['is_active'];
+                        $id_role = $m['role_id'];
                     ?>
                         <tr>
                             <td><?= $i; ?></td>
                             <td><?= $m['nama']; ?></td>
                             <td><?= $m['email']; ?></td>
                             <td><img src="<?= base_url('assets/dist/img/user/' . $m['profile_image']); ?>" class="img-fluid" width="50px" height="50px"></td>
-                            <td><?= $m['role_id']; ?></td>
+                            <td><?= $m['role']; ?></td>
                             <?php if($status == 0) :?>
                                 <td><small class="badge badge-danger">Nonaktif</small></td>
                             <?php else : ?>
@@ -177,13 +178,14 @@
 </div>
 
 <?php
-foreach ($dt_user as $i) :
+foreach ($get_user as $i) :
     $id = $i['id_user'];
     $nama = $i['nama'];
     $email = $i['email'];
     $image = $i['profile_image'];
     $about = $i['about'];
     $role_id = $i['role_id'];
+    $nama_role = $i['role'];
     $is_active = $i['is_active'];
     $date_created = $i['date_created'];
     $change_pass = $i['update_at'];
@@ -216,11 +218,11 @@ foreach ($dt_user as $i) :
                     <div class="form-group">
                         <label for="">Pilih Role Anda</label>
                         <select name="role_id" id="" class="form-control" required>
-                                <option value="<?= $role_id; ?>" selected disabled><?= $role_id; ?></option>
-                                <option value="<?= $role_id; ?>" selected hidden><?= $role_id; ?></option>
+                                <option value="<?= $role_id; ?>" selected disabled><?= $nama_role; ?></option>
+                                <option value="<?= $role_id; ?>" selected hidden><?= $nama_role; ?></option>
                                 
                                 <?php foreach($role as $rl) : ?>
-                                <option value="<?= $rl['id_role'] ?>"><?= $rl['id_role']; ?></option>
+                                <option value="<?= $rl['id_role'] ?>"><?= $rl['role']; ?></option>
                                 <?php endforeach; ?>
                         </select>
                     </div>

@@ -19,6 +19,7 @@ class C_user extends CI_Controller
 
         $data['dt_user'] = $this->db->get('user')->result_array();
         $data['role'] = $this->db->get('user_role')->result_array();
+        $data['get_user'] = $this->M_user->select_user();
         
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required');

@@ -9,6 +9,16 @@ class M_user extends CI_Model
         $this->db->where('id_user', $id);
         $this->db->update('user', $data);
     }
+
+    function select_user()
+    {
+        $query = "SELECT `user`.*, `user_role`.`role`
+        FROM `user` JOIN `user_role`
+        ON `user`.`role_id` = `user_role`.`id_role`
+        ";
+        return $this->db->query($query)->result_array();
+    }
+
     function status($id, $status)
     {
         $data = array(
