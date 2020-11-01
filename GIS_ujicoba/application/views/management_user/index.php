@@ -187,7 +187,11 @@
 foreach ($get_user as $i) :
     $id = $i['id_user'];
     $nama = $i['nama'];
+    $alamat = $i['alamat'];
+    $tgl_lahir = $i['tanggal_lahir'];
     $email = $i['email'];
+    $username = $i['username'];
+    $notelp = $i['notelp'];
     $image = $i['profile_image'];
     $about = $i['about'];
     $role_id = $i['role_id'];
@@ -198,7 +202,6 @@ foreach ($get_user as $i) :
     ?>
 
 <!-- Modal Edit Data User -->
-
 <div class="modal fade" id="modal_edit<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -206,20 +209,22 @@ foreach ($get_user as $i) :
                 <h3 class="modal-title" id="myModalLabel">Edit User</h3>
             </div>
             <?= form_open_multipart('C_user/edit_user'); ?>
-            <input type="text" class="form-control" name="image" value="<?= $image; ?>" hidden>
+                <input type="text" name="id_user" value="<?= $id; ?>" hidden>
                 <div class="modal-body">
-                    <input type="text" name="id_user" value="<?= $id; ?>" hidden>
                     <div class="form-group">
                         <label for="">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama User" value="<?= $nama; ?>">
+                        <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="">email</label>
                         <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan email User" value="<?= $email; ?>">
+                        <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
-                        <label for="">about</label>
-                        <input type="text" class="form-control" id="about" name="about" placeholder="Masukkan about User" value="<?= $about; ?>">
+                        <label for="">username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username User" value="<?= $username; ?>">
+                        <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="">Pilih Role Anda</label>
@@ -230,36 +235,6 @@ foreach ($get_user as $i) :
                                 <?php foreach($role as $rl) : ?>
                                 <option value="<?= $rl['id_role'] ?>"><?= $rl['role']; ?></option>
                                 <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Silahkan Pilih Gambar Anda</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
-                                <label for="exampleInputFile" class="custom-file-label">Pilih File Anda</label>
-                            </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text">Upload</span>
-                            </div>
-                        </div>
-                        <div>
-                            <br>
-                            <h6>*(Gambar Sebelumnya)</h6>
-                            <img src="<?= base_url(); ?>assets/dist/img/user/<?= $image; ?>" width="200px">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="">about</label>
-                        <input type="text" class="form-control" id="about" name="about" placeholder="Masukkan about User" value="<?= $about; ?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Pilih Is Active Anda</label>
-                        <select name="is_active" id="" class="form-control" required>
-                                <option value="<?= $is_active; ?>" selected disabled><?= $is_active; ?></option>
-                                <option value="<?= $is_active; ?>" selected hidden><?= $is_active; ?></option>
-                                <option value="0">Nonaktif</option>
-                                <option value="1">Aktif</option>
                         </select>
                     </div>
                     <div class="modal-footer">

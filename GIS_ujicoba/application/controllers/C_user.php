@@ -96,6 +96,37 @@ class C_user extends CI_Controller
         }
     }
 
+    // Edit Data User
+    public function edit_user()
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]');
+        if($this->form_validation->run() == false){
+            redirect('C_user');
+        }else{
+            $id_user = htmlspecialchars($this->input->post('id_user'));
+            $nama = htmlspecialchars($this->input->post('nama'));
+            $email = htmlspecialchars($this->input->post('email'));
+            $username = htmlspecialchars($this->input->post('username'));
+            $role_id = htmlspecialchars($this->input->post('role_id'));
+
+            $data = array(
+                'nama' => $nama,
+                'email' => $email,
+                'username' => $username,
+                'role_id' => $role_id
+            );
+
+            $this->db->where('id_user', $id_user);
+            $this->db->update('user', $data);
+
+
+            $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">Data Berhasil Diperbarui</div>');
+            redirect('C_user');
+        }
+    }
+
     public function nonaktifkan()
     {
         $id = htmlspecialchars($this->input->post('id_user'));
