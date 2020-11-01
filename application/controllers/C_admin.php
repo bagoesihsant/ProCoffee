@@ -11,8 +11,11 @@ class C_admin extends CI_Controller
     {
         parent::__construct();
 
-        // Load Model Menu
+        // Load Model
+        // Menu
         $this->load->model('M_menu', 'menu');
+        // Sub Menu
+        $this->load->model('M_sub_menu', 'submenu');
     }
 
     // Index
@@ -255,5 +258,22 @@ class C_admin extends CI_Controller
             // Mengarahkan kembali
             redirect('admin/menu');
         }
+    }
+
+    // Sub Menu - Index
+    public function index_submenu()
+    {
+
+        // Membuat array data
+        // Mengambil data seluruh sub menu
+        $data['submenu'] = $this->submenu->getAllSubMenu();
+
+        // Load View
+        $this->load->view('templates/v_header_admin');
+        $this->load->view('tempates/v_sidebar_admin');
+        $this->load->view('admin/v_sub_menu');
+        $this->load->view('templates/footer_js.php');
+        $this->load->view('admin/custom_js.php');
+        $this->load->view('templates/v_footer_admin');
     }
 }
