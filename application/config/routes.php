@@ -57,3 +57,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['admin/menu'] = "C_admin/index_menu";
 $route['admin/editMenu'] = "C_admin/editMenu";
 $route['admin/hapusMenu/(:any)'] = "C_admin/hapusMenu/$1";
+
+// Custome Product Routes
+$route['admin/product/category'] = "C_admin/index_product_categories";

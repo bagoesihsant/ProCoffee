@@ -66,6 +66,30 @@ class C_admin extends CI_Controller
         $dataBarang = $this->mp->getData('tbl_kategori')->result();
         echo json_encode($dataBarang);
     }
+
+    public function addCategoriesAjax()
+    {
+        $kode_category_ci = $this->input->post('kode_ctg_ajax');
+        $nama_category_ci = $this->input->post('nama_ctg_ajax');
+
+        if ($kode_category_ci == '' && $nama_category_ci == '') {
+            $result['pesan_json'] = "Kode kategori dan nama Silahkan Di isi";
+        } else if ($nama_category_ci == '') {
+            $result['pesan_json'] = "nama kategori Silahkan Di isi";
+        } else if ($kode_category_ci == '') {
+            $result['pesan_json'] = "kode kategori Silahkan Di isi";
+        } else {
+            $result['pesan_json'] = "";
+
+            $data = array(
+                'kode_category' => $kode_category_ci,
+                'name' => $nama_category_ci
+            );
+            $this->mp->tambahDataModal($data, 'tbl_kategori');
+        }
+
+        echo json_encode($result);
+    }
     // close function for product categories
 
     // Units

@@ -31,7 +31,7 @@
                             <h4 class="m-0">Tabel Categories</h4>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#" data-toggle="modal" data-target="#tambahModal" class="btn btn-sm btn-info float-right">
+                            <a href="#" data-toggle="modal" onclick="submit('tambahDataTombol')" data-target="#tambahModal" class="btn btn-sm btn-info float-right">
                                 <i class="fas fa-fw fa-plus"></i>
                                 <span>Tambah</span>
                             </a>
@@ -85,29 +85,33 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <p id="pesan_html_json"></p>
             <div class="modal-body">
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="kode">Kode Categories</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly required>
+                        <input type="text" name="kode_kategori" id="kode_kategori" class="form-control" value="CSM001" required>
                     </div>
                     <div class="form-group">
                         <label for="nama">
                             Nama Categories
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="" required>
+                        <input type="text" name="nama_kategori" id="nama_kategori" class="form-control" value="" required>
                     </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary" id="btnTambahCategories" name="tambah">Simpan</button>
+                <button type="submit" onclick="tambahData()" class="btn btn-primary" id="btnTambahCategories" name="tambah">Simpan</button>
+                <button type="submit" onclick="editData()" class="btn btn-primary" id="btnEditCategories" name="edit">edit</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 <!-- Modal Tambah End -->
+
+
 
 <!-- Modal Detail -->
 <div class="modal fade" id="detailModal">

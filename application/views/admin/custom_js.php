@@ -194,7 +194,7 @@
                         '<td>' + (i + 1) + '</td>' +
                         '<td>' + dataGet[i].kode_category + '</td>' +
                         '<td>' + dataGet[i].name + '</td>' +
-                        '<td><a href="#formModal" data-toggle="modal" class="btn btn-primary" onclick="submit(' + dataGet[i].kode_category + ')" id="">Ubah</a>' +
+                        '<td><a href="#tambahModal" data-toggle="modal" class="btn btn-primary" onclick="submit(' + dataGet[i].kode_category + ')" id="">Ubah</a>' +
                         '<a  class="btn btn-danger ml-2 text-white" onclick="hapusData(' + dataGet[i].kode_category + ')" >Hapus</a>' + '</td>' +
                         '</tr>';
                 }
@@ -203,4 +203,44 @@
             }
         });
     } // akhir dari function ambil data ata get data
+
+    // pembukaan function modal dinamis dengan parameter tombol
+    function submit(x) {
+        if (x == 'tambahDataTombol') {
+            $('#btnTambahCategories').show();
+            $('#btnEditCategories').hide();
+        } else {
+            $('#btnTambahCategories').hide();
+            $('#btnEditCategories').show();
+        }
+    } //penutupan function modal dinamis dengan parameter tombol
+
+    // pembukaan function refresh input
+    function refreshInputan() {
+        $("[name='kode_kategori']").val('');
+        $("[name='nama_kategori']").val('');
+    }
+
+    // pembukaan tambah data
+    function tambahData() {
+        var kode_category = $("[name='kode_kategori']").val();
+        var nama_category = $("[name='nama_kategori']").val();
+
+        $.ajax({
+            type: 'POST',
+            data: 'kode_ctg_ajax=' + kode_category + '&nama_ctg_ajax=' + nama_category,
+            url: 'http://localhost/ProCoffee/C_admin/addCategoriesAjax',
+            dataType: 'json',
+            success: function(outputAdd) {
+                $('#pesan_html_json').html(outputAdd.pesan_json);
+
+                if (outputAdd.pesan_json == '') {
+                    $('#tambahModal').modal('hide');
+                    ambilData();
+                    refreshInputan();
+
+                }
+            }
+        });
+    }
 </script>
