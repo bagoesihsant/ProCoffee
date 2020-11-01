@@ -31,7 +31,7 @@
                             <h4 class="m-0">Tabel Categories</h4>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#" data-toggle="modal" onclick="submit('tambahDataTombol')" data-target="#tambahModal" class="btn btn-sm btn-info float-right">
+                            <a href="#" data-toggle="modal" data-target="#tambahModal" class="btn btn-sm btn-info float-right">
                                 <i class="fas fa-fw fa-plus"></i>
                                 <span>Tambah</span>
                             </a>
@@ -102,8 +102,8 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <button type="submit" onclick="tambahData()" class="btn btn-primary" id="btnTambahCategories" name="tambah">Simpan</button>
-                <button type="submit" onclick="editData()" class="btn btn-primary" id="btnEditCategories" name="edit">edit</button>
+                <button type="submit" class="btn btn-primary" id="btnTambahCategories" name="tambah">Simpan</button>
+                <!-- <button type="submit" class="btn btn-primary" id="btnEditCategories" name="edit">edit</button> -->
                 </form>
             </div>
         </div>

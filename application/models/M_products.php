@@ -8,7 +8,7 @@ class M_products extends CI_Model
         return $this->db->get($table);
     }
 
-    public function tambahDataModal($data, $table)
+    public function addDataModel($data, $table)
     {
         $this->db->insert($table, $data);
     }

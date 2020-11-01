@@ -14,7 +14,7 @@ class C_admin extends CI_Controller
         $this->load->model('M_menu', 'menu');
 
         // Load Model Categories
-        $this->load->model('M_products', 'mp');
+        $this->load->model('M_products', 'mproduk');
     }
 
     // Index
@@ -63,66 +63,10 @@ class C_admin extends CI_Controller
 
     public function ReadCategoriesAjax()
     {
-        $dataBarang = $this->mp->getData('tbl_kategori')->result();
-        echo json_encode($dataBarang);
     }
 
-    public function addCategoriesAjax()
+    public function tambahDataCi()
     {
-        $kode_category_ci = $this->input->post('kode_ctg_ajax');
-        $nama_category_ci = $this->input->post('nama_ctg_ajax');
-
-        if ($kode_category_ci == '' && $nama_category_ci == '') {
-            $result['pesan_json'] = "Kode kategori dan nama Silahkan Di isi";
-        } else if ($nama_category_ci == '') {
-            $result['pesan_json'] = "nama kategori Silahkan Di isi";
-        } else if ($kode_category_ci == '') {
-            $result['pesan_json'] = "kode kategori Silahkan Di isi";
-        } else {
-            $result['pesan_json'] = "";
-
-            $data = array(
-                'kode_category' => $kode_category_ci,
-                'name' => $nama_category_ci
-            );
-            $this->mp->tambahDataModal($data, 'tbl_kategori');
-        }
-
-        echo json_encode($result);
-    }
-
-    public function getCategoriesAjax()
-    {
-        $id_ci = $this->input->post('id_ajax_get');
-        $where = array('kode_category' => $id_ci,);
-
-        $get_id_kategori = $this->mp->getIdModel('tbl_kategori', $where)->result();
-
-        echo json_encode($get_id_kategori);
-    }
-
-    public function editCategoriesAjax()
-    {
-        $kode_category_ci = $this->input->post('id_ajax_edit');
-        $nama_category_ci = $this->input->post('name_ajax_edit');
-
-        if ($kode_category_ci == '' && $nama_category_ci == '') {
-            $result['pesan_json'] = "Kode kategori dan nama Silahkan Di isi";
-        } else if ($nama_category_ci == '') {
-            $result['pesan_json'] = "nama kategori Silahkan Di isi";
-        } else if ($kode_category_ci == '') {
-            $result['pesan_json'] = "kode kategori Silahkan Di isi";
-        } else {
-            $result['pesan_json'] = "";
-
-            $where = array('kode_category' => $kode_category_ci);
-            $data = array(
-                'name' => $nama_category_ci
-            );
-            $this->mp->editDataModal($where, $data, 'tbl_kategori');
-        }
-
-        echo json_encode($result);
     }
     // close function for product categories
 
