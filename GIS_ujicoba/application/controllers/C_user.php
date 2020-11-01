@@ -21,9 +21,24 @@ class C_user extends CI_Controller
         $data['role'] = $this->db->get('user_role')->result_array();
         $data['get_user'] = $this->M_user->select_user();
         
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required');
-        $this->form_validation->set_rules('about', 'About', 'required');
+        $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[user.email]',
+            array(
+                'is_unique' => 'This Email already Exist'
+            )
+        );
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|min_length[10]|max_length[64]');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]|is_unique[user.username]',
+            array(
+                'is_unique' => 'This Username already Exist'
+            )
+        );
+        $this->form_validation->set_rules('about', 'About', 'trim|required');
+        $this->form_validation->set_rules('notelp', 'Nomor Telepon', 'trim|required|numeric|min_length[8]|max_length[14]',
+            array(
+                'numeric' => 'This contain not number'
+            )
+        );
 
         if($this->form_validation->run() == false){
             $this->load->view('templates/header', $data);

@@ -121,27 +121,32 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama">
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" value="<?= set_value('nama'); ?>">
+                        <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="">Alamat</label>
-                        <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat">
+                        <textarea name="alamat" id="alamat" cols="20" rows="4" class="form-control"><?= set_value('alamat'); ?></textarea>
+                        <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="">Tanggal Lahir</label>
-                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Masukkan tanggal_lahir">
+                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Masukkan tanggal_lahir" required>
                     </div>
                     <div class="form-group">
                         <label for="">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan email">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan email" value="<?= set_value('email'); ?>">
+                        <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" value="<?= set_value('username'); ?>">
+                        <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="">Nomor Telpon</label>
-                        <input type="text" class="form-control" id="notelp" name="notelp" placeholder="Masukkan notelp">
+                        <input type="text" class="form-control" id="notelp" name="notelp" placeholder="Masukkan notelp" value="<?= set_value('notelp'); ?>">
+                        <?= form_error('notelp', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="">Silahkan Pilih Gambar Anda</label>
@@ -157,11 +162,12 @@
                     </div>
                     <div class="form-group">
                         <label for="">About</label>
-                        <input type="text" class="form-control" id="about" name="about" placeholder="Masukkan about">
+                        <input type="text" class="form-control" id="about" name="about" placeholder="Masukkan about" value="<?= set_value('about'); ?>">
+                        <?= form_error('about', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="">Role</label>
-                        <select name="role_id" id="" class="form-control">
+                        <select name="role_id" id="" class="form-control" required>
                             <?php foreach ($role as $rl) : ?>
                                 <option value="<?= $rl['id_role'] ?>"><?= $rl['role']; ?></option>
                             <?php endforeach; ?>
