@@ -126,14 +126,14 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="kode">Kode Categories</label>
-                    <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
+                    <input type="text" name="kode_kategori" id="kode_kategori" class="form-control" value="CSM001" readonly>
                 </div>
                 <div class="form-group">
                     <label for="nama">
                         Nama Categories
                         <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="nama" id="nama" class="form-control" value="Perkotak" readonly>
+                    <input type="text" name="nama_kategori" id="nama_kategori" class="form-control" value="Perkotak" readonly>
                 </div>
             </div>
             <div class="modal-footer">

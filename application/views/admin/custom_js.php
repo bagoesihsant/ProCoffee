@@ -212,6 +212,18 @@
         } else {
             $('#btnTambahCategories').hide();
             $('#btnEditCategories').show();
+
+            // statement getdata sesuai id
+            $.ajax({
+                type: "POST",
+                data: 'id_ajax_get' + x,
+                url: 'http://localhost/ProCoffee/C_admin/getCategoriesAjax',
+                dataType: 'json',
+                success: function(getId) {
+                    $('[name="kode_kategori"]').val(getId[0].kode_category);
+                    $('[name="nama_kategori"]').val(getId[0].name);
+                }
+            });
         }
     } //penutupan function modal dinamis dengan parameter tombol
 
@@ -229,7 +241,7 @@
         $.ajax({
             type: 'POST',
             data: 'kode_ctg_ajax=' + kode_category + '&nama_ctg_ajax=' + nama_category,
-            url: 'http://localhost/ProCoffee/C_admin/addCategoriesAjax',
+            url: 'http://localhost/ProCoffee/C_admin/getCategoriesAjax',
             dataType: 'json',
             success: function(outputAdd) {
                 $('#pesan_html_json').html(outputAdd.pesan_json);
@@ -237,10 +249,31 @@
                 if (outputAdd.pesan_json == '') {
                     $('#tambahModal').modal('hide');
                     ambilData();
-                    refreshInputan();
 
                 }
             }
         });
-    }
+    } // penutupan function add
+
+    // function editData() {
+    //     var id_edit = $("[name='kode_kategori']").val();
+    //     var name_edit = $("[name='nama_kategori']").val();
+
+    //     $.ajax({
+    //         type: "POST",
+    //         data: 'id_ajax_edit=' + id_edit + '&name_ajax_edit=' + name_edit,
+    //         url: 'http://localhost/ProCoffee/C_admin/editCategoriesAjax',
+    //         dataType: 'json',
+    //         success: function(hasilEdit) {
+    //             $('#pesan_html_json').html(hasilEdit.pesan_json);
+
+    //             if (hasilEdit.pesan_json == '') {
+    //                 $('#tambahModal').modal('hide');
+    //                 ambilData();
+    //                 refreshInputan();
+
+    //             }
+    //         }
+    //     });
+    // }
 </script>

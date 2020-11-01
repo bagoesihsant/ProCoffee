@@ -12,4 +12,15 @@ class M_products extends CI_Model
     {
         $this->db->insert($table, $data);
     }
+
+    public function getIdModel($table, $where)
+    {
+        return  $this->db->get_where($table, $where);
+    }
+
+    // public function editDataModal($where, $data, $table)
+    // {
+    //     $this->db->where($where);
+    //     $this->db->update($table, $data);
+    // }
 }

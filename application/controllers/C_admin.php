@@ -90,6 +90,40 @@ class C_admin extends CI_Controller
 
         echo json_encode($result);
     }
+
+    public function getCategoriesAjax()
+    {
+        $id_ci = $this->input->post('id_ajax_get');
+        $where = array('kode_category' => $id_ci,);
+
+        $get_id_kategori = $this->mp->getIdModel('tbl_kategori', $where)->result();
+
+        echo json_encode($get_id_kategori);
+    }
+
+    public function editCategoriesAjax()
+    {
+        $kode_category_ci = $this->input->post('id_ajax_edit');
+        $nama_category_ci = $this->input->post('name_ajax_edit');
+
+        if ($kode_category_ci == '' && $nama_category_ci == '') {
+            $result['pesan_json'] = "Kode kategori dan nama Silahkan Di isi";
+        } else if ($nama_category_ci == '') {
+            $result['pesan_json'] = "nama kategori Silahkan Di isi";
+        } else if ($kode_category_ci == '') {
+            $result['pesan_json'] = "kode kategori Silahkan Di isi";
+        } else {
+            $result['pesan_json'] = "";
+
+            $where = array('kode_category' => $kode_category_ci);
+            $data = array(
+                'name' => $nama_category_ci
+            );
+            $this->mp->editDataModal($where, $data, 'tbl_kategori');
+        }
+
+        echo json_encode($result);
+    }
     // close function for product categories
 
     // Units
