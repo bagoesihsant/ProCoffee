@@ -214,14 +214,7 @@ class C_admin extends CI_Controller
         $this->load->view('templates/v_footer_admin');
     }
 
-<<<<<<< Updated upstream
-
-    // end unit
-
-    // Item
-=======
     // Item  Item  Item
->>>>>>> Stashed changes
     public function index_product_items()
     {
         $data['produk'] = $this->menu->getAllItems()->result();
