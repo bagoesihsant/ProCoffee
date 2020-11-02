@@ -55,27 +55,12 @@
                         <!-- Tbody -->
                         <tbody>
                             <!-- Data Example -->
-                            <?php
-                            for ($i = 1; $i <= 5; $i++) :
-                            ?>
-                                <tr>
-                                    <td><?= $i; ?>.</td>
-                                    <td>Perlusin</td>
-                                    <td class="d-flex justify-content-around">
-                                        <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
-                                            <i class="fas fa-fw fa-eye text-white"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-xs btn-danger btnDeleteUnits">
-                                            <i class="fas fa-fw fa-trash-alt"></i>
-                                        </a>
-                                        <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning">
-                                            <i class="fas fa-fw fa-edit text-white"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php
-                            endfor;
-                            ?>
+                            <?php $no = 1;
+                            foreach ($row->result() as $rows => $data) :?>
+
+                            <tr>
+                                <td><?= $no++;?></td>
+                            </tr>
                             <!-- Data Example End -->
                         </tbody>
                         <!-- Tbody End -->

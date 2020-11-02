@@ -29,4 +29,9 @@ class M_products extends CI_Model
         $this->db->update('tbl_kategori', $isi_data);
         return true;
     }
+
+    public function readDatasatuan()
+    {
+        return $this->db->get('tbl_satuan');
+    }
 }

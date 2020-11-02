@@ -60,3 +60,4 @@ $route['admin/hapusMenu/(:any)'] = "C_admin/hapusMenu/$1";
 
 // Custome Product Routes
 $route['admin/product/category'] = "C_admin/index_product_categories";
+$route['admin/product/unit'] = "C_admin/index_product_units";

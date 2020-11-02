@@ -62,10 +62,6 @@ class C_admin extends CI_Controller
         $this->load->view('templates/v_footer_admin');
     }
 
-    public function ReadCategoriesAjax()
-    {
-    }
-
     public function addDataCategories()
     {
         $data['row'] = $this->mproduk->getDataProduct();
@@ -119,13 +115,17 @@ class C_admin extends CI_Controller
     // Units
     public function index_product_units()
     {
+        $data['row'] = $this->mproduk->readDatasatuan();
         $this->load->view('templates/v_header_admin');
         $this->load->view('templates/v_sidebar_admin');
-        $this->load->view('admin/v_units');
+        $this->load->view('admin/v_units', $data);
         $this->load->view('templates/footer_js');
         $this->load->view('admin/custom_js');
         $this->load->view('templates/v_footer_admin');
     }
+
+
+    // end unit
 
     // Item
     public function index_product_items()
