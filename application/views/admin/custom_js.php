@@ -1,6 +1,8 @@
 <script>
     // Mencetak pesan dari menu
     <?= $this->session->flashdata('pesan_menu'); ?>
+    // Mencetak pesan dari submenu
+    <?= $this->session->flashdata('pesan_sub_menu'); ?>
 
     // Mengubah tabel customer di customer menjadi data tables
     $('#customerTable').DataTable({
@@ -66,7 +68,6 @@
                 // Jika ajax berhasil dijalankan
                 modalMenu.find('#kode_menu').val(data.kode_menu);
                 modalMenu.find('#menu').val(data.menu);
-
             },
             error: function(e) {
                 // Jika ajax gagal dijalankan
@@ -131,6 +132,25 @@
                 Swal.close();
             }
         });
+
+    });
+
+    // Menjalankan fungsi button select icon bila ditekan
+    $(".btn-select-icon").on('click', function() {
+        // Mendapatkan form tambah submenu
+        const formSubMenu = $('#formTambahSubmenu');
+
+        // Mendapatkan elemen html input icon submenu
+        const inputIconSubMenu = formSubMenu.find('#icon_sub_menu');
+
+        // Mendapatkan class icon
+        const iconClass = $(this).find('i').attr('class');
+
+        // Mengisi value dari input icon sub menu dengan class
+        inputIconSubMenu.val(iconClass + " fa-fw");
+
+        // Menutup modal
+        $('#previewIconModal').modal('hide');
 
     });
 
