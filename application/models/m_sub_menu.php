@@ -32,4 +32,11 @@ class M_sub_menu extends CI_Model
     {
         return $this->db->get_where('user_sub_menu', $data)->row_array();
     }
+
+    // Fungsi untuk mengubah data sub menu tertentu menggunakan kode sub menu
+    public function updateSubmenu($data, $where)
+    {
+        $this->db->update('user_sub_menu', $data, $where);
+        return $this->db->affected_rows();
+    }
 }

@@ -180,11 +180,10 @@
                 formSubmenu.find('#sub_menu').val(data.sub_menu);
                 formSubmenu.find('#url_sub_menu').val(data.url);
                 formSubmenu.find('#icon_sub_menu').val(data.icon);
-                formSubmenu.find('#status_sub_menu').val(data.is_active);
                 if (data.is_active == 1) {
-                    formSubmenu.find('#status_sub_menu').attr('checked', true);
+                    formSubmenu.find('#status_sub_menu_edit').attr('checked', true);
                 } else if (data.is_active == 0) {
-                    formSubmenu.find('#status_sub_menu').attr('checked', false);
+                    formSubmenu.find('#status_sub_menu_edit').attr('checked', false);
                 }
             }
         });

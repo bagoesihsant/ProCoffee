@@ -302,8 +302,8 @@
                     </div>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="status_sub_menu" id="status_sub_menu" class="custom-control-input" value="1">
-                            <label for="status_sub_menu" class="custom-control-label">Aktifkan Menu</label>
+                            <input type="checkbox" name="status_sub_menu_edit" id="status_sub_menu_edit" class="custom-control-input" value="1">
+                            <label for="status_sub_menu_edit" class="custom-control-label">Aktifkan Menu</label>
                         </div>
                     </div>
             </div>
