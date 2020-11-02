@@ -27,48 +27,15 @@ class C_auth extends CI_Controller
             $this->_login();
         }
     }
-    private function _login() //ini method login mhankz
+
+    private function _login()
     {
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
+        $email  = $this->input->post('email');
+        $password  = $this->input->post('password');
 
-        $user = $this->db->get_where('user', ['email' => $email])->row_array(); // bacanya sama seperti select * from tabel user where email = email
-        // jika usernya ada
-        if ($user) {
-            //jika usernya aktif
-            if ($user['active_status'] == 1) {
-                //cek password
-                if (password_verify($password, $user['password'])) {
-                    $data = [
-                        'email' => $user['email'],
-
-                        'kode_role' => $user['kode_role']
-                    ];
-                    $this->session->set_userdata($data);
-                    if ($user['kode_role'] == 1) {
-                        redirect('admin');
-                    } elseif ($user['kode_role'] == 2) {
-
-                        redirect('Kasir');
-                    } else {
-                        redirect('Pelanggan');
-                    }
-                } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                    Wrong password! </div>');
-                    redirect('C_auth');
-                }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-           This email has not been activated! </div>');
-                redirect('C_auth');
-            }
-        } else {
-
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            Email has not registered! </div>');
-            redirect('C_auth');
-        }
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+        var_dump($user);
+        die;
     }
 
     // forgotpw
