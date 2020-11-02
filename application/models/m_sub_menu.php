@@ -9,6 +9,7 @@ class M_sub_menu extends CI_Model
         $this->db->select('*');
         $this->db->from('user_sub_menu');
         $this->db->join('user_menu', 'user_sub_menu.kode_menu = user_menu.kode_menu');
+        $this->db->order_by('user_sub_menu.kode_sub_menu', 'ASC');
         return $this->db->get()->result_array();
     }
 
@@ -24,5 +25,11 @@ class M_sub_menu extends CI_Model
     {
         $this->db->insert('user_sub_menu', $data);
         return $this->db->affected_rows();
+    }
+
+    // Fungsi untuk mengambil data sub menu tertentu menggunakan kode sub menu
+    public function getDetailSubmenu($data)
+    {
+        return $this->db->get_where('user_sub_menu', $data)->row_array();
     }
 }
