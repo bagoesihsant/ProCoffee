@@ -60,6 +60,7 @@
 
                             <tr>
                                 <td><?= $no++;?></td>
+                                <td><?= $data->kode_satuan;?></td>
                             </tr>
                             <!-- Data Example End -->
                         </tbody>
