@@ -79,5 +79,12 @@ class M_menu extends CI_Model
         $this->db->update('supplier', $data, $where);
         return $this->db->affected_rows();
     }
+
+
+    //ITEMS ITEMS ITEMS
+    public function getAllItems()
+    {
+        return $this->db->get('tbl_barang');
+    }
     
 }

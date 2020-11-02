@@ -69,7 +69,8 @@ class C_admin extends CI_Controller
             'nama' => $nama,
             'no_hp' => $notelp,
             'address' => $alamat,
-            'deskripsi' => $deskripsi
+            'deskripsi' => $deskripsi,
+            'created' => date('d-m-Y')
         );
 
         $sukses = $this->menu->tambah_supplier($data, 'supplier');
@@ -115,7 +116,8 @@ class C_admin extends CI_Controller
             'nama'=> $nama,
             'no_hp'=> $notelp,
             'address'=>$alamat,
-            'deskripsi'=>$deskripsi
+            'deskripsi'=>$deskripsi,
+            'updated' => date('dmY')
         );
 
         $where = array(
@@ -165,7 +167,7 @@ class C_admin extends CI_Controller
     // Item
     public function index_product_items()
     {
-        $data['produk'] = $this->menu->getAllItem()->result();
+        $data['produk'] = $this->menu->getAllItems()->result();
 
         $this->load->view('templates/v_header_admin');
         $this->load->view('templates/v_sidebar_admin');
