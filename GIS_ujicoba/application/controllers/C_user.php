@@ -120,25 +120,54 @@ class C_user extends CI_Controller
         if($this->form_validation->run() == false){
             redirect('C_user');
         }else{
+            $email_lawas = htmlspecialchars($this->input->post('email_lawas'));
             $id_user = htmlspecialchars($this->input->post('id_user'));
             $nama = htmlspecialchars($this->input->post('nama'));
             $email = htmlspecialchars($this->input->post('email'));
             $username = htmlspecialchars($this->input->post('username'));
             $role_id = htmlspecialchars($this->input->post('role_id'));
+            if ($email_lawas != $email) {
+                $user = $this->db->get_where('user', ['email' => $email_lawas, 'is_active' => 1])->row_array();
+                if($user){
+                    $token = base64_encode(random_bytes(32));
+                    $user_token = [
+                        'email' => $email,
+                        'token' => $token,
+                        'date_created' => time()
+                    ];
+                    $this->db->insert('token_user', $user_token);
+                    // Sudah diupdate untuk data selain email
+                    $data = array(
+                        'nama' => $nama,
+                        'username' => $username,
+                        'role_id' => $role_id
+                    );
+        
+                    $this->db->where('id_user', $id_user);
+                    $this->db->update('user', $data);
+                    $this->_sendEmail_validasi_email($token, $id_user);
+        
+                    $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">Data Berhasil Diperbarui dan email verifikasi berhasil dikirim!</div>');
+                    redirect('C_user');
 
-            $data = array(
-                'nama' => $nama,
-                'email' => $email,
-                'username' => $username,
-                'role_id' => $role_id
-            );
-
-            $this->db->where('id_user', $id_user);
-            $this->db->update('user', $data);
-
-
-            $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">Data Berhasil Diperbarui</div>');
-            redirect('C_user');
+                }else{
+                    $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">Data Gagal Diperbarui!, Aktivasi akun terlebih dahulu!</div>');
+                redirect('C_user');
+                }
+            }else{
+                $data = array(
+                    'nama' => $nama,
+                    'username' => $username,
+                    'role_id' => $role_id
+                );
+    
+                $this->db->where('id_user', $id_user);
+                $this->db->update('user', $data);
+    
+    
+                $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">Data Berhasil Diperbarui</div>');
+                redirect('C_user');
+            }
         }
     }
 
@@ -213,7 +242,7 @@ class C_user extends CI_Controller
         ];
         // Send Token Password
         $emailAkun = $this->input->post('email');
-        $ResetPassword = "
+        $aktivasi_akun = "
                                 <html>
                                 <head>
                                     <title>Kode Aktivasi Akun + Isi Password</title>
@@ -232,7 +261,7 @@ class C_user extends CI_Controller
         $this->email->to($this->input->post('email'));
         
         $this->email->subject('Aktivasi Akun');
-        $this->email->message($ResetPassword);
+        $this->email->message($aktivasi_akun);
         $this->email->set_mailtype('html');
 
         if ($this->email->send()) {
@@ -279,6 +308,50 @@ class C_user extends CI_Controller
         
         $this->email->subject('Reset Password Akun');
         $this->email->message($ResetPassword);
+        $this->email->set_mailtype('html');
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
+    private function _sendEmail_validasi_email($token, $id_user)
+    {
+        // Config Setting 
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'emailpass49@gmail.com',
+            'smtp_pass' => 'IndowebsteR9',
+            'smtp_port' => 587,
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n"
+        ];
+        // Send Token Password
+        $emailAkun = $this->input->post('email');
+        $ganti_email = "
+                                <html>
+                                <head>
+                                    <title>Kode Ganti Email</title>
+                                </head>
+                                <body>
+                                    <h2>Silahkan Klik Link Dibawah Ini!!</h2>
+                                    <p>Akun Anda</p>
+                                    <p>Email : " . $emailAkun . "</p>
+                                    <p>Tolong Klik Link Dibawah ini untuk memverifikasi anda berganti email!</p>
+                                    <h4><a href='" . base_url() . "auth/gantiemail?email=" . $emailAkun . "&account=" . $id_user . "&token=" . $token . "'>Aktivasi Akun!!</a></h4>
+                                </body>
+                                </html>
+        ";
+        $this->load->library('email', $config);
+        $this->email->from('alfiannsx98@gmail.com', 'Berganti Email Baru');
+        $this->email->to($this->input->post('email'));
+        
+        $this->email->subject('Ganti Email Baru');
+        $this->email->message($ganti_email);
         $this->email->set_mailtype('html');
 
         if ($this->email->send()) {

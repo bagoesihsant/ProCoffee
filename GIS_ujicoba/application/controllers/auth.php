@@ -336,6 +336,51 @@ class Auth extends CI_Controller
             redirect('auth');
         }
     }
+    // Ganti email akun
+    public function ganti_email_akun_activated()
+    {
+        if (!$this->session->userdata('account')) {
+            redirect('auth');
+        }else{
+            $email_baru = $this->session->userdata('ganti_email_baru');
+            $account = $this->session->userdata('account');
+
+            $this->db->set('email', $email_baru);
+            $this->db->where('id_user', $account);
+            $this->db->update('user');
+
+            $this->model_auth->hapus_token($email_baru);
+            $this->session->unset_userdata('ganti_email_baru');
+            $this->session->unset_userdata('account');
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Akun Berhasil Diaktivasi! Silahkan Login</div>');
+            redirect('auth');
+        } 
+    }
+    // Function untuk ganti email ketika edit data
+    public function gantiemail()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+        $account = $this->input->get('account');
+
+        $user = $this->db->get_where('user', ['id_user' => $account])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('token_user', ['token' => $token])->row_array();
+            if ($user_token) {
+                $this->session->set_userdata('account', $account);
+                $this->session->set_userdata('ganti_email_baru', $email);
+                $this->ganti_email_akun_activated();
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal! Email/Token Salah!</div>');
+                redirect('auth');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">User gagal diaktivasi, user tidak ditemukan</div>');
+            redirect('auth');
+        }
+    }
 
     public function logout()
     {

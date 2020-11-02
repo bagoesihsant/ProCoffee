@@ -210,6 +210,7 @@ foreach ($get_user as $i) :
             </div>
             <?= form_open_multipart('C_user/edit_user'); ?>
                 <input type="text" name="id_user" value="<?= $id; ?>" hidden>
+                <input type="text" name="email_lawas" value="<?= $email; ?>" hidden>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="">Nama</label>
