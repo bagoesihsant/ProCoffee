@@ -52,7 +52,7 @@
                                 <th>No. Hp</th>
                                 <th>Email</th>
                                 <th>Username</th>
-                                <th>Password</th>
+
                                 <th>Profile Image</th>
                                 <th>Action</th>
                             </tr>
@@ -72,8 +72,7 @@
                                     <td>082331495883</td>
                                     <td>john@gmail.com</td>
                                     <td>john</td>
-                                    <td>********</td>
-                                    <td><img class="direct-chat-img" src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg" alt="message user image"></td>
+                                    <td><img src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg"></td>
                                     <td class="d-flex justify-content-around">
                                         <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
@@ -102,7 +101,7 @@
                                 <th>No. Hp</th>
                                 <th>Email</th>
                                 <th>Username</th>
-                                <th>Password</th>
+
                                 <th>Profile Image</th>
                                 <th>Action</th>
                             </tr>
@@ -148,14 +147,14 @@
                         <label for="alamat">
                             Alamat
                         </label>
-                        <input type="text" name="alamat" id="alamat" class="form-control" value="" placeholder="ex: Jember">
+                        <textarea name="alamat" id="alamat" class="form-control" placeholder="ex: Jember">Jember</textarea>
                     </div>
                     <div class="form-group">
                         <label for="tlahir">
                             Tenggal Lahir
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="tlahir" id="tlahir" class="form-control" value="" placeholder="ex: 06-06-2000">
+                        <input type="date" name="tlahir" id="tlahir" class="form-control" value="" placeholder="ex: 06-06-2000">
                     </div>
                     <div class="form-group">
                         <label for="notelp">
@@ -186,10 +185,16 @@
                         <input type="password" name="password" id="password" class="form-control" value="" placeholder="password">
                     </div>
                     <div class="form-group">
+
                         <label for="image">
                             Gambar
                         </label>
-                        <img class="direct-chat-img" src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg" alt="message user image">
+
+                    </div>
+                    <img src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="image" name="image">
+                        <label class="custom-file-label" for="image">Choose file</label>
                     </div>
                     <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
             </div>
@@ -214,10 +219,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="kode">Kode user</label>
                     <input type="text" name="kode" id="kode" class="form-control" value="USR001" readonly>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="nama">
                         Nama user
@@ -229,7 +234,7 @@
                     <label for="alamat">
                         Alamat
                     </label>
-                    <input type="text" name="alamat" id="alamat" class="form-control" value="Jember" placeholder="ex: Jember" readonly>
+                    <textarea name="alamat" id="alamat" class="form-control" value="Jember" placeholder="ex: Jember" readonly>Jember</textarea>
                 </div>
                 <div class="form-group">
                     <label for="tlahir">
@@ -270,8 +275,9 @@
                     <label for="image">
                         Gambar
                     </label>
-                    <img class="direct-chat-img" src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg" alt="message user image">
+
                 </div>
+                <img src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg">
                 <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
             </div>
             <div class="modal-footer">
@@ -332,24 +338,24 @@
                         </label>
                         <input type="text" name="username" id="username" class="form-control" value="john" placeholder="ex: john">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="password">
                             Password
                             <sup class="text-danger">*</sup>
                         </label>
                         <input type="password" name="password" id="password" value="12345678" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="form-group">
+                    </div> -->
+                    <!-- <div class="form-group">
                         <label for="image">
                             Gambar
 
                         </label>
-                        <img class="direct-chat-img" src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg" alt="message user image">
+                        <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="image" name="image">
                             <label class="custom-file-label" for="image">Choose file</label>
                         </div>
-                    </div>
+                    </div> -->
 
                     <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
             </div>
