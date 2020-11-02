@@ -283,7 +283,59 @@ class Auth extends CI_Controller
         }
     }
 
+    // Auth -> Activation (Untuk aktivasi Akun) + Isi Password untuk akun baru + Set is_active->1
 
+    public function activated()
+    {
+        if (!$this->session->userdata('email_aktivasi')) {
+            redirect('auth');
+        }
+        $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[8]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Ulangi Password', 'trim|required|min_length[8]|matches[password1]');
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Aktivasi Akun';
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/activated');
+            $this->load->view('templates/auth_footer');
+        } else {
+            $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+            $email = $this->session->userdata('email_aktivasi');
+            $active = 1;
+            $this->db->set('password', $password);
+            $this->db->set('is_active', $active);
+            $this->db->where('email', $email);
+            $this->db->update('user');
+
+            $this->model_auth->hapus_token($email);
+            $this->session->unset_userdata('email_aktivasi');
+
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Akun Berhasil Diaktivasi! Silahkan Login</div>');
+            redirect('auth');
+        }
+    }
+
+    public function activation()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('token_user', ['token' => $token])->row_array();
+            if ($user_token) {
+                $this->session->set_userdata('email_aktivasi', $email);
+                $this->activated();
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal! Email/Token Salah!</div>');
+                redirect('auth');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal!Email Salah!</div>');
+            redirect('auth');
+        }
+    }
 
     public function logout()
     {

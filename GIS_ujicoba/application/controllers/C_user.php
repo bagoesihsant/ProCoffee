@@ -28,7 +28,7 @@ class C_user extends CI_Controller
             )
         );
         $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|min_length[10]|max_length[64]');
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]|is_unique[user.username]',
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[20]|is_unique[user.username]',
             array(
                 'is_unique' => 'This Username already Exist'
             )
@@ -49,6 +49,21 @@ class C_user extends CI_Controller
             $this->load->view('templates/dist-footer', $data);
             $this->load->view('templates/footer', $data);
         }else{
+            // Function untuk send email ketika berhasil registrasi
+
+            $email = $this->input->post('email');
+            $token = base64_encode(random_bytes(32));
+            $user_token = [
+                'email' => $email,
+                'token' => $token,
+                'date_created' => time()
+            ];
+
+            $this->db->insert('token_user', $user_token);
+            $this->_sendEmail($token);
+            
+            // Function untuk create data + autonumber
+
             $q_count = $this->db->get('user')->num_rows();
 
             $id_user = "USR" . ($q_count + 1) . date('Hdyims', time());
@@ -101,7 +116,7 @@ class C_user extends CI_Controller
     {
         $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[20]');
         if($this->form_validation->run() == false){
             redirect('C_user');
         }else{
@@ -172,7 +187,7 @@ class C_user extends CI_Controller
                 ];
 
                 $this->db->insert('token_user', $user_token);
-                $this->_sendEmail($token);
+                $this->_sendEmail_reset_password($token);
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="success">Silahkan Cek Email Anda Untuk Reset Password!!</div>');
                 redirect('C_user');
             } else {
@@ -201,22 +216,68 @@ class C_user extends CI_Controller
         $ResetPassword = "
                                 <html>
                                 <head>
+                                    <title>Kode Aktivasi Akun + Isi Password</title>
+                                </head>
+                                <body>
+                                    <h2>Silahkan Klik Link Dibawah Ini!!</h2>
+                                    <p>Akun Anda</p>
+                                    <p>Email : " . $emailAkun . "</p>
+                                    <p>Tolong Klik Link Dibawah ini untuk Aktivasi Akun Anda!</p>
+                                    <h4><a href='" . base_url() . "auth/activation?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Aktivasi Akun!!</a></h4>
+                                </body>
+                                </html>
+        ";
+        $this->load->library('email', $config);
+        $this->email->from('alfiannsx98@gmail.com', 'Aktivasi Akun');
+        $this->email->to($this->input->post('email'));
+        
+        $this->email->subject('Aktivasi Akun');
+        $this->email->message($ResetPassword);
+        $this->email->set_mailtype('html');
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
+
+    // _sendEmail_reset_password
+    private function _sendEmail_reset_password($token)
+    {
+        // Config Setting 
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'emailpass49@gmail.com',
+            'smtp_pass' => 'IndowebsteR9',
+            'smtp_port' => 587,
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n"
+        ];
+        // Send Token Password
+        $emailAkun = $this->input->post('email');
+        $ResetPassword = "
+                                <html>
+                                <head>
                                     <title>Kode Reset Password</title>
                                 </head>
                                 <body>
                                     <h2>Silahkan Klik Link Dibawah Ini!!</h2>
                                     <p>Akun Anda</p>
                                     <p>Email : " . $emailAkun . "</p>
-                                    <p>Tolong Klik Link Dibawah ini untuk Reset Password!</p>
-                                    <h4><a href='" . base_url() . "auth/resetpassword?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Reset Password!!</a></h4>
+                                    <p>Tolong Klik Link Dibawah ini untuk Aktivasi Akun Anda!</p>
+                                    <h4><a href='" . base_url() . "auth/gantipassword?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Aktivasi Akun!!</a></h4>
                                 </body>
                                 </html>
         ";
         $this->load->library('email', $config);
-        $this->email->from('alfiannsx98@gmail.com', 'Reset Password');
+        $this->email->from('alfiannsx98@gmail.com', 'Reset Password Akun');
         $this->email->to($this->input->post('email'));
         
-        $this->email->subject('Reset Password');
+        $this->email->subject('Reset Password Akun');
         $this->email->message($ResetPassword);
         $this->email->set_mailtype('html');
 
