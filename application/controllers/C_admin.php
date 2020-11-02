@@ -12,9 +12,10 @@ class C_admin extends CI_Controller
         parent::__construct();
         // Load Model Menu
         $this->load->model('M_menu', 'menu');
-
         // Load Model Categories
         $this->load->model('M_products', 'mproduk');
+        // Sub Menu
+        $this->load->model('M_sub_menu', 'submenu');
     }
 
     // Index
@@ -42,15 +43,104 @@ class C_admin extends CI_Controller
     // Supplier
     public function index_supplier()
     {
+        $data['supplier'] = $this->menu->getAllSupplier()->result();
+
         $this->load->view('templates/v_header_admin');
         $this->load->view('templates/v_sidebar_admin');
-        $this->load->view('admin/v_supplier');
+        $this->load->view('admin/v_supplier', $data);
         $this->load->view('templates/footer_js');
         $this->load->view('admin/custom_js');
         $this->load->view('templates/v_footer_admin');
     }
 
-    // Produk kategori
+    // tambah supplier
+    public function tambah_supplier()
+    {
+        $kode = $this->input->post('kode');
+        $nama = $this->input->post('nama');
+        $notelp = $this->input->post('notelp');
+        $alamat = $this->input->post('alamat');
+        $deskripsi = $this->input->post('deskripsi');
+
+        $data = array(
+            'kode_supplier'=> $kode,
+            'nama' => $nama,
+            'no_hp' => $notelp,
+            'address' => $alamat,
+            'deskripsi' => $deskripsi,
+            'created' => date('d-m-Y')
+        );
+
+        $sukses = $this->menu->tambah_supplier($data, 'supplier');
+        if($sukses != 0)
+        {
+            $this->session->set_flashdata(
+                'pesan_menu', 'toastr.success("Data berhasil ditambahkan.")'
+            );
+           redirect('C_admin/index_supplier');
+        }
+    }
+
+    //hapus supplier
+    public function hapus_supplier($id)
+    {
+        $data = array( 'kode_supplier'=>$id );
+        $hapus = $this->menu->hapus_supplier($data);
+
+        if($hapus != 0)
+        {
+            $this->session->set_flashdata(
+                'pesan_menu', 'toastr.success("Data berhasil dihapus.")'
+            );
+        }else{
+            $this->session->set_flashdata(
+                'pesan_menu', 'toastr.danger("Data gagal dihapus.")'
+            );
+        }
+
+        redirect('C_admin/index_supplier');
+    }
+
+    //edit supplier
+    public function edit_supplier()
+    {
+        $kode = $this->input->post('kode');
+        $nama = $this->input->post('nama');
+        $notelp = $this->input->post('notelp');
+        $alamat = $this->input->post('alamat');
+        $deskripsi = $this->input->post('deskripsi');
+
+        $data = array (
+            'nama'=> $nama,
+            'no_hp'=> $notelp,
+            'address'=>$alamat,
+            'deskripsi'=>$deskripsi,
+            'updated' => date('dmY')
+        );
+
+        $where = array(
+            'kode_supplier'=>$kode
+        );
+
+        $edit = $this->menu->edit_supplier($data, $where);
+
+        
+        if($edit != 0)
+        {
+            $this->session->set_flashdata(
+                'pesan_menu', 'toastr.success("Data berhasil diubah.")'
+            );
+        }else{
+            $this->session->set_flashdata(
+                'pesan_menu', 'toastr.danger("Data gagal diubah.")'
+            );
+        }
+
+        redirect('C_admin/index_supplier');
+    }
+
+  
+//   Categories
     public function index_product_categories()
     {
         $data['row'] = $this->mproduk->getDataProduct();
@@ -130,9 +220,11 @@ class C_admin extends CI_Controller
     // Item
     public function index_product_items()
     {
+        $data['produk'] = $this->menu->getAllItems()->result();
+
         $this->load->view('templates/v_header_admin');
         $this->load->view('templates/v_sidebar_admin');
-        $this->load->view('admin/v_item');
+        $this->load->view('admin/v_item', $data);
         $this->load->view('templates/footer_js');
         $this->load->view('admin/custom_js');
         $this->load->view('templates/v_footer_admin');
@@ -312,5 +404,22 @@ class C_admin extends CI_Controller
             // Mengarahkan kembali
             redirect('admin/menu');
         }
+    }
+
+    // Sub Menu - Index
+    public function index_submenu()
+    {
+
+        // Membuat array data
+        // Mengambil data seluruh sub menu
+        $data['submenu'] = $this->submenu->getAllSubMenu();
+
+        // Load View
+        $this->load->view('templates/v_header_admin');
+        $this->load->view('templates/v_sidebar_admin');
+        $this->load->view('admin/v_sub_menu');
+        $this->load->view('templates/footer_js.php');
+        $this->load->view('admin/custom_js.php');
+        $this->load->view('templates/v_footer_admin');
     }
 }

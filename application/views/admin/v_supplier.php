@@ -48,6 +48,7 @@
                                 <th>No.</th>
                                 <th>Nama Supplier</th>
                                 <th>No HP</th>
+                                <th>Alamat</th>
                                 <th>Deskripsi</th>
                                 <th>Action</th>
                             </tr>
@@ -55,39 +56,60 @@
                         <!-- Thead End -->
                         <!-- Tbody -->
                         <tbody>
-                            <!-- Data Example -->
+                            <!-- Data -->
                             <?php
-                            for ($i = 1; $i <= 15; $i++) :
+                            $no=1;
+                                foreach ($supplier as $su){
                             ?>
                                 <tr>
-                                    <td><?= $i; ?>.</td>
-                                    <td>John Lumi</td>
-                                    <td>082331588636</td>
-                                    <td> - </td>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $su->nama; ?></td>
+                                    <td><?= $su->no_hp?></td>
+                                    <td><?= $su->address ?></td>
+                                    <td><?= $su->deskripsi ?></td>
                                     <td class="d-flex justify-content-around">
-                                        <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
+                                        <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info" id="detail" 
+                                            onClick="detail(
+                                                '<?= $su->kode_supplier ?>',
+                                                '<?= $su->nama ?>',
+                                                '<?= $su->no_hp?>',
+                                                '<?= $su->address?>',
+                                                '<?= $su->deskripsi?>'
+                                                )"
+                                        >
                                             <i class="fas fa-fw fa-eye text-white"></i>
                                         </a>
-                                        <a href="#" class="btn btn-xs btn-danger btnDeleteSupplier">
+                                        <a href="" class="btn btn-xs btn-danger btnDeleteSupplier" data-target="#hapusModal" data-toggle="modal"
+                                        onClick="hapus(
+                                            '<?=$su->kode_supplier?>'
+                                        )"
+                                        >
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
-                                        <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning">
+                                        <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning"
+                                        onClick="edit(
+                                                '<?= $su->kode_supplier ?>',
+                                                '<?= $su->nama ?>',
+                                                '<?= $su->no_hp?>',
+                                                '<?= $su->address?>',
+                                                '<?= $su->deskripsi?>'
+                                                )"
+                                        >
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
                                     </td>
                                 </tr>
-                            <?php
-                            endfor;
-                            ?>
-                            <!-- Data Example End -->
+                                <?php } ?>
+                            <!-- Data  -->
                         </tbody>
                         <!-- Tbody End -->
                         <!-- Tfoot -->
                         <tfoot>
                             <tr>
-                                <th>No.</th>
+                            <th>No.</th>
                                 <th>Nama Supplier</th>
                                 <th>No HP</th>
+                                <th>Alamat</th>
                                 <th>Deskripsi</th>
                                 <th>Action</th>
                             </tr>
@@ -107,7 +129,7 @@
 <!-- Content Wrapper End -->
 
 <!-- Modal Tambah -->
-<div class="modal fade" id="tambahModal">
+    <div class="modal fade" id="tambahModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -116,11 +138,26 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <?php
+                $kode = $this->menu->kode_supplier();
+
+                if ($kode->num_rows() > 0) {
+                    // Jika ditemukan id
+                    $kode = $kode->row_array();
+                    $kode = $this->hookdevlib->autonumber($kode['kode_supplier'], 2, 10);
+                } else {
+                    // Jika tidak ditemukan id
+                    $kode = "SP000000001";
+                }
+            ?>
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="<?= base_url().'C_admin/tambah_supplier' ?>" method="post">
                     <div class="form-group">
-                        <label for="kode">Kode Supplier</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly required>
+                        <label for="kode">
+                            Kode Supplier
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="kode" id="kode" class="form-control" value="<?= $kode ?>" readonly >
                     </div>
                     <div class="form-group">
                         <label for="nama">
@@ -130,35 +167,25 @@
                         <input type="text" name="nama" id="nama" class="form-control" value="" required>
                     </div>
                     <div class="form-group">
-                        <label for="jk">
-                            Jenis Kelamin
-                        </label>
-                        <select name="jk" id="jk" class="form-control custom-select" required>
-                            <option value="">Pilih Salah Satu</option>
-                            <option value="Laki - Laki">Laki - Laki</option>
-                            <option value="Perempuan">Perempuan</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label for="notelp">
                             No. Telpon / HP
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="notelp" id="notelp" class="form-control" value="" required>
+                        <input type="text" name="notelp" id="notelp" class="form-control" onkeypress="return hanyaAngka(event)" minlength="11" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">
+                            Alamat
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="alamat" id="alamat" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">
                             Deskripsi
                             <sup class="text-danger">*</sup>
                         </label>
-                        <textarea name="alamat" id="deskripsi" class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">
-                            Password
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="password" name="password" id="password" class="form-control" value="" required>
+                        <textarea name="deskripsi" id="deskripsi" class="form-control" required></textarea>
                     </div>
                     <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
             </div>
@@ -169,11 +196,11 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 <!-- Modal Tambah End -->
 
 <!-- Modal Detail -->
-<div class="modal fade" id="detailModal">
+    <div class="modal fade" id="detailModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -182,41 +209,38 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="modal-tampil">
                 <div class="form-group">
                     <label for="kode">Kode Supplier</label>
-                    <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
+                    <input type="text" name="kode" id="kode-detail" class="form-control" value="" readonly>
                 </div>
                 <div class="form-group">
                     <label for="nama">
                         Nama Supplier
                         <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="nama" id="nama" class="form-control" value="John Doe" placeholder="John Doe" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="jk">
-                        Jenis Kelamin
-                    </label>
-                    <select name="jk" id="jk" class="form-control custom-select" readonly>
-                        <option value="">Pilih Salah Satu</option>
-                        <option value="Laki - Laki" selected>Laki - Laki</option>
-                        <option value="Perempuan">Perempuan</option>
-                    </select>
+                    <input type="text" name="nama" id="nama-detail" class="form-control" readonly>
                 </div>
                 <div class="form-group">
                     <label for="notelp">
                         No. Telpon / HP
                         <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="notelp" id="notelp" class="form-control" value="08233158636" readonly>
+                    <input type="text" name="notelp" id="notelp-detail" class="form-control" value="08233158636" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="alamat">
+                        Alamat
+                        <sup class="text-danger">*</sup>
+                    </label>
+                    <textarea name="alamat" id="address-detail" class="form-control" readonly></textarea>
                 </div>
                 <div class="form-group">
                     <label for="deskripsi">
                         Deskripsi
                         <sup class="text-danger">*</sup>
                     </label>
-                    <textarea name="alamat" id="deskripsi" class="form-control" readonly></textarea>
+                    <textarea name="alamat" id="deskripsi-detail" class="form-control" readonly></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -224,11 +248,11 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 <!-- Modal Detail End -->
 
 <!-- Modal Edit -->
-<div class="modal fade" id="editModal">
+    <div class="modal fade" id="editModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -238,41 +262,38 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="<?=base_url('C_admin/edit_supplier')?>" method="post">
                     <div class="form-group">
                         <label for="kode">Kode Supplier</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
+                        <input type="text" name="kode" id="kode-edit" class="form-control" value="CSM001" readonly>
                     </div>
                     <div class="form-group">
                         <label for="nama">
                             Nama Supplier
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label for="jk">
-                            Jenis Kelamin
-                        </label>
-                        <select name="jk" id="jk" class="form-control custom-select">
-                            <option value="">Pilih Salah Satu</option>
-                            <option value="Laki - Laki" selected>Laki - Laki</option>
-                            <option value="Perempuan">Perempuan</option>
-                        </select>
+                        <input type="text" name="nama" id="nama-edit" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="notelp">
                             No. Telpon / HP
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="notelp" id="notelp" class="form-control" value="082331588636">
+                        <input type="text" name="notelp" id="notelp-edit" class="form-control" onkeypress="return hanyaAngka(event)" minlength="11" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">
+                            Alamat
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <textarea name="alamat" id="address-edit" class="form-control" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">
                             Deskripsi
                             <sup class="text-danger">*</sup>
                         </label>
-                        <textarea name="alamat" id="deskripsi" class="form-control" value=" - "></textarea>
+                        <textarea name="deskripsi" id="deskripsi-edit" class="form-control" required></textarea>
                     </div>
                     <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
             </div>
@@ -283,5 +304,58 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 <!-- Modal Edit End -->
+
+<!-- modal hapus -->
+    <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+                <input type="text" id="kode-hapus" hidden>
+				<div class="modal-body text-center">
+                    <i class="fa fa-exclamation-triangle text-danger fa-7x mb-3 mt-2"></i> <br>
+                    <h3 class="text-center font-weight-bold">Hapus Data</h3>
+                    <h5 class="font-weight-light">Apa anda yakin ingin menghapus data ini?</h5>
+
+					<a class="btn btn-danger mr-1" href="<?= base_url().'C_admin/hapus_supplier/'.$su->kode_supplier ?> ">Hapus</a>
+					<button class="btn btn-secondary mt-1" type="button" data-dismiss="modal">Batal</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<!-- script -->
+<script>
+    // script validasi hanya angka
+    function hanyaAngka(event) {
+        var angka = (event.which) ? event.which : event.keyCode
+        if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
+            return false;
+        return true;
+    }
+
+    // script modal dinamis detail
+        function detail(id, nama, no_hp, address, deskripsi){
+            $('#kode-detail').val(id);
+            $('#nama-detail').val(nama);
+            $('#notelp-detail').val(no_hp);
+            $('#address-detail').val(address);
+            $('#deskripsi-detail').val(deskripsi);
+        }
+    
+    //script modal dinamis edit
+        function edit(id, nama, no_hp, address, deskripsi){
+            $('#kode-edit').val(id);
+            $('#nama-edit').val(nama);
+            $('#notelp-edit').val(no_hp);
+            $('#address-edit').val(address);
+            $('#deskripsi-edit').val(deskripsi);
+        }
+    
+    //script hapus modal
+    function hapus(id){
+        $('#kode-hapus').val(id);
+        
+    }
+</script>

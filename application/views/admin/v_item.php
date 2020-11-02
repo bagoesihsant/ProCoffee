@@ -53,6 +53,7 @@
                                 <th>Unit</th>
                                 <th>Harga Barang</th>
                                 <th>Berat</th>
+                                <th>Deskripsi</th>
                                 <th>Stok</th>
                                 <th>Gambar Barang</th>
                                 <th class="text-center">Action</th>
@@ -61,39 +62,34 @@
                         <!-- Thead End -->
                         <!-- Tbody -->
                         <tbody>
-                            <!-- Data Example -->
+                            <!-- Data -->
                             <?php
-                            for ($i = 1; $i <= 12; $i++) :
+                            $no=1;
+                                foreach($produk as $pro){
                             ?>
-                                <tr>
-                                    <td><?= $i; ?>.</td>
-                                    <td class="text-center">
-                                        A0001 <br>
-                                        <button class="btn btn-secondary">Cetak <i class="fa fa-print"></i></button>
-                                    </td>
-                                    <td>Kopi Hijau</td>
-                                    <td>Perbiji</td>
-                                    <td>Perlusin</td>
-                                    <td>Rp 55.000</td>
-                                    <td>500</td>
-                                    <td>-10</td>
-                                    <td><img src="<?= base_url() . "assets/dist/img/kopi1.jpg" ?>" width="100"></td>
-                                    <td class="d-flex justify-content-around">
-                                        <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
-                                            <i class="fas fa-fw fa-eye text-white"></i>
+                                <td><?=$no++?></td>
+                                <td><?=$pro->barcode?></td>
+                                <td><?=$pro->name?></td>
+                                <td><?=$pro->kode_kategori?></td>
+                                <td><?=$pro->kode_satuan?></td>
+                                <td><?=$pro->price?></td>
+                                <td><?=$pro->berat?></td>
+                                <td><?=$pro->deskripsi?></td>
+                                <td><?=$pro->stock?></td>
+                                <td><?=$pro->image?></td>
+                                <td class="d-flex justify-content-center">
+                                        <a href="" class="btn btn-primary btn-xs mx-auto btn-view-menu" data-toggle="modal" data-target="#detailModal">
+                                            <i class="fas fa-fw fa-eye"></i>
                                         </a>
-                                        <a href="#" class="btn btn-xs btn-danger btnDeleteUnits">
+                                        <a href="" class="btn btn-danger btn-xs mx-auto btn-delete-menu">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
-                                        <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning">
+                                        <a href=""  class="btn btn-warning btn-xs mx-auto btn-edit-menu" data-toggle="modal" data-target="#editModal">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
                                     </td>
-                                </tr>
-                            <?php
-                            endfor;
-                            ?>
-                            <!-- Data Example End -->
+                            <?php } ?>
+                            <!-- Data End -->
                         </tbody>
                         <!-- Tbody End -->
                         <!-- Tfoot -->
@@ -106,6 +102,7 @@
                                 <th>Unit</th>
                                 <th>Harga Barang</th>
                                 <th>Berat</th>
+                                <th>Deskripsi</th>
                                 <th>Stok</th>
                                 <th>Gambar Barang</th>
                                 <th class="text-center">Action</th>
@@ -126,7 +123,7 @@
 <!-- Content Wrapper End -->
 
 <!-- Modal Tambah -->
-<div class="modal fade" id="tambahModal">
+    <div class="modal fade" id="tambahModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -200,11 +197,11 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 <!-- Modal Tambah End -->
 
 <!-- Modal Detail -->
-<div class="modal fade" id="detailModal">
+    <div class="modal fade" id="detailModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -273,11 +270,11 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 <!-- Modal Detail End -->
 
 <!-- Modal Edit -->
-<div class="modal fade" id="editModal">
+    <div class="modal fade" id="editModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -354,5 +351,5 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 <!-- Modal Edit End -->
