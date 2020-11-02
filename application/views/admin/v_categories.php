@@ -41,6 +41,7 @@
                 <!-- Card Header End -->
                 <!-- Card Body -->
                 <div class="card-body">
+                    <?= $this->session->flashdata('message'); ?>
                     <!-- Data Table -->
                     <table id="CategoriesTable" class="table table-bordered table-striped">
                         <!-- Thead -->
@@ -53,40 +54,33 @@
                         </thead>
                         <!-- Thead End -->
                         <!-- Tbody -->
-                        <tbody>
+                        <tbody id="TableTarget">
                             <!-- Data Example -->
-                            <?php
-                            for ($i = 1; $i <= 3; $i++) :
-                            ?>
+                            <?php $no = 1;
+                            foreach ($row->result() as $rw => $r) : ?>
                                 <tr>
-                                    <td><?= $i; ?>.</td>
-                                    <td>Perkotak</td>
+                                    <td><?= $no++ ?></td>
+                                    <!-- <td><?= $r->kode_category; ?></td> -->
+                                    <td><?= $r->name; ?></td>
                                     <td class="d-flex justify-content-around">
                                         <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
                                         </a>
-                                        <a href="#" class="btn btn-xs btn-danger btnDeleteCategories">
+                                        <a href="#" class="btn btn-xs btn-danger btnDeleteUnits">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
-                                        <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning">
+                                        <a href="#" data-toggle="modal" data-target="#editModal<?= $r->kode_category; ?>" class="btn btn-xs btn-warning">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
                                     </td>
                                 </tr>
-                            <?php
-                            endfor;
-                            ?>
+
+                            <?php endforeach ?>
                             <!-- Data Example End -->
                         </tbody>
                         <!-- Tbody End -->
                         <!-- Tfoot -->
-                        <tfoot>
-                            <tr>
-                                <th>No.</th>
-                                <th>Nama Categories</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                        </tfoot>
+
                         <!-- Tfoot End -->
                     </table>
                     <!-- Data Table End -->
@@ -112,18 +106,19 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label for="kode">Kode Categories</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nama">
-                            Nama Categories
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="" required>
-                    </div>
+                <?= form_open_multipart('C_admin/addDataCategories'); ?>
+                <div class="form-group">
+                    <label for="kode">Kode Categories</label>
+                    <input type="text" name="kode_kategori" id="kode_kategori" class="form-control" value="CSM001" required>
+
+                </div>
+                <div class="form-group">
+                    <label for="nama">
+                        Nama Categories
+                        <sup class="text-danger">*</sup>
+                    </label>
+                    <input type="text" name="nama_kategori" id="nama_kategori" class="form-control" value="" required>
+                </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -135,39 +130,48 @@
 </div>
 <!-- Modal Tambah End -->
 
+
+
 <!-- Modal Detail -->
-<div class="modal fade" id="detailModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Preview Categories</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="kode">Kode Categories</label>
-                    <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
+<?php $no = 0;
+foreach ($row->result() as $rw => $r) : $no++; ?>
+    <div class="modal fade" id="editModal<?= $r->kode_category; ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Categories</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="nama">
-                        Nama Categories
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <input type="text" name="nama" id="nama" class="form-control" value="Perkotak" readonly>
+                <div class="modal-body">
+                    <?= form_open_multipart('C_admin/editDataCategories'); ?>
+                    <div class="form-group">
+                        <label for="kode">Kode Categories</label>
+                        <input type="text" name="kode_kategori" value="<?= $r->kode_category ?>" id="kode_kategori" class="form-control" value="CSM001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">
+                            Nama Categories
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="nama_kategori" value="<?= $r->name ?>" id="nama_kategori" class="form-control" value="" required>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-primary">Tutup</button>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" id="btnTambahCategories" name="tambah">Simpan</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+<?php endforeach; ?>
 <!-- Modal Detail End -->
 
+
 <!-- Modal Edit -->
-<div class="modal fade" id="editModal">
+<div class="modal fade" id="detailModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

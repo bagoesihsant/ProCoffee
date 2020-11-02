@@ -174,3 +174,6 @@
         })
     });
 </script>
+
+
+<!-- crud ajax lulung -->

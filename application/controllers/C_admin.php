@@ -10,12 +10,10 @@ class C_admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
-        // Load Model
-        // Menu
+        // Load Model Menu
         $this->load->model('M_menu', 'menu');
-        //load helper
-        $this->load->helper(array('url'));
+        // Load Model Categories
+        $this->load->model('M_products', 'mproduk');
         // Sub Menu
         $this->load->model('M_sub_menu', 'submenu');
     }
@@ -141,28 +139,83 @@ class C_admin extends CI_Controller
         redirect('C_admin/index_supplier');
     }
 
-
-    // Produk
+  
+//   Categories
     public function index_product_categories()
     {
+        $data['row'] = $this->mproduk->getDataProduct();
         $this->load->view('templates/v_header_admin');
         $this->load->view('templates/v_sidebar_admin');
-        $this->load->view('admin/v_categories');
+        $this->load->view('admin/v_categories', $data);
         $this->load->view('templates/footer_js');
         $this->load->view('admin/custom_js');
         $this->load->view('templates/v_footer_admin');
     }
+
+    public function addDataCategories()
+    {
+        $data['row'] = $this->mproduk->getDataProduct();
+        $kode_kategori =  htmlspecialchars($this->input->post('kode_kategori'));
+        $nama_kategori =  htmlspecialchars($this->input->post('nama_kategori'));
+
+        $this->form_validation->set_rules('nama_kategori', 'Nama Kategori', 'required|trim', [
+            'requried' => 'Mohon untuk di isi nama kategorinya'
+        ]);
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/v_header_admin');
+            $this->load->view('templates/v_sidebar_admin');
+            $this->load->view('admin/v_categories', $data);
+            $this->load->view('templates/footer_js');
+            $this->load->view('admin/custom_js');
+            $this->load->view('templates/v_footer_admin');
+        } else {
+            $data = [
+                'kode_category' => $kode_kategori,
+                'name'          => $nama_kategori
+            ];
+
+            $this->mproduk->addData($data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Kategori Barang telah di tambahkan</div>');
+            redirect('C_admin/index_product_categories');
+        }
+    }
+
+    public function editDataCategories()
+    {
+        // $id_ktgori = $this->input->post('kode_kategori');
+        // $nama_ktgori =  htmlspecialchars($this->input->post('nama_kategori'));
+        $post = $this->input->post(null, TRUE);
+        $this->form_validation->set_rules('nama_kategori', 'Nama Kategori', 'required|trim', [
+            'requried' => 'Mohon untuk di isi nama kategorinya'
+        ]);
+        if ($this->form_validation->run() == false) {
+            $this->index_product_categories();
+        } else {
+
+
+            $this->mproduk->editDataModal($post);
+            // var_dump($perubahan);
+            // if ($perubahan > 0) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Kategori Barang telah di edit</div>');
+            redirect('C_admin/index_product_categories');
+        }
+    }
+    // close function for product categories
 
     // Units
     public function index_product_units()
     {
+        $data['row'] = $this->mproduk->readDatasatuan();
         $this->load->view('templates/v_header_admin');
         $this->load->view('templates/v_sidebar_admin');
-        $this->load->view('admin/v_units');
+        $this->load->view('admin/v_units', $data);
         $this->load->view('templates/footer_js');
         $this->load->view('admin/custom_js');
         $this->load->view('templates/v_footer_admin');
     }
+
+
+    // end unit
 
     // Item
     public function index_product_items()
