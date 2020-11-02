@@ -96,13 +96,13 @@
                                         ?>
                                     </td>
                                     <td class="d-flex justify-content-center">
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-xs mx-auto">
+                                        <a href="javascript:void(0)" data-kode="<?= $submenus['kode_sub_menu']; ?>" class="btn btn-primary btn-xs mx-auto btn-view-submenu" data-toggle="modal" data-target="#viewModal">
                                             <i class="fas fa-fw fa-eye"></i>
                                         </a>
                                         <a href="javascript:void(0)" class="btn btn-danger btn-xs mx-auto">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
-                                        <a href="javascript:void(0)" class="btn btn-warning btn-xs mx-auto">
+                                        <a href="javascript:void(0)" data-kode="<?= $submenus['kode_sub_menu']; ?>" class="btn btn-warning btn-xs mx-auto btn-edit-submenu" data-toggle="modal" data-target="#editModal">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
                                     </td>
@@ -207,11 +207,11 @@
                         <?= form_error('url_sub_menu', '<p class="text-danger text-sm ml-2">', '</p>'); ?>
                     </div>
                     <div class="form-group">
-                        <label for="icon_sub_menu">Icon Submenu</label>
+                        <label for="icon_sub_menu">Submenu Icon</label>
                         <div class="input-group">
                             <input type="text" name="icon_sub_menu" id="icon_sub_menu" class="form-control" placeholder="ex: fas fa-fw fa-eye">
                             <div class="input-group-append">
-                                <button class="btn btn-info btn-sm" type="button" data-toggle="modal" data-target="#previewIconModal">
+                                <button class="btn btn-info btn-sm btn-modal-icon" data-form="tambah" type="button" data-toggle="modal" data-target="#previewIconModal">
                                     <i class="fas fa-fw fa-search"></i>
                                 </button>
                             </div>
@@ -241,6 +241,89 @@
 </div>
 <!-- Modal Tambah End -->
 
+<!-- Modal Edit Submenu -->
+<div class="modal fade" id="editModal">
+    <!-- Modal Dialog -->
+    <div class="modal-dialog">
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Submenu</h4>
+                <button class="close" type="button" aria-label="Close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Modal Header End -->
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <!-- Form -->
+                <form action="<?= base_url('admin/editSubmenu'); ?>" method="post" id="formEditSubmenu">
+                    <div class="form-group">
+                        <label for="kode_sub_menu">Kode Submenu</label>
+                        <input type="text" name="kode_sub_menu" id="kode_sub_menu" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="menu_sub_menu">Menu</label>
+                        <select name="menu_sub_menu" id="menu_sub_menu" class="form-control custom-select">
+                            <option value="">Pilih Salah Satu</option>
+                            <!-- Looping Database -->
+                            <?php
+                            // Mengambil semua menu dari database
+                            $menu = $this->menu->getAllMenu();
+                            // Melakukan perulangan
+                            foreach ($menu as $menus) :
+                            ?>
+                                <option value="<?= $menus['kode_menu'] ?>"><?= $menus['menu']; ?></option>
+                            <?php
+                            endforeach;
+                            ?>
+                            <!-- Looping Database End -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sub_menu">Submenu</label>
+                        <input type="text" name="sub_menu" id="sub_menu" class="form-control" placeholder="ex: Manajemen User">
+                    </div>
+                    <div class="form-group">
+                        <label for="url_sub_menu">Submenu URL</label>
+                        <input type="text" name="url_sub_menu" id="url_sub_menu" class="form-control" placeholder="ex: admin/submenu">
+                    </div>
+                    <div class="form-group">
+                        <label for="icon_sub_menu">Submenu Icon</label>
+                        <div class="input-group">
+                            <input type="text" name="icon_sub_menu" id="icon_sub_menu" class="form-control" placeholder="ex: fas fa-fw fa-folder-plus">
+                            <div class="input-group-append">
+                                <button class="btn btn-info btn-sm btn-modal-icon" data-form="ubah" type="button" data-toggle="modal" data-target="#previewIconModal">
+                                    <i class="fas fa-fw fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="status_sub_menu" id="status_sub_menu" class="custom-control-input" value="1">
+                            <label for="status_sub_menu" class="custom-control-label">Aktifkan Menu</label>
+                        </div>
+                    </div>
+            </div>
+            <!-- Modal Body End -->
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
+                <!-- Form End -->
+            </div>
+            <!-- Modal Footer End -->
+        </div>
+        <!-- Modal Content End -->
+    </div>
+    <!-- Modal Dialog End -->
+</div>
+<!-- Modal Edit Submenu End -->
+
+
 <!-- Modal Preview Icon -->
 <div class="modal fade" id="previewIconModal">
     <!-- Modal Dialog -->
@@ -258,7 +341,7 @@
             <!-- Modal Body -->
             <div class="modal-body">
                 <!-- Row -->
-                <div class="row">
+                <div class="row icon-row" data-form="">
 
                     <!-- 4 Icon -->
                     <div class="col-sm-3 text-center">
@@ -430,3 +513,82 @@
     <!-- Modal Dialog End -->
 </div>
 <!-- Modal Preview Icon End -->
+
+<!-- Modal View Submenu -->
+<div class="modal fade" id="viewModal">
+    <!-- Modal Dialog -->
+    <div class="modal-dialog">
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Detail Submenu</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Modal Header End -->
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="kode_sub_menu">Kode Submenu</label>
+                    <input type="text" name="kode_sub_menu" id="kode_sub_menu" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="menu_sub_menu">Menu</label>
+                    <select name="menu_sub_menu" id="menu_sub_menu" class="form-control custom-select" readonly>
+                        <option value="">Pilih Salah Satu</option>
+                        <!-- Looping Dari Database -->
+                        <?php
+                        // Mengambil data dari database
+                        $menu = $this->menu->getAllMenu();
+                        // Melakukan looping
+                        foreach ($menu as $menus) :
+                        ?>
+                            <option value="<?= $menus['kode_menu'] ?>"><?= $menus['menu']; ?></option>
+                        <?php
+                        endforeach;
+                        ?>
+                        <!-- Looping Dari Database End -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sub_menu">Submenu</label>
+                    <input type="text" name="sub_menu" id="sub_menu" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="url_sub_menu">Submenu URL</label>
+                    <input type="text" name="url_sub_menu" id="url_sub_menu" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="icon_sub_menu">Submenu Icon</label>
+                    <input type="text" name="icon_sub_menu" id="icon_sub_menu" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-12">
+                            <label for="preview_icon">Submenu Icon Preview</label>
+                        </div>
+                        <div class="col-sm-6 col-lg-12">
+                            <button class="btn btn-secondary btn-lg" id="preview_icon_submenu" disabled>
+                                <i class=""></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="status_sub_menu">Status Submenu</label>
+                    <input type="text" name="status_sub_menu" id="status_sub_menu" class="form-control" readonly>
+                </div>
+            </div>
+            <!-- Modal Body End -->
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+            </div>
+            <!-- Modal Footer End -->
+        </div>
+        <!-- Modal Content End -->
+    </div>
+    <!-- Modal Dialog End -->
+</div>
+<!-- Modal View Submenu End -->
