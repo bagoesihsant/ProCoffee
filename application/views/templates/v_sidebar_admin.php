@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url()."C_admin/index_supplier" ?>" class="nav-link">
+                    <a href="<?= base_url() . "C_admin/index_supplier" ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-truck"></i>
                         <p>Supplier</p>
                     </a>
@@ -52,23 +52,23 @@
                             Product
                             <i class="right fas fa-angle-left"></i>
                         </p>
-                        </a>
-                        
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="<?= base_url()."C_admin/index_product_categories" ?>" class="nav-link">
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url() . "C_admin/index_product_categories" ?>" class="nav-link">
                                 <i class="nav-icon far fa-circle text-secondary"></i>
                                 <p>Categories</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url()."C_admin/index_product_units" ?>" class="nav-link">
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url() . "C_admin/index_product_units" ?>" class="nav-link">
                                 <i class="nav-icon far fa-circle text-secondary"></i>
                                 <p>Units</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= base_url()."C_admin/index_product_items" ?>" class="nav-link">
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url() . "C_admin/index_product_items" ?>" class="nav-link">
                                 <i class="nav-icon far fa-circle text-secondary"></i>
                                 <p>Items</p>
                             </a>
