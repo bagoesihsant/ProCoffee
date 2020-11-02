@@ -318,4 +318,20 @@ class C_admin extends CI_Controller
             redirect('admin/submenu');
         }
     }
+
+    // Sub Menu - Ajax Edit
+    public function ajaxEditSubmenu()
+    {
+
+        // Menyimpan data yang dikirim kedalam array data
+        $data = [
+            'kode_sub_menu' => htmlspecialchars($this->input->post('kode_sub_menu', true))
+        ];
+
+        // Mengambil data submenu sesuai kode
+        $result = $this->submenu->getDetailSubmenu($data);
+
+        // Mencetak data yang dihasilkan menjadi json
+        echo json_encode($result);
+    }
 }
