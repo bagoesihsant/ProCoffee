@@ -202,9 +202,6 @@ class C_admin extends CI_Controller
                     'pesan_menu',
                     'toastr.success("Selamat, Data berhasil diubah.")'
                 );
-
-                // Mengarahkan kembali
-                redirect('admin/menu');
             } else {
                 // Jika query mengubah data gagal dijalankan
 
@@ -213,10 +210,10 @@ class C_admin extends CI_Controller
                     'pesan_menu',
                     'toastr.error("Error, Data gagal diubah.")'
                 );
-
-                // Mengarahkan kembali
-                redirect('admin/menu');
             }
+
+            // Mengarahkan kembali
+            redirect('admin/menu');
         }
     }
 
@@ -241,9 +238,6 @@ class C_admin extends CI_Controller
                 'pesan_menu',
                 'toastr.success("Selamat, Data berhasil dihapus.")'
             );
-
-            // Mengarahkan kembali
-            redirect('admin/menu');
         } else {
             // Jika menu gagal dihapus
 
@@ -252,10 +246,11 @@ class C_admin extends CI_Controller
                 'pesan_menu',
                 'toastr.error("Error, Data gagal dihapus.")'
             );
-
-            // Mengarahkan kembali
-            redirect('admin/menu');
         }
+
+
+        // Mengarahkan kembali
+        redirect('admin/menu');
     }
 
     // Sub Menu - Index
