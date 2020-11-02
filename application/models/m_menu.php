@@ -86,5 +86,11 @@ class M_menu extends CI_Model
     {
         return $this->db->get('tbl_barang');
     }
+
+    public function tambah_item($data)
+    {
+        $this->db->insert('tbl_barang', $data);
+        return $this->db->affected_rows();
+    }
     
 }

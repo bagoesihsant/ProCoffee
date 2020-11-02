@@ -67,6 +67,7 @@
                             $no=1;
                                 foreach($produk as $pro){
                             ?>
+                            <tr>
                                 <td><?=$no++?></td>
                                 <td><?=$pro->barcode?></td>
                                 <td><?=$pro->name?></td>
@@ -76,7 +77,8 @@
                                 <td><?=$pro->berat?></td>
                                 <td><?=$pro->deskripsi?></td>
                                 <td><?=$pro->stock?></td>
-                                <td><?=$pro->image?></td>
+                                <td class="text-center"><img src="<?= base_url('assets/items_img/').$pro->image ?>" 
+                                    alt="Gambar tidak ditemukan" width="100"></td>
                                 <td class="d-flex justify-content-center">
                                         <a href="" class="btn btn-primary btn-xs mx-auto btn-view-menu" data-toggle="modal" data-target="#detailModal">
                                             <i class="fas fa-fw fa-eye"></i>
@@ -88,6 +90,7 @@
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
                                     </td>
+                            </tr>
                             <?php } ?>
                             <!-- Data End -->
                         </tbody>
@@ -133,7 +136,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="<?= base_url('C_admin/tambah_items') ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="kode">Kode Items</label>
                         <input type="text" name="kode" id="kode" class="form-control" value="PRM001" readonly required>
@@ -150,7 +153,7 @@
                             Kategori Items
                             <sup class="text-danger">*</sup>
                         </label>
-                        <select class="form-control">
+                        <select class="form-control" name="kategori">
                             <option>kategori</option>
                         </select>
                     </div>
@@ -159,7 +162,7 @@
                             Unit Items
                             <sup class="text-danger">*</sup>
                         </label>
-                        <select class="form-control">
+                        <select class="form-control" name="unit">
                             <option>Unit</option>
                         </select>
                     </div>
@@ -182,12 +185,16 @@
                             Deskripsi
                             <sup class="text-danger">*</sup>
                         </label>
-                        <textarea class="form-control" id="deskripsi" rows="3"></textarea>
+                        <textarea class="form-control" id="deskripsi" rows="3" required></textarea>
                     </div>
 
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="gambar" aria-describedby="inputGroupFileAddon01">
+                        <input type="file" class="custom-file-input" name="gambar" id="gambar" aria-describedby="inputGroupFileAddon01" required>
                         <label class="custom-file-label" for="gambar">Gambar/Foto Barang</label>
+                            <p>
+                                <sup class="text-danger">*</sup>
+                                gambar yang di upload harus berekstensi jpg/png
+                            </p>
                     </div>
             </div>
             <div class="modal-footer">

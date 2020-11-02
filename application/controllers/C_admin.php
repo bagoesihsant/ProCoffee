@@ -40,7 +40,7 @@ class C_admin extends CI_Controller
         $this->load->view('templates/v_footer_admin');
     }
 
-    // Supplier
+    // Supplier  Supplier  Supplier
     public function index_supplier()
     {
         $data['supplier'] = $this->menu->getAllSupplier()->result();
@@ -214,10 +214,14 @@ class C_admin extends CI_Controller
         $this->load->view('templates/v_footer_admin');
     }
 
+<<<<<<< Updated upstream
 
     // end unit
 
     // Item
+=======
+    // Item  Item  Item
+>>>>>>> Stashed changes
     public function index_product_items()
     {
         $data['produk'] = $this->menu->getAllItems()->result();
@@ -228,6 +232,51 @@ class C_admin extends CI_Controller
         $this->load->view('templates/footer_js');
         $this->load->view('admin/custom_js');
         $this->load->view('templates/v_footer_admin');
+    }
+
+    public function tambah_items()
+    {
+        $kode = $this->input->post('kode');
+        $nama = $this->input->post('nama');
+        $kategori = $this->input->post('kategori');
+        $unit = $this->input->post('unit');
+        $harga = $this->input->post('harga');
+        $berat = $this->input->post('berat');
+        $deskripsi = $this->input->post('deskripsi');
+        $gambar = $_FILES['gambar']; //untuk mengambil file gambar
+
+        //nama random untuk rename gambar di db dan penyimpanan direktori
+        $namarandom='item'. md5(date('dmY'));
+
+        //jika gambar tidak sama dengan kosong, maka gambar akan dipindah ke folder dan validasijpg/jpeg
+        if($gambar != '') {
+            $config['upload_path']      ='./assets/items_img'; //buat nyimpen direktori gambar
+            $config['allowed_types']    ='jpg|jpeg'; //tipe gambar yang boleh di upload
+            $config['file_name']        =$namarandom; //ambil nama random yang atas
+
+            //untuk load library upload
+            $this->load->library('upload', $config);
+            
+            //jiika gambar yang diambil dari inputan gambar gagal di upload
+            if(!$this->upload->do_upload('gambar')){
+                echo "upload gagal"; die();
+            }else{
+                $namaGambar=$this->upload->data('file_name');
+            }
+        }
+
+            $data = array(
+                'kode_barang' => $kode,
+                'name' => $nama,
+                'kode_kategori' =>$kategori,
+                'kode_satuan'=>$unit,
+                'price'=>$harga,
+                'berat'=>$berat,
+                'deskripsi'=>$deskripsi,
+                'created' => date('dmY'),
+                'image' => $namaGambar
+                );
+            $query = $this->menu->tambah_item($data);
     }
 
     // Menu
