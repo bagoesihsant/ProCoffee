@@ -217,8 +217,8 @@ foreach ($row->result() as $rw => $r) : $no++; ?>
             </div>
             <form action="" id="formDelete" method="POST">
                 <div class="modal-footer">
-                    <button class="btn btn-danger" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary" id="btnTambahCategories" name="tambah">Simpan</button>
+                    <button class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger" id="btnTambahCategories" name="tambah">Hapus</button>
             </form>
         </div>
     </div>
