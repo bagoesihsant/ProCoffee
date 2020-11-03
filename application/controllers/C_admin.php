@@ -226,7 +226,59 @@ class C_admin extends CI_Controller
         $this->load->view('templates/v_footer_admin');
     }
 
+    public function addDataUnits()
+    {
+        $kode_unit =  htmlspecialchars($this->input->post('kode'));
+        $nama_unit =  htmlspecialchars($this->input->post('nama'));
+        $this->form_validation->set_rules('nama', 'Nama Ubits', 'required|trim', [
+            'requried' => 'Mohon untuk di isi nama Satuannya'
+        ]);
+        if ($this->form_validation->run() == false) {
+            $this->index_product_units();
+        } else {
+            $data = [
+                'kode_satuan' => $kode_unit,
+                'name'        => $nama_unit,
+                'created'     => time()
+            ];
+            $this->mproduk->addDataSatuan($data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Satuan Barang telah di tambahkan</div>');
+            redirect('C_admin/index_product_units');
+        }
+    }
 
+    public function editDataUnits()
+    {
+        $post = $this->input->post(null, TRUE);
+        $this->form_validation->set_rules('nama', 'Nama Satuan', 'required|trim', [
+            'required' => 'Silahkan untuk nama di isi'
+        ]);
+        if ($this->form_validation->run() == false) {
+            $this->index_product_units();
+        } else {
+            $this->mproduk->editDataUnitsM($post);
+        }
+        if ($this->db->affected_rows() > 0) {
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Satuan Barang telah di Ubah</div>');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Satuan Barang telah di Ubah</div>');
+        }
+
+        redirect('C_admin/index_product_units');
+    }
+
+    public function deleteUnits($id)
+    {
+        $this->mproduk->deleteUnits($id);
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Nama Units Barang telah di Hapus</div>');
+            redirect('C_admin/index_product_units');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Nama Units Barang gagal di Hapus</div>');
+            redirect('C_admin/index_product_units');
+        }
+    }
     // end unit
 
     // Item

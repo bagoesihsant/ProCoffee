@@ -41,6 +41,7 @@
                 <!-- Card Header End -->
                 <!-- Card Body -->
                 <div class="card-body">
+                    <?= $this->session->flashdata('message'); ?>
                     <!-- Data Table -->
                     <table id="UnitsTable" class="table table-bordered table-striped">
                         <!-- Thead -->
@@ -60,7 +61,19 @@
 
                                 <tr>
                                     <td><?= $no++; ?></td>
-                                    <td><?= $data->kode_satuan; ?></td>
+                                    <td><?= $data->name; ?></td>
+                                    <td class="d-flex justify-content-around">
+                                        <a href="#" data-toggle="modal" data-target="#detailModal<?= $data->kode_satuan; ?>" class="btn btn-xs btn-info">
+                                            <i class="fas fa-fw fa-eye text-white"></i>
+                                        </a>
+                                        <!-- <?= base_url('C_admin/deleteCategory' . $data->kode_satuan) ?>') -->
+                                        <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('C_admin/deleteUnits/' . $data->kode_satuan) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
+                                            <i class="fas fa-fw fa-trash-alt"></i>
+                                        </a>
+                                        <a href="#" data-toggle="modal" data-target="#editModal<?= $data->kode_satuan; ?>" class="btn btn-xs btn-warning">
+                                            <i class="fas fa-fw fa-edit text-white"></i>
+                                        </a>
+                                    </td>
                                 </tr>
 
                             <?php endforeach; ?>
@@ -100,18 +113,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label for="kode">Kode Units</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nama">
-                            Nama Units
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="" required>
-                    </div>
+                <?= form_open_multipart('C_admin/addDataUnits'); ?>
+                <div class="form-group">
+                    <label for="kode">Kode Units</label>
+                    <input type="text" name="kode" id="kode" class="form-control" value="CSM001" required>
+                </div>
+                <div class="form-group">
+                    <label for="nama">
+                        Nama Units
+                        <sup class="text-danger">*</sup>
+                    </label>
+                    <input type="text" name="nama" id="nama" class="form-control" value="" required>
+                </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -124,66 +137,116 @@
 <!-- Modal Tambah End -->
 
 <!-- Modal Detail -->
-<div class="modal fade" id="detailModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Preview Units</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="kode">Kode Units</label>
-                    <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
+<?php $no = 0;
+foreach ($row->result() as $rw => $r) : $no++; ?>
+    <div class="modal fade" id="detailModal<?= $r->kode_satuan; ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Detail Kategori</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label for="nama">
-                        Nama Units
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <input type="text" name="nama" id="nama" class="form-control" value="Perlusin" readonly>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-primary">Tutup</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal Detail End -->
-
-<!-- Modal Edit -->
-<div class="modal fade" id="editModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Edit Units</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="" method="post">
+                <div class="modal-body">
                     <div class="form-group">
-                        <label for="kode">Kode Units</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
+                        <label for="kode">Kode Categories</label>
+                        <input type="text" name="kode_kategori" value="<?= $r->kode_satuan ?>" id="kode_kategori" class="form-control" value="CSM001" readonly required>
                     </div>
                     <div class="form-group">
                         <label for="nama">
-                            Nama Units
+                            Nama Categories
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="Perlusin">
+                        <input type="text" name="nama_kategori" value="<?= $r->name ?>" id="nama_kategori" class="form-control" value="" readonly required>
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary" id="btnTambahUnits" name="tambah">Simpan</button>
-                </form>
+                    <div class="form-group">
+                        <label for="nama">
+                            Tanggal Di buat
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="nama_kategori" value="<?= date("d-m-Y", $r->created); ?>" id="nama_kategori" class="form-control" value="" readonly required>
+                    </div>
+                    <?php $tanggal_ubah = $r->updated;
+                    if ($tanggal_ubah) : ?>
+                        <div class="form-group">
+                            <label for="nama">
+                                Tanggal Di Ubah
+                                <sup class="text-danger">*</sup>
+                            </label>
+                            <input type="text" name="nama_kategori" value="<?= date("d-m-Y", $r->updated); ?>" id="nama_kategori" class="form-control" value="" readonly required>
+                        </div>
+                    <?php else : ?>
+                        <div class="form-group">
+                            <label for="nama">
+                                Tanggal Di Ubah
+                                <sup class="text-danger">*</sup>
+                            </label>
+                            <input type="text" name="nama_kategori" id="nama_kategori" class="form-control" value="Data Belum Pernah Di Ubah" readonly required>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="modal-footer">
+                </div>
             </div>
         </div>
     </div>
+<?php endforeach; ?>
+<!-- Modal Detail End -->
+
+<?php
+foreach ($row->result() as $rw => $r) :  ?>
+    <div class="modal fade" id="editModal<?= $r->kode_satuan; ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Categories</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?= form_open_multipart('C_admin/editDataUnits'); ?>
+                    <div class="form-group">
+                        <label for="kode">Kode Categories</label>
+                        <input type="text" name="kode" value="<?= $r->kode_satuan ?>" id="kode" class="form-control" value="CSM001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">
+                            Nama Categories
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="nama" value="<?= $r->name ?>" id="nama" class="form-control" value="" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" id="btnTambahCategories" name="tambah">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<!-- Modal Detail End -->
+
+<!-- Modal Delete -->
+<div class="modal fade" id="modalDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Yakin Hapus Data??</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="" id="formDelete" method="POST">
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger" id="btnTambahCategories" name="tambah">Hapus</button>
+            </form>
+        </div>
+    </div>
 </div>
-<!-- Modal Edit End -->
+</div>
+<!-- Modal Delete End -->
