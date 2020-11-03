@@ -80,7 +80,7 @@ class C_admin extends CI_Controller
         ];
 
         // Menjalankan fungsi untuk menghapus menu
-        $result = $this->menu->hapusUser($data);
+        $result = $this->user->hapusUser($data);
 
         // Memeriksa apakah menu berhasil dihapus
         if ($result > 0) {

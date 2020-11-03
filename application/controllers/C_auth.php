@@ -13,11 +13,9 @@ class C_auth extends CI_Controller
     // Index
     public function index()
     {
-        if ($this->session->userdata('email')) {
-            redirect('user');
-        }
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
+
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Login Page';
             $this->load->view('login_template/v_auth_header', $data);
@@ -30,29 +28,44 @@ class C_auth extends CI_Controller
 
     private function _login()
     {
-        $email  = $this->input->post('email');
-        $password  = $this->input->post('password');
+        $email = $this->input->post('email');
 
-        $user = $this->db->get_where('user', ['email' => $email])->row_array();
-        //jika usernya ada
+        $password = $this->input->post('password');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array(); // bacanya sama seperti select * from tabel user where email = email
+        # jk usernya ada
         if ($user) {
-            # usernya aktif
-            if ($user['created_at'] == 1) {
-                # code...
+            if ($user['active_status'] == 1) {
+                # cek password
+                if (password_verify($password, $user['password'])) {
+                    $data = [
+                        'email' => $user['email'],
+                        'kode_role' => $user['kode_role']
+                    ];
+                    $this->session->set_userdata($data);
+                    redirect('C_pelanggan');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                    Wrong password!
+                  </div>');
+                    redirect('C_auth');
+                }
             } else {
                 # code...
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                This Email Has Not Been Activated!
-              </div>');
+      This email has not been activated!
+    </div>');
+                redirect('C_auth');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-  Email Is Not Registered!
+  Email has not registered!
 </div>');
+            redirect('C_auth');
         }
     }
 
-    // forgotpw
+
     public function fw()
     {
         $data['title'] = 'Forgot Password';
@@ -82,7 +95,7 @@ class C_auth extends CI_Controller
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'profile_img' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-                'kode_role' => 2, // yang melakukan registrasi pasti member
+                'kode_role' => 3, // yang melakukan registrasi pasti member
                 'active_status' => 1, //sementara otomatis aktif,nanti akan dinonaktifkan saa sudah belajar user activation
                 'created_at'  => time()
             ];

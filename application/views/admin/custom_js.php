@@ -16,7 +16,7 @@
             buttonsStyling: false
         });
 
-        // Jika tombol delete di tabel customer di klik, maka muncul sweet alert
+        // Jika tombol delete di tabel user  di klik, akan muncul sweet alert
         $('.btnDeleteuser').on('click', function() {
             swalBootstrap.fire({
                 title: "Apakah anda yakin ?",
@@ -45,13 +45,13 @@
         });
     });
 
-    // Menjalankan fungsi hapus pada tabel
+    // Menjalankan fungsi hapus pada tabel user
     $('#userTable tbody').on('click', '.btnDeleteuser', function() {
 
-        // Mengambil data melalui attribute data pada elemen html
+        // Ambil data lewat attribute data pada elemen html
         const kodeUser = $(this).data('kode');
 
-        // Membuka Sweet Alert
+        // Buka Sweet Alert
         Swal.fire({
             title: "Hapus Data",
             text: "Apakah anda yakin akan menghapus data ini ?",
@@ -70,7 +70,7 @@
                 // Memindahkan ke halaman lain jika di konfirmasi
                 window.location.href = "http://localhost/ProCoffee/admin/hapusUser/" + kodeUser;
             } else if (result.dismiss == Swal.DismissReason.cancel) {
-                // Menutup sweet alert jika di cancel
+                // Menutup sweet alert jika di klik tombol cancel
                 Swal.close();
             }
         });
