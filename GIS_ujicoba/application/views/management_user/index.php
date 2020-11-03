@@ -59,7 +59,6 @@
                             <td><?= $i; ?></td>
                             <td><?= $m['nama']; ?></td>
                             <td><?= $m['email']; ?></td>
-                            <td><img src="<?= base_url('assets/dist/img/user/' . $m['profile_image']); ?>" class="img-fluid" width="50px" height="50px"></td>
                             <td><?= $m['role']; ?></td>
                             <?php if($status == 0) :?>
                                 <td><small class="badge badge-danger">Nonaktif</small></td>
@@ -85,7 +84,6 @@
                             <th>#</th>
                             <th>Nama</th>
                             <th>Email</th>
-                            <th>Image</th>
                             <th>Role</th>
                             <th>Status</th>
                             <th>Date Created</th>

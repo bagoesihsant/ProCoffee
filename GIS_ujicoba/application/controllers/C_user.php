@@ -49,18 +49,6 @@ class C_user extends CI_Controller
             $this->load->view('templates/dist-footer', $data);
             $this->load->view('templates/footer', $data);
         }else{
-            // Function untuk send email ketika berhasil registrasi
-
-            $email = $this->input->post('email');
-            $token = base64_encode(random_bytes(32));
-            $user_token = [
-                'email' => $email,
-                'token' => $token,
-                'date_created' => time()
-            ];
-
-            $this->db->insert('token_user', $user_token);
-            $this->_sendEmail($token);
             
             // Function untuk create data + autonumber
 
@@ -90,21 +78,42 @@ class C_user extends CI_Controller
             }
             // End of Configuration for upload image
             $tgl_lahir = date_create($this->input->post('tanggal_lahir'));
-            $data = [
-                'id_user' => htmlspecialchars($id_user),
-                'nama' => htmlspecialchars($this->input->post('nama')),
-                'alamat' => htmlspecialchars($this->input->post('alamat')),
-                'tanggal_lahir' => htmlspecialchars(date_format($tgl_lahir, "Y-m-d")),
-                'email' => htmlspecialchars($this->input->post('email')),
-                'username' => htmlspecialchars($this->input->post('username')),
-                'notelp' => htmlspecialchars($this->input->post('notelp')),
-                'profile_image' => htmlspecialchars($gambar),
-                'about' => htmlspecialchars($this->input->post('about')),
-                'role_id' => htmlspecialchars($this->input->post('role_id')),
-                'is_active' => 0,
-                'date_created' => htmlspecialchars(time()),
-                'update_at' => 0
+            $lahir = htmlspecialchars(date_format($tgl_lahir, "Y-m-d"));
+            $today = date("Y", time() - 8);
+            if ($lahir <= $today) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Gagal Disimpan, Date haruslah valid</div>');
+                redirect('C_user');
+            }else{
+                $data = [
+                    'id_user' => htmlspecialchars($id_user),
+                    'nama' => htmlspecialchars($this->input->post('nama')),
+                    'alamat' => htmlspecialchars($this->input->post('alamat')),
+                    'tanggal_lahir' => $lahir,
+                    'email' => htmlspecialchars($this->input->post('email')),
+                    'username' => htmlspecialchars($this->input->post('username')),
+                    'notelp' => htmlspecialchars($this->input->post('notelp')),
+                    'profile_image' => htmlspecialchars($gambar),
+                    'about' => htmlspecialchars($this->input->post('about')),
+                    'role_id' => htmlspecialchars($this->input->post('role_id')),
+                    'is_active' => 0,
+                    'date_created' => htmlspecialchars(time()),
+                    'update_at' => 0
+                ];
+            }
+
+            // Function untuk send email ketika berhasil registrasi
+
+            $email = $this->input->post('email');
+            $token = base64_encode(random_bytes(32));
+            $user_token = [
+                'email' => $email,
+                'token' => $token,
+                'date_created' => time()
             ];
+
+            $this->db->insert('token_user', $user_token);
+            $this->_sendEmail($token);
+
             $this->db->insert('user', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Disimpan</div>');
             redirect('C_user');
