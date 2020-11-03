@@ -99,7 +99,7 @@
                                         <a href="javascript:void(0)" data-kode="<?= $submenus['kode_sub_menu']; ?>" class="btn btn-primary btn-xs mx-auto btn-view-submenu" data-toggle="modal" data-target="#viewModal">
                                             <i class="fas fa-fw fa-eye"></i>
                                         </a>
-                                        <a href="javascript:void(0)" class="btn btn-danger btn-xs mx-auto">
+                                        <a href="javascript:void(0)" data-kode="<?= $submenus['kode_sub_menu']; ?>" class="btn btn-danger btn-xs mx-auto btn-delete-submenu">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
                                         <a href="javascript:void(0)" data-kode="<?= $submenus['kode_sub_menu']; ?>" class="btn btn-warning btn-xs mx-auto btn-edit-submenu" data-toggle="modal" data-target="#editModal">

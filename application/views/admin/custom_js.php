@@ -230,6 +230,38 @@
 
     });
 
+    // Menjalankan fungsi hapus pada tabel
+    $('#dataTableSubmenu tbody').on('click', '.btn-delete-submenu', function() {
+
+        // Mengambil data melalui attribute data pada elemen html
+        const kodeMenu = $(this).data('kode');
+
+        // Membuka Sweet Alert
+        Swal.fire({
+            title: "Hapus Data",
+            text: "Apakah anda yakin akan menghapus data ini ?",
+            icon: "error",
+            buttonsStyling: false,
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonText: "Ya",
+            cancelButtonText: "Tidak",
+            customClass: {
+                confirmButton: "btn btn-primary px-4 mx-2",
+                cancelButton: "btn btn-danger px-4 mx-2"
+            }
+        }).then((result) => {
+            if (result.value) {
+                // Memindahkan ke halaman lain jika di konfirmasi
+                window.location.href = "http://localhost/ProCoffee/admin/hapusSubmenu/" + kodeMenu;
+            } else if (result.dismiss == Swal.DismissReason.cancel) {
+                // Menutup sweet alert jika di cancel
+                Swal.close();
+            }
+        });
+
+    });
+
     // Menjalankan fungsi button select icon bila ditekan
     $(".btn-select-icon").on('click', function() {
         // Mengambil data form 

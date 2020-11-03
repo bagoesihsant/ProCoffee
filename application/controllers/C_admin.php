@@ -393,4 +393,39 @@ class C_admin extends CI_Controller
             redirect('admin/submenu');
         }
     }
+
+    // Submenu - Hapus
+    public function hapusSubmenu($kode)
+    {
+
+        // Membuat array data
+        $data = [
+            'kode_sub_menu' => $kode
+        ];
+
+        // Menjalankan fungsi hapus sub menu
+        $result = $this->submenu->hapusSubmenu($data);
+
+        // Memeriksa apakah submenu sudah terhapus atau belum
+        if ($result > 0) {
+            // Jika submenu berhasil terhapus
+
+            // Membuat session
+            $this->session->set_flashdata(
+                'pesan_sub_menu',
+                'toastr.success("Selamat, Data berhasil dihapus.")'
+            );
+        } else {
+            // Jika submenu gagal terhapus
+
+            // Membuat session
+            $this->session->set_flashdata(
+                'pesan_sub_menu',
+                'toastr.error("Error, Data gagal dihapus.")'
+            );
+        }
+
+        // mengarahkan kembali
+        redirect('admin/submenu');
+    }
 }

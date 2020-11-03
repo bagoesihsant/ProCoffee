@@ -39,4 +39,11 @@ class M_sub_menu extends CI_Model
         $this->db->update('user_sub_menu', $data, $where);
         return $this->db->affected_rows();
     }
+
+    // Fungsi untuk menghapus data sub menu tertentu menggunakan kode sub menu
+    public function hapusSubmenu($data)
+    {
+        $this->db->delete('user_sub_menu', $data);
+        return $this->db->affected_rows();
+    }
 }
