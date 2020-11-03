@@ -49,12 +49,9 @@
                                 <th>No.</th>
                                 <th>Bardcode</th>
                                 <th>Nama Item</th>
-                                <th>Kategori Barang</th>
-                                <th>Unit</th>
                                 <th>Harga Barang</th>
                                 <th>Berat</th>
                                 <th>Deskripsi</th>
-                                <th>Stok</th>
                                 <th>Gambar Barang</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -71,22 +68,43 @@
                                 <td><?=$no++?></td>
                                 <td><?=$pro->barcode?></td>
                                 <td><?=$pro->name?></td>
-                                <td><?=$pro->kode_kategori?></td>
-                                <td><?=$pro->kode_satuan?></td>
                                 <td><?=$pro->price?></td>
                                 <td><?=$pro->berat?></td>
                                 <td><?=$pro->deskripsi?></td>
-                                <td><?=$pro->stock?></td>
                                 <td class="text-center"><img src="<?= base_url('assets/items_img/').$pro->image ?>" 
                                     alt="Gambar tidak ditemukan" width="100"></td>
                                 <td class="d-flex justify-content-center">
-                                        <a href="" class="btn btn-primary btn-xs mx-auto btn-view-menu" data-toggle="modal" data-target="#detailModal">
+                                        <a href="" class="btn btn-primary btn-xs mx-auto btn-view-menu" data-toggle="modal" data-target="#detailModal"
+                                        onClick="detail(
+                                            '<?=$pro->kode_barang?>',
+                                            '<?=$pro->name?>',
+                                            '<?=$pro->kode_kategori?>',
+                                            '<?=$pro->kode_satuan?>',
+                                            '<?=$pro->price?>',
+                                            '<?=$pro->berat?>',
+                                            '<?=$pro->deskripsi?>',
+                                            '<?=$pro->stock?>',
+                                            '<?=$pro->image?>'
+                                        )"
+                                        >
                                             <i class="fas fa-fw fa-eye"></i>
                                         </a>
-                                        <a href="" class="btn btn-danger btn-xs mx-auto btn-delete-menu">
+                                        <a href="<?=base_url('C_admin/hapus_items/').$pro->kode_barang?>" class="btn btn-danger btn-xs mx-auto btn-delete-menu">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
-                                        <a href=""  class="btn btn-warning btn-xs mx-auto btn-edit-menu" data-toggle="modal" data-target="#editModal">
+                                        <a href=""  class="btn btn-warning btn-xs mx-auto btn-edit-menu" data-toggle="modal" data-target="#editModal"
+                                        onClick="edit(
+                                            '<?=$pro->kode_barang?>',
+                                            '<?=$pro->name?>',
+                                            '<?=$pro->kode_kategori?>',
+                                            '<?=$pro->kode_satuan?>',
+                                            '<?=$pro->price?>',
+                                            '<?=$pro->berat?>',
+                                            '<?=$pro->deskripsi?>',
+                                            '<?=$pro->stock?>',
+                                            '<?=$pro->image?>'
+                                        )"
+                                        >
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
                                     </td>
@@ -101,12 +119,9 @@
                                 <th>No.</th>
                                 <th>Bardcode</th>
                                 <th>Nama Item</th>
-                                <th>Kategori Barang</th>
-                                <th>Unit</th>
                                 <th>Harga Barang</th>
                                 <th>Berat</th>
                                 <th>Deskripsi</th>
-                                <th>Stok</th>
                                 <th>Gambar Barang</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -135,11 +150,23 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+                <?php
+                    $kode = $this->menu->kode_items();
+
+                    if ($kode->num_rows() > 0) {
+                        // Jika ditemukan id
+                        $kode = $kode->row_array();
+                        $kode = $this->hookdevlib->autonumber($kode['kode_barang'], 2, 10);
+                    } else {
+                        // Jika tidak ditemukan id
+                        $kode = "BR000000001";
+                    }
+                ?>
             <div class="modal-body">
                 <form action="<?= base_url('C_admin/tambah_items') ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="kode">Kode Items</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="PRM001" readonly required>
+                        <input type="text" name="kode" id="kode" class="form-control" value="<?=$kode?>" readonly>
                     </div>
                     <div class="form-group">
                         <label for="nama">
@@ -153,8 +180,12 @@
                             Kategori Items
                             <sup class="text-danger">*</sup>
                         </label>
-                        <select class="form-control" name="kategori">
-                            <option>kategori</option>
+                        <select class="form-control" name="kategori" required>
+                            <?php foreach($kategori as $kat){ ?>
+                                <option value="<?=$kat->kode_category?>"> 
+                                    <?=$kat->name?>
+                                </option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -162,8 +193,12 @@
                             Unit Items
                             <sup class="text-danger">*</sup>
                         </label>
-                        <select class="form-control" name="unit">
-                            <option>Unit</option>
+                        <select class="form-control" name="unit" required>
+                            <?php foreach($satuan as $sat){ ?>
+                                <option value="<?=$sat->kode_satuan?>"> 
+                                    <?=$sat->name?>
+                                </option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -171,21 +206,21 @@
                             Harga
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="harga" id="harga" class="form-control" value="" required>
+                        <input type="text" name="harga" id="harga" class="form-control" onkeypress="return hanyaAngka(event)" required>
                     </div>
                     <div class="form-group">
                         <label for="berat">
-                            Berat
+                            Berat/gram
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="berat" id="berat" class="form-control" value="" required>
+                        <input type="text" name="berat" id="berat" class="form-control"  onkeypress="return hanyaAngka(event)" required>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">
                             Deskripsi
                             <sup class="text-danger">*</sup>
                         </label>
-                        <textarea class="form-control" id="deskripsi" rows="3" required></textarea>
+                        <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi" required></textarea>
                     </div>
 
                     <div class="custom-file">
@@ -193,7 +228,7 @@
                         <label class="custom-file-label" for="gambar">Gambar/Foto Barang</label>
                             <p>
                                 <sup class="text-danger">*</sup>
-                                gambar yang di upload harus berekstensi jpg/png
+                                gambar yang di upload harus berekstensi jpg/jpeg/png
                             </p>
                     </div>
             </div>
@@ -220,57 +255,59 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="kode">Kode Items</label>
-                    <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="kode">Kode Items</label>
-                    <input type="text" name="kode" id="kode" class="form-control" value="PRM001" readonly required>
+                    <input type="text" name="kode" id="kode-detail" class="form-control" readonly>
                 </div>
                 <div class="form-group">
                     <label for="nama">
                         Nama Items
                         <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="nama" id="nama" class="form-control" value="" readonly>
+                    <input type="text" name="nama" id="nama-detail" class="form-control" readonly>
                 </div>
                 <div class="form-group">
                     <label for="kategori">
                         Kategori Items
                         <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="kategori" id="kategori" class="form-control" value="" readonly>
+                    <input type="text" name="kategori" id="kategori-detail" class="form-control" readonly>
                     </div>
                     <div class="form-group">
                         <label for="unit">
                             Unit Items
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="" readonly>
+                        <input type="text" name="unit" id="unit-detail" class="form-control" readonly>
                     </div>
                     <div class="form-group">
                         <label for="harga">
                             Harga
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="harga" id="harga" class="form-control" value="" readonly>
+                        <input type="text" name="harga" id="harga-detail" class="form-control" readonly>
                     </div>
                     <div class="form-group">
                         <label for="berat">
                             Berat
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="berat" id="berat" class="form-control" value="" readonly>
+                        <input type="text" name="berat" id="berat-detail" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="stok">
+                            Stok
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="stok" id="stok-detail" class="form-control" readonly>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">
                             Deskripsi
                         </label>
-                        <textarea class="form-control" id="deskripsi" rows="3" readonly></textarea>
+                        <textarea class="form-control" id="deskripsi-detail" rows="3" readonly></textarea>
                     </div>
                     <div class="form-group text-center">
-                        <td><img src="<?= base_url()."assets/dist/img/kopi1.jpg" ?>" width="300"></td>
+                        <td><div id='gambar-detail'></div></td>
                     </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-primary">Tutup</button>
@@ -290,29 +327,32 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="<?=base_url('C_admin/edit_items')?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="kode">Kode Items</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="kode">Kode Items</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="PRM001" readonly required>
+                        <input type="text" name="kode" id="kode-edit" class="form-control" readonly >
                     </div>
                     <div class="form-group">
                         <label for="nama">
                             Nama Items
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="Kopi Hijau">
+                        <input type="text" name="nama" id="nama-edit" class="form-control" value="Kopi Hijau">
                     </div>
                     <div class="form-group">
                         <label for="kategori">
                             Kategori Items
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="kategori" id="kategori" class="form-control" value="Perbiji">
+                            <select class="form-control" name="kategori" required>
+                                <?php foreach($kategori as $kat){ ?>
+                                    <option value="<?=$kat->kode_category?>"> 
+                                        <?=$kat->name?>
+                                    </option>
+                                <?php } ?>
+                            </select>
 
                     </div>
                     <div class="form-group">
@@ -320,36 +360,47 @@
                             Unit Items
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="Perlusin">
+                            <select class="form-control" name="unit" required>
+                                <?php foreach($satuan as $sat){ ?>
+                                    <option value="<?=$sat->kode_satuan?>"> 
+                                        <?=$sat->name?>
+                                    </option>
+                                <?php } ?>
+                            </select>
                     </div>
                     <div class="form-group">
                         <label for="harga">
                             Harga
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="harga" id="harga" class="form-control" value="Rp 55.000">
+                        <input type="text" name="harga" id="harga-edit" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="berat">
                             Berat
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="berat" id="berat" class="form-control" value="500">
+                        <input type="text" name="berat" id="berat-edit" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">
                             Deskripsi
                             <sup class="text-danger">*</sup>
                         </label>
-                        <textarea class="form-control" id="deskripsi" rows="3">-</textarea>
+                        <textarea class="form-control" name="deskripsi" id="deskripsi-edit" rows="3" required></textarea>
                     </div>
                     <div class="form-group text-center">
-                        <td><img src="<?= base_url() . "assets/dist/img/kopi1.jpg" ?>" width="300"></td>
+                        <td><div id="gambar-edit"></div></td>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="gambar" aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="gambar">Ubah Foto/Gambar</label>
+                        <input type="file" class="custom-file-input" name="gambar" id="gambar" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="gambar_upload">Ubah Foto/Gambar</label>
                     </div>
+                        <div class="custom-control custom-checkbox text-center">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" name="ganti">
+                            <label class="custom-control-label text-secondary" for="customCheck1">Ganti Gambar? (ekstensi gambar harus jpg/jpeg/png)</label>
+                        </div>
+                    <input type="text" name="gambar_old" id="gambar-old-edit" class="form-control" hidden>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -360,3 +411,58 @@
     </div>
     </div>
 <!-- Modal Edit End -->
+
+<script>
+    // script validasi hanya angka
+    function hanyaAngka(event) 
+    {
+        var angka = (event.which) ? event.which : event.keyCode
+        if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
+            return false;
+        return true;
+    }
+
+    //function modal detail
+    function detail(kode,nama,kategori,unit,harga,berat,deskripsi,stok,gambar)
+    {
+        var x = document.getElementById("gambar-detail");
+
+        $('#kode-detail').val(kode);
+        $('#nama-detail').val(nama);
+        $('#kategori-detail').val(kategori);
+        $('#unit-detail').val(unit);
+        $('#harga-detail').val(harga);
+        $('#berat-detail').val(berat);
+        $('#stok-detail').val(stok);
+        $('#deskripsi-detail').val(deskripsi);
+        // $('#gambar').innerhtml('<img src="<?= base_url()."assets/dist/img/kopi1.jpg" ?>" width="300">');
+        // document.getElemenById('gambar2').innerhtml = kode;
+
+        var image=new Image(300, 300);
+        image.src='<?= base_url('assets/items_img/')?>'+ gambar;
+        x.appendChild(image);
+    }
+
+    // function modal edit
+    function edit(kode,nama,kategori,unit,harga,berat,deskripsi,stok,gambar)
+    {
+        var x = document.getElementById("gambar-edit");
+
+        $('#kode-edit').val(kode);
+        $('#nama-edit').val(nama);
+        $('#kategori-edit').val(kategori);
+        $('#unit-edit').val(unit);
+        $('#harga-edit').val(harga);
+        $('#berat-edit').val(berat);
+        $('#stok-edit').val(stok);
+        $('#deskripsi-edit').val(deskripsi);
+        $('#gambar-old-edit').val(gambar);
+        // $('#gambar').innerhtml('<img src="<?= base_url()."assets/dist/img/kopi1.jpg" ?>" width="300">');
+        // document.getElemenById('gambar2').innerhtml = kode;
+
+        var image=new Image(300, 300);
+        image.src='<?= base_url('assets/items_img/')?>'+ gambar;
+        x.appendChild(image);
+    }
+
+</script>
