@@ -41,7 +41,6 @@
                             <th>#</th>
                             <th>Nama</th>
                             <th>Email</th>
-                            <th>Image</th>
                             <th>Role</th>
                             <th>Status</th>
                             <th>Date Created</th>
