@@ -23,9 +23,9 @@ class M_products extends CI_Model
 
 
         $isi_data = [
-            'name' => htmlspecialchars($post['nama_kategori'])
+            'nama' => htmlspecialchars($post['nama_kategori'])
         ];
-        $this->db->where('kode_category', $post['kode_kategori']);
+        $this->db->where('kode_kategori', $post['kode_kategori']);
         $this->db->update('tbl_kategori', $isi_data);
         return true;
     }
@@ -33,5 +33,11 @@ class M_products extends CI_Model
     public function readDatasatuan()
     {
         return $this->db->get('tbl_satuan');
+    }
+
+    public function deleteCategoryModel($id)
+    {
+        $this->db->where('kode_kategori', $id);
+        $this->db->delete('tbl_kategori');
     }
 }

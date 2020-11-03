@@ -60,16 +60,17 @@
                             foreach ($row->result() as $rw => $r) : ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <!-- <td><?= $r->kode_category; ?></td> -->
-                                    <td><?= $r->name; ?></td>
+                                    <!-- <td><?= $r->kode_kategori; ?></td> -->
+                                    <td><?= $r->nama; ?></td>
                                     <td class="d-flex justify-content-around">
-                                        <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
+                                        <a href="#" data-toggle="modal" data-target="#detailModal<?= $r->kode_kategori; ?>" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
                                         </a>
-                                        <a href="#" class="btn btn-xs btn-danger btnDeleteUnits">
+                                        <!-- <?= base_url('C_admin/deleteCategory' . $r->kode_kategori) ?>') -->
+                                        <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('C_admin/deleteCategory/' . $r->kode_kategori) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
-                                        <a href="#" data-toggle="modal" data-target="#editModal<?= $r->kode_category; ?>" class="btn btn-xs btn-warning">
+                                        <a href="#" data-toggle="modal" data-target="#editModal<?= $r->kode_kategori; ?>" class="btn btn-xs btn-warning">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
                                     </td>
@@ -135,7 +136,7 @@
 <!-- Modal Detail -->
 <?php $no = 0;
 foreach ($row->result() as $rw => $r) : $no++; ?>
-    <div class="modal fade" id="editModal<?= $r->kode_category; ?>">
+    <div class="modal fade" id="editModal<?= $r->kode_kategori; ?>">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -148,14 +149,14 @@ foreach ($row->result() as $rw => $r) : $no++; ?>
                     <?= form_open_multipart('C_admin/editDataCategories'); ?>
                     <div class="form-group">
                         <label for="kode">Kode Categories</label>
-                        <input type="text" name="kode_kategori" value="<?= $r->kode_category ?>" id="kode_kategori" class="form-control" value="CSM001" required>
+                        <input type="text" name="kode_kategori" value="<?= $r->kode_kategori ?>" id="kode_kategori" class="form-control" value="CSM001" required>
                     </div>
                     <div class="form-group">
                         <label for="nama">
                             Nama Categories
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="nama_kategori" value="<?= $r->name ?>" id="nama_kategori" class="form-control" value="" required>
+                        <input type="text" name="nama_kategori" value="<?= $r->nama ?>" id="nama_kategori" class="form-control" value="" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -170,36 +171,57 @@ foreach ($row->result() as $rw => $r) : $no++; ?>
 <!-- Modal Detail End -->
 
 
-<!-- Modal Edit -->
-<div class="modal fade" id="detailModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Edit Categories</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="" method="post">
+<!-- Modal Detail -->
+<?php $no = 0;
+foreach ($row->result() as $rw => $r) : $no++; ?>
+    <div class="modal fade" id="detailModal<?= $r->kode_kategori; ?>">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Detail Kategori</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
                     <div class="form-group">
                         <label for="kode">Kode Categories</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="CSM001" readonly>
+                        <input type="text" name="kode_kategori" value="<?= $r->kode_kategori ?>" id="kode_kategori" class="form-control" value="CSM001" readonly required>
                     </div>
                     <div class="form-group">
                         <label for="nama">
                             Nama Categories
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="Perkotak">
+                        <input type="text" name="nama_kategori" value="<?= $r->nama ?>" id="nama_kategori" class="form-control" value="" readonly required>
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary" id="btnTambahCategories" name="tambah">Simpan</button>
-                </form>
+                </div>
+                <div class="modal-footer">
+                </div>
             </div>
         </div>
     </div>
+<?php endforeach; ?>
+<!-- Modal Detail End -->
+
+
+<!-- Modal delete -->
+<div class="modal fade" id="modalDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Yakin Hapus Data??</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="" id="formDelete" method="POST">
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" id="btnTambahCategories" name="tambah">Simpan</button>
+            </form>
+        </div>
+    </div>
 </div>
-<!-- Modal Edit End -->
+</div>
+<!-- Modal delete End -->

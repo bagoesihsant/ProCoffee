@@ -56,11 +56,14 @@
                         <tbody>
                             <!-- Data Example -->
                             <?php $no = 1;
-                            foreach ($row->result() as $rows => $data) :?>
+                            foreach ($row->result() as $rows => $data) : ?>
 
-                            <tr>
-                                <td><?= $no++;?></td>
-                            </tr>
+                                <tr>
+                                    <td><?= $no++; ?></td>
+                                    <td><?= $data->kode_satuan; ?></td>
+                                </tr>
+
+                            <?php endforeach; ?>
                             <!-- Data Example End -->
                         </tbody>
                         <!-- Tbody End -->
