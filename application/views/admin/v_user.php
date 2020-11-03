@@ -62,7 +62,7 @@
                         <tbody>
                             <!-- Data Example -->
                             <?php
-                            for ($i = 1; $i <= 15; $i++) :
+                            for ($i = 1; $i <= 25; $i++) :
                             ?>
                                 <tr>
                                     <td><?= $i; ?>.</td>
@@ -77,7 +77,7 @@
                                         <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
                                         </a>
-                                        <a href="#" class="btn btn-xs btn-danger btnDeleteuser">
+                                        <a href="#" class="btn btn-xs btn-danger btnDeleteuser ">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
                                         <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning">
@@ -101,7 +101,6 @@
                                 <th>No. Hp</th>
                                 <th>Email</th>
                                 <th>Username</th>
-
                                 <th>Profile Image</th>
                                 <th>Action</th>
                             </tr>
@@ -315,7 +314,7 @@
                         <label for="alamat">
                             Alamat
                         </label>
-                        <textarea name="alamat" id="alamat" class="form-control" placeholder="ex: Jember">Jember</textarea>
+                        <textarea name="alamat" id="alamat" value="Jember" class="form-control" placeholder="ex: Jember">Jember</textarea>
                     </div>
                     <div class="form-group">
                         <label for="tlahir">

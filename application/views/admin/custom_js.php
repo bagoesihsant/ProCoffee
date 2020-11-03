@@ -1,6 +1,6 @@
 <script>
     $(function() {
-        // Mengubah tabel customer di customer menjadi data tables
+        // Mengubah tabel user di user menjadi data tables
         $('#userTable').DataTable({
             "responsive": true,
             "autoWidth": false,
@@ -40,8 +40,44 @@
                         icon: "error"
                     })
                 }
+
             })
         });
+    });
+
+    // Menjalankan fungsi hapus pada tabel
+    $('#userTable tbody').on('click', '.btnDeleteuser', function() {
+
+        // Mengambil data melalui attribute data pada elemen html
+        const kodeUser = $(this).data('kode');
+
+        // Membuka Sweet Alert
+        Swal.fire({
+            title: "Hapus Data",
+            text: "Apakah anda yakin akan menghapus data ini ?",
+            icon: "error",
+            buttonsStyling: false,
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonText: "Ya",
+            cancelButtonText: "Tidak",
+            customClass: {
+                confirmButton: "btn btn-primary px-4 mx-2",
+                cancelButton: "btn btn-danger px-4 mx-2"
+            }
+        }).then((result) => {
+            if (result.value) {
+                // Memindahkan ke halaman lain jika di konfirmasi
+                window.location.href = "http://localhost/ProCoffee/admin/hapusUser/" + kodeUser;
+            } else if (result.dismiss == Swal.DismissReason.cancel) {
+                // Menutup sweet alert jika di cancel
+                Swal.close();
+            }
+        });
+
+
+
+
 
     });
 </script>

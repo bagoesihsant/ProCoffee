@@ -71,4 +71,38 @@ class C_admin extends CI_Controller
         $this->load->view('admin/custom_js');
         $this->load->view('templates/v_footer_admin');
     }
+    public function hapusUser($kode)
+    {
+
+        // Membuat array data
+        $data = [
+            'kode' => $kode
+        ];
+
+        // Menjalankan fungsi untuk menghapus menu
+        $result = $this->menu->hapusUser($data);
+
+        // Memeriksa apakah menu berhasil dihapus
+        if ($result > 0) {
+            // Jika menu berhasil dihapus
+
+            // Membuat session
+            $this->session->set_flashdata(
+                'pesan_user',
+                'toastr.success("Selamat, Data berhasil dihapus.")'
+            );
+        } else {
+            // Jika menu gagal dihapus
+
+            // Membuat session
+            $this->session->set_flashdata(
+                'pesan_user',
+                'toastr.error("Error, Data gagal dihapus.")'
+            );
+        }
+
+
+        // Mengarahkan kembali
+        redirect('C_admin/index_user');
+    }
 }
