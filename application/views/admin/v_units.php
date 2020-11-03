@@ -66,7 +66,6 @@
                                         <a href="#" data-toggle="modal" data-target="#detailModal<?= $data->kode_satuan; ?>" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
                                         </a>
-                                        <!-- <?= base_url('C_admin/deleteCategory' . $data->kode_satuan) ?>') -->
                                         <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('C_admin/deleteUnits/' . $data->kode_satuan) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
@@ -107,7 +106,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Units</h4>
+                <h4 class="modal-title">Tambah Satuan</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -115,12 +114,12 @@
             <div class="modal-body">
                 <?= form_open_multipart('C_admin/addDataUnits'); ?>
                 <div class="form-group">
-                    <label for="kode">Kode Units</label>
+                    <label for="kode">Kode Satuan</label>
                     <input type="text" name="kode" id="kode" class="form-control" value="CSM001" required>
                 </div>
                 <div class="form-group">
                     <label for="nama">
-                        Nama Units
+                        Nama Satuan
                         <sup class="text-danger">*</sup>
                     </label>
                     <input type="text" name="nama" id="nama" class="form-control" value="" required>
@@ -143,19 +142,19 @@ foreach ($row->result() as $rw => $r) : $no++; ?>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Detail Kategori</h4>
+                    <h4 class="modal-title">Detail Satuan</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="kode">Kode Categories</label>
+                        <label for="kode">Kode Satuan</label>
                         <input type="text" name="kode_kategori" value="<?= $r->kode_satuan ?>" id="kode_kategori" class="form-control" value="CSM001" readonly required>
                     </div>
                     <div class="form-group">
                         <label for="nama">
-                            Nama Categories
+                            Nama Satuan
                             <sup class="text-danger">*</sup>
                         </label>
                         <input type="text" name="nama_kategori" value="<?= $r->name ?>" id="nama_kategori" class="form-control" value="" readonly required>
@@ -200,7 +199,7 @@ foreach ($row->result() as $rw => $r) :  ?>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Categories</h4>
+                    <h4 class="modal-title">Edit Satuan</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -208,12 +207,12 @@ foreach ($row->result() as $rw => $r) :  ?>
                 <div class="modal-body">
                     <?= form_open_multipart('C_admin/editDataUnits'); ?>
                     <div class="form-group">
-                        <label for="kode">Kode Categories</label>
+                        <label for="kode">Kode Satuan</label>
                         <input type="text" name="kode" value="<?= $r->kode_satuan ?>" id="kode" class="form-control" value="CSM001" required>
                     </div>
                     <div class="form-group">
                         <label for="nama">
-                            Nama Categories
+                            Nama Satuan
                             <sup class="text-danger">*</sup>
                         </label>
                         <input type="text" name="nama" value="<?= $r->name ?>" id="nama" class="form-control" value="" required>
@@ -221,7 +220,7 @@ foreach ($row->result() as $rw => $r) :  ?>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-danger" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary" id="btnTambahCategories" name="tambah">Simpan</button>
+                    <button type="submit" class="btn btn-primary" id="btnTambahSatuan" name="tambah">Simpan</button>
                     </form>
                 </div>
             </div>
@@ -243,7 +242,7 @@ foreach ($row->result() as $rw => $r) :  ?>
             <form action="" id="formDelete" method="POST">
                 <div class="modal-footer">
                     <button class="btn btn-default" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger" id="btnTambahCategories" name="tambah">Hapus</button>
+                    <button type="submit" class="btn btn-danger" id="btnTambahSatuan" name="tambah">Hapus</button>
             </form>
         </div>
     </div>
