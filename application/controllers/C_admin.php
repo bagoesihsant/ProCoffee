@@ -170,7 +170,8 @@ class C_admin extends CI_Controller
         } else {
             $data = [
                 'kode_kategori' => $kode_kategori,
-                'nama'          => $nama_kategori
+                'nama'          => $nama_kategori,
+                'created'       => time()
             ];
 
             $this->mproduk->addData($data);

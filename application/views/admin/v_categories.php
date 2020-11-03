@@ -195,6 +195,31 @@ foreach ($row->result() as $rw => $r) : $no++; ?>
                         </label>
                         <input type="text" name="nama_kategori" value="<?= $r->nama ?>" id="nama_kategori" class="form-control" value="" readonly required>
                     </div>
+                    <div class="form-group">
+                        <label for="nama">
+                            Tanggal Di buat
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="nama_kategori" value="<?= date("d-m-Y", $r->created); ?>" id="nama_kategori" class="form-control" value="" readonly required>
+                    </div>
+                    <?php $tanggal_ubah = $r->updated;
+                    if ($tanggal_ubah) : ?>
+                        <div class="form-group">
+                            <label for="nama">
+                                Tanggal Di Ubah
+                                <sup class="text-danger">*</sup>
+                            </label>
+                            <input type="text" name="nama_kategori" value="<?= date("d-m-Y", $r->updated); ?>" id="nama_kategori" class="form-control" value="" readonly required>
+                        </div>
+                    <?php else : ?>
+                        <div class="form-group">
+                            <label for="nama">
+                                Tanggal Di Ubah
+                                <sup class="text-danger">*</sup>
+                            </label>
+                            <input type="text" name="nama_kategori" id="nama_kategori" class="form-control" value="Data Belum Pernah Di Ubah" readonly required>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="modal-footer">
                 </div>

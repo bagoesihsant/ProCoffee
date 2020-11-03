@@ -23,7 +23,8 @@ class M_products extends CI_Model
 
 
         $isi_data = [
-            'nama' => htmlspecialchars($post['nama_kategori'])
+            'nama' => htmlspecialchars($post['nama_kategori']),
+            'updated' => time()
         ];
         $this->db->where('kode_kategori', $post['kode_kategori']);
         $this->db->update('tbl_kategori', $isi_data);
