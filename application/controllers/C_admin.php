@@ -522,4 +522,98 @@ class C_admin extends CI_Controller
         // Mencetak data yang dihasilkan menjadi json
         echo json_encode($result);
     }
+
+    // Sub Menu - Edit
+    public function editSubmenu()
+    {
+        // Membuat aturan untuk validasi form
+
+        // Membuat aturan validasi form
+        $this->form_validation->set_rules('kode_sub_menu', 'Kode Submenu', 'required|trim');
+        $this->form_validation->set_rules('menu_sub_menu', 'Menu', 'required|trim');
+        $this->form_validation->set_rules('sub_menu', 'Submenu', 'required|trim|alpha_numeric_spaces');
+        $this->form_validation->set_rules('url_sub_menu', 'URL', 'required|trim|regex_match[/^[a-zA-Z\/]+$/]');
+        $this->form_validation->set_rules('icon_sub_menu', 'Icon', 'required|trim|regex_match[/^[a-zA-Z\-\s]+$/]');
+
+        // Melakukan validasi form
+        if ($this->form_validation->run() == false) {
+            // Jika form validation mengembalikan nilai false
+            $this->index_submenu();
+        } else {
+            // Jika form validation mengembalikan nilai true
+
+            // Memasukkan input kedalam array data
+            $data = [
+                'kode_menu' => htmlspecialchars($this->input->post('menu_sub_menu', true)),
+                'sub_menu' => htmlspecialchars($this->input->post('sub_menu', true)),
+                'url' => htmlspecialchars($this->input->post('url_sub_menu', true)),
+                'icon' => htmlspecialchars($this->input->post('icon_sub_menu', true)),
+                'is_active' => htmlspecialchars($this->input->post('status_sub_menu_edit', true))
+            ];
+
+            $where = [
+                'kode_sub_menu' => htmlspecialchars($this->input->post('kode_sub_menu', true))
+            ];
+
+            // Menjalankan proses update data
+            $result = $this->submenu->updateSubmenu($data, $where);
+
+            // Memeriksa apakah perubahan data berhasil
+            if ($result > 0) {
+                // Jika perubahan data berhasil
+
+                // Membuat session
+                $this->session->set_flashdata(
+                    'pesan_sub_menu',
+                    'toastr.success("Selamat, Data berhasil diubah.")'
+                );
+            } else {
+                // Jika perubahan data gagal
+
+                // Membuat session
+                $this->session->set_flashdata(
+                    'pesan_sub_menu',
+                    'toastr.error("Error, Data gagal diubah.")'
+                );
+            }
+
+            // Mengarahkan kembali
+            redirect('admin/submenu');
+        }
+    }
+
+    // Submenu - Hapus
+    public function hapusSubmenu($kode)
+    {
+
+        // Membuat array data
+        $data = [
+            'kode_sub_menu' => $kode
+        ];
+
+        // Menjalankan fungsi hapus sub menu
+        $result = $this->submenu->hapusSubmenu($data);
+
+        // Memeriksa apakah submenu sudah terhapus atau belum
+        if ($result > 0) {
+            // Jika submenu berhasil terhapus
+
+            // Membuat session
+            $this->session->set_flashdata(
+                'pesan_sub_menu',
+                'toastr.success("Selamat, Data berhasil dihapus.")'
+            );
+        } else {
+            // Jika submenu gagal terhapus
+
+            // Membuat session
+            $this->session->set_flashdata(
+                'pesan_sub_menu',
+                'toastr.error("Error, Data gagal dihapus.")'
+            );
+        }
+
+        // mengarahkan kembali
+        redirect('admin/submenu');
+    }
 }
