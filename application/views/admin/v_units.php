@@ -58,7 +58,6 @@
                             <!-- Data Example -->
                             <?php $no = 1;
                             foreach ($row->result() as $rows => $data) : ?>
-
                                 <tr>
                                     <td><?= $no++; ?></td>
                                     <td><?= $data->nama; ?></td>

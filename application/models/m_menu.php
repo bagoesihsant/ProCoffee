@@ -44,4 +44,53 @@ class M_menu extends CI_Model
         $this->db->delete('user_menu', $data);
         return $this->db->affected_rows();
     }
+
+    // SUPPLIER
+     // Untuk mengambil id terakhir data supplier
+     public function kode_supplier()
+     {
+         $this->db->order_by('kode_supplier', 'DESC');
+         return $this->db->get('supplier');
+     }
+
+    //fungsi untuk mengambil semua data pada supplier
+    public function getAllSupplier()
+    {
+        return $this->db->get('supplier');
+    }
+
+    //fungsi menambah data supplier
+    public function tambah_supplier($data, $tabel)
+    {
+        $this->db->insert($tabel, $data);
+        return $this->db->affected_rows();
+    }
+
+    //fungsi menghapus data supplier
+    public function hapus_supplier($data)
+    {
+        $this->db->delete('supplier', $data);
+        return $this->db->affected_rows();
+    }
+
+    //fungsi mengubah data supplier
+    public function edit_supplier($data, $where)
+    {
+        $this->db->update('supplier', $data, $where);
+        return $this->db->affected_rows();
+    }
+
+
+    //ITEMS ITEMS ITEMS
+    public function getAllItems()
+    {
+        return $this->db->get('tbl_barang');
+    }
+
+    public function tambah_item($data)
+    {
+        $this->db->insert('tbl_barang', $data);
+        return $this->db->affected_rows();
+    }
+    
 }
