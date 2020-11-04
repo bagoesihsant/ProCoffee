@@ -63,7 +63,7 @@ class C_admin extends CI_Controller
         $deskripsi = $this->input->post('deskripsi');
 
         $data = array(
-            'kode_supplier'=> $kode,
+            'kode_supplier' => $kode,
             'nama' => $nama,
             'no_hp' => $notelp,
             'address' => $alamat,
@@ -72,29 +72,30 @@ class C_admin extends CI_Controller
         );
 
         $sukses = $this->menu->tambah_supplier($data, 'supplier');
-        if($sukses != 0)
-        {
+        if ($sukses != 0) {
             $this->session->set_flashdata(
-                'pesan_menu', 'toastr.success("Data berhasil ditambahkan.")'
+                'pesan_menu',
+                'toastr.success("Data berhasil ditambahkan.")'
             );
-           redirect('C_admin/index_supplier');
+            redirect('C_admin/index_supplier');
         }
     }
 
     //hapus supplier
     public function hapus_supplier($id)
     {
-        $data = array( 'kode_supplier'=>$id );
+        $data = array('kode_supplier' => $id);
         $hapus = $this->menu->hapus_supplier($data);
 
-        if($hapus != 0)
-        {
+        if ($hapus != 0) {
             $this->session->set_flashdata(
-                'pesan_menu', 'toastr.success("Data berhasil dihapus.")'
+                'pesan_menu',
+                'toastr.success("Data berhasil dihapus.")'
             );
-        }else{
+        } else {
             $this->session->set_flashdata(
-                'pesan_menu', 'toastr.danger("Data gagal dihapus.")'
+                'pesan_menu',
+                'toastr.danger("Data gagal dihapus.")'
             );
         }
 
@@ -110,37 +111,36 @@ class C_admin extends CI_Controller
         $alamat = $this->input->post('alamat');
         $deskripsi = $this->input->post('deskripsi');
 
-        $data = array (
-            'nama'=> $nama,
-            'no_hp'=> $notelp,
-            'address'=>$alamat,
-            'deskripsi'=>$deskripsi,
+        $data = array(
+            'nama' => $nama,
+            'no_hp' => $notelp,
+            'address' => $alamat,
+            'deskripsi' => $deskripsi,
             'updated' => date('dmY')
         );
 
         $where = array(
-            'kode_supplier'=>$kode
+            'kode_supplier' => $kode
         );
 
         $edit = $this->menu->edit_supplier($data, $where);
 
-        
-        if($edit != 0)
-        {
+        if ($edit != 0) {
             $this->session->set_flashdata(
-                'pesan_menu', 'toastr.success("Data berhasil diubah.")'
+                'pesan_menu',
+                'toastr.success("Data berhasil diubah.")'
             );
-        }else{
+        } else {
             $this->session->set_flashdata(
-                'pesan_menu', 'toastr.danger("Data gagal diubah.")'
+                'pesan_menu',
+                'toastr.danger("Data gagal diubah.")'
             );
         }
 
         redirect('C_admin/index_supplier');
     }
 
-  
-//   Categories
+    //   Categories
     public function index_product_categories()
     {
         $data['row'] = $this->mproduk->getDataProduct();
@@ -170,8 +170,9 @@ class C_admin extends CI_Controller
             $this->load->view('templates/v_footer_admin');
         } else {
             $data = [
-                'kode_category' => $kode_kategori,
-                'name'          => $nama_kategori
+                'kode_kategori' => $kode_kategori,
+                'nama'          => $nama_kategori,
+                'created'       => time()
             ];
 
             $this->mproduk->addData($data);
@@ -200,6 +201,18 @@ class C_admin extends CI_Controller
             redirect('C_admin/index_product_categories');
         }
     }
+
+    public function deleteCategory($id)
+    {
+        $this->mproduk->deleteCategoryModel($id);
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Kategori Barang telah di Hapus</div>');
+            redirect('C_admin/index_product_categories');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Kategori Barang gagal di Hapus</div>');
+            redirect('C_admin/index_product_categories');
+        }
+    }
     // close function for product categories
 
     // Units
@@ -214,7 +227,62 @@ class C_admin extends CI_Controller
         $this->load->view('templates/v_footer_admin');
     }
 
-    // Item  Item  Item
+    public function addDataUnits()
+    {
+        $kode_unit =  htmlspecialchars($this->input->post('kode'));
+        $nama_unit =  htmlspecialchars($this->input->post('nama'));
+        $this->form_validation->set_rules('nama', 'Nama Ubits', 'required|trim', [
+            'requried' => 'Mohon untuk di isi nama Satuannya'
+        ]);
+        if ($this->form_validation->run() == false) {
+            $this->index_product_units();
+        } else {
+            $data = [
+                'kode_satuan' => $kode_unit,
+                'nama'        => $nama_unit,
+                'created'     => time()
+            ];
+            $this->mproduk->addDataSatuan($data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Satuan Barang telah di tambahkan</div>');
+            redirect('C_admin/index_product_units');
+        }
+    }
+
+    public function editDataUnits()
+    {
+        $post = $this->input->post(null, TRUE);
+        $this->form_validation->set_rules('nama', 'Nama Satuan', 'required|trim', [
+            'required' => 'Silahkan untuk nama di isi'
+        ]);
+        if ($this->form_validation->run() == false) {
+            $this->index_product_units();
+        } else {
+            $this->mproduk->editDataUnitsM($post);
+        }
+        if ($this->db->affected_rows() > 0) {
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Satuan Barang telah di Ubah</div>');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Satuan Barang telah di Ubah</div>');
+        }
+
+        redirect('C_admin/index_product_units');
+    }
+
+    public function deleteUnits($id)
+    {
+        $this->mproduk->deleteUnits($id);
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Nama Units Barang telah di Hapus</div>');
+            redirect('C_admin/index_product_units');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Nama Units Barang gagal di Hapus</div>');
+            redirect('C_admin/index_product_units');
+        }
+    }
+    // end unit
+
+    // Item
     public function index_product_items()
     {
         $data['produk'] = $this->menu->getAllItems()->result();
