@@ -20,8 +20,6 @@ class M_products extends CI_Model
 
     public function editDataModal($post)
     {
-
-
         $isi_data = [
             'nama' => htmlspecialchars($post['nama_kategori']),
             'updated' => time()
@@ -30,9 +28,6 @@ class M_products extends CI_Model
         $this->db->update('tbl_kategori', $isi_data);
         return true;
     }
-
-
-
     public function deleteCategoryModel($id)
     {
         $this->db->where('kode_kategori', $id);
@@ -42,6 +37,7 @@ class M_products extends CI_Model
     {
         return $this->db->get('tbl_satuan');
     }
+
     // units
     public function addDataSatuan($data)
     {
@@ -50,7 +46,7 @@ class M_products extends CI_Model
     public function editDataUnitsM($post)
     {
         $params_data = [
-            'name' => htmlspecialchars($post['nama']),
+            'nama' => htmlspecialchars($post['nama']),
             'updated' => time()
         ];
         $this->db->where('kode_satuan', $post['kode']);

@@ -238,7 +238,7 @@ class C_admin extends CI_Controller
         } else {
             $data = [
                 'kode_satuan' => $kode_unit,
-                'name'        => $nama_unit,
+                'nama'        => $nama_unit,
                 'created'     => time()
             ];
             $this->mproduk->addDataSatuan($data);

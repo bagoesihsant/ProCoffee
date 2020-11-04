@@ -61,7 +61,7 @@
 
                                 <tr>
                                     <td><?= $no++; ?></td>
-                                    <td><?= $data->name; ?></td>
+                                    <td><?= $data->nama; ?></td>
                                     <td class="d-flex justify-content-around">
                                         <a href="#" data-toggle="modal" data-target="#detailModal<?= $data->kode_satuan; ?>" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
@@ -157,7 +157,7 @@ foreach ($row->result() as $rw => $r) : $no++; ?>
                             Nama Satuan
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="nama_kategori" value="<?= $r->name ?>" id="nama_kategori" class="form-control" value="" readonly required>
+                        <input type="text" name="nama_kategori" value="<?= $r->nama ?>" id="nama_kategori" class="form-control" value="" readonly required>
                     </div>
                     <div class="form-group">
                         <label for="nama">
@@ -215,7 +215,7 @@ foreach ($row->result() as $rw => $r) :  ?>
                             Nama Satuan
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="nama" value="<?= $r->name ?>" id="nama" class="form-control" value="" required>
+                        <input type="text" name="nama" value="<?= $r->nama ?>" id="nama" class="form-control" value="" required>
                     </div>
                 </div>
                 <div class="modal-footer">
