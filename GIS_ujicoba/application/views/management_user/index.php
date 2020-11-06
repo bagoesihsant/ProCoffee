@@ -74,7 +74,6 @@
                                 <?php endif; ?>
                                 <button class="btn btn-warning btn-xs btn-round" data-toggle="modal" data-target="#send_email<?= $id; ?>"><i class="fas fa-envelope"></i></button>
                             </td>
-                            test
                         </tr>
                         <?php $i++; ?>
                     <?php endforeach; ?>
