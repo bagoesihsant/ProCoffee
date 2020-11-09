@@ -42,7 +42,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <!-- Data Table -->
-                    <table id="UnitsTable" class="table table-bordered table-striped">
+                    <table id="dataTableItems" class="table table-bordered table-striped">
                         <!-- Thead -->
                         <thead>
                             <tr>
@@ -77,9 +77,9 @@
                                         <a href="" class="btn btn-primary btn-xs mx-auto btn-view-menu" data-toggle="modal" data-target="#detailModal"
                                         onClick="detail(
                                             '<?=$pro->kode_barang?>',
-                                            '<?=$pro->name?>',
-                                            '<?=$pro->kode_kategori?>',
-                                            '<?=$pro->kode_satuan?>',
+                                            '<?=$pro->name_barang?>',
+                                            '<?=$pro->name_kategori?>',
+                                            '<?=$pro->name_satuan?>',
                                             '<?=$pro->price?>',
                                             '<?=$pro->berat?>',
                                             '<?=$pro->deskripsi?>',
@@ -96,8 +96,8 @@
                                         onClick="edit(
                                             '<?=$pro->kode_barang?>',
                                             '<?=$pro->name?>',
-                                            '<?=$pro->kode_kategori?>',
-                                            '<?=$pro->kode_satuan?>',
+                                            '<?=$pro->name_kategori?>',
+                                            '<?=$pro->name_satuan?>',
                                             '<?=$pro->price?>',
                                             '<?=$pro->berat?>',
                                             '<?=$pro->deskripsi?>',
@@ -306,7 +306,7 @@
                         <textarea class="form-control" id="deskripsi-detail" rows="3" readonly></textarea>
                     </div>
                     <div class="form-group text-center">
-                        <td><div id='gambar-detail'></div></td>
+                        <td><img style="width:300px; height:300px" src="" alt="" id="gambar-detail"></td>
                     </div>
             </div>
             <div class="modal-footer">
@@ -390,7 +390,7 @@
                         <textarea class="form-control" name="deskripsi" id="deskripsi-edit" rows="3" required></textarea>
                     </div>
                     <div class="form-group text-center">
-                        <td><div id="gambar-edit"></div></td>
+                        <td><img src="" alt="" id="gambar-edit" style="width:300px; height:300px"></td>
                     </div>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="gambar" id="gambar" aria-describedby="inputGroupFileAddon01">
@@ -438,15 +438,17 @@
         // $('#gambar').innerhtml('<img src="<?= base_url()."assets/dist/img/kopi1.jpg" ?>" width="300">');
         // document.getElemenById('gambar2').innerhtml = kode;
 
-        var image=new Image(300, 300);
-        image.src='<?= base_url('assets/items_img/')?>'+ gambar;
-        x.appendChild(image);
+        // var image=new Image(300, 300);
+        x.src='<?= base_url('assets/items_img/')?>'+ gambar;
+        // x.appendChild(image);
+
+
     }
 
     // function modal edit
     function edit(kode,nama,kategori,unit,harga,berat,deskripsi,stok,gambar)
     {
-        var x = document.getElementById("gambar-edit");
+        var y = document.getElementById("gambar-edit");
 
         $('#kode-edit').val(kode);
         $('#nama-edit').val(nama);
@@ -460,9 +462,9 @@
         // $('#gambar').innerhtml('<img src="<?= base_url()."assets/dist/img/kopi1.jpg" ?>" width="300">');
         // document.getElemenById('gambar2').innerhtml = kode;
 
-        var image=new Image(300, 300);
-        image.src='<?= base_url('assets/items_img/')?>'+ gambar;
-        x.appendChild(image);
+        // var image=new Image(300, 300);
+        y.src='<?= base_url('assets/items_img/')?>'+ gambar;
+        // x.appendChild(image);
     }
 
 </script>

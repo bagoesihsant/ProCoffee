@@ -84,15 +84,20 @@ class M_menu extends CI_Model
     //ITEMS ITEMS ITEMS
     public function getAllItems()
     {
-        return $this->db->get('tbl_barang');
+        $this->db->select('*,tbl_barang.name as name_barang, tbl_kategori.name as name_kategori, tbl_satuan.name as name_satuan');
+        $this->db->from('tbl_barang');
+        $this->db->join('tbl_kategori', 'tbl_barang.kode_kategori = tbl_kategori.kode_kategori');
+        $this->db->join('tbl_satuan', 'tbl_barang.kode_satuan = tbl_satuan.kode_satuan');
+        
+        return $this->db->get();
     }
 
      // Untuk mengambil id terakhir data items
-     public function kode_items()
-     {
-         $this->db->order_by('kode_barang', 'DESC');
-         return $this->db->get('tbl_barang');
-     }
+    public function kode_items()
+    {
+        $this->db->order_by('kode_barang', 'DESC');
+        return $this->db->get('tbl_barang');
+    }
 
      //untuk mengambil data categories dropdown
     public function getAllCategories()

@@ -241,7 +241,7 @@ class C_admin extends CI_Controller
         $gambar = $_FILES['gambar']; //untuk mengambil file gambar
 
         //nama random untuk rename gambar di db dan penyimpanan direktori
-        $namarandom='items'. md5($kode);
+        $namarandom='items'. $kode.rand();
 
         //jika gambar tidak sama dengan kosong, maka gambar akan dipindah ke folder dan validasijpg/jpeg
         if($gambar != '') {
@@ -343,7 +343,7 @@ class C_admin extends CI_Controller
             unlink("assets/items_img/".$gambar_old);
             
              //nama random untuk rename gambar di db dan penyimpanan direktori
-            $namarandom='items'. md5($kode);
+            $namarandom='items'. $kode.rand();
 
             $config['upload_path']      ='./assets/items_img'; //buat nyimpen direktori gambar
             $config['allowed_types']    ='jpg|jpeg|png'; //tipe gambar yang boleh di upload

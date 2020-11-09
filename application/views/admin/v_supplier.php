@@ -41,7 +41,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <!-- Data Table -->
-                    <table id="SupplierTable" class="table table-bordered table-striped">
+                    <table id="dataTableSupplier" class="table table-bordered table-striped">
                         <!-- Thead -->
                         <thead>
                             <tr>
