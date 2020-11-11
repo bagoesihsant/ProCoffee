@@ -84,7 +84,7 @@ class M_menu extends CI_Model
     //ITEMS ITEMS ITEMS
     public function getAllItems()
     {
-        $this->db->select('*,tbl_barang.name as name_barang, tbl_kategori.name as name_kategori, tbl_satuan.name as name_satuan');
+        $this->db->select('*,tbl_barang.name as nama_barang, tbl_kategori.nama as nama_kategori, tbl_satuan.nama as nama_satuan');
         $this->db->from('tbl_barang');
         $this->db->join('tbl_kategori', 'tbl_barang.kode_kategori = tbl_kategori.kode_kategori');
         $this->db->join('tbl_satuan', 'tbl_barang.kode_satuan = tbl_satuan.kode_satuan');

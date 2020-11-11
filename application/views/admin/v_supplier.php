@@ -48,8 +48,6 @@
                                 <th>No.</th>
                                 <th>Nama Supplier</th>
                                 <th>No HP</th>
-                                <th>Alamat</th>
-                                <th>Deskripsi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -65,15 +63,13 @@
                                     <td><?= $no++ ?></td>
                                     <td><?= $su->nama; ?></td>
                                     <td><?= $su->no_hp?></td>
-                                    <td><?= $su->address ?></td>
-                                    <td><?= $su->deskripsi ?></td>
                                     <td class="d-flex justify-content-around">
                                         <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info" id="detail" 
                                             onClick="detail(
                                                 '<?= $su->kode_supplier ?>',
                                                 '<?= $su->nama ?>',
                                                 '<?= $su->no_hp?>',
-                                                '<?= $su->address?>',
+                                                '<?= $su->alamat?>',
                                                 '<?= $su->deskripsi?>'
                                                 )"
                                         >
@@ -91,7 +87,7 @@
                                                 '<?= $su->kode_supplier ?>',
                                                 '<?= $su->nama ?>',
                                                 '<?= $su->no_hp?>',
-                                                '<?= $su->address?>',
+                                                '<?= $su->alamat?>',
                                                 '<?= $su->deskripsi?>'
                                                 )"
                                         >
@@ -109,8 +105,6 @@
                             <th>No.</th>
                                 <th>Nama Supplier</th>
                                 <th>No HP</th>
-                                <th>Alamat</th>
-                                <th>Deskripsi</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -171,7 +165,7 @@
                             No. Telpon / HP
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="notelp" id="notelp" class="form-control" onkeypress="return hanyaAngka(event)" minlength="11" required>
+                        <input type="text" name="notelp" id="notelp" class="form-control" onkeypress="return hanyaAngka(event)" minlength="11" maxlength="13" required>
                     </div>
                     <div class="form-group">
                         <label for="alamat">

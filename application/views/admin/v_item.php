@@ -50,8 +50,6 @@
                                 <th>Bardcode</th>
                                 <th>Nama Item</th>
                                 <th>Harga Barang</th>
-                                <th>Berat</th>
-                                <th>Deskripsi</th>
                                 <th>Gambar Barang</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -68,23 +66,21 @@
                                 <td><?=$no++?></td>
                                 <td><?=$pro->barcode?></td>
                                 <td><?=$pro->name?></td>
-                                <td><?=$pro->price?></td>
-                                <td><?=$pro->berat?></td>
-                                <td><?=$pro->deskripsi?></td>
-                                <td class="text-center"><img src="<?= base_url('assets/items_img/').$pro->image ?>" 
+                                <td><?=$pro->harga?></td>
+                                <td class="text-center"><img src="<?= base_url('assets/items_img/').$pro->gambar ?>" 
                                     alt="Gambar tidak ditemukan" width="100"></td>
                                 <td class="d-flex justify-content-center">
                                         <a href="" class="btn btn-primary btn-xs mx-auto btn-view-menu" data-toggle="modal" data-target="#detailModal"
                                         onClick="detail(
                                             '<?=$pro->kode_barang?>',
-                                            '<?=$pro->name_barang?>',
-                                            '<?=$pro->name_kategori?>',
-                                            '<?=$pro->name_satuan?>',
-                                            '<?=$pro->price?>',
+                                            '<?=$pro->nama_barang?>',
+                                            '<?=$pro->nama_kategori?>',
+                                            '<?=$pro->nama_satuan?>',
+                                            '<?=$pro->harga?>',
                                             '<?=$pro->berat?>',
                                             '<?=$pro->deskripsi?>',
-                                            '<?=$pro->stock?>',
-                                            '<?=$pro->image?>'
+                                            '<?=$pro->stok?>',
+                                            '<?=$pro->gambar?>'
                                         )"
                                         >
                                             <i class="fas fa-fw fa-eye"></i>
@@ -96,13 +92,13 @@
                                         onClick="edit(
                                             '<?=$pro->kode_barang?>',
                                             '<?=$pro->name?>',
-                                            '<?=$pro->name_kategori?>',
-                                            '<?=$pro->name_satuan?>',
-                                            '<?=$pro->price?>',
+                                            '<?=$pro->nama_kategori?>',
+                                            '<?=$pro->nama_satuan?>',
+                                            '<?=$pro->harga?>',
                                             '<?=$pro->berat?>',
                                             '<?=$pro->deskripsi?>',
-                                            '<?=$pro->stock?>',
-                                            '<?=$pro->image?>'
+                                            '<?=$pro->stok?>',
+                                            '<?=$pro->gambar?>'
                                         )"
                                         >
                                             <i class="fas fa-fw fa-edit text-white"></i>
@@ -120,8 +116,6 @@
                                 <th>Bardcode</th>
                                 <th>Nama Item</th>
                                 <th>Harga Barang</th>
-                                <th>Berat</th>
-                                <th>Deskripsi</th>
                                 <th>Gambar Barang</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -159,7 +153,7 @@
                         $kode = $this->hookdevlib->autonumber($kode['kode_barang'], 2, 10);
                     } else {
                         // Jika tidak ditemukan id
-                        $kode = "BR000000001";
+                        $kode = "BR0000000001";
                     }
                 ?>
             <div class="modal-body">
@@ -182,8 +176,8 @@
                         </label>
                         <select class="form-control" name="kategori" required>
                             <?php foreach($kategori as $kat){ ?>
-                                <option value="<?=$kat->kode_category?>"> 
-                                    <?=$kat->name?>
+                                <option value="<?=$kat->kode_kategori?>"> 
+                                    <?=$kat->nama?>
                                 </option>
                             <?php } ?>
                         </select>
@@ -196,7 +190,7 @@
                         <select class="form-control" name="unit" required>
                             <?php foreach($satuan as $sat){ ?>
                                 <option value="<?=$sat->kode_satuan?>"> 
-                                    <?=$sat->name?>
+                                    <?=$sat->nama?>
                                 </option>
                             <?php } ?>
                         </select>
@@ -348,8 +342,8 @@
                         </label>
                             <select class="form-control" name="kategori" required>
                                 <?php foreach($kategori as $kat){ ?>
-                                    <option value="<?=$kat->kode_category?>"> 
-                                        <?=$kat->name?>
+                                    <option value="<?=$kat->kode_kategori?>"> 
+                                        <?=$kat->nama?>
                                     </option>
                                 <?php } ?>
                             </select>
@@ -363,7 +357,7 @@
                             <select class="form-control" name="unit" required>
                                 <?php foreach($satuan as $sat){ ?>
                                     <option value="<?=$sat->kode_satuan?>"> 
-                                        <?=$sat->name?>
+                                        <?=$sat->nama?>
                                     </option>
                                 <?php } ?>
                             </select>

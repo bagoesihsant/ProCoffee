@@ -16,6 +16,8 @@ class C_admin extends CI_Controller
         $this->load->model('M_products', 'mproduk');
         // Sub Menu
         $this->load->model('M_sub_menu', 'submenu');
+        //form validation
+        $this->load->library('form_validation');
     }
 
     // Index
@@ -56,17 +58,30 @@ class C_admin extends CI_Controller
     // tambah supplier
     public function tambah_supplier()
     {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('notelp', 'No Telepon', 'required|numeric|min_length[11]|max_length[13]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+
+        if($this->form_validation->run() == false){
+
+            $this->session->set_flashdata(
+                'pesan_menu', 'toastr.error("Data gagal ditambahkan.")'
+            );
+            redirect('C_admin/index_supplier');
+        }else{
+
         $kode = $this->input->post('kode');
-        $nama = $this->input->post('nama');
+        $nama = htmlspecialchars($this->input->post('nama'));
         $notelp = $this->input->post('notelp');
-        $alamat = $this->input->post('alamat');
-        $deskripsi = $this->input->post('deskripsi');
+        $alamat = htmlspecialchars($this->input->post('alamat'));
+        $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
 
         $data = array(
             'kode_supplier'=> $kode,
             'nama' => $nama,
             'no_hp' => $notelp,
-            'address' => $alamat,
+            'alamat' => $alamat,
             'deskripsi' => $deskripsi,
             'created' => date('d-m-Y')
         );
@@ -77,8 +92,9 @@ class C_admin extends CI_Controller
             $this->session->set_flashdata(
                 'pesan_menu', 'toastr.success("Data berhasil ditambahkan.")'
             );
-           redirect('C_admin/index_supplier');
+            redirect('C_admin/index_supplier');
         }
+            }
     }
 
     //hapus supplier
@@ -104,11 +120,24 @@ class C_admin extends CI_Controller
     //edit supplier
     public function edit_supplier()
     {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('notelp', 'No Telepon', 'required|numeric|min_length[11]|max_length[13]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+
+        if($this->form_validation->run() == false){
+
+            $this->session->set_flashdata(
+                'pesan_menu', 'toastr.error("Data gagal diUpdate.")'
+            );
+            redirect('C_admin/index_supplier');
+        }else{
+
         $kode = $this->input->post('kode');
-        $nama = $this->input->post('nama');
+        $nama = htmlspecialchars($this->input->post('nama'));
         $notelp = $this->input->post('notelp');
-        $alamat = $this->input->post('alamat');
-        $deskripsi = $this->input->post('deskripsi');
+        $alamat = htmlspecialchars($this->input->post('alamat'));
+        $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
 
         $data = array (
             'nama'=> $nama,
@@ -137,6 +166,7 @@ class C_admin extends CI_Controller
         }
 
         redirect('C_admin/index_supplier');
+            }
     }
 
   
@@ -231,13 +261,28 @@ class C_admin extends CI_Controller
 
     public function tambah_items()
     {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required');
+        $this->form_validation->set_rules('unit', 'Unit', 'required');
+        $this->form_validation->set_rules('harga', 'Harga', 'required|numeric');
+        $this->form_validation->set_rules('berat', 'Berat', 'required|numeric');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+
+        if($this->form_validation->run() == false){
+            $this->session->set_flashdata(
+                'pesan_menu',
+                'toastr.error("Error, Data gagal ditambahkan")'
+            );
+            redirect('C_admin/index_product_items');
+		}else{
+
         $kode = $this->input->post('kode');
-        $nama = $this->input->post('nama');
+        $nama = htmlspecialchars($this->input->post('nama'));
         $kategori = $this->input->post('kategori');
         $unit = $this->input->post('unit');
         $harga = $this->input->post('harga');
         $berat = $this->input->post('berat');
-        $deskripsi = $this->input->post('deskripsi');
+        $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
         $gambar = $_FILES['gambar']; //untuk mengambil file gambar
 
         //nama random untuk rename gambar di db dan penyimpanan direktori
@@ -268,11 +313,11 @@ class C_admin extends CI_Controller
                 'name' => $nama,
                 'kode_kategori' =>$kategori,
                 'kode_satuan'=>$unit,
-                'price'=>$harga,
+                'harga'=>$harga,
                 'berat'=>$berat,
                 'deskripsi'=>$deskripsi,
                 'created' => date('dmY'),
-                'image' => $namaGambar
+                'gambar' => $namaGambar
                 );
             $tambah = $this->menu->tambah_item($data);
                     if($tambah>0)
@@ -291,6 +336,7 @@ class C_admin extends CI_Controller
                     }
                 }
         }
+            }
     }
 
 // hapus items
@@ -327,13 +373,28 @@ class C_admin extends CI_Controller
 
     public function edit_items()
     {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required');
+        $this->form_validation->set_rules('unit', 'Unit', 'required');
+        $this->form_validation->set_rules('harga', 'Harga', 'required|numeric');
+        $this->form_validation->set_rules('berat', 'Berat', 'required|numeric');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+
+        if($this->form_validation->run() == false){ //jika data gagal tervalidasi
+            $this->session->set_flashdata(
+                'pesan_menu',
+                'toastr.error("Error, Data gagal diupdate")'
+            );
+            redirect('C_admin/index_product_items');
+		}else{ //jika data sukses tervalidasi
+
         $kode = $this->input->post('kode');
-        $nama = $this->input->post('nama');
+        $nama = htmlspecialchars($this->input->post('nama'));
         $kategori = $this->input->post('kategori');
         $unit = $this->input->post('unit');
         $harga = $this->input->post('harga');
         $berat = $this->input->post('berat');
-        $deskripsi = $this->input->post('deskripsi');
+        $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
         $gambar_old= $this->input->post('gambar_old');
         $gambar= $_FILES['gambar']; //untuk mengambil file gambar
 
@@ -370,10 +431,10 @@ class C_admin extends CI_Controller
                     'name' => $nama,
                     'kode_kategori' =>$kategori,
                     'kode_satuan'=>$unit,
-                    'price'=>$harga,
+                    'harga'=>$harga,
                     'berat'=>$berat,
                     'deskripsi'=>$deskripsi,
-                    'image'=>$namarandom,
+                    'gambar'=>$namarandom,
                     'updated' => date('dmY')
                 );
 
@@ -396,7 +457,7 @@ class C_admin extends CI_Controller
                 'name' => $nama,
                 'kode_kategori' =>$kategori,
                 'kode_satuan'=>$unit,
-                'price'=>$harga,
+                'harga'=>$harga,
                 'berat'=>$berat,
                 'deskripsi'=>$deskripsi,
                 'updated' => date('dmY')
@@ -418,6 +479,7 @@ class C_admin extends CI_Controller
                 redirect('C_admin/index_product_items');
             }
             }
+        }
     }
     //END ITEMS END ITEMS END ITEMS END ITEMS END ITEMS END ITEMS
 
