@@ -53,6 +53,7 @@
 <!-- Load File JavaScript yang dibuat secara custom untuk kebutuhan tertentu -->
 <script src="<?= base_url('assets/'); ?>custom/admin/menu.js"></script>
 <script src="<?= base_url('assets/'); ?>custom/admin/barang.js"></script>
+<script src="<?= base_url('assets/'); ?>custom/admin/supplier.js"></script>
 
 
 <!-- Mencetak pesan dari controller -->
