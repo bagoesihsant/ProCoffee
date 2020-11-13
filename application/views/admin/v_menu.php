@@ -136,7 +136,7 @@
                         <label for="kode_menu">Kode Menu</label>
                         <?php
                         // Mengambil data terakhir di database
-                        $data = $this->menu->getLastId();
+                        $data = $this->menu->getLastIdMenu();
                         // Memeriksa apakah ada kode yang didapat dari database
                         if ($data->num_rows() > 0) {
                             // Jika ditemukan data

@@ -56,9 +56,9 @@ $route['translate_uri_dashes'] = FALSE;
 // Custom Routes
 
 // Route Menu
-$route['admin/menu'] = "C_admin/index_menu";
-$route['admin/editMenu'] = "C_admin/editMenu";
-$route['admin/hapusMenu/(:any)'] = "C_admin/hapusMenu/$1";
+$route['admin/menu'] = "admin/C_menu/index";
+$route['admin/editMenu'] = "admin/C_menu/editMenu";
+$route['admin/hapusMenu/(:any)'] = "admin/C_menu/hapusMenu/$1";
 
 
 // Custome Product Routes
@@ -66,6 +66,6 @@ $route['admin/product/category'] = "C_admin/index_product_categories";
 $route['admin/product/unit'] = "C_admin/index_product_units";
 
 // Route Sub Menu
-$route['admin/submenu'] = "C_admin/index_submenu";
-$route['admin/editSubmenu'] = "C_admin/editSubmenu";
-$route['admin/hapusSubmenu/(:any)'] = "C_admin/hapusSubmenu/$1";
+$route['admin/submenu'] = "admin/C_menu/submenu";
+$route['admin/editSubmenu'] = "admin/C_menu/editSubmenu";
+$route['admin/hapusSubmenu/(:any)'] = "admin/C_menu/hapusSubmenu/$1";

@@ -50,6 +50,16 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url('assets/'); ?>dist/js/demo.js"></script>
 
+<!-- Load File JavaScript yang dibuat secara custom untuk kebutuhan tertentu -->
+<script src="<?= base_url('assets/') ?>custom/admin/menu.js"></script>
+
+
+<!-- Mencetak pesan dari controller -->
+<script>
+    <?= $this->session->flashdata('pesan_menu'); ?>
+    <?= $this->session->flashdata('pesan_sub_menu'); ?>
+</script>
+
 </body>
 
 </html>

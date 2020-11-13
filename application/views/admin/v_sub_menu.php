@@ -164,7 +164,7 @@
                         <?php
                         // Melakukan autonumber
                         // Mengambil data terakhir dari database
-                        $lastData = $this->submenu->getLastId();
+                        $lastData = $this->menu->getLastIdSubmenu();
                         // Memeriksa apakah ada data terakhir
                         if ($lastData->num_rows() > 0) {
                             // Jika ada data terakhir
@@ -197,7 +197,7 @@
                         <?= form_error('menu_sub_menu', '<p class="text-danger text-sm ml-2">', '</p>'); ?>
                     </div>
                     <div class="form-group">
-                        <label for="sub_menu">Submenu</label>
+                        <label for="sub_menu">Submenu Title</label>
                         <input type="text" name="sub_menu" id="sub_menu" class="form-control" placeholder="ex: Manajemen Menu">
                         <?= form_error('sub_menu', '<p class="text-danger text-sm ml-2">', '</p>'); ?>
                     </div>
@@ -282,7 +282,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="sub_menu">Submenu</label>
+                        <label for="sub_menu">Submenu Title</label>
                         <input type="text" name="sub_menu" id="sub_menu" class="form-control" placeholder="ex: Manajemen User">
                     </div>
                     <div class="form-group">
@@ -553,7 +553,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="sub_menu">Submenu</label>
+                    <label for="sub_menu">Submenu Title</label>
                     <input type="text" name="sub_menu" id="sub_menu" class="form-control" readonly>
                 </div>
                 <div class="form-group">
