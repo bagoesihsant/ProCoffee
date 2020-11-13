@@ -68,3 +68,4 @@ $route['admin/product/unit'] = "C_admin/index_product_units";
 // Route Sub Menu
 $route['admin/submenu'] = "C_admin/index_submenu";
 $route['admin/editSubmenu'] = "C_admin/editSubmenu";
+$route['admin/hapusSubmenu/(:any)'] = "C_admin/hapusSubmenu/$1";

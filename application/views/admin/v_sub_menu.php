@@ -99,7 +99,7 @@
                                         <a href="javascript:void(0)" data-kode="<?= $submenus['kode_sub_menu']; ?>" class="btn btn-primary btn-xs mx-auto btn-view-submenu" data-toggle="modal" data-target="#viewModal">
                                             <i class="fas fa-fw fa-eye"></i>
                                         </a>
-                                        <a href="javascript:void(0)" class="btn btn-danger btn-xs mx-auto">
+                                        <a href="javascript:void(0)" data-kode="<?= $submenus['kode_sub_menu']; ?>" class="btn btn-danger btn-xs mx-auto btn-delete-submenu">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
                                         <a href="javascript:void(0)" data-kode="<?= $submenus['kode_sub_menu']; ?>" class="btn btn-warning btn-xs mx-auto btn-edit-submenu" data-toggle="modal" data-target="#editModal">
@@ -302,8 +302,8 @@
                     </div>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="status_sub_menu" id="status_sub_menu" class="custom-control-input" value="1">
-                            <label for="status_sub_menu" class="custom-control-label">Aktifkan Menu</label>
+                            <input type="checkbox" name="status_sub_menu_edit" id="status_sub_menu_edit" class="custom-control-input" value="1">
+                            <label for="status_sub_menu_edit" class="custom-control-label">Aktifkan Menu</label>
                         </div>
                     </div>
             </div>
