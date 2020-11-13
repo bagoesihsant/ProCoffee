@@ -51,7 +51,8 @@
 <script src="<?= base_url('assets/'); ?>dist/js/demo.js"></script>
 
 <!-- Load File JavaScript yang dibuat secara custom untuk kebutuhan tertentu -->
-<script src="<?= base_url('assets/') ?>custom/admin/menu.js"></script>
+<script src="<?= base_url('assets/'); ?>custom/admin/menu.js"></script>
+<script src="<?= base_url('assets/'); ?>custom/admin/barang.js"></script>
 
 
 <!-- Mencetak pesan dari controller -->
