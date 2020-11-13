@@ -22,6 +22,18 @@
         "autoWidth": false,
     });
 
+     // Mengubah tabel item di item menjadi data tables
+     $('#dataTableItems').DataTable({
+        "responsive": true,
+        "autoWidth": false,
+    });
+
+     // Mengubah tabel supplier di supplier menjadi data tables
+     $('#dataTableSupplier').DataTable({
+        "responsive": true,
+        "autoWidth": false,
+    });
+
     // Mengisi data form pada modal icon preview
     $('.btn-modal-icon').on('click', function() {
         // Mengambil data form sendiri

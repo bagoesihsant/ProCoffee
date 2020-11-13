@@ -16,6 +16,8 @@ class C_admin extends CI_Controller
         $this->load->model('M_products', 'mproduk');
         // Sub Menu
         $this->load->model('M_sub_menu', 'submenu');
+        //form validation
+        $this->load->library('form_validation');
     }
 
     // Index
@@ -56,17 +58,30 @@ class C_admin extends CI_Controller
     // tambah supplier
     public function tambah_supplier()
     {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('notelp', 'No Telepon', 'required|numeric|min_length[11]|max_length[13]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+
+        if($this->form_validation->run() == false){
+
+            $this->session->set_flashdata(
+                'pesan_menu', 'toastr.error("Data gagal ditambahkan.")'
+            );
+            redirect('C_admin/index_supplier');
+        }else{
+
         $kode = $this->input->post('kode');
-        $nama = $this->input->post('nama');
+        $nama = htmlspecialchars($this->input->post('nama'));
         $notelp = $this->input->post('notelp');
-        $alamat = $this->input->post('alamat');
-        $deskripsi = $this->input->post('deskripsi');
+        $alamat = htmlspecialchars($this->input->post('alamat'));
+        $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
 
         $data = array(
             'kode_supplier' => $kode,
             'nama' => $nama,
             'no_hp' => $notelp,
-            'address' => $alamat,
+            'alamat' => $alamat,
             'deskripsi' => $deskripsi,
             'created' => date('d-m-Y')
         );
@@ -79,6 +94,7 @@ class C_admin extends CI_Controller
             );
             redirect('C_admin/index_supplier');
         }
+            }
     }
 
     //hapus supplier
@@ -105,11 +121,24 @@ class C_admin extends CI_Controller
     //edit supplier
     public function edit_supplier()
     {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('notelp', 'No Telepon', 'required|numeric|min_length[11]|max_length[13]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+
+        if($this->form_validation->run() == false){
+
+            $this->session->set_flashdata(
+                'pesan_menu', 'toastr.error("Data gagal diUpdate.")'
+            );
+            redirect('C_admin/index_supplier');
+        }else{
+
         $kode = $this->input->post('kode');
-        $nama = $this->input->post('nama');
+        $nama = htmlspecialchars($this->input->post('nama'));
         $notelp = $this->input->post('notelp');
-        $alamat = $this->input->post('alamat');
-        $deskripsi = $this->input->post('deskripsi');
+        $alamat = htmlspecialchars($this->input->post('alamat'));
+        $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
 
         $data = array(
             'nama' => $nama,
@@ -138,6 +167,7 @@ class C_admin extends CI_Controller
         }
 
         redirect('C_admin/index_supplier');
+            }
     }
 
     //   Categories
@@ -226,7 +256,7 @@ class C_admin extends CI_Controller
         $this->load->view('admin/custom_js');
         $this->load->view('templates/v_footer_admin');
     }
-
+  
     public function addDataUnits()
     {
         $kode_unit =  htmlspecialchars($this->input->post('kode'));
@@ -281,11 +311,13 @@ class C_admin extends CI_Controller
         }
     }
     // end unit
-
-    // Item
+  
+    // START ITEMS START ITEMS START ITEMS START ITEMS START ITEMS START ITEMS
     public function index_product_items()
     {
         $data['produk'] = $this->menu->getAllItems()->result();
+        $data['kategori'] = $this->menu->getAllCategories()->result();
+        $data['satuan'] = $this->menu->getAllUnits()->result();
 
         $this->load->view('templates/v_header_admin');
         $this->load->view('templates/v_sidebar_admin');
@@ -297,22 +329,37 @@ class C_admin extends CI_Controller
 
     public function tambah_items()
     {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required');
+        $this->form_validation->set_rules('unit', 'Unit', 'required');
+        $this->form_validation->set_rules('harga', 'Harga', 'required|numeric');
+        $this->form_validation->set_rules('berat', 'Berat', 'required|numeric');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+
+        if($this->form_validation->run() == false){
+            $this->session->set_flashdata(
+                'pesan_menu',
+                'toastr.error("Error, Data gagal ditambahkan")'
+            );
+            redirect('C_admin/index_product_items');
+		}else{
+
         $kode = $this->input->post('kode');
-        $nama = $this->input->post('nama');
+        $nama = htmlspecialchars($this->input->post('nama'));
         $kategori = $this->input->post('kategori');
         $unit = $this->input->post('unit');
         $harga = $this->input->post('harga');
         $berat = $this->input->post('berat');
-        $deskripsi = $this->input->post('deskripsi');
+        $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
         $gambar = $_FILES['gambar']; //untuk mengambil file gambar
 
         //nama random untuk rename gambar di db dan penyimpanan direktori
-        $namarandom='item'. md5(date('dmY'));
+        $namarandom='items'. $kode.rand();
 
         //jika gambar tidak sama dengan kosong, maka gambar akan dipindah ke folder dan validasijpg/jpeg
         if($gambar != '') {
             $config['upload_path']      ='./assets/items_img'; //buat nyimpen direktori gambar
-            $config['allowed_types']    ='jpg|jpeg'; //tipe gambar yang boleh di upload
+            $config['allowed_types']    ='jpg|jpeg|png'; //tipe gambar yang boleh di upload
             $config['file_name']        =$namarandom; //ambil nama random yang atas
 
             //untuk load library upload
@@ -320,25 +367,189 @@ class C_admin extends CI_Controller
             
             //jiika gambar yang diambil dari inputan gambar gagal di upload
             if(!$this->upload->do_upload('gambar')){
-                echo "upload gagal"; die();
+                //alert jika gambar gagal diupload
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.error("Error, Data gagal ditambahkan. yang anda upload bukan gambar")'
+                );
+                redirect('C_admin/index_product_items');
             }else{
                 $namaGambar=$this->upload->data('file_name');
-            }
-        }
 
-            $data = array(
+            $data = array( //array untuk dimasukkan ke database
                 'kode_barang' => $kode,
                 'name' => $nama,
                 'kode_kategori' =>$kategori,
                 'kode_satuan'=>$unit,
-                'price'=>$harga,
+                'harga'=>$harga,
                 'berat'=>$berat,
                 'deskripsi'=>$deskripsi,
                 'created' => date('dmY'),
-                'image' => $namaGambar
+                'gambar' => $namaGambar
                 );
-            $query = $this->menu->tambah_item($data);
+            $tambah = $this->menu->tambah_item($data);
+                    if($tambah>0)
+                    {
+                        $this->session->set_flashdata(
+                            'pesan_menu',
+                            'toastr.success("Data berhasil ditambahkan.")'
+                        );
+                        redirect('C_admin/index_product_items');
+                    }else{
+                        $this->session->set_flashdata(
+                            'pesan_menu',
+                            'toastr.error("Error, Data gagal ditambahkan.")'
+                        );
+                        redirect('C_admin/index_product_items');
+                    }
+                }
+        }
+            }
     }
+
+// hapus items
+    public function hapus_items($id)
+    {
+        $where = array('kode_barang'=>$id);
+        //untuk mengambil semua data database berdasarkan where
+        $n_gambar=$this->menu->ambil_items($where)->result(); 
+        foreach($n_gambar as $N){
+            $nama_gambar = $N->image; //menginisisasi var nama_barang
+        }
+
+        //untuk menghapus gambar di folder
+        unlink("assets/items_img/".$nama_gambar);
+            //untuk menghapus data di database
+        $data = array('kode_barang'=>$id);
+        $hapus = $this->menu->hapus_items($data);
+
+            if($hapus != 0){
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.success("Data berhasil dihapus.")'
+                );
+                redirect('C_admin/index_product_items');
+            }else{
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.error("Error, Data gagal dihapus.")'
+                );
+                redirect('C_admin/index_product_items');
+            }
+    }
+// hapus items
+
+    public function edit_items()
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required');
+        $this->form_validation->set_rules('unit', 'Unit', 'required');
+        $this->form_validation->set_rules('harga', 'Harga', 'required|numeric');
+        $this->form_validation->set_rules('berat', 'Berat', 'required|numeric');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+
+        if($this->form_validation->run() == false){ //jika data gagal tervalidasi
+            $this->session->set_flashdata(
+                'pesan_menu',
+                'toastr.error("Error, Data gagal diupdate")'
+            );
+            redirect('C_admin/index_product_items');
+		}else{ //jika data sukses tervalidasi
+
+        $kode = $this->input->post('kode');
+        $nama = htmlspecialchars($this->input->post('nama'));
+        $kategori = $this->input->post('kategori');
+        $unit = $this->input->post('unit');
+        $harga = $this->input->post('harga');
+        $berat = $this->input->post('berat');
+        $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
+        $gambar_old= $this->input->post('gambar_old');
+        $gambar= $_FILES['gambar']; //untuk mengambil file gambar
+
+        if($this->input->post('ganti'))
+        {
+            //untuk menghapus gambar sebelumnya di folder
+            unlink("assets/items_img/".$gambar_old);
+            
+             //nama random untuk rename gambar di db dan penyimpanan direktori
+            $namarandom='items'. $kode.rand();
+
+            $config['upload_path']      ='./assets/items_img'; //buat nyimpen direktori gambar
+            $config['allowed_types']    ='jpg|jpeg|png'; //tipe gambar yang boleh di upload
+            $config['file_name']        =$namarandom; //ambil nama random yang atas
+
+            //untuk load library upload
+            $this->load->library('upload', $config);
+            
+            //jiika gambar yang diambil dari inputan gambar gagal di upload
+            if(!$this->upload->do_upload('gambar')){
+                //alert jika gambar gagal diupload
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.error("Error, Data gagal ditambahkan. yang anda upload bukan gambar")'
+                );
+                redirect('C_admin/index_product_items');
+                //jika berhasil
+            }else{
+
+                $where = array(
+                    'kode_barang'=>$kode
+                );
+                $data = array(
+                    'name' => $nama,
+                    'kode_kategori' =>$kategori,
+                    'kode_satuan'=>$unit,
+                    'harga'=>$harga,
+                    'berat'=>$berat,
+                    'deskripsi'=>$deskripsi,
+                    'gambar'=>$namarandom,
+                    'updated' => date('dmY')
+                );
+
+                $edit= $this->menu->edit_items($where, $data);
+
+                //alert jika gambar sukses diupload
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.success("Data berhasil di update")'
+                );
+                redirect('C_admin/index_product_items');
+            } 
+
+        }else{//jika tidak upload gambar
+            $where = array(
+                'kode_barang'=>$kode
+            );
+
+            $data = array(
+                'name' => $nama,
+                'kode_kategori' =>$kategori,
+                'kode_satuan'=>$unit,
+                'harga'=>$harga,
+                'berat'=>$berat,
+                'deskripsi'=>$deskripsi,
+                'updated' => date('dmY')
+            );
+
+            $edit= $this->menu->edit_items($data, $where);
+            // alert(print_r($edit));
+            if($edit =! 0){
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.success("Data berhasil di update.")'
+                );
+                redirect('C_admin/index_product_items');
+            }else{
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.error("Error, Data gagal diupdate.")'
+                );
+                redirect('C_admin/index_product_items');
+            }
+            }
+        }
+    }
+    //END ITEMS END ITEMS END ITEMS END ITEMS END ITEMS END ITEMS
 
     // Menu
     public function index_menu()
