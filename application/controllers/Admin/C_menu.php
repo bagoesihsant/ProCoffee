@@ -359,7 +359,7 @@ class C_menu extends CI_Controller
     }
 
     // Manajemen Pemberian Hak Akses
-    public function akses()
+    public function userAkses()
     {
     }
 }
