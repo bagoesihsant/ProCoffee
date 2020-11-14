@@ -352,4 +352,14 @@ class C_menu extends CI_Controller
         // mengarahkan kembali
         redirect('admin/submenu');
     }
+
+    // Hak Akses
+    public function role()
+    {
+    }
+
+    // Manajemen Pemberian Hak Akses
+    public function akses()
+    {
+    }
 }
