@@ -194,7 +194,10 @@ class C_menu extends CI_Controller
         $this->form_validation->set_rules('url_sub_menu', 'URL', 'required|trim|regex_match[/^[a-zA-Z\/]+$/]');
         $this->form_validation->set_rules('icon_sub_menu', 'Icon', 'required|trim|regex_match[/^[a-zA-Z\-\s]+$/]');
 
-
+        // Membuat pesan khusus untuk aturan validasi
+        $this->form_validation->set_message('required', 'Field %s wajib diisi.');
+        $this->form_validation->set_message('alpha_numeric_space', 'Field %s hanya boleh berisi huruf dan angka.');
+        $this->form_validation->set_message('regex_match', 'Karakter yang anda inputkan mengangdung karakter terlarang.');
 
         // Menjalankan form validation
         if ($this->form_validation->run() == false) {
@@ -270,6 +273,11 @@ class C_menu extends CI_Controller
         $this->form_validation->set_rules('sub_menu', 'Submenu', 'required|trim|alpha_numeric_spaces');
         $this->form_validation->set_rules('url_sub_menu', 'URL', 'required|trim|regex_match[/^[a-zA-Z\/]+$/]');
         $this->form_validation->set_rules('icon_sub_menu', 'Icon', 'required|trim|regex_match[/^[a-zA-Z\-\s]+$/]');
+
+        // Membuat pesan khusus untuk aturan validasi
+        $this->form_validation->set_message('required', 'Field %s wajib diisi.');
+        $this->form_validation->set_message('alpha_numeric_space', 'Field %s hanya boleh berisi huruf dan angka.');
+        $this->form_validation->set_message('regex_match', 'Karakter yang anda inputkan mengangdung karakter terlarang.');
 
         // Melakukan validasi form
         if ($this->form_validation->run() == false) {
@@ -356,6 +364,156 @@ class C_menu extends CI_Controller
     // Hak Akses
     public function role()
     {
+        // Mengambil data dari database
+        $data['role'] = $this->menu->getAllRole();
+
+        // Membuat aturan form validation untuk form
+        $this->form_validation->set_rules('kode_role', 'Kode Hak Akses', 'required|trim');
+        $this->form_validation->set_rules('role', 'Hak Akses', 'required|trim|alpha');
+
+        // Membuat pesan khusus untuk aturan form_validation
+        $this->form_validation->set_message('required', 'Field %s wajib diisi');
+        $this->form_validation->set_message('alpha', 'Field %s hanya boleh berisi huruf.');
+
+        // Menjalankan form_validation
+        if ($this->form_validation->run() == false) {
+            // Jika form_validation mengembalikan nilai false
+            // Load View
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/sidebar');
+            $this->load->view('admin/v_role');
+            $this->load->view('templates/admin/footer');
+        } else {
+            // Jika form_validation mengembalikan nilai true
+
+            // Membuat Array Data
+            $data = [
+                'kode_role' => htmlspecialchars($this->input->post('kode_role', true)),
+                'role' => htmlspecialchars($this->input->post('role', true))
+            ];
+
+            // Menjalankan penambahan data
+            $result = $this->menu->tambahRole($data);
+
+            // Memeriksa apakah penambahan data berhasil dijalankan atau tidak
+            if ($result > 0) {
+                // Jika data berhasil ditambahkan
+
+                // Membuat session
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.success("Selamat, data berhasil ditambahkan.")'
+                );
+            } else {
+                // Jika data gagal ditambahkan
+
+                // Membuat session
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.error("Error, data gagal ditambahkan.")'
+                );
+            }
+
+            // Mengembalikan ke halaman utama
+            redirect('admin/C_menu/role');
+        }
+    }
+
+    // Ajax untuk ambil data hak akses dari database secara Asynchronous
+    public function ajaxEditRole()
+    {
+        // Menyimpan input dari user kedalam array data
+        $data = [
+            'kode_role' => htmlspecialchars($this->input->post('kode_role', true))
+        ];
+
+        // mengambil data hak akses dari database
+        $result = $this->menu->getDetailRole($data);
+
+        echo json_encode($result);
+    }
+
+    // Edit Hak Akses
+    public function editRole()
+    {
+        // Membuat rules untuk form_validation
+        $this->form_validation->set_rules('kode_role', 'Kode Hak Akses', 'required|trim');
+        $this->form_validation->set_rules('role', 'Hak Akses', 'required|trim|alpha');
+
+        // Membuat pesan khusus untuk form_validation
+        $this->form_validation->set_message('required', 'Field %s wajib diisi.');
+        $this->form_validation->set_message('alpha', 'Field %s hanya boleh berisi huruf.');
+
+        // Menjalankan form_validation
+        if ($this->form_validation->run() == false) {
+            // Jika form_validation mengembalikan nilai false
+            $this->role();
+        } else {
+            // Jika form_validation mengembalikan nilai true
+
+            // Membuat Array Data
+            $data = ['role' => htmlspecialchars($this->input->post('role', true))];
+
+            // Membuat Array Where
+            $where = ['kode_role' => htmlspecialchars($this->input->post('kode_role', true))];
+
+            // Menjalankan update
+            $result = $this->menu->updateRole($data, $where);
+
+            // Memeriksa apakah update berhasil atau tidak
+            if ($result > 0) {
+                // Jika update data berhasil
+
+                // Membuat Session
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.success("Selamat, data berhasil diubah.")'
+                );
+            } else {
+                // Jika update data gagal
+
+                // Membuat session
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.error("Error, data gagal diubah.")'
+                );
+            }
+
+            redirect('admin/C_menu/role');
+        }
+    }
+
+    // Hapus Hak Akses
+    public function deleteRole($kode)
+    {
+        // Membuat array data
+        $data = [
+            'kode_role' => $kode
+        ];
+
+        // Menjalankan delete
+        $result = $this->menu->deleteRole($data);
+
+        // memeriksa hasil delete
+        if ($result > 0) {
+            // Jika delete berhasil
+
+            // Membuat session
+            $this->session->set_flashdata(
+                'pesan_menu',
+                'toastr.success("Selamat, data berhasil dihapus.")'
+            );
+        } else {
+            // Jika delete gagal
+
+            // Membuat session
+            $this->session->set_flashdata(
+                'pesan_menu',
+                'toastr.error("Error, data gagal dihapus.")'
+            );
+        }
+
+        redirect("admin/C_menu/role");
     }
 
     // Manajemen Pemberian Hak Akses
