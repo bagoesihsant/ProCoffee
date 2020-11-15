@@ -60,14 +60,12 @@
                             foreach ($row->result() as $rw => $r) : ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <!-- <td><?= $r->kode_kategori; ?></td> -->
                                     <td><?= $r->nama; ?></td>
                                     <td class="d-flex justify-content-around">
                                         <a href="#" data-toggle="modal" data-target="#detailModal<?= $r->kode_kategori; ?>" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
                                         </a>
-                                        <!-- <?= base_url('C_admin/deleteCategory' . $r->kode_kategori) ?>') -->
-                                        <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('C_admin/deleteCategory/' . $r->kode_kategori) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
+                                        <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('admin/C_kategori/deleteCategory/' . $r->kode_kategori) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
                                         <a href="#" data-toggle="modal" data-target="#editModal<?= $r->kode_kategori; ?>" class="btn btn-xs btn-warning">
@@ -75,14 +73,8 @@
                                         </a>
                                     </td>
                                 </tr>
-
                             <?php endforeach ?>
-                            <!-- Data Example End -->
                         </tbody>
-                        <!-- Tbody End -->
-                        <!-- Tfoot -->
-
-                        <!-- Tfoot End -->
                     </table>
                     <!-- Data Table End -->
                 </div>
@@ -107,7 +99,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <?= form_open_multipart('C_admin/addDataCategories'); ?>
+                <?= form_open_multipart('admin/C_kategori/addDataCategories'); ?>
                 <div class="form-group">
                     <label for="kode">Kode Categories</label>
                     <input type="text" name="kode_kategori" id="kode_kategori" class="form-control" value="CSM001" required>
@@ -146,7 +138,7 @@ foreach ($row->result() as $rw => $r) : $no++; ?>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <?= form_open_multipart('C_admin/editDataCategories'); ?>
+                    <?= form_open_multipart('admin/C_kategori/editDataCategories'); ?>
                     <div class="form-group">
                         <label for="kode">Kode Categories</label>
                         <input type="text" name="kode_kategori" value="<?= $r->kode_kategori ?>" id="kode_kategori" class="form-control" value="CSM001" required>

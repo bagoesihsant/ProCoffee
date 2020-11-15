@@ -22,14 +22,14 @@
         "autoWidth": false,
     });
 
-     // Mengubah tabel item di item menjadi data tables
-     $('#dataTableItems').DataTable({
+    // Mengubah tabel item di item menjadi data tables
+    $('#dataTableItems').DataTable({
         "responsive": true,
         "autoWidth": false,
     });
 
-     // Mengubah tabel supplier di supplier menjadi data tables
-     $('#dataTableSupplier').DataTable({
+    // Mengubah tabel supplier di supplier menjadi data tables
+    $('#dataTableSupplier').DataTable({
         "responsive": true,
         "autoWidth": false,
     });
@@ -109,32 +109,33 @@
             }
         });
 
-        // Jika tombol delete di tabel customer di klik, maka muncul sweet alert
-        $('.btnDeleteuser').on('click', function() {
-            swalBootstrap.fire({
-                title: "Apakah anda yakin ?",
-                text: "Apakah anda yakin akan menghapus data ?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Ya",
-                cancelButtonText: "Tidak",
-                reverseButtons: true
-            }).then((hasil) => {
-                if (hasil.isConfirmed) {
-                    swalBootstrap.fire({
-                        title: "Terhapus",
-                        text: "Data berhasil dihapus",
-                        icon: "success"
-                    })
-                } else if (hasil.dismiss == Swal.DismissReason.cancel) {
-                    swalBootstrap.fire({
-                        title: "Batal",
-                        text: "Data batal dihapus",
-                        icon: "error"
-                    })
-                }
-            })
-        });
+    });
+
+    // Jika tombol delete di tabel customer di klik, maka muncul sweet alert
+    $('.btnDeleteuser').on('click', function() {
+        swalBootstrap.fire({
+            title: "Apakah anda yakin ?",
+            text: "Apakah anda yakin akan menghapus data ?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Ya",
+            cancelButtonText: "Tidak",
+            reverseButtons: true
+        }).then((hasil) => {
+            if (hasil.isConfirmed) {
+                swalBootstrap.fire({
+                    title: "Terhapus",
+                    text: "Data berhasil dihapus",
+                    icon: "success"
+                })
+            } else if (hasil.dismiss == Swal.DismissReason.cancel) {
+                swalBootstrap.fire({
+                    title: "Batal",
+                    text: "Data batal dihapus",
+                    icon: "error"
+                })
+            }
+        })
     });
 
     // Menjalankan fungsi hapus pada tabel

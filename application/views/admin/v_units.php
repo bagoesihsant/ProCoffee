@@ -65,7 +65,7 @@
                                         <a href="#" data-toggle="modal" data-target="#detailModal<?= $data->kode_satuan; ?>" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
                                         </a>
-                                        <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('C_admin/deleteUnits/' . $data->kode_satuan) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
+                                        <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('admin/C_satuan/deleteUnits/' . $data->kode_satuan) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
                                         <a href="#" data-toggle="modal" data-target="#editModal<?= $data->kode_satuan; ?>" class="btn btn-xs btn-warning">
@@ -73,20 +73,8 @@
                                         </a>
                                     </td>
                                 </tr>
-
                             <?php endforeach; ?>
-                            <!-- Data Example End -->
                         </tbody>
-                        <!-- Tbody End -->
-                        <!-- Tfoot -->
-                        <!-- <tfoot>
-                            <tr>
-                                <th>No.</th>
-                                <th>Nama Units</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                        </tfoot> -->
-                        <!-- Tfoot End -->
                     </table>
                     <!-- Data Table End -->
                 </div>
@@ -111,7 +99,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <?= form_open_multipart('C_admin/addDataUnits'); ?>
+                <?= form_open_multipart('admin/C_satuan/addDataUnits'); ?>
                 <div class="form-group">
                     <label for="kode">Kode Satuan</label>
                     <input type="text" name="kode" id="kode" class="form-control" value="CSM001" required>
@@ -204,7 +192,7 @@ foreach ($row->result() as $rw => $r) :  ?>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <?= form_open_multipart('C_admin/editDataUnits'); ?>
+                    <?= form_open_multipart('admin/C_satuan/editDataUnits'); ?>
                     <div class="form-group">
                         <label for="kode">Kode Satuan</label>
                         <input type="text" name="kode" value="<?= $r->kode_satuan ?>" id="kode" class="form-control" value="CSM001" required>
@@ -229,7 +217,7 @@ foreach ($row->result() as $rw => $r) :  ?>
 <!-- Modal Detail End -->
 
 <!-- Modal Delete -->
-<div class="modal fade" id="modalDelete">
+<!-- <div class="modal fade" id="modalDelete">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -243,6 +231,24 @@ foreach ($row->result() as $rw => $r) :  ?>
                     <button class="btn btn-default" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-danger" id="btnTambahSatuan" name="tambah">Hapus</button>
             </form>
+        </div>
+    </div>
+</div>
+</div> -->
+
+<div class="modal fade" id="modalDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <input type="text" id="kode-hapus" hidden>
+            <div class="modal-body text-center">
+                <i class="fa fa-exclamation-triangle text-danger fa-7x mb-3 mt-2"></i> <br>
+                <h3 class="text-center font-weight-bold">Hapus Data</h3>
+                <h5 class="font-weight-light">Apa anda yakin ingin menghapus data ini?</h5>
+                <form action="" id="formDelete" method="POST">
+                    <button type="submit" class="btn btn-danger" id="btnTambahSatuan" name="tambah">Hapus</button>
+                    <button class="btn btn-secondary mt-1" type="button" data-dismiss="modal">Batal</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
