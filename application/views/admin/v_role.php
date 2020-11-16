@@ -80,7 +80,7 @@
                                         <button type="button" data-kode="<?= $roles['kode_role']; ?>" class="btn btn-warning btn-xs mx-auto btn-edit" data-toggle="modal" data-target="#modalEdit">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </button>
-                                        <a href="<?= base_url('admin/C_menu/hakAkses/' . $roles['kode_role']); ?>" class="btn btn-info btn-xs mx-auto">
+                                        <a href="<?= base_url('admin/C_menu/userAkses/' . $roles['kode_role']); ?>" class="btn btn-info btn-xs mx-auto">
                                             <i class="fas fa-fw fa-cog text-white"></i>
                                         </a>
                                     </td>
