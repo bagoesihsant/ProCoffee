@@ -65,7 +65,7 @@
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $pro->barcode ?></td>
-                                    <td><?= $pro->name ?></td>
+                                    <td><?= $pro->nama_barang ?></td>
                                     <td><?= $pro->harga ?></td>
                                     <td class="text-center"><img src="<?= base_url('assets/items_img/') . $pro->gambar ?>" alt="Gambar tidak ditemukan" width="100"></td>
                                     <td class="d-flex justify-content-center">
@@ -87,7 +87,7 @@
                                         </a>
                                         <a href="" class="btn btn-warning btn-xs mx-auto" data-toggle="modal" data-target="#editModal" onClick="edit(
                                             '<?= $pro->kode_barang ?>',
-                                            '<?= $pro->name ?>',
+                                            '<?= $pro->nama_barang ?>',
                                             '<?= $pro->nama_kategori ?>',
                                             '<?= $pro->nama_satuan ?>',
                                             '<?= $pro->harga ?>',
