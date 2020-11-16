@@ -90,4 +90,45 @@ class M_menu extends CI_Model
         $this->db->delete('user_sub_menu', $data);
         return $this->db->affected_rows();
     }
+
+    // -- Hak Akses --
+    // Fungsi untuk mengambil semua data hak akses pada tabel
+    public function getAllRole()
+    {
+        return $this->db->get('user_role')->result_array();
+    }
+
+    // Fungsi untuk mengambil data hak akses terakhir pada tabel
+    public function getLastIdRole()
+    {
+        $this->db->order_by('kode_role', 'DESC');
+        return $this->db->get('user_role');
+    }
+
+    // Fungsi untuk menambahkan data hak akses kedalam tabel
+    public function tambahRole($data)
+    {
+        $this->db->insert('user_role', $data);
+        return $this->db->affected_rows();
+    }
+
+    // Fungsi untuk mengambil data hak akses tertentu dalam tabel menggunakan kode hak akses
+    public function getDetailRole($data)
+    {
+        return $this->db->get_where('user_role', $data)->row_array();
+    }
+
+    // Fungsi untuk mengubah data hak akses tertentu dalam tabel menggunakan kode hak akses
+    public function updateRole($data, $where)
+    {
+        $this->db->update('user_role', $data, $where);
+        return $this->db->affected_rows();
+    }
+
+    // Fungsi untuk menghapus data hak akses tertentu dalam tabel menggunakan kode hak akses
+    public function deleteRole($data)
+    {
+        $this->db->delete('user_role', $data);
+        return $this->db->affected_rows();
+    }
 }
