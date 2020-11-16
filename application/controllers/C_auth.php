@@ -7,6 +7,8 @@ class C_auth extends CI_Controller
     public function __construct() //ini methodddd
     {
         parent::__construct(); //untuk memanggil method cunstruct
+        // Load Model
+        $this->load->model('M_auth', 'model_auth');
     }
 
     // Index
@@ -115,5 +117,105 @@ class C_auth extends CI_Controller
   You have been log out!
 </div>');
         redirect('C_auth');
+    }
+
+    // Aktivasi Email
+    public function activated()
+    {
+        if (!$this->session->userdata('email_aktivasi')) {
+            redirect('auth');
+        }
+        $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[8]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Ulangi Password', 'trim|required|min_length[8]|matches[password1]');
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Aktivasi Akun';
+            $this->load->view('templates/login/header', $data);
+            $this->load->view('auth/v_aktivasi');
+            $this->load->view('templates/login/footer');
+        } else {
+            $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+            $email = $this->session->userdata('email_aktivasi');
+            $active = 1;
+            $this->db->set('password', $password);
+            $this->db->set('active_status', $active);
+            $this->db->where('email', $email);
+            $this->db->update('user');
+
+            $this->model_auth->hapus_token($email);
+            $this->session->unset_userdata('email_aktivasi');
+
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Akun Berhasil Diaktivasi! Silahkan Login</div>');
+            redirect('C_auth');
+        }
+    }
+
+    public function activation()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('user_reset_password', ['token' => $token])->row_array();
+            if ($user_token) {
+                $this->session->set_userdata('email_aktivasi', $email);
+                $this->activated();
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal! Email/Token Salah!</div>');
+                redirect('C_auth/');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal!Email Salah!</div>');
+            redirect('C_auth/');
+        }
+    }
+
+    // Ganti email akun
+    public function ganti_email_akun_activated()
+    {
+        if (!$this->session->userdata('account')) {
+            redirect('auth');
+        } else {
+            $email_baru = $this->session->userdata('ganti_email_baru');
+            $account = $this->session->userdata('account');
+
+            $this->db->set('email', $email_baru);
+            $this->db->where('kode_user', $account);
+            $this->db->update('user');
+
+            $this->model_auth->hapus_token($email_baru);
+            $this->session->unset_userdata('ganti_email_baru');
+            $this->session->unset_userdata('account');
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Akun Berhasil Diaktivasi! Silahkan Login</div>');
+            redirect('auth');
+        }
+    }
+
+    // Function untuk ganti email ketika edit data
+    public function gantiemail()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+        $account = $this->input->get('account');
+
+        $user = $this->db->get_where('user', ['kode_user' => $account])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('user_reset_password', ['token' => $token])->row_array();
+            if ($user_token) {
+                $this->session->set_userdata('account', $account);
+                $this->session->set_userdata('ganti_email_baru', $email);
+                $this->ganti_email_akun_activated();
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal! Email/Token Salah!</div>');
+                redirect('auth');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">User gagal diaktivasi, user tidak ditemukan</div>');
+            redirect('auth');
+        }
     }
 }

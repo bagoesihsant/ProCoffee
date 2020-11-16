@@ -98,7 +98,7 @@ $('#dataTableMenu tbody').on('click', '.btn-delete-menu', function () {
     Swal.fire({
         title: "Hapus Data",
         text: "Apakah anda yakin akan menghapus data ini ?",
-        icon: "error",
+        icon: "warning",
         buttonsStyling: false,
         showCancelButton: true,
         showConfirmButton: true,
@@ -203,7 +203,7 @@ $('#dataTableSubmenu tbody').on('click', '.btn-delete-submenu', function () {
     Swal.fire({
         title: "Hapus Data",
         text: "Apakah anda yakin akan menghapus data ini ?",
-        icon: "error",
+        icon: "warning",
         buttonsStyling: false,
         showCancelButton: true,
         showConfirmButton: true,

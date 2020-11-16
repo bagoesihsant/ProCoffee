@@ -54,6 +54,8 @@
 <script src="<?= base_url('assets/'); ?>custom/admin/menu.js"></script>
 <script src="<?= base_url('assets/'); ?>custom/admin/barang.js"></script>
 <script src="<?= base_url('assets/'); ?>custom/admin/supplier.js"></script>
+<script src="<?= base_url('assets/'); ?>custom/admin/role.js"></script>
+<script src="<?= base_url('assets/'); ?>custom/admin/user.js"></script>
 
 
 <!-- Mencetak pesan dari controller -->
