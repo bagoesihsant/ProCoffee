@@ -77,7 +77,7 @@ class C_barang extends CI_Controller
 
                     $data = array( //array untuk dimasukkan ke database
                         'kode_barang' => $kode,
-                        'name' => $nama,
+                        'nama' => $nama,
                         'kode_kategori' => $kategori,
                         'kode_satuan' => $unit,
                         'harga' => $harga,
@@ -193,7 +193,7 @@ class C_barang extends CI_Controller
                         'kode_barang' => $kode
                     );
                     $data = array(
-                        'name' => $nama,
+                        'nama' => $nama,
                         'kode_kategori' => $kategori,
                         'kode_satuan' => $unit,
                         'harga' => $harga,
@@ -218,7 +218,7 @@ class C_barang extends CI_Controller
                 );
 
                 $data = array(
-                    'name' => $nama,
+                    'nama' => $nama,
                     'kode_kategori' => $kategori,
                     'kode_satuan' => $unit,
                     'harga' => $harga,
