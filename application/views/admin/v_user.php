@@ -1,364 +1,315 @@
-<!-- Content Wrapper -->
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header ( Page Header ) -->
-    <div class="content-header">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Data User</h1>
+                    <h1><?= $title; ?></h1>
                 </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="">Home</a></li>
-                        <li class="breadcrumb-item">User</li>
-                    </ol>
-                </div>
+                <!-- <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">DataTables</li>
+            </ol>
+            </div> -->
             </div>
-        </div>
-    </div>
-    <!-- Content Header ( Page Header ) End -->
-
-    <!-- Main Content -->
-    <section class="content">
-        <div class="container-fluid">
-            <!-- Card -->
-            <div class="card">
-                <!-- Card Header -->
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h4 class="m-0">Tabel User</h4>
-                        </div>
-                        <div class="col-sm-6">
-                            <a href="#" data-toggle="modal" data-target="#tambahModal" class="btn btn-sm btn-info float-right">
-                                <i class="fas fa-fw fa-plus"></i>
-                                <span>Tambah</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card Header End -->
-                <!-- Card Body -->
-                <div class="card-body">
-                    <!-- Data Table -->
-                    <table id="userTable" class="table table-bordered table-striped">
-                        <!-- Thead -->
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Nama User</th>
-                                <th>Alamat</th>
-                                <th>Tanggal Lahir</th>
-                                <th>No. Hp</th>
-                                <th>Email</th>
-                                <th>Username</th>
-                                <th>Password</th>
-                                <th>Profile Image</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <!-- Thead End -->
-                        <!-- Tbody -->
-                        <tbody>
-                            <!-- Data Example -->
-                            <?php
-                            for ($i = 1; $i <= 15; $i++) :
-                            ?>
-                                <tr>
-                                    <td><?= $i; ?>.</td>
-                                    <td>John Doe</td>
-                                    <td>Jember</td>
-                                    <td>06-06-2000</td>
-                                    <td>082331495883</td>
-                                    <td>john@gmail.com</td>
-                                    <td>john</td>
-                                    <td>********</td>
-                                    <td><img class="direct-chat-img" src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg" alt="message user image"></td>
-                                    <td class="d-flex justify-content-around">
-                                        <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
-                                            <i class="fas fa-fw fa-eye text-white"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-xs btn-danger btnDeleteuser">
-                                            <i class="fas fa-fw fa-trash-alt"></i>
-                                        </a>
-                                        <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning">
-                                            <i class="fas fa-fw fa-edit text-white"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php
-                            endfor;
-                            ?>
-                            <!-- Data Example End -->
-                        </tbody>
-                        <!-- Tbody End -->
-                        <!-- Tfoot -->
-                        <tfoot>
-                            <tr class="text-center">
-                                <th>No.</th>
-                                <th>Nama User</th>
-                                <th>Alamat</th>
-                                <th>Tanggal Lahir</th>
-                                <th>No. Hp</th>
-                                <th>Email</th>
-                                <th>Username</th>
-                                <th>Password</th>
-                                <th>Profile Image</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
-                        <!-- Tfoot End -->
-                    </table>
-                    <!-- Data Table End -->
-                </div>
-                <!-- Card Body End -->
-            </div>
-            <!-- Card End -->
-        </div>
+        </div><!-- /.container-fluid -->
     </section>
-    <!-- Main Content End -->
 
-</div>
-<!-- Content Wrapper End -->
-
-<!-- Modal Tambah -->
-<div class="modal fade" id="tambahModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Tambah user</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label for="kode">Kode user</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="USR001" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="nama">
-                            Nama user
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="" placeholder="ex: John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat">
-                            Alamat
-                        </label>
-                        <input type="text" name="alamat" id="alamat" class="form-control" value="" placeholder="ex: Jember">
-                    </div>
-                    <div class="form-group">
-                        <label for="tlahir">
-                            Tenggal Lahir
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="tlahir" id="tlahir" class="form-control" value="" placeholder="ex: 06-06-2000">
-                    </div>
-                    <div class="form-group">
-                        <label for="notelp">
-                            No. Telpon / HP
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="notelp" id="notelp" class="form-control" value="" placeholder="ex: 08990001438">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">
-                            Email
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="email" id="email" class="form-control" value="" placeholder="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="username">
-                            Username
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="username" id="username" class="form-control" value="" placeholder="username">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">
-                            Password
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="password" name="password" id="password" class="form-control" value="" placeholder="password">
-                    </div>
-                    <div class="form-group">
-                        <label for="image">
-                            Gambar
-                        </label>
-                        <img class="direct-chat-img" src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg" alt="message user image">
-                    </div>
-                    <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary" id="btnTambahuser" name="tambah">Simpan</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal Tambah End -->
-
-<!-- Modal Detail -->
-<div class="modal fade" id="detailModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Preview user</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="kode">Kode user</label>
-                    <input type="text" name="kode" id="kode" class="form-control" value="USR001" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="nama">
-                        Nama user
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <input type="text" name="nama" id="nama" class="form-control" value="John Doe" placeholder="ex: John Doe" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="alamat">
-                        Alamat
-                    </label>
-                    <input type="text" name="alamat" id="alamat" class="form-control" value="Jember" placeholder="ex: Jember" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="tlahir">
-                        Tanggal Lahir
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <input type="text" name="tlahir" id="tlahir" class="form-control" value="06-06-2000" placeholder="ex: 06-06-2000" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="notelp">
-                        No. Telpon / HP
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <input type="text" name="notelp" id="notelp" class="form-control" value="08990001448" placeholder="ex: 08990001448" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="email">
-                        Email
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <input type="text" name="email" id="email" class="form-control" value="john@gmail.com" placeholder="email" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="username">
-                        Username
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <input type="text" name="username" id="username" class="form-control" value="john" placeholder="username" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="password">
-                        Password
-                        <sup class="text-danger">*</sup>
-                    </label>
-                    <input type="password" name="password" id="password" class="form-control" value="12345678" placeholder="Password" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="image">
-                        Gambar
-                    </label>
-                    <img class="direct-chat-img" src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg" alt="message user image">
-                </div>
-                <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-primary">Tutup</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal Detail End -->
-
-<!-- Modal Edit -->
-<div class="modal fade" id="editModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Edit user</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label for="kode">Kode user</label>
-                        <input type="text" name="kode" id="kode" class="form-control" value="USR001" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="nama">
-                            Nama user
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="John Doe" placeholder="ex: John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat">
-                            Alamat
-                        </label>
-                        <textarea name="alamat" id="alamat" class="form-control" placeholder="ex: Jember">Jember</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="tlahir">
-                            Tanggal Lahir
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="tlahir" id="tlahir" class="form-control" value="06-06-2000" placeholder="ex: 06-06-2000">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">
-                            E-Mail
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="email" id="email" class="form-control" value="john@gmail.com" placeholder="ex: john@gmail.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="username">
-                            Username
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="username" id="username" class="form-control" value="john" placeholder="ex: john">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">
-                            Password
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="password" name="password" id="password" value="12345678" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="image">
-                            Gambar
-
-                        </label>
-                        <img class="direct-chat-img" src="<?= base_url('assets/'); ?>dist/img/user1-128x128.jpg" alt="message user image">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="image" name="image">
-                            <label class="custom-file-label" for="image">Choose file</label>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="text-dark m-0"><?= $title ?> Table </h3>
+                            </div>
+                            <div class="col-6 float-right">
+                                <button data-toggle="modal" data-target="#newroleModal" class="btn btn-just-icon btn-round btn-primary float-right">Add Data <i class="fa fa-plus"></i></button>
+                            </div>
                         </div>
                     </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <?= $this->session->flashdata('message'); ?>
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Date Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($get_user as $m) :
+                                    $id = $m['kode_user'];
+                                    $status = $m['active_status'];
+                                    $id_role = $m['kode_role'];
+                                ?>
+                                    <tr>
+                                        <td><?= $i; ?></td>
+                                        <td><?= $m['nama']; ?></td>
+                                        <td><?= $m['email']; ?></td>
+                                        <td><?= $m['role']; ?></td>
+                                        <?php if ($status == 0) : ?>
+                                            <td><small class="badge badge-danger">Nonaktif</small></td>
+                                        <?php else : ?>
+                                            <td><small class="badge badge-success">Aktif</small></td>
+                                        <?php endif; ?>
+                                        <td><?= date('d F Y', $m['created_at']); ?></td>
+                                        <td class="text-right">
+                                            <button class="btn btn-info btn-xs btn-round" data-toggle="modal" data-target="#modal_edit<?= $id; ?>">Edit User</button>
+                                            <?php if ($status == 0) : ?>
+                                                <button class="btn btn-success btn-xs btn-round" data-toggle="modal" data-target="#modal_aktif<?= $id; ?>">Aktifkan User</button>
+                                            <?php else : ?>
+                                                <button class="btn btn-danger btn-xs btn-round" data-toggle="modal" data-target="#modal_nonaktif<?= $id; ?>">Nonaktifkan User</button>
+                                            <?php endif; ?>
+                                            <button class="btn btn-warning btn-xs btn-round" data-toggle="modal" data-target="#send_email<?= $id; ?>"><i class="fas fa-envelope text-white"></i></button>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                <?php endforeach; ?>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Date Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 
-                    <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
+
+<!-- Akhir Pembatas -->
+
+<!--MODAL DIALOG UNTUK CREATE DATA!-->
+<div class="modal fade" id="newroleModal" tabindex="-1" role="dialog" aria-labelledby="newroleModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newroleModal">Create New Data</h5>
+                </button>
+            </div>
+            <?= form_open_multipart('admin/C_user'); ?>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="">Nama</label>
+                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" value="<?= set_value('nama'); ?>">
+                    <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="">Alamat</label>
+                    <textarea name="alamat" id="alamat" cols="20" rows="4" class="form-control"><?= set_value('alamat'); ?></textarea>
+                    <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="">Tanggal Lahir</label>
+                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Masukkan tanggal_lahir" required>
+                </div>
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan email" value="<?= set_value('email'); ?>">
+                    <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" value="<?= set_value('username'); ?>">
+                    <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="">Nomor Telpon</label>
+                    <input type="text" class="form-control" id="notelp" name="notelp" placeholder="Masukkan notelp" value="<?= set_value('notelp'); ?>">
+                    <?= form_error('notelp', '<small class="text-danger">', '</small>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="">Silahkan Pilih Gambar Anda</label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="profile_image" name="profile_image">
+                            <label for="image" class="custom-file-label">Pilih File Anda</label>
+                        </div>
+                        <div class="input-group-append">
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">About</label>
+                    <input type="text" class="form-control" id="about" name="about" placeholder="Masukkan about" value="<?= set_value('about'); ?>">
+                    <?= form_error('about', '<small class="text-danger">', '</small>'); ?>
+                </div>
+                <div class="form-group">
+                    <label for="">Role</label>
+                    <select name="role_id" id="" class="form-control" required>
+                        <?php foreach ($role as $rl) : ?>
+                            <option value="<?= $rl['kode_role'] ?>"><?= $rl['role']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary" id="btnTambahuser" name="tambah">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-success">Simpan Data</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php
+foreach ($get_user as $i) :
+    $id = $i['kode_user'];
+    $nama = $i['nama'];
+    $alamat = $i['alamat'];
+    $tgl_lahir = $i['tanggal_lahir'];
+    $email = $i['email'];
+    $username = $i['username'];
+    $notelp = $i['notelp'];
+    $image = $i['profile_img'];
+    $about = $i['about'];
+    $role_id = $i['kode_role'];
+    $nama_role = $i['role'];
+    $is_active = $i['active_status'];
+    $date_created = $i['created_at'];
+    $change_pass = $i['update_at'];
+?>
+
+    <!-- Modal Edit Data User -->
+    <div class="modal fade" id="modal_edit<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel">Edit User</h3>
+                </div>
+                <?= form_open_multipart('admin/C_user/edit_user'); ?>
+                <input type="text" name="id_user" value="<?= $id; ?>" hidden>
+                <input type="text" name="email_lawas" value="<?= $email; ?>" hidden>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama User" value="<?= $nama; ?>">
+                        <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="">email</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan email User" value="<?= $email; ?>">
+                        <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="">username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username User" value="<?= $username; ?>">
+                        <?= form_error('username', '<small class="text-danger">', '</small>'); ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Pilih Role Anda</label>
+                        <select name="role_id" id="" class="form-control" required>
+                            <option value="<?= $role_id; ?>" selected disabled><?= $nama_role; ?></option>
+                            <option value="<?= $role_id; ?>" selected hidden><?= $nama_role; ?></option>
+
+                            <?php foreach ($role as $rl) : ?>
+                                <option value="<?= $rl['kode_role'] ?>"><?= $rl['role']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
-<!-- Modal Edit End -->
+
+    <!-- Modal Hapus User -->
+    <!-- Aktifkan -->
+    <div class="modal fade" id="modal_aktif<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel">Akfitkan Data User</h3>
+                </div>
+                <form action="<?= base_url() . 'admin/C_user/aktifkan'; ?>" method="post" class="form-horizontal">
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin mau mengaktifkan data user ini? <b><?= $nama; ?></b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id_user" value="<?= $id; ?>">
+                        <input type="hidden" name="status" value="1">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                        <button class="btn btn-success">Konfirmasi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nonaktifkan -->
+    <div class="modal fade" id="modal_nonaktif<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel">Nonaktifkan Data User</h3>
+                </div>
+                <form action="<?= base_url() . 'admin/C_user/nonaktifkan'; ?>" method="post" class="form-horizontal">
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin mau menonaktifkan data user ini? <b><?= $nama; ?></b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id_user" value="<?= $id; ?>">
+                        <input type="hidden" name="status" value="0">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                        <button class="btn btn-danger">Konfirmasi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Send Email Form -->
+    <div class="modal fade" id="send_email<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel">Send Token Password</h3>
+                </div>
+                <form action="<?= base_url() . 'admin/C_user/verif_password'; ?>" method="post" class="form-horizontal">
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin mengirim token password data user ini? <b><?= $nama; ?></b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id_user" value="<?= $id; ?>">
+                        <input type="hidden" name="status" value="1">
+                        <input type="hidden" name="email" value="<?= $email; ?>">
+                        <button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                        <button class="btn btn-primary">Konfirmasi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
