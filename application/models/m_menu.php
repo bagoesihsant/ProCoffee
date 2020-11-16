@@ -131,4 +131,26 @@ class M_menu extends CI_Model
         $this->db->delete('user_role', $data);
         return $this->db->affected_rows();
     }
+
+    // Manajemen Akses Menu
+
+    // Fungsi untuk mengambil apakah ada menu yang sudah aktif di hak akses tersebut
+    public function checkAccess($where)
+    {
+        return $this->db->get_where('user_access_menu', $where);
+    }
+
+    // Fungsi untuk menambahkan hak akses kedalam akses menu untuk mengakses menu tertentu
+    public function addAccess($data)
+    {
+        $this->db->insert('user_access_menu', $data);
+        return $this->db->affected_rows();
+    }
+
+    // Fungsi untuk menghapus hak akses dari dalam akses menu
+    public function removeAccess($data)
+    {
+        $this->db->delete('user_access_menu', $data);
+        return $this->db->affected_rows();
+    }
 }

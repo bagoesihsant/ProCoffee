@@ -519,5 +519,62 @@ class C_menu extends CI_Controller
     // Manajemen Pemberian Hak Akses
     public function userAkses($kode)
     {
+        // Mengambil data menu
+        $data['menu'] = $this->menu->getAllMenu();
+        // Mengirimkan kode user
+        $data['kode_role'] = $kode;
+
+        // Load View
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar');
+        $this->load->view('admin/v_assign_role');
+        $this->load->view('templates/admin/footer');
+    }
+
+    // Menambahkan hak akses kedalam akses menu
+    public function addAkses()
+    {
+        // Mengambil data yang dikirimkan melalui ajax
+        $data = [
+            'kode_role' => htmlspecialchars($this->input->post('kode_role', true)),
+            'kode_menu' => htmlspecialchars($this->input->post('kode_menu', true))
+        ];
+
+        // Menjalankan penambahan hak akses kedalam akses menu
+        $result = $this->menu->addAccess($data);
+
+        // Memeriksa apakah penambahkan berhasil atau tidak
+        if ($result > 0) {
+            // Jika penambahan berhasil
+            $hasil = ['error_message' => false];
+        } else {
+            // Jika penambahan gagal
+            $hasil = ['error_message' => true];
+        }
+
+        echo json_encode($hasil);
+    }
+
+    public function removeAkses()
+    {
+        // Mengambil data yang dikirimkan melalui ajax
+        $data = [
+            'kode_role' => htmlspecialchars($this->input->post('kode_role', true)),
+            'kode_menu' => htmlspecialchars($this->input->post('kode_menu', true))
+        ];
+
+        // Menjalankan penambahan hak akses kedalam akses menu
+        $result = $this->menu->removeAccess($data);
+
+        // Memeriksa apakah penambahkan berhasil atau tidak
+        if ($result > 0) {
+            // Jika penambahan berhasil
+            $hasil = ['error_message' => false];
+        } else {
+            // Jika penambahan gagal
+            $hasil = ['error_message' => true];
+        }
+
+        echo json_encode($hasil);
     }
 }
