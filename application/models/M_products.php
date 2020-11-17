@@ -3,6 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_products extends CI_Model
 {
+    public function LastNumberKategori()
+    {
+        $this->db->order_by('kode_kategori', 'DESC');
+        return $this->db->get('tbl_kategori');
+    }
     public function getDataProduct()
     {
         return $this->db->get('tbl_kategori');
@@ -39,6 +44,11 @@ class M_products extends CI_Model
     }
 
     // units
+    public function LastNumberSatuan()
+    {
+        $this->db->order_by('kode_satuan', 'DESC');
+        return $this->db->get('tbl_satuan');
+    }
     public function addDataSatuan($data)
     {
         $this->db->insert('tbl_satuan', $data);

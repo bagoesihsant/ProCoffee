@@ -43,7 +43,7 @@
                 <div class="card-body">
                     <?= $this->session->flashdata('message'); ?>
                     <!-- Data Table -->
-                    <table id="CategoriesTable" class="table table-bordered table-striped">
+                    <table id="dataTableMenu" class="table table-bordered table-striped">
                         <!-- Thead -->
                         <thead>
                             <tr>
@@ -102,7 +102,17 @@
                 <?= form_open_multipart('admin/C_kategori/addDataCategories'); ?>
                 <div class="form-group">
                     <label for="kode">Kode Categories</label>
-                    <input type="text" name="kode_kategori" id="kode_kategori" class="form-control" value="CSM001" required>
+                    <?php
+                    $data = $this->mproduk->LastNumberKategori();
+
+                    if ($data->num_rows() > 0) {
+                        $kode = $data->row_array();
+                        $kode = $this->hookdevlib->autonumber($kode['kode_kategori'], 3, 9);
+                    } else {
+                        $kode = "KTG000000001";
+                    }
+                    ?>
+                    <input type="text" name="kode_kategori" id="kode_kategori" class="form-control" value="<?= $kode; ?>" readonly>
 
                 </div>
                 <div class="form-group">
@@ -226,17 +236,15 @@ foreach ($row->result() as $rw => $r) : $no++; ?>
 <div class="modal fade" id="modalDelete">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Yakin Hapus Data??</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-body text-center">
+                <i class="fa fa-exclamation-triangle text-danger fa-7x mb-3 mt-2"></i> <br>
+                <h3 class="text-center font-weight-bold">Hapus Data</h3>
+                <h5 class="font-weight-light">Apa anda yakin ingin menghapus data ini?</h5>
+                <form action="" id="formDelete" method="POST">
+                    <button class="btn btn-default mr-2" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger ml-2" id="btnTambahCategories" name="tambah">Hapus</button>
+                </form>
             </div>
-            <form action="" id="formDelete" method="POST">
-                <div class="modal-footer">
-                    <button class="btn btn-default" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-danger" id="btnTambahCategories" name="tambah">Hapus</button>
-            </form>
         </div>
     </div>
 </div>
