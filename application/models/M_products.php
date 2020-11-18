@@ -70,6 +70,4 @@ class M_products extends CI_Model
         $this->db->delete('tbl_satuan');
     }
     // end units
-
-
 }
