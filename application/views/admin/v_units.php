@@ -103,7 +103,7 @@
                 <div class="form-group">
                     <label for="kode">Kode Satuan</label>
                     <?php
-                    $data = $this->mproduk->LastNumberSatuan();
+                    $data = $this->msatuan->LastNumberSatuan();
 
                     if ($data->num_rows() > 0) {
                         $kode = $data->row_array();
