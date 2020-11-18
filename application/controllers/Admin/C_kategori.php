@@ -9,7 +9,7 @@ class C_kategori extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('M_products', 'mproduk');
+        $this->load->model('M_Categories', 'mproduk');
     }
 
     public function index()
