@@ -141,7 +141,7 @@ class C_user extends CI_Controller
             $username = htmlspecialchars($this->input->post('username'));
             $role_id = htmlspecialchars($this->input->post('role_id'));
             if ($email_lawas != $email) {
-                $user = $this->db->get_where('user', ['email' => $email_lawas, 'is_active' => 1])->row_array();
+                $user = $this->db->get_where('user', ['email' => $email_lawas, 'active_status' => 1])->row_array();
                 if ($user) {
                     $token = base64_encode(random_bytes(32));
                     $user_token = [
@@ -149,7 +149,7 @@ class C_user extends CI_Controller
                         'token' => $token,
                         'created_at' => time()
                     ];
-                    $this->db->insert('token_user', $user_token);
+                    $this->db->insert('user_reset_password', $user_token);
                     // Sudah diupdate untuk data selain email
                     $data = array(
                         'nama' => $nama,
@@ -215,7 +215,7 @@ class C_user extends CI_Controller
             $this->load->view('templates/admin/footer', $data);
         } else {
             $email = $this->input->post('email');
-            $user = $this->db->get_where('user', ['email' => $email, 'is_active' => 1])->row_array();
+            $user = $this->db->get_where('user', ['email' => $email, 'active_status' => 1])->row_array();
 
             if ($user) {
                 $token = base64_encode(random_bytes(32));
@@ -268,7 +268,7 @@ class C_user extends CI_Controller
                                 </html>
         ";
         $this->load->library('email', $config);
-        $this->email->from('alfiannsx98@gmail.com', 'Aktivasi Akun');
+        $this->email->from('kingofxavier@gmail.com', 'Aktivasi Akun');
         $this->email->to($this->input->post('email'));
 
         $this->email->subject('Aktivasi Akun');
@@ -315,7 +315,7 @@ class C_user extends CI_Controller
                                 </html>
         ";
         $this->load->library('email', $config);
-        $this->email->from('alfiannsx98@gmail.com', 'Reset Password Akun');
+        $this->email->from('kingofxavier@gmail.com', 'Reset Password Akun');
         $this->email->to($this->input->post('email'));
 
         $this->email->subject('Reset Password Akun');
@@ -360,7 +360,7 @@ class C_user extends CI_Controller
                                 </html>
         ";
         $this->load->library('email', $config);
-        $this->email->from('alfiannsx98@gmail.com', 'Berganti Email Baru');
+        $this->email->from('kingofxavier@gmail.com', 'Berganti Email Baru');
         $this->email->to($this->input->post('email'));
 
         $this->email->subject('Ganti Email Baru');
