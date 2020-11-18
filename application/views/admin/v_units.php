@@ -205,7 +205,7 @@ foreach ($row->result() as $rw => $r) :  ?>
                     <?= form_open_multipart('admin/C_satuan/editDataUnits'); ?>
                     <div class="form-group">
                         <label for="kode">Kode Satuan</label>
-                        <input type="text" name="kode" value="<?= $r->kode_satuan ?>" id="kode" class="form-control" value="CSM001" required>
+                        <input type="text" name="kode" value="<?= $r->kode_satuan ?>" id="kode" class="form-control" readonly>
                     </div>
                     <div class="form-group">
                         <label for="nama">
