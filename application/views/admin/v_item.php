@@ -422,14 +422,8 @@
         $('#berat-detail').val(berat);
         $('#stok-detail').val(stok);
         $('#deskripsi-detail').val(deskripsi);
-        // $('#gambar').innerhtml('<img src="<?= base_url() . "assets/dist/img/kopi1.jpg" ?>" width="300">');
-        // document.getElemenById('gambar2').innerhtml = kode;
-
-        // var image=new Image(300, 300);
+        
         x.src = '<?= base_url('assets/items_img/') ?>' + gambar;
-        // x.appendChild(image);
-
-
     }
 
     // function modal edit
