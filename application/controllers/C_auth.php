@@ -14,7 +14,7 @@ class C_auth extends CI_Controller
     // Index
     public function index()
     {
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('email', 'Email/Username', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
         if ($this->form_validation->run() == false) {
@@ -29,39 +29,41 @@ class C_auth extends CI_Controller
 
     private function _login()
     {
-        $email = $this->input->post('email');
+        $email = htmlspecialchars($this->input->post('email'));
 
         $password = $this->input->post('password');
 
-        $user = $this->db->get_where('user', ['email' => $email])->row_array(); // bacanya sama seperti select * from tabel user where email = email
+        $user_email = $this->db->get_where('user', ['email' => $email])->row_array(); // bacanya sama seperti select * from tabel user where email = email
         # jk usernya ada
-        if ($user) {
-            if ($user['active_status'] == 1) {
+        $userName = $this->db->get_where('user', ['username' => $email])->row_array();
+        if ($user_email || $userName) {
+            if ($user_email['active_status'] == 1 || $userName['active_status'] == 1) {
                 # cek password
-                if (password_verify($password, $user['password'])) {
+                if (password_verify($password, $user_email['password'])) {
                     $data = [
-                        'email' => $user['email'],
-                        'kode_role' => $user['kode_role']
+                        'email' => $user_email['email'],
+                        'kode_role' => $user_email['kode_role']
+                    ];
+                    $this->session->set_userdata($data);
+                    redirect('pelanggan/C_pelanggan');
+                }elseif(password_verify($password, $userName['password'])){
+                    $data = [
+                        'email' => $userName['email'],
+                        'kode_role' => $userName['kode_role']
                     ];
                     $this->session->set_userdata($data);
                     redirect('pelanggan/C_pelanggan');
                 } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                    Wrong password!
-                  </div>');
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
                     redirect('C_auth');
                 }
             } else {
                 # code...
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-      This email has not been activated!
-    </div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email has not been activated!</div>');
                 redirect('C_auth');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-  Email has not registered!
-</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email / Username has not registered!</div>');
             redirect('C_auth');
         }
     }
@@ -102,9 +104,7 @@ class C_auth extends CI_Controller
             ];
 
             $this->db->insert('user', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-  Congratulation,your account has been created. Please Login!
-</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation,your account has been created. Please Login!</div>');
             redirect('C_auth');
         }
     }
@@ -112,10 +112,7 @@ class C_auth extends CI_Controller
     {
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('kode_role');
-
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-  You have been log out!
-</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been log out!</div>');
         redirect('C_auth');
     }
 
