@@ -36,7 +36,7 @@
                             <h4 class="m-0 text-dark">Tabel Stock Out</h4>
                         </div>
                         <div class="col-sm-6">
-                            <a href="" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#tambahModal">
+                            <a href="<?= base_url('kasir/ItemOut'); ?>" class="btn btn-primary btn-sm float-right">
                                 <i class="fas fa-fw fa-plus"></i>
                                 <span>Tambah</span>
                             </a>
@@ -71,7 +71,6 @@
                                 <td>Kopi</td>
                                 <td>1</td>
                                 <td>Kadaluarsa</td>
-                                <td>01-09-2020</td>
                                 <td>01-09-2020</td>
                                 <td class="d-flex justify-content-around">
                                     <a href="#" data-toggle="modal" class="btn btn-xs btn-info">
