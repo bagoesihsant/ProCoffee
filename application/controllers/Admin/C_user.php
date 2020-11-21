@@ -29,7 +29,7 @@ class C_user extends CI_Controller
                 'is_unique' => 'This Email already Exist'
             )
         );
-        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|min_length[10]|max_length[64]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|min_length[10]|max_length[150]');
         $this->form_validation->set_rules(
             'username',
             'Username',
