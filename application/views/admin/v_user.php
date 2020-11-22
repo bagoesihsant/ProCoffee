@@ -72,6 +72,7 @@
                                             <?php else : ?>
                                                 <button class="btn btn-danger btn-xs btn-round" data-toggle="modal" data-target="#modal_nonaktif<?= $id; ?>">Nonaktifkan User</button>
                                             <?php endif; ?>
+                                            <button class="btn btn-danger btn-xs btn-round" data-toggle="modal" data-target="#modal_hapus<?= $id; ?>">Hapus User</button>
                                             <button class="btn btn-warning btn-xs btn-round" data-toggle="modal" data-target="#send_email<?= $id; ?>"><i class="fas fa-envelope text-white"></i></button>
                                         </td>
                                     </tr>
@@ -300,6 +301,30 @@ foreach ($get_user as $i) :
                 <form action="<?= base_url() . 'admin/C_user/verif_password'; ?>" method="post" class="form-horizontal">
                     <div class="modal-body">
                         <p>Apakah Anda yakin mengirim token password data user ini? <b><?= $nama; ?></b></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id_user" value="<?= $id; ?>">
+                        <input type="hidden" name="status" value="1">
+                        <input type="hidden" name="email" value="<?= $email; ?>">
+                        <button class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                        <button class="btn btn-primary">Konfirmasi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Hapus Form -->
+    <div class="modal fade" id="modal_hapus<?= $id; ?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
+                </div>
+                <form action="<?= base_url() . 'admin/C_user/hapus_user/' . $id ?>" method="post" class="form-horizontal">
+                    <div class="modal-body">
+                        <p>Apakah anda yakin ingin menghapus data ini? <b><?= $nama; ?></b></p>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="id_user" value="<?= $id; ?>">

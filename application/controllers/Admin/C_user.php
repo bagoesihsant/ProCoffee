@@ -86,9 +86,6 @@ class C_user extends CI_Controller
             $lahir = htmlspecialchars(date_format($tgl_lahir, "Y-m-d"));
             $today = date("Y", time() - 8);
             if ($lahir <= $today) {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Gagal Disimpan, Date haruslah valid</div>');
-                redirect('admin/C_user');
-            } else {
                 $data = [
                     'kode_user' => htmlspecialchars($id_user),
                     'nama' => htmlspecialchars($this->input->post('nama')),
@@ -104,6 +101,9 @@ class C_user extends CI_Controller
                     'created_at' => htmlspecialchars(time()),
                     'updated_at' => 0
                 ];
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Gagal Disimpan, Date haruslah valid</div>');
+                redirect('admin/C_user');
             }
 
             // Function untuk send email ketika berhasil registrasi
@@ -182,6 +182,23 @@ class C_user extends CI_Controller
                 redirect('admin/C_user');
             }
         }
+    }
+
+    //Hapus Data
+
+    public function hapus_user($id)
+    {
+        //$id = htmlspecialchars($this->input->post('kode_user', true));
+        $this->M_user->hapus_user($id);
+        $data = array('id_user', $id);
+        $hapus = $this->M_user->hapus_user($data);
+
+        if ($hapus != 0) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus</div>');
+            redirect('admin/C_user');
+        } else
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"></div>');
+        redirect('admin/C_user');
     }
 
     public function nonaktifkan()

@@ -62,7 +62,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url() . "admin/index_product_units" ?>" class="nav-link">
+                            <a href="<?= base_url() . "admin/C_units" ?>" class="nav-link">
                                 <i class="nav-icon far fa-circle text-secondary"></i>
                                 <p>Units</p>
                             </a>
