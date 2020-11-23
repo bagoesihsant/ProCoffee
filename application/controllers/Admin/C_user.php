@@ -29,7 +29,7 @@ class C_user extends CI_Controller
                 'is_unique' => 'This Email already Exist'
             )
         );
-        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|min_length[10]|max_length[64]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|min_length[10]|max_length[150]');
         $this->form_validation->set_rules(
             'username',
             'Username',
@@ -85,6 +85,7 @@ class C_user extends CI_Controller
             $tgl_lahir = date_create($this->input->post('tanggal_lahir'));
             $lahir = htmlspecialchars(date_format($tgl_lahir, "Y-m-d"));
             $today = date("Y", time() - 8);
+          
             if ($lahir == $today) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Gagal Disimpan, Date haruslah valid</div>');
                 redirect('admin/C_user');
@@ -104,6 +105,9 @@ class C_user extends CI_Controller
                     'created_at' => htmlspecialchars(time()),
                     'updated_at' => 0
                 ];
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Gagal Disimpan, Date haruslah valid</div>');
+                redirect('admin/C_user');
             }
 
             // Function untuk send email ketika berhasil registrasi
@@ -141,7 +145,7 @@ class C_user extends CI_Controller
             $username = htmlspecialchars($this->input->post('username'));
             $role_id = htmlspecialchars($this->input->post('role_id'));
             if ($email_lawas != $email) {
-                $user = $this->db->get_where('user', ['email' => $email_lawas, 'is_active' => 1])->row_array();
+                $user = $this->db->get_where('user', ['email' => $email_lawas, 'active_status' => 1])->row_array();
                 if ($user) {
                     $token = base64_encode(random_bytes(32));
                     $user_token = [
@@ -149,7 +153,7 @@ class C_user extends CI_Controller
                         'token' => $token,
                         'created_at' => time()
                     ];
-                    $this->db->insert('token_user', $user_token);
+                    $this->db->insert('user_reset_password', $user_token);
                     // Sudah diupdate untuk data selain email
                     $data = array(
                         'nama' => $nama,
@@ -183,6 +187,8 @@ class C_user extends CI_Controller
             }
         }
     }
+
+
 
     public function nonaktifkan()
     {
@@ -268,7 +274,7 @@ class C_user extends CI_Controller
                                 </html>
         ";
         $this->load->library('email', $config);
-        $this->email->from('alfiannsx98@gmail.com', 'Aktivasi Akun');
+        $this->email->from('kingofxavier@gmail.com', 'Aktivasi Akun');
         $this->email->to($this->input->post('email'));
 
         $this->email->subject('Aktivasi Akun');
@@ -315,7 +321,7 @@ class C_user extends CI_Controller
                                 </html>
         ";
         $this->load->library('email', $config);
-        $this->email->from('alfiannsx98@gmail.com', 'Reset Password Akun');
+        $this->email->from('kingofxavier@gmail.com', 'Reset Password Akun');
         $this->email->to($this->input->post('email'));
 
         $this->email->subject('Reset Password Akun');
@@ -360,7 +366,7 @@ class C_user extends CI_Controller
                                 </html>
         ";
         $this->load->library('email', $config);
-        $this->email->from('alfiannsx98@gmail.com', 'Berganti Email Baru');
+        $this->email->from('kingofxavier@gmail.com', 'Berganti Email Baru');
         $this->email->to($this->input->post('email'));
 
         $this->email->subject('Ganti Email Baru');
