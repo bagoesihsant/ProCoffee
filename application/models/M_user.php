@@ -28,12 +28,4 @@ class M_user extends CI_Model
         $this->db->where('kode_user', $id);
         $this->db->update('user', $data);
     }
-
-    function hapus_user($id)
-    {
-        $data = array();
-        $this->db->where('kode_user', $id);
-        $this->db->delete('user', $data);
-        return $this->db->affected_rows();
-    }
 }

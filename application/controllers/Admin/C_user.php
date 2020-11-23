@@ -184,22 +184,7 @@ class C_user extends CI_Controller
         }
     }
 
-    //Hapus Data
 
-    public function hapus_user($id)
-    {
-        //$id = htmlspecialchars($this->input->post('kode_user', true));
-        $this->M_user->hapus_user($id);
-        $data = array('id_user', $id);
-        $hapus = $this->M_user->hapus_user($data);
-
-        if ($hapus != 0) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil dihapus</div>');
-            redirect('admin/C_user');
-        } else
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"></div>');
-        redirect('admin/C_user');
-    }
 
     public function nonaktifkan()
     {
