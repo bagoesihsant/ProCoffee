@@ -102,7 +102,17 @@
                 <?= form_open_multipart('admin/C_satuan/addDataUnits'); ?>
                 <div class="form-group">
                     <label for="kode">Kode Satuan</label>
-                    <input type="text" name="kode" id="kode" class="form-control" value="CSM001" required>
+                    <?php
+                    $data = $this->msatuan->LastNumberSatuan();
+
+                    if ($data->num_rows() > 0) {
+                        $kode = $data->row_array();
+                        $kode = $this->hookdevlib->autonumber($kode['kode_satuan'], 4, 8);
+                    } else {
+                        $kode = "UNIT00000001";
+                    }
+                    ?>
+                    <input type="text" name="kode" id="kode" class="form-control" value="<?= $kode; ?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="nama">
@@ -195,7 +205,7 @@ foreach ($row->result() as $rw => $r) :  ?>
                     <?= form_open_multipart('admin/C_satuan/editDataUnits'); ?>
                     <div class="form-group">
                         <label for="kode">Kode Satuan</label>
-                        <input type="text" name="kode" value="<?= $r->kode_satuan ?>" id="kode" class="form-control" value="CSM001" required>
+                        <input type="text" name="kode" value="<?= $r->kode_satuan ?>" id="kode" class="form-control" readonly>
                     </div>
                     <div class="form-group">
                         <label for="nama">
@@ -245,8 +255,8 @@ foreach ($row->result() as $rw => $r) :  ?>
                 <h3 class="text-center font-weight-bold">Hapus Data</h3>
                 <h5 class="font-weight-light">Apa anda yakin ingin menghapus data ini?</h5>
                 <form action="" id="formDelete" method="POST">
-                    <button type="submit" class="btn btn-danger" id="btnTambahSatuan" name="tambah">Hapus</button>
-                    <button class="btn btn-secondary mt-1" type="button" data-dismiss="modal">Batal</button>
+                    <button class="btn btn-secondary mr-2" type="button" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger ml-2" id="btnTambahSatuan" name="tambah">Hapus</button>
                 </form>
             </div>
         </div>

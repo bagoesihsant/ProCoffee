@@ -1,8 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_products extends CI_Model
+class M_Categories extends CI_Model
 {
+    public function LastNumberKategori()
+    {
+        $this->db->order_by('kode_kategori', 'DESC');
+        return $this->db->get('tbl_kategori');
+    }
     public function getDataProduct()
     {
         return $this->db->get('tbl_kategori');
@@ -33,33 +38,4 @@ class M_products extends CI_Model
         $this->db->where('kode_kategori', $id);
         $this->db->delete('tbl_kategori');
     }
-    public function readDatasatuan()
-    {
-        return $this->db->get('tbl_satuan');
-    }
-
-    // units
-    public function addDataSatuan($data)
-    {
-        $this->db->insert('tbl_satuan', $data);
-    }
-    public function editDataUnitsM($post)
-    {
-        $params_data = [
-            'nama' => htmlspecialchars($post['nama']),
-            'updated' => time()
-        ];
-        $this->db->where('kode_satuan', $post['kode']);
-        $this->db->update('tbl_satuan', $params_data);
-        return true;
-    }
-
-    public function deleteUnits($id)
-    {
-        $this->db->where('kode_satuan', $id);
-        $this->db->delete('tbl_satuan');
-    }
-    // end units
-
-
 }

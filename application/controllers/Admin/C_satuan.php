@@ -9,13 +9,13 @@ class C_satuan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('M_products', 'mproduk');
+        $this->load->model('M_Satuan', 'msatuan');
     }
 
     // Units
     public function index()
     {
-        $data['row'] = $this->mproduk->readDatasatuan();
+        $data['row'] = $this->msatuan->readDatasatuan();
         $this->load->view('templates/admin/header');
         $this->load->view('templates/admin/sidebar');
         $this->load->view('admin/v_units', $data);
@@ -37,7 +37,7 @@ class C_satuan extends CI_Controller
                 'nama'        => $nama_unit,
                 'created'     => time()
             ];
-            $this->mproduk->addDataSatuan($data);
+            $this->msatuan->addDataSatuan($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Satuan Barang telah di tambahkan</div>');
             redirect('admin/satuan');
         }
@@ -52,7 +52,7 @@ class C_satuan extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->index();
         } else {
-            $this->mproduk->editDataUnitsM($post);
+            $this->msatuan->editDataUnitsM($post);
         }
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Satuan Barang telah di Ubah</div>');
@@ -65,7 +65,7 @@ class C_satuan extends CI_Controller
 
     public function deleteUnits($id)
     {
-        $this->mproduk->deleteUnits($id);
+        $this->msatuan->deleteUnits($id);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Nama Units Barang telah di Hapus</div>');
             redirect('admin/satuan');

@@ -85,7 +85,11 @@ class C_user extends CI_Controller
             $tgl_lahir = date_create($this->input->post('tanggal_lahir'));
             $lahir = htmlspecialchars(date_format($tgl_lahir, "Y-m-d"));
             $today = date("Y", time() - 8);
-            if ($lahir < $today) {
+          
+            if ($lahir == $today) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Gagal Disimpan, Date haruslah valid</div>');
+                redirect('admin/C_user');
+            } else {
                 $data = [
                     'kode_user' => htmlspecialchars($id_user),
                     'nama' => htmlspecialchars($this->input->post('nama')),
