@@ -26,4 +26,11 @@ class C_stockout extends CI_Controller
         $this->load->view('admin/v_stock_outform');
         $this->load->view('templates/admin/footer');
     }
+
+    public function process()
+    {
+        if (isset($_POST['out_add'])) {
+            echo "proses stock out";
+        }
+    }
 }

@@ -54,7 +54,7 @@
                     <!-- <div class="col-md-4 col-md-offset-4"> -->
                     <div class="col-md">
 
-                        <form action="<?= site_url('stock/process') ?>" method="post">
+                        <form action="<?= site_url('kasir/C_stockout/process') ?>" method="post">
                             <div class="form-group">
                                 <p>Tanda <b>*</b> Artinya Wajib Di isi</p>
                                 <label for="">Tanggal *</label>
