@@ -124,7 +124,7 @@
                 </button>
             </div>
             <div class="modal-body table-responsive">
-                <?= form_open_multipart('admin/C_kategori/addDataCategories'); ?>
+                <?= form_open_multipart('kasir/C_stockout/process'); ?>
                 <table class="table table-bordered table-striped" id="dataTableMenu">
                     <thead>
                         <tr>
