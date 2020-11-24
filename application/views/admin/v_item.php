@@ -47,7 +47,7 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Bardcode</th>
+                                <th width="180">Bardcode</th>
                                 <th>Nama Item</th>
                                 <th>Harga Barang</th>
                                 <th>Gambar Barang</th>
@@ -64,10 +64,16 @@
                             ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <td><?= $pro->barcode ?></td>
+                                    <td>
+                                        <?php
+                                            $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+                                            echo $generator->getBarcode($pro->barcode, $generator::TYPE_CODE_128); 
+                                            echo $pro->barcode
+                                        ?>
+                                    </td>
                                     <td><?= $pro->nama_barang ?></td>
                                     <td><?= $pro->harga ?></td>
-                                    <td class="text-center"><img src="<?= base_url('assets/items_img/') . $pro->gambar ?>" alt="Gambar tidak ditemukan" width="100"></td>
+                                    <td class="text-center"><img src="<?= base_url('assets/items_img/') .$pro->gambar?>" alt="Gambar tidak ditemukan" width="100"></td>
                                     <td class="d-flex justify-content-center">
                                         <a href="" class="btn btn-primary btn-xs mx-auto" data-toggle="modal" data-target="#detailModal" onClick="detail(
                                             '<?= $pro->kode_barang ?>',
@@ -82,12 +88,14 @@
                                         )">
                                             <i class="fas fa-fw fa-eye"></i>
                                         </a>
-                                        <a href="<?= base_url('admin/C_barang/hapus_items/') . $pro->kode_barang ?>" class="btn btn-danger btn-xs mx-auto">
+                                        <a href="#!" onclick="return deleteConfirm('<?php echo base_url('admin/C_barang/hapus_items/') .$pro->kode_barang ?>')"
+                                            class="btn btn-danger btn-xs mx-auto">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
                                         <a href="" class="btn btn-warning btn-xs mx-auto" data-toggle="modal" data-target="#editModal" onClick="edit(
                                             '<?= $pro->kode_barang ?>',
                                             '<?= $pro->nama_barang ?>',
+                                            '<?= $pro->barcode ?>',
                                             '<?= $pro->nama_kategori ?>',
                                             '<?= $pro->nama_satuan ?>',
                                             '<?= $pro->harga ?>',
@@ -162,7 +170,14 @@
                             Nama Items
                             <sup class="text-danger">*</sup>
                         </label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="" required>
+                        <input type="text" name="nama" id="nama" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">
+                            Barcode
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="barcode" id="barcode" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="kategori">
@@ -209,16 +224,20 @@
                             Deskripsi
                             <sup class="text-danger">*</sup>
                         </label>
-                        <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi" required></textarea>
+                        <textarea class="form-control ckeditor" id="deskripsi" rows="3" name="deskripsi" required></textarea>
                     </div>
 
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="gambar" id="gambar" aria-describedby="inputGroupFileAddon01" required>
-                        <label class="custom-file-label" for="gambar">Gambar/Foto Barang</label>
-                        <p>
+                    <div class="form-group">
+                        <label for="">
+                            Ubah gambar
                             <sup class="text-danger">*</sup>
-                            gambar yang di upload harus berekstensi jpg/jpeg/png
-                        </p>
+                        </label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                                <label for="image" class="custom-file-label">ekstensi gambar harus jpg/jpeg/png</label>
+                            </div>
+                        </div>
                     </div>
             </div>
             <div class="modal-footer">
@@ -295,7 +314,7 @@
                     <textarea class="form-control" id="deskripsi-detail" rows="3" readonly></textarea>
                 </div>
                 <div class="form-group text-center">
-                    <td><img style="width:300px; height:300px" src="" alt="" id="gambar-detail"></td>
+                    <td><img style="width:300px" src="" alt="" id="gambar-detail"></td>
                 </div>
             </div>
             <div class="modal-footer">
@@ -329,6 +348,13 @@
                             <sup class="text-danger">*</sup>
                         </label>
                         <input type="text" name="nama" id="nama-edit" class="form-control" value="Kopi Hijau">
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">
+                            Barcode
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <input type="text" name="barcode" id="barcode-edit" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="kategori">
@@ -376,18 +402,22 @@
                             Deskripsi
                             <sup class="text-danger">*</sup>
                         </label>
-                        <textarea class="form-control" name="deskripsi" id="deskripsi-edit" rows="3" required></textarea>
+                        <textarea class="form-control ckeditor" name="deskripsi" id="deskripsi-edit" rows="3" required></textarea>
                     </div>
                     <div class="form-group text-center">
-                        <td><img src="" alt="" id="gambar-edit" style="width:300px; height:300px"></td>
+                        <td><img src="" alt="" id="gambar-edit" style="width:300px"></td>
                     </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="gambar" id="gambar" aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="gambar_upload">Ubah Foto/Gambar</label>
-                    </div>
-                    <div class="custom-control custom-checkbox text-center">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1" name="ganti">
-                        <label class="custom-control-label text-secondary" for="customCheck1">Ganti Gambar? (ekstensi gambar harus jpg/jpeg/png)</label>
+                    <div class="form-group">
+                        <label for="">
+                            Ubah gambar
+                            <sup class="text-danger">*</sup>
+                        </label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                                <label for="image" class="custom-file-label">ekstensi gambar harus jpg/jpeg/png</label>
+                            </div>
+                        </div>
                     </div>
                     <input type="text" name="gambar_old" id="gambar-old-edit" class="form-control" hidden>
             </div>
@@ -400,6 +430,24 @@
     </div>
 </div>
 <!-- Modal Edit End -->
+
+<!-- modal hapus -->
+<div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <input type="text" id="kode-hapus" hidden>
+                <div class="modal-body text-center">
+                    <i class="fa fa-exclamation-triangle text-danger fa-7x mb-3 mt-2"></i> <br>
+                    <h3 class="text-center font-weight-bold">Hapus Data</h3>
+                    <h5 class="font-weight-light">Apa anda yakin ingin menghapus data ini?</h5>
+
+                    <a class="btn btn-danger mr-1" id="btn-delete">Hapus</a>
+                    <button class="btn btn-secondary mt-1" type="button" data-dismiss="modal">Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- modal hapus end -->
 
 <script>
     // script validasi hanya angka
@@ -427,11 +475,11 @@
     }
 
     // function modal edit
-    function edit(kode, nama, kategori, unit, harga, berat, deskripsi, stok, gambar) {
-        var y = document.getElementById("gambar-edit");
+    function edit(kode, nama, barcode, kategori, unit, harga, berat, deskripsi, stok, gambar) {
 
         $('#kode-edit').val(kode);
         $('#nama-edit').val(nama);
+        $('#barcode-edit').val(barcode);
         $('#kategori-edit').val(kategori);
         $('#unit-edit').val(unit);
         $('#harga-edit').val(harga);
@@ -442,8 +490,14 @@
         // $('#gambar').innerhtml('<img src="<?= base_url() . "assets/dist/img/kopi1.jpg" ?>" width="300">');
         // document.getElemenById('gambar2').innerhtml = kode;
 
+        var y = document.getElementById("gambar-edit");
         // var image=new Image(300, 300);
         y.src = '<?= base_url('assets/items_img/') ?>' + gambar;
         // x.appendChild(image);
     }
+
+    function deleteConfirm(url){
+  $('#btn-delete').attr('href', url);
+  $('#hapusModal').modal();
+  }
 </script>

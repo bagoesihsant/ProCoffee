@@ -173,7 +173,7 @@
                             Deskripsi
                             <sup class="text-danger">*</sup>
                         </label>
-                        <textarea name="deskripsi" id="deskripsi" class="form-control" required></textarea>
+                        <textarea name="deskripsi" id="deskripsi" class="form-control ckeditor" required></textarea>
                     </div>
                     <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
             </div>
@@ -281,9 +281,10 @@
                             Deskripsi
                             <sup class="text-danger">*</sup>
                         </label>
-                        <textarea name="deskripsi" id="deskripsi-edit" class="form-control" required></textarea>
+                        <textarea name="deskripsi" class="form-control ckeditor" required></textarea>
                     </div>
                     <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
+                    <p id="deskripsi-edit"></p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -296,25 +297,29 @@
 <!-- Modal Edit End -->
 
 <!-- modal hapus -->
-<div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <input type="text" id="kode-hapus" hidden>
-            <div class="modal-body text-center">
-                <i class="fa fa-exclamation-triangle text-danger fa-7x mb-3 mt-2"></i> <br>
-                <h3 class="text-center font-weight-bold">Hapus Data</h3>
-                <h5 class="font-weight-light">Apa anda yakin ingin menghapus data ini?</h5>
+    <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <input type="text" id="kode-hapus" hidden>
+                <div class="modal-body text-center">
+                    <i class="fa fa-exclamation-triangle text-danger fa-7x mb-3 mt-2"></i> <br>
+                    <h3 class="text-center font-weight-bold">Hapus Data</h3>
+                    <h5 class="font-weight-light">Apa anda yakin ingin menghapus data ini?</h5>
 
-                <a class="btn btn-danger mr-1" href="<?= base_url() . 'admin/C_supplier/hapus_supplier/' . $su->kode_supplier ?> ">Hapus</a>
-                <button class="btn btn-secondary mt-1" type="button" data-dismiss="modal">Batal</button>
+                    <a class="btn btn-danger mr-1" href="<?= base_url() . 'admin/C_supplier/hapus_supplier/' . $su->kode_supplier ?> ">Hapus</a>
+                    <button class="btn btn-secondary mt-1" type="button" data-dismiss="modal">Batal</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+<!-- modal hapus end -->
 
 <!-- script -->
 <script>
+
+    CKEDITOR.replace('deskripsi');
+    CKEDITOR.replace('deskripsi-edit');
+
     // script validasi hanya angka
     function hanyaAngka(event) {
         var angka = (event.which) ? event.which : event.keyCode
@@ -338,12 +343,16 @@
         $('#nama-edit').val(nama);
         $('#notelp-edit').val(no_hp);
         $('#address-edit').val(address);
-        $('#deskripsi-edit').val(deskripsi);
+        // $('#deskripsi-edit').val(deskripsi);
+        // document.getElementById("deskripsi-edit").innerHTML = deskripsi;
+
+        // var des = document.getElementById("deskripsi-edit");
+        CKEDITOR.instances['deskripsi-edit'].setData("ada");
     }
 
     //script hapus modal
     function hapus(id) {
         $('#kode-hapus').val(id);
-
     }
+
 </script>

@@ -46,7 +46,7 @@ class C_supplier extends CI_Controller
             $nama = htmlspecialchars($this->input->post('nama'));
             $notelp = $this->input->post('notelp');
             $alamat = htmlspecialchars($this->input->post('alamat'));
-            $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
+            $deskripsi =$this->input->post('deskripsi');
 
             $data = array(
                 'kode_supplier' => $kode,
@@ -110,7 +110,7 @@ class C_supplier extends CI_Controller
             $nama = htmlspecialchars($this->input->post('nama'));
             $notelp = $this->input->post('notelp');
             $alamat = htmlspecialchars($this->input->post('alamat'));
-            $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
+            $deskripsi = $this->input->post('deskripsi');
 
             $data = array(
                 'nama' => $nama,
