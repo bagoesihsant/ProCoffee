@@ -17,10 +17,11 @@ class C_supplier extends CI_Controller
     // Supplier  Supplier  Supplier
     public function index()
     {
+        $data['title'] = 'Supplier';
         $data['supplier'] = $this->supplier->getAllSupplier()->result();
 
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_supplier', $data);
         $this->load->view('templates/admin/footer');
     }

@@ -34,13 +34,13 @@
                 <!-- Menu Management -->
                 <li class="nav-header">MANAGEMENT</li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="<?= base_url() . "admin/C_user" ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-users"></i>
-                        <p>Customer</p>
+                        <p>User</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url() . "C_admin/index_supplier" ?>" class="nav-link">
+                    <a href="<?= base_url() . "admin/C_supplier" ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-truck"></i>
                         <p>Supplier</p>
                     </a>
@@ -56,19 +56,25 @@
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url() . "C_admin/index_product_categories" ?>" class="nav-link">
+                            <a href="<?= base_url() . "admin/C_kategori" ?>" class="nav-link">
                                 <i class="nav-icon far fa-circle text-secondary"></i>
                                 <p>Categories</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url() . "C_admin/index_product_units" ?>" class="nav-link">
+                            <a href="<?= base_url() . "admin/C_units" ?>" class="nav-link">
                                 <i class="nav-icon far fa-circle text-secondary"></i>
                                 <p>Units</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url() . "admin/C_barang" ?>" class="nav-link">
+                                <i class="nav-icon far fa-circle text-secondary"></i>
+                                <p>Items</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url() . "admin/C_satuan" ?>" class="nav-link">
                                 <i class="nav-icon far fa-circle text-secondary"></i>
                                 <p>Items</p>
                             </a>

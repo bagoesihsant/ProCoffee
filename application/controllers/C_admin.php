@@ -48,10 +48,11 @@ class C_admin extends CI_Controller
     // Supplier  Supplier  Supplier
     public function index_supplier()
     {
+        $data['title'] = 'Supplier';
         $data['supplier'] = $this->supplier->getAllSupplier()->result();
 
-        $this->load->view('templates/v_header_admin');
-        $this->load->view('templates/v_sidebar_admin');
+        $this->load->view('templates/v_header_admin', $data);
+        $this->load->view('templates/v_sidebar_admin', $data);
         $this->load->view('admin/v_supplier', $data);
         $this->load->view('templates/footer_js');
         $this->load->view('admin/custom_js');

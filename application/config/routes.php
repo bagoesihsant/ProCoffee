@@ -65,6 +65,11 @@ $route['admin/hapusMenu/(:any)'] = "admin/C_menu/hapusMenu/$1";
 $route['admin/kategori'] = "admin/C_kategori/index";
 $route['admin/satuan'] = "admin/C_satuan/index";
 
+// Custome Stock Out
+$route['kasir/stock_out_data'] = "kasir/C_stockout/index";
+$route['kasir/ItemOut'] = "kasir/C_stockout/stock_out_form";
+
+
 // Route Sub Menu
 $route['admin/submenu'] = "admin/C_menu/submenu";
 $route['admin/editSubmenu'] = "admin/C_menu/editSubmenu";
