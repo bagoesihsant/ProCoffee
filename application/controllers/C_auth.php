@@ -92,7 +92,7 @@ class C_auth extends CI_Controller
                     'created_at' => time()
                 ];
 
-                $this->db->insert('token', $user_token);
+                $this->db->insert('user_reset_password', $user_token);
                 $this->_sendEmail($token, 'Lupa');
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="success">Silahkan Cek Email Anda Untuk Reset Password</div>');
                 redirect('C_auth');
@@ -293,7 +293,7 @@ class C_auth extends CI_Controller
         $user = $this->db->get_where('user', ['kode_user' => $account])->row_array();
 
         if ($user) {
-            $user_token = $this->db->get_where('token', ['token' => $token])->row_array();
+            $user_token = $this->db->get_where('user_reset_password', ['token' => $token])->row_array();
             if ($user_token) {
                 $this->session->set_userdata('account', $account);
                 $this->session->set_userdata('ganti_email_baru', $email);
@@ -316,7 +316,7 @@ class C_auth extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
         if($user) {
-            $user_token = $this->db->get_where('token', ['token' => $token])->row_array();
+            $user_token = $this->db->get_where('user_reset_password', ['token' => $token])->row_array();
             if($user_token){
                 $this->session->set_userdata('reset_email', $email);
                 $this->gantiPassword();
