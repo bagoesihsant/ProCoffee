@@ -38,4 +38,9 @@ class M_supplier extends CI_Model
         $this->db->update('supplier', $data, $where);
         return $this->db->affected_rows();
     }
+
+    public function get_where($id)
+    {
+        return $this->db->get_where('supplier', array('kode_supplier' => $id));
+    }
 }
