@@ -58,4 +58,9 @@ class M_barang extends CI_Model
         $this->db->update('tbl_barang', $data, $where);
         return $this->db->affected_rows();
     }
+
+    public function get_where($id)
+    {
+        return $this->db->get_where('tbl_barang', array('kode_barang' => $id));
+    }
 }

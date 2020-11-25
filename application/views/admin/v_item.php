@@ -82,8 +82,8 @@
                                             '<?= $pro->nama_satuan ?>',
                                             '<?= $pro->harga ?>',
                                             '<?= $pro->berat ?>',
-                                            '<?= $pro->deskripsi ?>',
                                             '<?= $pro->stok ?>',
+                                            '<?= $pro->deskripsi ?>',
                                             '<?= $pro->gambar ?>'
                                         )">
                                             <i class="fas fa-fw fa-eye"></i>
@@ -100,12 +100,14 @@
                                             '<?= $pro->nama_satuan ?>',
                                             '<?= $pro->harga ?>',
                                             '<?= $pro->berat ?>',
-                                            '<?= $pro->deskripsi ?>',
                                             '<?= $pro->stok ?>',
                                             '<?= $pro->gambar ?>'
                                         )">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
+
+                                        <a href="<?= base_url("admin/C_barang/deskripsi_edit/") .$pro->kode_barang ?>" class="btn btn-xs btn-success pl-2 pr-2"><i class="fas fa-prescription-bottle"></i></a>
+
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -263,55 +265,55 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="kode">Kode Items</label>
-                    <input type="text" name="kode" id="kode-detail" class="form-control" readonly>
+                    <p id="kode-detail" name="kode" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="nama">
                         Nama Items
                         <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="nama" id="nama-detail" class="form-control" readonly>
+                    <p id="nama-detail" name="nama" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="kategori">
                         Kategori Items
                         <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="kategori" id="kategori-detail" class="form-control" readonly>
+                    <p id="kategori-detail" name="kategori" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="unit">
                         Unit Items
                         <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="unit" id="unit-detail" class="form-control" readonly>
+                    <p id="unit-detail" name="unit" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="harga">
                         Harga
                         <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="harga" id="harga-detail" class="form-control" readonly>
+                    <p id="harga-detail" name="harga" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="berat">
                         Berat
                         <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="berat" id="berat-detail" class="form-control" readonly>
+                    <p id="berat-detail" name="berat" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="stok">
                         Stok
                         <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="stok" id="stok-detail" class="form-control" readonly>
+                    <p id="stok-detail" name="stok" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="deskripsi">
                         Deskripsi
                     </label>
-                    <textarea class="form-control" id="deskripsi-detail" rows="3" readonly></textarea>
+                    <p id="deskripsi-detail" name="deskripsi" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group text-center">
                     <td><img style="width:300px" src="" alt="" id="gambar-detail"></td>
@@ -397,13 +399,6 @@
                         </label>
                         <input type="text" name="berat" id="berat-edit" class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <label for="deskripsi">
-                            Deskripsi
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <textarea class="form-control ckeditor" name="deskripsi" id="deskripsi-edit" rows="3" required></textarea>
-                    </div>
                     <div class="form-group text-center">
                         <td><img src="" alt="" id="gambar-edit" style="width:300px"></td>
                     </div>
@@ -459,19 +454,17 @@
     }
 
     //function modal detail
-    function detail(kode, nama, kategori, unit, harga, berat, deskripsi, stok, gambar) {
-        var x = document.getElementById("gambar-detail");
-
-        $('#kode-detail').val(kode);
-        $('#nama-detail').val(nama);
-        $('#kategori-detail').val(kategori);
-        $('#unit-detail').val(unit);
-        $('#harga-detail').val(harga);
-        $('#berat-detail').val(berat);
-        $('#stok-detail').val(stok);
-        $('#deskripsi-detail').val(deskripsi);
+    function detail(kode, nama, kategori, unit, harga, berat, stok, deskripsi, gambar) {
         
-        x.src = '<?= base_url('assets/items_img/') ?>' + gambar;
+        document.getElementById("kode-detail").innerHTML = kode;
+        document.getElementById("nama-detail").innerHTML = nama;
+        document.getElementById("kategori-detail").innerHTML = kategori;
+        document.getElementById("unit-detail").innerHTML = unit;
+        document.getElementById("harga-detail").innerHTML = harga;
+        document.getElementById("berat-detail").innerHTML = berat;
+        document.getElementById("stok-detail").innerHTML = stok;
+        document.getElementById("deskripsi-detail").innerHTML = deskripsi;
+        document.getElementById("gambar-detail").src = '<?= base_url('assets/items_img/') ?>' + gambar;
     }
 
     // function modal edit

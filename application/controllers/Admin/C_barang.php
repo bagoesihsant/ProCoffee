@@ -148,7 +148,6 @@ class C_barang extends CI_Controller
         $this->form_validation->set_rules('unit', 'Unit', 'required');
         $this->form_validation->set_rules('harga', 'Harga', 'required|numeric');
         $this->form_validation->set_rules('berat', 'Berat', 'required|numeric');
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
 
         if ($this->form_validation->run() == false) { //jika data gagal tervalidasi
             $this->session->set_flashdata(
@@ -165,7 +164,6 @@ class C_barang extends CI_Controller
             $unit = $this->input->post('unit');
             $harga = $this->input->post('harga');
             $berat = $this->input->post('berat');
-            $deskripsi = $this->input->post('deskripsi');
             $gambar_old = $this->input->post('gambar_old');
             $gambar = $_FILES['gambar']; //untuk mengambil file gambar
 
@@ -209,7 +207,6 @@ class C_barang extends CI_Controller
                         'kode_satuan' => $unit,
                         'harga' => $harga,
                         'berat' => $berat,
-                        'deskripsi' => $deskripsi,
                         'gambar' => $namaGambar,
                         'updated' => date('dmY')
                     );
@@ -243,7 +240,6 @@ class C_barang extends CI_Controller
                     'kode_satuan' => $unit,
                     'harga' => $harga,
                     'berat' => $berat,
-                    'deskripsi' => $deskripsi,
                     'updated' => date('dmY')
                 );
 
@@ -265,5 +261,58 @@ class C_barang extends CI_Controller
             }
         }
     }
-    //END ITEMS END ITEMS END ITEMS END ITEMS END ITEMS END ITEMS
+    
+    public function deskripsi_edit($id)
+    {
+        $data['deskripsi'] = $this->barang->get_where($id)->result();
+
+        $this->load->view('templates/admin/header');
+        $this->load->view('templates/admin/sidebar');
+        $this->load->view('admin/v_barang_desedit', $data);
+        $this->load->view('templates/admin/footer');
+        
+    }
+
+    public function edit_des_barang()
+    {
+        $this->form_validation->set_rules('deskripsi',"Deskripsi", 'required');
+
+        if ($this->form_validation->run() == false) {
+
+        $id = $this->input->post('kode_barang');
+
+            $this->session->set_flashdata(
+                'pesan_menu',
+                'toastr.error("Data gagal diUpdate, isian tidak boleh kosong")'
+            );
+            redirect('admin/C_barang/deskripsi_edit/'.$id);
+        } else {
+            $deskripsi = $this->input->post('deskripsi');
+            $id = $this->input->post('kode_barang');
+
+            $where = array (
+                'kode_barang' => $id
+            );
+            $data = array (
+                'deskripsi' => $deskripsi
+            );
+
+            if ($this->barang->edit_items($where, $data) > 0)
+            {
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.success("Data berhasil diUpdate")'
+                );
+            redirect('admin/C_barang');
+
+            }else{
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.error("Data gagal diUpdate")'
+                );
+            redirect('admin/C_barang/deskripsi_edit/'.$id);
+
+            }
+        }
+    }
 }

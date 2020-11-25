@@ -47,8 +47,8 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nama Supplier</th>
-                                <th>No HP</th>
-                                <th>Action</th>
+                                <th>Alamat</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <!-- Thead End -->
@@ -62,7 +62,7 @@
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $su->nama; ?></td>
-                                    <td><?= $su->no_hp ?></td>
+                                    <td><?= $su->alamat ?></td>
                                     <td class="d-flex justify-content-around">
                                         <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info" id="detail" onClick="detail(
                                                 '<?= $su->kode_supplier ?>',
@@ -87,6 +87,7 @@
                                                 )">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
+                                        <a href="<?= base_url("admin/C_supplier/deskripsi_edit/") .$su->kode_supplier ?>" class="btn btn-xs btn-success pl-2 pr-2"><i class="fas fa-prescription-bottle"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -200,35 +201,31 @@
             <div class="modal-body" id="modal-tampil">
                 <div class="form-group">
                     <label for="kode">Kode Supplier</label>
-                    <input type="text" name="kode" id="kode-detail" class="form-control" value="" readonly>
+                    <p id="kode-detail"  class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="nama">
                         Nama Supplier
-                        <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="nama" id="nama-detail" class="form-control" readonly>
+                    <p id="nama-detail"  class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="notelp">
                         No. Telpon / HP
-                        <sup class="text-danger">*</sup>
                     </label>
-                    <input type="text" name="notelp" id="notelp-detail" class="form-control" value="08233158636" readonly>
+                    <p id="notelp-detail"  class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="alamat">
                         Alamat
-                        <sup class="text-danger">*</sup>
                     </label>
-                    <textarea name="alamat" id="address-detail" class="form-control" readonly></textarea>
+                    <p id="address-detail"  class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="deskripsi">
                         Deskripsi
-                        <sup class="text-danger">*</sup>
                     </label>
-                    <textarea name="alamat" id="deskripsi-detail" class="form-control" readonly></textarea>
+                        <p id="deskripsi-detail" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
             </div>
             <div class="modal-footer">
@@ -276,15 +273,7 @@
                         </label>
                         <textarea name="alamat" id="address-edit" class="form-control" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="deskripsi">
-                            Deskripsi
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <textarea name="deskripsi" class="form-control ckeditor" required></textarea>
-                    </div>
                     <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
-                    <p id="deskripsi-edit"></p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal">Batal</button>
@@ -318,7 +307,6 @@
 <script>
 
     CKEDITOR.replace('deskripsi');
-    CKEDITOR.replace('deskripsi-edit');
 
     // script validasi hanya angka
     function hanyaAngka(event) {
@@ -330,11 +318,11 @@
 
     // script modal dinamis detail
     function detail(id, nama, no_hp, address, deskripsi) {
-        $('#kode-detail').val(id);
-        $('#nama-detail').val(nama);
-        $('#notelp-detail').val(no_hp);
-        $('#address-detail').val(address);
-        $('#deskripsi-detail').val(deskripsi);
+        document.getElementById("kode-detail").innerHTML = id;
+        document.getElementById("nama-detail").innerHTML = nama;
+        document.getElementById("notelp-detail").innerHTML = no_hp;
+        document.getElementById("address-detail").innerHTML = address;
+        document.getElementById("deskripsi-detail").innerHTML = deskripsi;
     }
 
     //script modal dinamis edit
@@ -343,11 +331,7 @@
         $('#nama-edit').val(nama);
         $('#notelp-edit').val(no_hp);
         $('#address-edit').val(address);
-        // $('#deskripsi-edit').val(deskripsi);
-        // document.getElementById("deskripsi-edit").innerHTML = deskripsi;
-
-        // var des = document.getElementById("deskripsi-edit");
-        CKEDITOR.instances['deskripsi-edit'].setData("ada");
+        
     }
 
     //script hapus modal
