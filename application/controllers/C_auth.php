@@ -52,7 +52,7 @@ class C_auth extends CI_Controller
                         'kode_role' => $userName['kode_role']
                     ];
                     $this->session->set_userdata($data);
-                    redirect('pelanggan/C_pelanggan');
+                    redirect('Admin/C_admin');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
                     redirect('C_auth');
