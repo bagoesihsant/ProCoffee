@@ -23,7 +23,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>ProCoffee</b> Login Administrator</a>
+            <p href="#"><b>ProCoffee</b> <?= $title; ?></p>
         </div>
         <!-- /.login-logo -->
         <div class="card">

@@ -35,7 +35,7 @@
 
 
 <p class="mb-1">
-    Lupa Password ? <a href="<?= base_url('C_auth/fw'); ?>">Klik Disini!</a>
+    Lupa Password ? <a href="<?= base_url('C_auth/lupapassword'); ?>">Klik Disini!</a>
 </p>
 <p class="mb-0">
     Daftar Baru ? <a href="<?= base_url('C_auth/registration'); ?>" class="text-center">Daftar User Baru</a>

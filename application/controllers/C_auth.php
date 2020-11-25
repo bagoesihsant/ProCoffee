@@ -8,6 +8,7 @@ class C_auth extends CI_Controller
     {
         parent::__construct(); //untuk memanggil method cunstruct
         // Load Model
+        $this->load->library('form_validation');
         $this->load->model('M_auth', 'model_auth');
     }
 
@@ -69,13 +70,104 @@ class C_auth extends CI_Controller
     }
 
 
-    public function fw()
+    public function lupaPassword()
     {
-        $data['title'] = 'Forgot Password';
-        $this->load->view('templates/login/header', $data);
-        $this->load->view('auth/v_forgot-password');
-        $this->load->view('templates/login/footer');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+
+        if($this->form_validation->run() == false){
+            $data['title'] = 'Forgot Password';
+            $this->load->view('templates/login/header', $data);
+            $this->load->view('auth/v_forgot-password');
+            $this->load->view('templates/login/footer');    
+        }else{
+            $email = htmlspecialchars($this->input->post('email'));
+            $user = $this->db->get_where('user', ['email' => $email, 'active_status' => 1])->row_array();
+
+            if($user) {
+                $token = base64_encode(random_bytes(32));
+                $user_token = 
+                [
+                    'email' => $email,
+                    'token' => $token,
+                    'created_at' => time()
+                ];
+
+                $this->db->insert('token', $user_token);
+                $this->_sendEmail($token, 'Lupa');
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="success">Silahkan Cek Email Anda Untuk Reset Password</div>');
+                redirect('C_auth');
+            }else{
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email Anda Belum Terdaftar!</div>');
+                redirect('C_auth/lupapassword');
+            }
+        } 
     }
+
+    private function _sendEmail($token, $type)
+    {
+        // Config Setting 
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'emailpass49@gmail.com',
+            'smtp_pass' => 'IndowebsteR9',
+            'smtp_port' => 587,
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n"
+        ];
+        // Jika pesan nya = verifikasi
+        $emailAkun = htmlspecialchars($this->input->post('email'));
+        $pesanEmail = "
+                                <html>
+                                <head>
+                                    <title>Kode Verifikasi</title>
+                                </head>
+                                <body>
+                                    <h2>Terimakasih telah Mendaftarkan akun anda</h2>
+                                    <p>Akun Anda</p>
+                                    <p>Email : " . $emailAkun . "</p>
+                                    <p>Tolong Klik Link Dibawah ini untuk aktivasi akun!</p>
+                                    <h4><a href='" . base_url() . "auth/verify?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Aktivasi!</a></h4>
+                                </body>
+                                </html>
+        ";
+        // Jika pesan nya = Lupa
+        $ResetPassword = "
+                                <html>
+                                <head>
+                                    <title>Kode Reset Password</title>
+                                </head>
+                                <body>
+                                    <h2>Silahkan Klik Link Dibawah Ini!!</h2>
+                                    <p>Akun Anda</p>
+                                    <p>Email : " . $emailAkun . "</p>
+                                    <p>Tolong Klik Link Dibawah ini untuk Reset Password!</p>
+                                    <h4><a href='" . base_url() . "auth/resetpassword?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Reset Password!!</a></h4>
+                                </body>
+                                </html>
+        ";
+        $this->load->library('email', $config);
+        $this->email->from('arlopaz.uye121299@gmail.com', 'Verifikasi Email');
+        $this->email->to(htmlspecialchars($this->input->post('email')));
+        if ($type == 'verify') {
+            $this->email->subject('Account Verification');
+            $this->email->message($pesanEmail);
+            $this->email->set_mailtype('html');
+        } else if ($type == 'Lupa') {
+            $this->email->subject('Reset Password');
+            $this->email->message($ResetPassword);
+            $this->email->set_mailtype('html');
+        }
+
+        if ($this->email->send()) {
+            return true;
+        } else {
+            echo $this->email->print_debugger();
+            die;
+        }
+    }
+
     public function registration()
     {
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
@@ -155,7 +247,7 @@ class C_auth extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
         if ($user) {
-            $user_token = $this->db->get_where('user_reset_password', ['token' => $token])->row_array();
+            $user_token = $this->db->get_where('token', ['token' => $token])->row_array();
             if ($user_token) {
                 $this->session->set_userdata('email_aktivasi', $email);
                 $this->activated();
@@ -201,7 +293,7 @@ class C_auth extends CI_Controller
         $user = $this->db->get_where('user', ['kode_user' => $account])->row_array();
 
         if ($user) {
-            $user_token = $this->db->get_where('user_reset_password', ['token' => $token])->row_array();
+            $user_token = $this->db->get_where('token', ['token' => $token])->row_array();
             if ($user_token) {
                 $this->session->set_userdata('account', $account);
                 $this->session->set_userdata('ganti_email_baru', $email);
@@ -213,6 +305,57 @@ class C_auth extends CI_Controller
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">User gagal diaktivasi, user tidak ditemukan</div>');
             redirect('auth');
+        }
+    }
+
+    public function resetpassword()
+    {
+        $email = htmlspecialchars($this->input->get('email'));
+        $token = htmlspecialchars($this->input->get('token'));
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        if($user) {
+            $user_token = $this->db->get_where('token', ['token' => $token])->row_array();
+            if($user_token){
+                $this->session->set_userdata('reset_email', $email);
+                $this->gantiPassword();
+            }else{
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal! Email/Token Salah!</div>');
+                redirect('C_auth');
+            }
+        }else{
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal! Email Salah!</div>');
+            redirect('C_auth');
+        }
+    }
+    
+    public function gantiPassword()
+    {
+        if(!$this->session->userdata('reset_email')) {
+            redirect('C_auth');
+        }
+        $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[8]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Ulangi Password', 'trim|required|min_length[8]|matches[password1]');
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Ganti Password';
+            $this->load->view('templates/auth_header', $data);
+            $this->load->view('auth/ganti-password');
+            $this->load->view('templates/auth_footer');
+        } else {
+            $password = password_hash(htmlspecialchars($this->input->post('password1')), PASSWORD_DEFAULT);
+            $email = $this->session->userdata('reset_email');
+
+            $this->db->set('password', $password);
+            $this->db->where('email', $email);
+            $this->db->update('user');
+
+            $this->model_auth->hapus_token($email);
+            $this->session->unset_userdata('reset_email');
+
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password Berhasil Diubah! Silahkan Login</div>');
+            redirect('C_auth');
         }
     }
 }
