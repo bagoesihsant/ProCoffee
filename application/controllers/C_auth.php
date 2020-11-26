@@ -173,6 +173,15 @@ class C_auth extends CI_Controller
         }
     }
 
+    function alpha_dash_username($str)
+    {
+        return ( ! preg_match("/^([-a-z0-9])+$/i", $str)) ? FALSE : TRUE;
+    } 
+    function alpha_dash_name($str)
+    {
+        return ( ! preg_match("/^([-a-z ])+$/i", $str)) ? FALSE : TRUE;
+    } 
+
     public function registration()
     {
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
@@ -182,6 +191,12 @@ class C_auth extends CI_Controller
             'required|trim|valid_email|is_unique[user.email]',
             ['is_unique' => 'This email has already registered!']
         );
+        $this->form_validation->set_rules(
+            'username',
+            'Username',
+            'required|trim|is_unique[user.username]|callback_alpha_dash_username',
+            ['is_unique' => 'This username has already registered', 'alpha_dash_username' => 'Username must be unique and dont use spaces, symbols and other']
+        );
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', ['matches => password dont match!', 'min_length' => 'Password too short!']);
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
         if ($this->form_validation->run()  == false) {
@@ -190,9 +205,16 @@ class C_auth extends CI_Controller
             $this->load->view('auth/v_registration');
             $this->load->view('templates/login/footer');
         } else {
+
+            $q_count = $this->db->get('user')->num_rows();
+
+            $id_user = "USR" . ($q_count + 1) . date('Hdyims', time());
+
             $data = [
+                'kode_user' => $id_user,
                 'nama' => htmlspecialchars($this->input->post('name', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
+                'username' => htmlspecialchars($this->input->post('username')),
                 'profile_img' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'kode_role' => 'RL0000000003', // yang melakukan registrasi pasti member

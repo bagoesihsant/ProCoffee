@@ -19,6 +19,15 @@
     </div>
     <?= form_error('email', '<small class="text-danger pl-1">', '</small>'); ?>
     <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?= set_value('username'); ?>">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-user-tag"></span>
+            </div>
+        </div>
+    </div>
+    <?= form_error('username', '<small class="text-danger pl-1">', '</small>'); ?>
+    <div class="input-group mb-3">
         <input type="password" class="form-control" placeholder="Password" name="password1" id="password1">
         <div class="input-group-append">
             <div class="input-group-text">
