@@ -106,7 +106,7 @@ class C_auth extends CI_Controller
             }
         } 
     }
-
+    
     private function _sendEmail($token, $type)
     {
         // Config Setting 
@@ -218,15 +218,62 @@ class C_auth extends CI_Controller
                 'profile_img' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'kode_role' => 'RL0000000003', // yang melakukan registrasi pasti member
-                'active_status' => 1, //sementara otomatis aktif,nanti akan dinonaktifkan saa sudah belajar user activation
+                'active_status' => 0, //sementara otomatis aktif,nanti akan dinonaktifkan saa sudah belajar user activation
                 'created_at'  => time()
             ];
 
+            $email = $this->input->post('email');
+            $token = base64_encode(random_bytes(32));
+            $type = 'verify';
+            $user_token = [
+                'email' => $email,
+                'token' => $token,
+                'created_at' => time()
+            ];
+
+            $this->db->insert('user_reset_password', $user_token);
+            $this->_sendEmail($token, $type);
+
             $this->db->insert('user', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation,your account has been created. Please Login!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation,your account has been created. Please Activated your account first!</div>');
             redirect('auth');
         }
     }
+
+    public function verify()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        if ($user) {
+            $user_token = $this->db->get_where('user_reset_password', ['token' => $token])->row_array();
+            if ($user_token) {
+                if (time() - $user_token['created_at'] < (60 * 60 * 72)) {
+                    $this->db->set('active_status', 1);
+                    $this->db->where('email', $email);
+                    $this->db->update('user');
+
+                    $this->db->delete('user_reset_password', ['email' => $email]);
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . $email . ' User has been activated, please login!!</div>');
+                    redirect('auth');
+                } else {
+                    $this->db->delete('user_reset_password', ['email' => $email]);
+
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Token Expired!</div>');
+                    redirect('auth');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong Token Code!</div>');
+                redirect('auth');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Activation Vailed</div>');
+            redirect('auth');
+        }
+    }
+
     public function logout()
     {
         $this->session->unset_userdata('email');
