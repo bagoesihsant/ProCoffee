@@ -141,7 +141,7 @@ class C_user extends CI_Controller
             $username = htmlspecialchars($this->input->post('username'));
             $role_id = htmlspecialchars($this->input->post('role_id'));
             if ($email_lawas != $email) {
-                $user = $this->db->get_where('user', ['email' => $email_lawas, 'is_active' => 1])->row_array();
+                $user = $this->db->get_where('user', ['email' => $email_lawas, 'active_status' => 1])->row_array();
                 if ($user) {
                     $token = base64_encode(random_bytes(32));
                     $user_token = [
@@ -215,7 +215,7 @@ class C_user extends CI_Controller
             $this->load->view('templates/admin/footer', $data);
         } else {
             $email = $this->input->post('email');
-            $user = $this->db->get_where('user', ['email' => $email, 'is_active' => 1])->row_array();
+            $user = $this->db->get_where('user', ['email' => $email, 'active_status' => 1])->row_array();
 
             if ($user) {
                 $token = base64_encode(random_bytes(32));

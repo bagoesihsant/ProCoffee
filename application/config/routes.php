@@ -69,3 +69,11 @@ $route['admin/satuan'] = "admin/C_satuan/index";
 $route['admin/submenu'] = "admin/C_menu/submenu";
 $route['admin/editSubmenu'] = "admin/C_menu/editSubmenu";
 $route['admin/hapusSubmenu/(:any)'] = "admin/C_menu/hapusSubmenu/$1";
+
+//Route untuk Auth
+$route['auth'] = "C_auth";
+$route['auth/registration'] = "C_auth/registration";
+$route['auth/lupaPassword'] = "C_auth/lupapassword";
+$route['auth/(:any)'] = "C_auth/$1";
+$route['auth/gantipassword'] = "C_auth/gantipassword";
+

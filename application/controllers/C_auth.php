@@ -13,16 +13,20 @@ class C_auth extends CI_Controller
     }
 
     // Index
+    public function _index()
+    {
+        $data['title'] = 'Login Page';
+        $this->load->view('templates/login/header', $data);
+        $this->load->view('auth/v_login');
+        $this->load->view('templates/login/footer') ;
+    }
     public function index()
     {
         $this->form_validation->set_rules('email', 'Email/Username', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Login Page';
-            $this->load->view('templates/login/header', $data);
-            $this->load->view('auth/v_login');
-            $this->load->view('templates/login/footer');
+            $this->_index();
         } else {
             $this->_login();
         }
@@ -46,7 +50,7 @@ class C_auth extends CI_Controller
                         'kode_role' => $user_email['kode_role']
                     ];
                     $this->session->set_userdata($data);
-                    redirect('pelanggan/C_pelanggan');
+                    redirect('user');
                 }elseif(password_verify($password, $userName['password'])){
                     $data = [
                         'email' => $userName['email'],
@@ -56,16 +60,16 @@ class C_auth extends CI_Controller
                     redirect('Admin/C_admin');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
-                    redirect('C_auth');
+                    redirect('auth');
                 }
             } else {
                 # code...
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">This email has not been activated!</div>');
-                redirect('C_auth');
+                redirect('auth');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email / Username has not registered!</div>');
-            redirect('C_auth');
+            redirect('auth');
         }
     }
 
@@ -95,10 +99,10 @@ class C_auth extends CI_Controller
                 $this->db->insert('user_reset_password', $user_token);
                 $this->_sendEmail($token, 'Lupa');
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="success">Silahkan Cek Email Anda Untuk Reset Password</div>');
-                redirect('C_auth');
+                redirect('auth');
             }else{
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email Anda Belum Terdaftar!</div>');
-                redirect('C_auth/lupapassword');
+                redirect('auth/lupapassword');
             }
         } 
     }
@@ -108,7 +112,8 @@ class C_auth extends CI_Controller
         // Config Setting 
         $config = [
             'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_host' => 'smtp.googlemail.com',
+            'smtp_crypto' => 'tls',
             'smtp_user' => 'emailpass49@gmail.com',
             'smtp_pass' => 'IndowebsteR9',
             'smtp_port' => 587,
@@ -148,7 +153,7 @@ class C_auth extends CI_Controller
                                 </html>
         ";
         $this->load->library('email', $config);
-        $this->email->from('arlopaz.uye121299@gmail.com', 'Verifikasi Email');
+        $this->email->from('alfiannsx98@gmail.com', 'Verifikasi Email');
         $this->email->to(htmlspecialchars($this->input->post('email')));
         if ($type == 'verify') {
             $this->email->subject('Account Verification');
@@ -197,7 +202,7 @@ class C_auth extends CI_Controller
 
             $this->db->insert('user', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation,your account has been created. Please Login!</div>');
-            redirect('C_auth');
+            redirect('auth');
         }
     }
     public function logout()
@@ -205,7 +210,7 @@ class C_auth extends CI_Controller
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('kode_role');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been log out!</div>');
-        redirect('C_auth');
+        redirect('auth');
     }
 
     // Aktivasi Email
@@ -235,7 +240,7 @@ class C_auth extends CI_Controller
 
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Akun Berhasil Diaktivasi! Silahkan Login</div>');
-            redirect('C_auth');
+            redirect('auth');
         }
     }
 
@@ -253,11 +258,11 @@ class C_auth extends CI_Controller
                 $this->activated();
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal! Email/Token Salah!</div>');
-                redirect('C_auth/');
+                redirect('auth/');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal!Email Salah!</div>');
-            redirect('C_auth/');
+            redirect('auth/');
         }
     }
 
@@ -322,26 +327,26 @@ class C_auth extends CI_Controller
                 $this->gantiPassword();
             }else{
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal! Email/Token Salah!</div>');
-                redirect('C_auth');
+                redirect('auth');
             }
         }else{
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal! Email Salah!</div>');
-            redirect('C_auth');
+            redirect('auth');
         }
     }
     
     public function gantiPassword()
     {
         if(!$this->session->userdata('reset_email')) {
-            redirect('C_auth');
+            redirect('auth');
         }
         $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[8]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Ulangi Password', 'trim|required|min_length[8]|matches[password1]');
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Ganti Password';
-            $this->load->view('templates/auth_header', $data);
-            $this->load->view('auth/ganti-password');
-            $this->load->view('templates/auth_footer');
+            $this->load->view('templates/login/header', $data);
+            $this->load->view('auth/v_ganti-password');
+            $this->load->view('templates/login/footer');
         } else {
             $password = password_hash(htmlspecialchars($this->input->post('password1')), PASSWORD_DEFAULT);
             $email = $this->session->userdata('reset_email');
@@ -355,7 +360,7 @@ class C_auth extends CI_Controller
 
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password Berhasil Diubah! Silahkan Login</div>');
-            redirect('C_auth');
+            redirect('auth');
         }
     }
 }
