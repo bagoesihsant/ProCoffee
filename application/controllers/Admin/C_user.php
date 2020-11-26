@@ -1,7 +1,5 @@
 <?php
-
 defined('BASEPATH') or exit('No direct script access allowed');
-
 class C_user extends CI_Controller
 {
     public function __construct()
@@ -85,7 +83,7 @@ class C_user extends CI_Controller
             $tgl_lahir = date_create($this->input->post('tanggal_lahir'));
             $lahir = htmlspecialchars(date_format($tgl_lahir, "Y-m-d"));
             $today = date("Y", time() - 8);
-          
+
             if ($lahir == $today) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Gagal Disimpan, Date haruslah valid</div>');
                 redirect('admin/C_user');
@@ -105,9 +103,6 @@ class C_user extends CI_Controller
                     'created_at' => htmlspecialchars(time()),
                     'updated_at' => 0
                 ];
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Gagal Disimpan, Date haruslah valid</div>');
-                redirect('admin/C_user');
             }
 
             // Function untuk send email ketika berhasil registrasi
