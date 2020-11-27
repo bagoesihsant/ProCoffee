@@ -47,7 +47,7 @@
                 <div class="card-body">
                     <!-- Table Sub Menu -->
                     <div class="col-md">
-                        <form action="<?= site_url('stock/process') ?>" method="POST">
+                        <form action="<?= site_url('kasir/C_stockin/process'); ?>" method="POST" id="formEditStock">
                             <div class="form-group">
                                 <p>Tanda <b>*</b> Artinya Wajib Di isi</p>
                                 <label for="">Tanggal * </label>
@@ -60,7 +60,7 @@
                                 <input type="hidden" name="kode_barang_input" id="kode_barang_input">
                                 <input type="text" name="barcode_input" id="barcode_input" class="form-control" required autofocus>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat" data-toogle="modal" data-target="#modal-item">
+                                    <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-item">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
@@ -123,8 +123,8 @@
                 </button>
             </div>
             <div class="modal-body table-responsive">
-                <?= form_open_multipart('admin/C_kategori/addDataCategories'); ?>
-                <table class="table table-bordered table-striped" id="dataTableMenu">
+                <?= form_open_multipart('kasir/C_stockin/process'); ?>
+                <table class="table table-bordered table-striped" id="dataTableStock">
                     <thead>
                         <tr>
                             <th>Barcode</th>
@@ -143,7 +143,7 @@
                             <td class="text-right">Rp.10000</td>
                             <td class="text-right">1</td>
                             <td class="text-right">
-                                <button class="btn btn-xs-btn-info" id="select">
+                                <button class="btn btn-xs btn-info" id="select">
                                     <i class="fa fa-check"></i> Pilih
                                 </button>
                             </td>
@@ -154,6 +154,7 @@
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal">Batal</button>
                 <button type="submit" class="btn btn-primary" id="btnTambahCategories" name="tambah">Simpan</button>
+                </form>
             </div>
         </div>
     </div>

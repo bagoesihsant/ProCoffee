@@ -48,7 +48,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <!-- Table Sub Menu -->
-                    <table id="dataTableSubmenu" class="table table-bordered table-striped">
+                    <table id="dataTableStock" class="table table-bordered table-striped">
                         <!-- Thead -->
                         <thead>
                             <tr>
@@ -70,10 +70,10 @@
                                 <td>20</td>
                                 <td>01-09-2020</td>
                                 <td class="d-flex justify-content-around">
-                                    <a href="#" data-toogle="modal" class="btn btn-xs btn-info">
+                                    <a href="#" id="#modalDetail" data-toogle="modal" data-target="#modalDetail" class="btn btn-xs btn-info btn-view">
                                         <i class="fas fa-fw fa-eye text-white"></i>
                                     </a>
-                                    <a href="#" class="btn btn-xs btn-danger btnDeleteUnits">
+                                    <a href="#" data-toogle="modal" data-target="" data-kode="<?= base_url('kode_stock'); ?>" class="btn btn-xs btn-danger btn-delete">
                                         <i class="fas fa-fw fa-trash-alt"></i>
                                     </a>
 
