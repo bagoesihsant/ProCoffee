@@ -34,13 +34,13 @@
                 <!-- Menu Management -->
                 <li class="nav-header">MANAGEMENT</li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="<?= base_url() . "admin/C_user" ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-users"></i>
                         <p>User</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url() . "C_admin/index_supplier" ?>" class="nav-link">
+                    <a href="<?= base_url() . "admin/C_supplier" ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-truck"></i>
                         <p>Supplier</p>
                     </a>
@@ -100,13 +100,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="<?= base_url() . "kasir/C_stockin" ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-dolly-flatbed"></i>
                         <p>Stock In</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="<?= base_url() . "kasir/C_stockout" ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-truck-loading"></i>
                         <p>Stock Out</p>
                     </a>
