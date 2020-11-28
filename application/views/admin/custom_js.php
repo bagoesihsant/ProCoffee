@@ -33,6 +33,11 @@
         "responsive": true,
         "autoWidth": false,
     });
+    //Mengubah tabel Stock di stock menjadi data tables
+    $('#dataTableStock').DataTable({
+        "responsive": true,
+        "autowidth": false,
+    });
 
     // Mengisi data form pada modal icon preview
     $('.btn-modal-icon').on('click', function() {
@@ -113,6 +118,33 @@
 
     // Jika tombol delete di tabel customer di klik, maka muncul sweet alert
     $('.btnDeleteuser').on('click', function() {
+        swalBootstrap.fire({
+            title: "Apakah anda yakin ?",
+            text: "Apakah anda yakin akan menghapus data ?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Ya",
+            cancelButtonText: "Tidak",
+            reverseButtons: true
+        }).then((hasil) => {
+            if (hasil.isConfirmed) {
+                swalBootstrap.fire({
+                    title: "Terhapus",
+                    text: "Data berhasil dihapus",
+                    icon: "success"
+                })
+            } else if (hasil.dismiss == Swal.DismissReason.cancel) {
+                swalBootstrap.fire({
+                    title: "Batal",
+                    text: "Data batal dihapus",
+                    icon: "error"
+                })
+            }
+        })
+    });
+
+    // jika tombol delete di tabel stock di klik, maka muncul sweet alert
+    $('.btnDeleteUnits').on('click', function() {
         swalBootstrap.fire({
             title: "Apakah anda yakin ?",
             text: "Apakah anda yakin akan menghapus data ?",

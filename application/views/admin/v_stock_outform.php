@@ -57,7 +57,7 @@
                         <form action="<?= site_url('stock/process') ?>" method="post">
                             <div class="form-group">
                                 <p>Tanda <b>*</b> Artinya Wajib Di isi</p>
-                                <label for="">Tanggal *</label>
+                                <label for="">Tanggal * </label>
                                 <input type="date" name="date" value="<?= date('Y-m-d') ?>" class="form-control" required>
                             </div>
                             <div>
