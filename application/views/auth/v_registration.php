@@ -1,5 +1,5 @@
 <p class="login-box-msg">Create An Account!</p>
-<form class="user" action="<?= base_url('C_auth/registration'); ?>" method="post">
+<form class="user" action="<?= base_url('auth/registration'); ?>" method="post">
     <div class="input-group mb-3">
         <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Full Name" value="<?= set_value('name'); ?>">
         <div class="input-group-append">
@@ -19,6 +19,15 @@
     </div>
     <?= form_error('email', '<small class="text-danger pl-1">', '</small>'); ?>
     <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?= set_value('username'); ?>">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-user-tag"></span>
+            </div>
+        </div>
+    </div>
+    <?= form_error('username', '<small class="text-danger pl-1">', '</small>'); ?>
+    <div class="input-group mb-3">
         <input type="password" class="form-control" placeholder="Password" name="password1" id="password1">
         <div class="input-group-append">
             <div class="input-group-text">
@@ -36,19 +45,12 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-8">
-            <div class="icheck-primary">
-                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                <label for="agreeTerms">
-                    I agree to the <a href="#">terms</a>
-                </label>
-            </div>
-        </div>
         <!-- /.col -->
-        <div class="col-4">
+        <div class="col">
             <button type="submit" class="btn btn-primary btn-block">Register</button>
         </div>
         <!-- /.col -->
     </div>
 </form>
-<a href="<?= base_url('C_auth'); ?>" class="text-center">I already have a membership</a>
+<br>
+<a href="<?= base_url('auth'); ?>" class="text-center">I already have a membership</a>
