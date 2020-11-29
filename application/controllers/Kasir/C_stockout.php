@@ -23,7 +23,9 @@ class C_stockout extends CI_Controller
     {
         $data['row'] =  $this->M_stock->get_data();
         $item = $this->M_barang->getAllItems()->result();
-        $data = ['item' => $item];
+        $data = [
+            'item' => $item
+        ];
         $this->load->view('templates/admin/header');
         $this->load->view('templates/admin/sidebar');
         $this->load->view('admin/v_stock_outform', $data);
