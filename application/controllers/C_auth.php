@@ -47,14 +47,7 @@ class C_auth extends CI_Controller
                 if (password_verify($password, $user_email['password'])) {
                     $data = [
                         'email' => $user_email['email'],
-                        'kode_role' => $user_email['kode_role']
-                    ];
-                    $this->session->set_userdata($data);
-                    redirect('user');
-                }elseif(password_verify($password, $userName['password'])){
-                    $data = [
-                        'email' => $userName['email'],
-                        'kode_role' => $userName['kode_role']
+                        'role_id' => $user_email['kode_role']
                     ];
                     $this->session->set_userdata($data);
                     redirect('user');
@@ -277,7 +270,7 @@ class C_auth extends CI_Controller
     public function logout()
     {
         $this->session->unset_userdata('email');
-        $this->session->unset_userdata('kode_role');
+        $this->session->unset_userdata('role_id');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been log out!</div>');
         redirect('auth');
     }

@@ -86,4 +86,5 @@ $route['auth/registration'] = "C_auth/registration";
 $route['auth/lupaPassword'] = "C_auth/lupapassword";
 $route['auth/(:any)'] = "C_auth/$1";
 $route['auth/gantipassword'] = "C_auth/gantipassword";
+$route['auth/blocked'] = "C_auth/blocked";
 
