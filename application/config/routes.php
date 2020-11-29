@@ -68,6 +68,7 @@ $route['admin/satuan'] = "admin/C_satuan/index";
 // Custome Stock Out
 $route['kasir/stock_out_data'] = "kasir/C_stockout/index";
 $route['kasir/ItemOut'] = "kasir/C_stockout/stock_out_form";
+$route['kasir/StockOut/delete/(:num)/(:num)'] = "kasir/C_stockout/delete_out";
 
 // Custome Stock In
 $route['kasir/stock_in_data'] = "kasir/C_stockin/index";
