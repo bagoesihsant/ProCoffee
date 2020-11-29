@@ -62,18 +62,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Kode Stock Out *</label>
-                                <!-- <?php
-                                        // $data = $this->M_stockOut->LastNumberStock();
+                                <?php
+                                $data = $this->M_stockOut->LastNumberStock();
 
-                                        // if ($data->num_rows() > 0) {
-                                        //     $kode = $data->row_array();
-                                        //     $kode = $this->hookdevlib->autonumber($kode['kode_stock'], 3, 9);
-                                        // } else {
-                                        //     $kode = "STK000000001";
-                                        // }
-                                        // 
-                                        ?> -->
-                                <input type="text" name="kode_stock_input" id="kode_stock_input" value="STK000000001" class="form-control" readonly>
+                                if ($data->num_rows() > 0) {
+                                    $kode = $data->row_array();
+                                    $kode = $this->hookdevlib->autonumber($kode['kode_stock'], 3, 9);
+                                } else {
+                                    $kode = "STK000000001";
+                                }
+
+                                ?>
+                                <input type="text" name="kode_stock_input" id="kode_stock_input" value="<?= $kode; ?>" class="form-control" readonly>
                             </div>
                             <div>
                                 <label for="barcode">Barcode *</label>
