@@ -29,6 +29,7 @@ class C_barang extends CI_Controller
     public function tambah_items()
     {
         $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('barcode', 'Barcode', 'required');
         $this->form_validation->set_rules('kategori', 'Kategori', 'required');
         $this->form_validation->set_rules('unit', 'Unit', 'required');
         $this->form_validation->set_rules('harga', 'Harga', 'required|numeric');
@@ -45,11 +46,12 @@ class C_barang extends CI_Controller
 
             $kode = $this->input->post('kode');
             $nama = htmlspecialchars($this->input->post('nama'));
+            $barcode = htmlspecialchars($this->input->post('barcode'));
             $kategori = $this->input->post('kategori');
             $unit = $this->input->post('unit');
             $harga = $this->input->post('harga');
             $berat = $this->input->post('berat');
-            $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
+            $deskripsi = $this->input->post('deskripsi');
             $gambar = $_FILES['gambar']; //untuk mengambil file gambar
 
             //nama random untuk rename gambar di db dan penyimpanan direktori
@@ -78,6 +80,7 @@ class C_barang extends CI_Controller
                     $data = array( //array untuk dimasukkan ke database
                         'kode_barang' => $kode,
                         'nama' => $nama,
+                        'barcode' => $barcode,
                         'kode_kategori' => $kategori,
                         'kode_satuan' => $unit,
                         'harga' => $harga,
@@ -140,11 +143,11 @@ class C_barang extends CI_Controller
     public function edit_items()
     {
         $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('barcode', 'Barcode', 'required');
         $this->form_validation->set_rules('kategori', 'Kategori', 'required');
         $this->form_validation->set_rules('unit', 'Unit', 'required');
         $this->form_validation->set_rules('harga', 'Harga', 'required|numeric');
         $this->form_validation->set_rules('berat', 'Berat', 'required|numeric');
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
 
         if ($this->form_validation->run() == false) { //jika data gagal tervalidasi
             $this->session->set_flashdata(
@@ -156,17 +159,15 @@ class C_barang extends CI_Controller
 
             $kode = $this->input->post('kode');
             $nama = htmlspecialchars($this->input->post('nama'));
+            $barcode = htmlspecialchars($this->input->post('barcode'));
             $kategori = $this->input->post('kategori');
             $unit = $this->input->post('unit');
             $harga = $this->input->post('harga');
             $berat = $this->input->post('berat');
-            $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
             $gambar_old = $this->input->post('gambar_old');
             $gambar = $_FILES['gambar']; //untuk mengambil file gambar
 
-            if ($this->input->post('ganti')) {
-                //untuk menghapus gambar sebelumnya di folder
-                unlink("assets/items_img/" . $gambar_old);
+            if (!empty($_FILES["gambar"]["name"])) { //jika ubah gambar
 
                 //nama random untuk rename gambar di db dan penyimpanan direktori
                 $namarandom = 'items' . $kode . rand();
@@ -174,6 +175,7 @@ class C_barang extends CI_Controller
                 $config['upload_path']      = './assets/items_img'; //buat nyimpen direktori gambar
                 $config['allowed_types']    = 'jpg|jpeg|png'; //tipe gambar yang boleh di upload
                 $config['file_name']        = $namarandom; //ambil nama random yang atas
+
 
                 //untuk load library upload
                 $this->load->library('upload', $config);
@@ -188,29 +190,43 @@ class C_barang extends CI_Controller
                     redirect('admin/C_barang');
                     //jika berhasil
                 } else {
+                    
+                    //untuk menghapus gambar sebelumnya di folder
+                    unlink("assets/items_img/" . $gambar_old);
+
+                    //untuk menentukan nama gambar yang di upload di db
+                    $namaGambar = $this->upload->data('file_name');
 
                     $where = array(
                         'kode_barang' => $kode
                     );
                     $data = array(
                         'nama' => $nama,
+                        'barcode' => $barcode,
                         'kode_kategori' => $kategori,
                         'kode_satuan' => $unit,
                         'harga' => $harga,
                         'berat' => $berat,
-                        'deskripsi' => $deskripsi,
-                        'gambar' => $namarandom,
+                        'gambar' => $namaGambar,
                         'updated' => date('dmY')
                     );
 
                     $edit = $this->barang->edit_items($where, $data);
-
-                    //alert jika gambar sukses diupload
-                    $this->session->set_flashdata(
-                        'pesan_menu',
-                        'toastr.success("Data berhasil di update")'
-                    );
-                    redirect('admin/C_barang');
+                    if($edit>0){
+                        //alert jika update databse sukses
+                        $this->session->set_flashdata(
+                            'pesan_menu',
+                            'toastr.success("Data berhasil di update")'
+                        );
+                        redirect('admin/C_barang');
+                    }else{
+                        //alert jika update database gagal
+                        $this->session->set_flashdata(
+                            'pesan_menu',
+                            'toastr.danger("Data gagal di update")'
+                        );
+                        redirect('admin/C_barang');
+                    }
                 }
             } else { //jika tidak upload gambar
                 $where = array(
@@ -219,17 +235,17 @@ class C_barang extends CI_Controller
 
                 $data = array(
                     'nama' => $nama,
+                    'barcode' => $barcode,
                     'kode_kategori' => $kategori,
                     'kode_satuan' => $unit,
                     'harga' => $harga,
                     'berat' => $berat,
-                    'deskripsi' => $deskripsi,
                     'updated' => date('dmY')
                 );
 
-                $edit = $this->barang->edit_items($data, $where);
+                $edit = $this->barang->edit_items($where, $data);
                 // alert(print_r($edit));
-                if ($edit = !0) {
+                if ($edit =! 0) {
                     $this->session->set_flashdata(
                         'pesan_menu',
                         'toastr.success("Data berhasil di update.")'
@@ -245,5 +261,58 @@ class C_barang extends CI_Controller
             }
         }
     }
-    //END ITEMS END ITEMS END ITEMS END ITEMS END ITEMS END ITEMS
+    
+    public function deskripsi_edit($id)
+    {
+        $data['deskripsi'] = $this->barang->get_where($id)->result();
+
+        $this->load->view('templates/admin/header');
+        $this->load->view('templates/admin/sidebar');
+        $this->load->view('admin/v_barang_desedit', $data);
+        $this->load->view('templates/admin/footer');
+        
+    }
+
+    public function edit_des_barang()
+    {
+        $this->form_validation->set_rules('deskripsi',"Deskripsi", 'required');
+
+        if ($this->form_validation->run() == false) {
+
+        $id = $this->input->post('kode_barang');
+
+            $this->session->set_flashdata(
+                'pesan_menu',
+                'toastr.error("Data gagal diUpdate, isian tidak boleh kosong")'
+            );
+            redirect('admin/C_barang/deskripsi_edit/'.$id);
+        } else {
+            $deskripsi = $this->input->post('deskripsi');
+            $id = $this->input->post('kode_barang');
+
+            $where = array (
+                'kode_barang' => $id
+            );
+            $data = array (
+                'deskripsi' => $deskripsi
+            );
+
+            if ($this->barang->edit_items($where, $data) > 0)
+            {
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.success("Data berhasil diUpdate")'
+                );
+            redirect('admin/C_barang');
+
+            }else{
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.error("Data gagal diUpdate")'
+                );
+            redirect('admin/C_barang/deskripsi_edit/'.$id);
+
+            }
+        }
+    }
 }

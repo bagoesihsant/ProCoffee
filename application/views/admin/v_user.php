@@ -35,7 +35,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <?= $this->session->flashdata('message'); ?>
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="dataTableMenu" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -195,7 +195,7 @@ foreach ($get_user as $i) :
     $nama_role = $i['role'];
     $is_active = $i['active_status'];
     $date_created = $i['created_at'];
-    $change_pass = $i['update_at'];
+    $change_pass = $i['updated_at'];
 ?>
 
     <!-- Modal Edit Data User -->
@@ -312,4 +312,7 @@ foreach ($get_user as $i) :
             </div>
         </div>
     </div>
+
+
+
 <?php endforeach; ?>

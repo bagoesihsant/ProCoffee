@@ -17,10 +17,11 @@ class C_supplier extends CI_Controller
     // Supplier  Supplier  Supplier
     public function index()
     {
+        $data['title'] = 'Supplier';
         $data['supplier'] = $this->supplier->getAllSupplier()->result();
 
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_supplier', $data);
         $this->load->view('templates/admin/footer');
     }
@@ -46,7 +47,7 @@ class C_supplier extends CI_Controller
             $nama = htmlspecialchars($this->input->post('nama'));
             $notelp = $this->input->post('notelp');
             $alamat = htmlspecialchars($this->input->post('alamat'));
-            $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
+            $deskripsi =$this->input->post('deskripsi');
 
             $data = array(
                 'kode_supplier' => $kode,
@@ -95,7 +96,6 @@ class C_supplier extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('notelp', 'No Telepon', 'required|numeric|min_length[11]|max_length[13]');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
 
         if ($this->form_validation->run() == false) {
 
@@ -110,13 +110,11 @@ class C_supplier extends CI_Controller
             $nama = htmlspecialchars($this->input->post('nama'));
             $notelp = $this->input->post('notelp');
             $alamat = htmlspecialchars($this->input->post('alamat'));
-            $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
 
             $data = array(
                 'nama' => $nama,
                 'no_hp' => $notelp,
                 'alamat' => $alamat,
-                'deskripsi' => $deskripsi,
                 'updated' => date('dmY')
             );
 
@@ -139,6 +137,60 @@ class C_supplier extends CI_Controller
             }
 
             redirect('admin/C_supplier');
+        }
+    }
+
+    public function deskripsi_edit($id)
+    {
+        $data['deskripsi'] = $this->supplier->get_where($id)->result();
+
+        $this->load->view('templates/admin/header');
+        $this->load->view('templates/admin/sidebar');
+        $this->load->view('admin/v_supplier_desedit', $data);
+        $this->load->view('templates/admin/footer');
+        
+    }
+
+    public function edit_des_supplier()
+    {
+        $this->form_validation->set_rules('deskripsi',"Deskripsi", 'required');
+
+        if ($this->form_validation->run() == false) {
+
+        $id = $this->input->post('kode_supplier');
+
+            $this->session->set_flashdata(
+                'pesan_menu',
+                'toastr.error("Data gagal diUpdate, isian tidak boleh kosong")'
+            );
+            redirect('admin/C_supplier/deskripsi_edit/'.$id);
+        } else {
+            $deskripsi = $this->input->post('deskripsi');
+            $id = $this->input->post('kode_supplier');
+
+            $where = array (
+                'kode_supplier' => $id
+            );
+            $data = array (
+                'deskripsi' => $deskripsi
+            );
+
+            if ($this->supplier->edit_supplier($data, $where) > 0)
+            {
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.success("Data berhasil diUpdate")'
+                );
+            redirect('admin/C_supplier');
+
+            }else{
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.error("Data gagal diUpdate")'
+                );
+            redirect('admin/C_supplier/deskripsi_edit/'.$id);
+
+            }
         }
     }
 }

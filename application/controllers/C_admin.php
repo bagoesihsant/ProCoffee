@@ -17,6 +17,8 @@ class C_admin extends CI_Controller
         // Sub Menu
         $this->load->model('M_sub_menu', 'submenu');
         $this->load->model('M_supplier', 'supplier');
+        //barang
+        $this->load->model('M_barang', 'barang');
         //form validation
         $this->load->library('form_validation');
     }
@@ -46,10 +48,11 @@ class C_admin extends CI_Controller
     // Supplier  Supplier  Supplier
     public function index_supplier()
     {
+        $data['title'] = 'Supplier';
         $data['supplier'] = $this->supplier->getAllSupplier()->result();
 
-        $this->load->view('templates/v_header_admin');
-        $this->load->view('templates/v_sidebar_admin');
+        $this->load->view('templates/v_header_admin', $data);
+        $this->load->view('templates/v_sidebar_admin', $data);
         $this->load->view('admin/v_supplier', $data);
         $this->load->view('templates/footer_js');
         $this->load->view('admin/custom_js');
@@ -318,9 +321,9 @@ class C_admin extends CI_Controller
     // START ITEMS START ITEMS START ITEMS START ITEMS START ITEMS START ITEMS
     public function index_product_items()
     {
-        $data['produk'] = $this->menu->getAllItems()->result();
-        $data['kategori'] = $this->menu->getAllCategories()->result();
-        $data['satuan'] = $this->menu->getAllUnits()->result();
+        $data['produk'] = $this->barang->getAllItems()->result();
+        $data['kategori'] = $this->barang->getAllCategories()->result();
+        $data['satuan'] = $this->barang->getAllUnits()->result();
 
         $this->load->view('templates/v_header_admin');
         $this->load->view('templates/v_sidebar_admin');
