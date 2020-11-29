@@ -49,6 +49,8 @@
 <script src="<?= base_url('assets/'); ?>dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url('assets/'); ?>dist/js/demo.js"></script>
+<!-- load script ckeditor -->
+<script type="text/javascript" src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
 
 <!-- Load File JavaScript yang dibuat secara custom untuk kebutuhan tertentu -->
 <script src="<?= base_url('assets/'); ?>custom/admin/menu.js"></script>
@@ -57,7 +59,7 @@
 <script src="<?= base_url('assets/'); ?>custom/admin/role.js"></script>
 <script src="<?= base_url('assets/'); ?>custom/admin/user.js"></script>
 <script src="<?= base_url('assets/'); ?>custom/admin/aksesMenu.js"></script>
-
+<script src="<?= base_url('assets/'); ?>custom/admin/stockIn.js"></script>
 
 <!-- Mencetak pesan dari controller -->
 <script>

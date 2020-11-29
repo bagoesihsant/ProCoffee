@@ -151,7 +151,7 @@ foreach ($row->result() as $rw => $r) : $no++; ?>
                     <?= form_open_multipart('admin/C_kategori/editDataCategories'); ?>
                     <div class="form-group">
                         <label for="kode">Kode Categories</label>
-                        <input type="text" name="kode_kategori" value="<?= $r->kode_kategori ?>" id="kode_kategori" class="form-control" value="CSM001" required>
+                        <input type="text" name="kode_kategori" value="<?= $r->kode_kategori ?>" id="kode_kategori" class="form-control" readonly>
                     </div>
                     <div class="form-group">
                         <label for="nama">

@@ -14,10 +14,12 @@ class C_admin extends CI_Controller
     // Index
     public function index()
     {
+        $data['title'] = 'Dashboard';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();;
         // Load View
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
-        $this->load->view('admin/v_dashboard');
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
+        $this->load->view('admin/v_dashboard', $data);
         $this->load->view('templates/admin/footer');
     }
 }
