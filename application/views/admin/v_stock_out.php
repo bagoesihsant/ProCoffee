@@ -69,7 +69,7 @@
                                     <td><?= $data->nama; ?></td>
                                     <td><?= $data->detail; ?></td>
                                     <td><?= $data->qty; ?></td>
-                                    <td><?= $data->date; ?></td>
+                                    <td><?= date("d-m-Y", $data->date); ?></td>
                                     <td class="d-flex justify-content-around">
                                         <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
