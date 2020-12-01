@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url() . "C_admin/index_supplier" ?>" class="nav-link">
+                    <a href="<?= base_url() . "admin/C_supplier" ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-truck"></i>
                         <p>Supplier</p>
                     </a>
@@ -68,7 +68,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url() . "C_admin/index_product_items" ?>" class="nav-link">
+                            <a href="<?= base_url() . "admin/C_barang" ?>" class="nav-link">
                                 <i class="nav-icon far fa-circle text-secondary"></i>
                                 <p>Items</p>
                             </a>

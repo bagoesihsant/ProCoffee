@@ -92,21 +92,10 @@
                                             class="btn btn-danger btn-xs mx-auto">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
-                                        <a href="" class="btn btn-warning btn-xs mx-auto" data-toggle="modal" data-target="#editModal" onClick="edit(
-                                            '<?= $pro->kode_barang ?>',
-                                            '<?= $pro->nama_barang ?>',
-                                            '<?= $pro->barcode ?>',
-                                            '<?= $pro->nama_kategori ?>',
-                                            '<?= $pro->nama_satuan ?>',
-                                            '<?= $pro->harga ?>',
-                                            '<?= $pro->berat ?>',
-                                            '<?= $pro->stok ?>',
-                                            '<?= $pro->gambar ?>'
-                                        )">
+
+                                        <a href="<?= base_url("admin/C_barang/edit_barang/") .$pro->kode_barang ?>" class="btn btn-xs btn-warning">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
-
-                                        <a href="<?= base_url("admin/C_barang/deskripsi_edit/") .$pro->kode_barang ?>" class="btn btn-xs btn-success pl-2 pr-2"><i class="fas fa-prescription-bottle"></i></a>
 
                                     </td>
                                 </tr>
@@ -173,6 +162,7 @@
                             <sup class="text-danger">*</sup>
                         </label>
                         <input type="text" name="nama" id="nama" class="form-control" required>
+                        <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="nama">
@@ -180,6 +170,7 @@
                             <sup class="text-danger">*</sup>
                         </label>
                         <input type="text" name="barcode" id="barcode" class="form-control" required>
+                        <?= form_error('barcode', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="kategori">
@@ -213,6 +204,7 @@
                             <sup class="text-danger">*</sup>
                         </label>
                         <input type="text" name="harga" id="harga" class="form-control" onkeypress="return hanyaAngka(event)" required>
+                        <?= form_error('harga', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="berat">
@@ -220,6 +212,7 @@
                             <sup class="text-danger">*</sup>
                         </label>
                         <input type="text" name="berat" id="berat" class="form-control" onkeypress="return hanyaAngka(event)" required>
+                        <?= form_error('berat', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">
@@ -227,6 +220,7 @@
                             <sup class="text-danger">*</sup>
                         </label>
                         <textarea class="form-control ckeditor" id="deskripsi" rows="3" name="deskripsi" required></textarea>
+                        <?= form_error('deskripsi', '<small class="text-danger">', '</small>'); ?>
                     </div>
 
                     <div class="form-group">
@@ -326,105 +320,6 @@
     </div>
 </div>
 <!-- Modal Detail End -->
-
-<!-- Modal Edit -->
-<div class="modal fade" id="editModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Edit Items</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <form action="<?= base_url('admin/C_barang/edit_items') ?>" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="kode">Kode Items</label>
-                        <input type="text" name="kode" id="kode-edit" class="form-control" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="nama">
-                            Nama Items
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="nama" id="nama-edit" class="form-control" value="Kopi Hijau">
-                    </div>
-                    <div class="form-group">
-                        <label for="nama">
-                            Barcode
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="barcode" id="barcode-edit" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="kategori">
-                            Kategori Items
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <select class="form-control" name="kategori" required>
-                            <?php foreach ($kategori as $kat) { ?>
-                                <option value="<?= $kat->kode_kategori ?>">
-                                    <?= $kat->nama ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="unit">
-                            Unit Items
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <select class="form-control" name="unit" required>
-                            <?php foreach ($satuan as $sat) { ?>
-                                <option value="<?= $sat->kode_satuan ?>">
-                                    <?= $sat->nama ?>
-                                </option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="harga">
-                            Harga
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="harga" id="harga-edit" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="berat">
-                            Berat
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="berat" id="berat-edit" class="form-control" required>
-                    </div>
-                    <div class="form-group text-center">
-                        <td><img src="" alt="" id="gambar-edit" style="width:300px"></td>
-                    </div>
-                    <div class="form-group">
-                        <label for="">
-                            Ubah gambar
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="gambar" name="gambar">
-                                <label for="image" class="custom-file-label">ekstensi gambar harus jpg/jpeg/png</label>
-                            </div>
-                        </div>
-                    </div>
-                    <input type="text" name="gambar_old" id="gambar-old-edit" class="form-control" hidden>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary" id="btnTambahUnits" name="tambah">Simpan</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal Edit End -->
 
 <!-- modal hapus -->
 <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

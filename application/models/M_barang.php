@@ -61,6 +61,13 @@ class M_barang extends CI_Model
 
     public function get_where($id)
     {
-        return $this->db->get_where('tbl_barang', array('kode_barang' => $id));
+        $this->db->where(array('kode_barang' => $id));
+        
+        $this->db->select('*,tbl_barang.nama as nama_barang, tbl_kategori.nama as nama_kategori, tbl_satuan.nama as nama_satuan');
+        $this->db->from('tbl_barang');
+        $this->db->join('tbl_kategori', 'tbl_barang.kode_kategori = tbl_kategori.kode_kategori');
+        $this->db->join('tbl_satuan', 'tbl_barang.kode_satuan = tbl_satuan.kode_satuan');
+
+        return $this->db->get();
     }
 }
