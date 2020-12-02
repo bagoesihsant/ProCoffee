@@ -58,4 +58,13 @@ class M_barang extends CI_Model
         $this->db->update('tbl_barang', $data, $where);
         return $this->db->affected_rows();
     }
+
+    //update stock in
+    function update_stock_in($data)
+    {
+        $qty = $data['qty_input'];
+        $id = $data['kode_barang_input'];
+        $sql = "UPDATE tbl_barang SET stok = stok + '$qty' WHERE kode_barang = '$id'";
+        $this->db->query($sql);
+    }
 }

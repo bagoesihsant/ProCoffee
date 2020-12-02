@@ -63,22 +63,25 @@
                         <!-- Thead End -->
                         <!-- TBody -->
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>STOK0000001</td>
-                                <td>Kopi</td>
-                                <td>20</td>
-                                <td>01-09-2020</td>
-                                <td class="d-flex justify-content-around">
-                                    <a href="#" id="#modalDetail" data-toogle="modal" data-target="#modalDetail" class="btn btn-xs btn-info btn-view">
-                                        <i class="fas fa-fw fa-eye text-white"></i>
-                                    </a>
-                                    <a href="#" data-toogle="modal" data-target="" data-kode="<?= base_url('kode_stock'); ?>" class="btn btn-xs btn-danger btn-delete">
-                                        <i class="fas fa-fw fa-trash-alt"></i>
-                                    </a>
+                            <?php $no = 1;
+                            foreach ($row as $rw => $data) { ?>
+                                <tr>
+                                    <td><?= $no; ?>.</td>
+                                    <td><?= $data->barcode; ?></td>
+                                    <td><?= $data->nama_barang; ?></td>
+                                    <td><?= $data->qty; ?></td>
+                                    <td><?= $data->date; ?></td>
+                                    <td class="d-flex justify-content-around">
+                                        <a href="#" id="#modalDetail" data-toogle="modal" data-target="#modalDetail" class="btn btn-xs btn-info btn-view">
+                                            <i class="fas fa-fw fa-eye text-white"></i>
+                                        </a>
+                                        <a href="#" data-toogle="modal" data-target="" data-kode="<?= base_url('kasir/C_stockin/delete'); ?>" class="btn btn-xs btn-danger btn-delete">
+                                            <i class="fas fa-fw fa-trash-alt"></i>
+                                        </a>
 
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                         <!-- TBody End -->
                     </table>
@@ -89,4 +92,46 @@
         </div>
     </section>
     <!-- Content Main End -->
+    <div class="modal fade" id="modal-detail">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title table-responsive">Stock Detail</h4>
+                </div>
+                <div class="modal-body table-responsive">
+                    <table class="table class table-bordered mo-margin">
+                        <tbody>
+                            <tr>
+                                <th>Barcode</th>
+                                <td><span id="barcode"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Nama Barang</th>
+                                <td><span id="nama_barang"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Detail Pembelian</th>
+                                <td><span id="detail"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Nama Supplier</th>
+                                <td><span id="supplier_name"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Qty</th>
+                                <td><span id="qty"></span></td>
+                            </tr>
+                            <tr>
+                                <th>Tanggal</th>
+                                <td><span id="date"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

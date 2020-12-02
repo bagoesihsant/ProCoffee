@@ -47,11 +47,24 @@
                 <div class="card-body">
                     <!-- Table Sub Menu -->
                     <div class="col-md">
-                        <form action="<?= site_url('kasir/C_stockin/process'); ?>" method="POST" id="formEditStock">
+                        <form action="<?= site_url('kasir/C_stockin/process'); ?>" method="POST">
                             <div class="form-group">
                                 <p>Tanda <b>*</b> Artinya Wajib Di isi</p>
                                 <label for="">Tanggal * </label>
-                                <input type="date" name="date" value="<?= date('Y-m-d'); ?>" class="form-control" required>
+                                <input type="date" name="date" value="<?= date('Y-d-m') ?>" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Kode Stock In *</label>
+                                <?php
+                                $data = $this->M_stockin->LastNumberStock();
+                                if ($data->num_rows) {
+                                    $kode = $data->row_array();
+                                    $kode = $this->hookdevlib->autonumber($kode['kode_stock'], 3, 9);
+                                } else {
+                                    $kode = "STK000000001";
+                                }
+                                ?>
+                                <input type="text" name="kode_stock_input" id="kode_stock_input" value="<?= $kode; ?>" class="form-control" readonly>
                             </div>
                             <div>
                                 <label for="barcode">Barcode *</label>
@@ -90,16 +103,16 @@
                                 <select name="supplier" id="" class="form-control">
                                     <option value="">- Pilih - </option>
                                     <?php foreach ($supplier as $i => $data) {
-                                        echo '<option value="' . $data->supplier_id . '">' . $data->name . '</option>';
+                                        echo '<option value="' . $data->kode_supplier . '">' . $data->name . '</option>';
                                     } ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="">Qty *</label>
-                                <input type="number" name="qty" class="form-control" required>
+                                <input type="number" name="qty_input" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-flat"><i class="fa fa-paper-plane"></i>Simpan</button>
+                                <button type="submit" name="in_add" class="btn btn-success btn-flat"><i class="fa fa-paper-plane"></i>Simpan</button>
                                 <button type="reset" class="btn btn-flat"><i class="fa fa-undo"></i>Reset</button>
                             </div>
                         </form>
@@ -123,8 +136,8 @@
                 </button>
             </div>
             <div class="modal-body table-responsive">
-                <?= form_open_multipart('kasir/C_stockin/process'); ?>
-                <table class="table table-bordered table-striped" id="dataTableStock">
+
+                <table class="table table-bordered table-striped" id="dataTableMenu">
                     <thead>
                         <tr>
                             <th>Barcode</th>
@@ -136,18 +149,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>KBR000001</td>
-                            <td>Kopi</td>
-                            <td>Lusin</td>
-                            <td class="text-right">Rp.10000</td>
-                            <td class="text-right">1</td>
-                            <td class="text-right">
-                                <button class="btn btn-xs btn-info" id="select">
-                                    <i class="fa fa-check"></i> Pilih
-                                </button>
-                            </td>
-                        </tr>
+                        <?php $no = 1;
+                        foreach ($item as $ite => $data) :
+                        ?>
+                            <tr>
+                                <td><?= $data->barcode ?></td>
+                                <td><?= $data->nama_barang ?></td>
+                                <td><?= $data->nama_satuan ?></td>
+                                <td><?= $data->harga ?></td>
+                                <td><?= $data->stok ?></td>
+                                <td>
+                                    <button class="btn btn-xs btn-info" id="select" <?= $data->kode_barang; ?> data-barcode="<?= $data->barcode; ?>" data-name="<?= $data->nama_barang; ?>" data-unit="<?= $data->nama_satuan; ?>" data-stock="<?= $data->stok ?>">
+                                        <i class="fa fa-check"></i> Pilih
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
