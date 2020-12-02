@@ -51,7 +51,7 @@ class C_supplier extends CI_Controller
             ));
         // form validasi end 
 
-        if ($this->form_validation->run() == false) {
+        if ($this->form_validation->run() == false) { //jika data gagal tervalidasi
 
             $this->session->set_flashdata(
                 'pesan_menu',
@@ -65,7 +65,7 @@ class C_supplier extends CI_Controller
             $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('admin/v_supplier', $data);
             $this->load->view('templates/admin/footer');
-        } else {
+        } else { //jika data berhasil tervalidasi
 
             $kode = $this->input->post('kode');
             $nama = htmlspecialchars($this->input->post('nama'));

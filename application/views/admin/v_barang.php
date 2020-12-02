@@ -65,11 +65,15 @@
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td>
-                                        <?php
-                                            $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-                                            echo $generator->getBarcode($pro->barcode, $generator::TYPE_CODE_128); 
-                                            echo $pro->barcode
-                                        ?>
+                                        <?= $pro->barcode ?>
+                                        <br>
+                                        <a href="<?= base_url("admin/C_barang/generate_barang/") .$pro->kode_barang ?>" 
+                                            class="btn btn-sm btn-outline-secondary">
+                                            Generate
+                                            <i class="fas fa-barcode pl-2"></i>
+                                            <i class="fas fa-qrcode pl-2"></i>
+                                        </a>
+                                        
                                     </td>
                                     <td><?= $pro->nama_barang ?></td>
                                     <td><?= $pro->harga ?></td>

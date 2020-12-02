@@ -348,4 +348,33 @@ class C_barang extends CI_Controller
         $this->load->view('templates/admin/footer');
         
     }
+
+    public function generate_barang($id)
+    {
+        $data['barcode'] = $this->barang->get_where($id)->result();
+
+        $this->load->view('templates/admin/header');
+        $this->load->view('templates/admin/sidebar');
+        $this->load->view('admin/v_generate_barang', $data);
+        $this->load->view('templates/admin/footer');
+        
+    }
+
+    public function barcode_print($id)
+    {
+        $data['barcode'] = $this->barang->get_where($id)->result();
+        $html = $this->load->view('admin/v_barcode_barang_print', $data, true);
+        $filename = 'Barcode'.$id;
+
+        $this->barang->print_dompdf($html, 'A5', 'landscape', $filename);
+    }
+
+    public function qrcode_print($id)
+    {
+        $data['qrcode'] = $this->barang->get_where($id)->result();
+        $html = $this->load->view('admin/v_barcode_barang_print', $data, true);
+        $filename = 'Qrcode'.$id;
+
+        $this->barang->print_dompdf($html, 'A5', 'landscape', $filename);
+    }
 }
