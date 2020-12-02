@@ -35,7 +35,7 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <?= $this->session->flashdata('message'); ?>
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="dataTableMenu" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>

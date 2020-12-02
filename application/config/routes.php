@@ -68,9 +68,22 @@ $route['admin/satuan'] = "admin/C_satuan/index";
 // Custome Stock Out
 $route['kasir/stock_out_data'] = "kasir/C_stockout/index";
 $route['kasir/ItemOut'] = "kasir/C_stockout/stock_out_form";
+$route['kasir/StockOut/delete/(:num)/(:num)'] = "kasir/C_stockout/delete_out";
+
+// Custome Stock In
+$route['kasir/stock_in_data'] = "kasir/C_stockin/index";
+$route['kasir/ItemIn'] = "kasir/C_stockin/stock_in_form";
 
 
 // Route Sub Menu
 $route['admin/submenu'] = "admin/C_menu/submenu";
 $route['admin/editSubmenu'] = "admin/C_menu/editSubmenu";
 $route['admin/hapusSubmenu/(:any)'] = "admin/C_menu/hapusSubmenu/$1";
+
+//Route untuk Auth
+$route['auth'] = "C_auth";
+$route['auth/registration'] = "C_auth/registration";
+$route['auth/lupaPassword'] = "C_auth/lupapassword";
+$route['auth/(:any)'] = "C_auth/$1";
+$route['auth/gantipassword'] = "C_auth/gantipassword";
+

@@ -59,6 +59,28 @@ class M_barang extends CI_Model
         return $this->db->affected_rows();
     }
 
+    // function update stock 
+    function update_stock_out($data)
+    {
+        // 
+        $qty  = $data['qty_input'];
+        $id  = $data['kode_barang_input'];
+        // $sql  = "UPDATE tbl_barang SET stok = stok - '$qty' WHERE kode_barang = '$id'";
+        $sql = "UPDATE tbl_barang SET stok = stok - $qty WHERE kode_barang = '$id'";
+        $this->db->query($sql);
+    }
+
+    // function untuk menambah
+    function update_stock_in($data)
+    {
+        // 
+        $qty  = $data['qty_input'];
+        $id  = $data['kode_barang_input'];
+        // $sql  = "UPDATE tbl_barang SET stok = stok - '$qty' WHERE kode_barang = '$id'";
+        $sql = "UPDATE tbl_barang SET stok = stok + $qty WHERE kode_barang = '$id'";
+        $this->db->query($sql);
+    }
+  
     public function get_where($id)
     {
         $this->db->where(array('kode_barang' => $id));
