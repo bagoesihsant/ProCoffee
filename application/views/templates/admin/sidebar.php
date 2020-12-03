@@ -106,7 +106,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= base_url() . "kasir/C_stockout" ?>" class="nav-link">
+                    <a href="<?= base_url() . "kasir/stock_out_data" ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-truck-loading"></i>
                         <p>Stock Out</p>
                     </a>

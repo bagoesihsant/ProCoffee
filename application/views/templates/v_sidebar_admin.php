@@ -68,6 +68,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= base_url() . "admin/C_barang" ?>" class="nav-link">
+                                <i class="nav-icon far fa-circle text-secondary"></i>
+                                <p>Items</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= base_url() . "admin/C_satuan" ?>" class="nav-link">
                                 <i class="nav-icon far fa-circle text-secondary"></i>
                                 <p>Items</p>
