@@ -79,7 +79,7 @@
                 <!-- Menu Administrator -->
                 <li class="nav-header">ADMINISTRATOR</li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="<?= base_url() . "admin/C_menu" ?>" class="nav-link">
                         <i class="nav-icon fas fa-fw fa-folder-plus"></i>
                         <p>Menu</p>
                     </a>

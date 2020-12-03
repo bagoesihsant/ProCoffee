@@ -59,6 +59,7 @@ class M_barang extends CI_Model
         return $this->db->affected_rows();
     }
 
+
     // function update stock 
     function update_stock_out($data)
     {
@@ -109,4 +110,5 @@ class M_barang extends CI_Model
         // Output the generated PDF to Browser
         $dompdf->stream($filename, array('Attachment'=>0));
     }
+
 }
