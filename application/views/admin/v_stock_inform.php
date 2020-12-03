@@ -51,13 +51,14 @@
                             <div class="form-group">
                                 <p>Tanda <b>*</b> Artinya Wajib Di isi</p>
                                 <label for="">Tanggal * </label>
-                                <input type="date" name="date" value="<?= date('Y-d-m') ?>" class="form-control" required>
+                                <input type="date" name="date" value="<?= date('Y-m-d') ?>" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Kode Stock In *</label>
                                 <?php
                                 $data = $this->M_stockin->LastNumberStock();
-                                if ($data->num_rows) {
+
+                                if ($data->num_rows() > 0) {
                                     $kode = $data->row_array();
                                     $kode = $this->hookdevlib->autonumber($kode['kode_stock'], 3, 9);
                                 } else {
@@ -102,8 +103,8 @@
                                 <label for="">Supplier</label>
                                 <select name="supplier" id="" class="form-control">
                                     <option value="">- Pilih - </option>
-                                    <?php foreach ($supplier as $i => $data) {
-                                        echo '<option value="' . $data->kode_supplier . '">' . $data->name . '</option>';
+                                    <?php foreach ($supplier as $data) {
+                                        echo '<option value="' . $data['kode_supplier'] . '">' . $data['nama'] . '</option>';
                                     } ?>
                                 </select>
                             </div>
@@ -159,7 +160,7 @@
                                 <td><?= $data->harga ?></td>
                                 <td><?= $data->stok ?></td>
                                 <td>
-                                    <button class="btn btn-xs btn-info" id="select" <?= $data->kode_barang; ?> data-barcode="<?= $data->barcode; ?>" data-name="<?= $data->nama_barang; ?>" data-unit="<?= $data->nama_satuan; ?>" data-stock="<?= $data->stok ?>">
+                                    <button class="btn btn-xs btn-info" id="select" data-kode_barang="<?= $data->kode_barang; ?>" data-barcode="<?= $data->barcode; ?>" data-name="<?= $data->nama_barang; ?>" data-unit="<?= $data->nama_satuan; ?>" data-stock="<?= $data->stok ?>">
                                         <i class="fa fa-check"></i> Pilih
                                     </button>
                                 </td>

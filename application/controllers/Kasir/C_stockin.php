@@ -11,7 +11,7 @@ class C_stockin extends CI_Controller
     }
     public function index()
     {
-        $data['row'] = $this->M_stockin->get_in()->result();
+        $data['row'] = $this->M_stockin->get_data_in()->result();
         $this->load->view('templates/admin/header');
         $this->load->view('templates/admin/sidebar');
         $this->load->view('admin/v_stock_in', $data);
@@ -21,30 +21,36 @@ class C_stockin extends CI_Controller
     {
         $item = $this->M_barang->getAllItems()->result();
         $data = ['item' => $item];
+        $data['supplier'] = $this->M_supplier->getAllSupplier()->result_array();
         $this->load->view('templates/admin/header');
         $this->load->view('templates/admin/sidebar');
         $this->load->view('admin/v_stock_inform', $data);
         $this->load->view('templates/admin/footer');
     }
-    public function stock_in_add()
-    {
-        $item = $this->M_barang->getAllItems()->result();
-        $supplier = $this->M_supplier->getAllSupplier()->result();
+    // public function stock_in_add()
+    // {
+    //     $item = $this->M_barang->getAllItems()->result();
 
-        $data = [
-            'item' => $item,
-            'supplier' => $supplier
-        ];
+    //     $supplier = $this->M_supplier->getAllSupplier()->result();
 
-        $this->load->view('admin/v_stock_inform', $data);
-    }
+    //     $data = [
+    //         'item' => $item,
+    //         'supplier' => $supplier
+    //     ];
+    //     $this->load->view('templates/admin/header');
+    //     $this->load->view('templates/admin/sidebar');
+    //     $this->load->view('admin/v_stock_inform', $data);
+    //     $this->load->view('templates/admin/footer');
+    // }
 
     //untuk tampilan awal stock in
     public function stock_in_data()
     {
         $data['row'] = $this->M_stock->get_stock_in()->result();
-
-        $this->load->view('admin/v_stock_inform');
+        $this->load->view('templates/admin/header');
+        $this->load->view('templates/admin/sidebar');
+        $this->load->view('admin/v_stock_inform', $data);
+        $this->load->view('templates/admin/footer');
     }
     public function process()
     {
@@ -54,7 +60,7 @@ class C_stockin extends CI_Controller
             $this->M_barang->update_stock_in($post);
 
             if ($this->db->affected_rows() > 0) {
-                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data Stock In Barang telah ditambahkan</div>');
             }
             redirect('kasir/stock_in_data');
         }
@@ -75,7 +81,7 @@ class C_stockin extends CI_Controller
         $this->M_stockin->delete($stok_id);
 
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data Stock Barang Telah DIhapus</>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data Stock Barang Telah DIhapus</div>');
         }
         redirect('kasir/stock_in_data');
     }
