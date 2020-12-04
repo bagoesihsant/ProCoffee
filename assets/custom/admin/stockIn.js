@@ -1,6 +1,6 @@
 $('#dataTableStock').DataTable({
-    "responsive": true,
-    "autowitdth": true,
+	"responsive": true,
+	"autowitdth": true,
 });
 
 
@@ -9,22 +9,22 @@ $('#dataTableStock').DataTable({
 
 
 $(document).ready(function () {
-    $(document).on('click', '#select', function () {
-        var kode_barang = $(this).data('kode_barang');
-        var barcode = $(this).data('barcode');
-        var name = $(this).data('name');
-        var nama_satuan = $(this).data('unit');
-        var stock = $(this).data('stock');
+	$(document).on('click', '#select1', function () {
+		var kode_barang = $(this).data('kode_barang');
+		var barcode = $(this).data('barcode');
+		var name = $(this).data('name');
+		var nama_satuan = $(this).data('unit');
+		var stock = $(this).data('stock');
 
-        $('#kode_barang_input').val(kode_barang);
-        $('#barcode_input').val(barcode);
-        $('#item_name').val(name);
-        $('#unit_name').val(nama_satuan);
-        // $('#nama_barang').val(nama_barang);
-        $('#stock').val(stock);
-        $('#modal-item').modal('hide');
+		$('#kode_barang_input').val(kode_barang);
+		$('#barcode_input').val(barcode);
+		$('#item_name').val(name);
+		$('#unit_name').val(nama_satuan);
+		// $('#nama_barang').val(nama_barang);
+		$('#stock').val(stock);
+		$('#modal-item').modal('hide');
 
-    })
+	})
 })
 // //hapus tabel
 // $('#dataTableStock tbody').on('click', '.btn-delete', function () {
@@ -56,11 +56,11 @@ $(document).ready(function () {
 // });
 //detail 2
 function detail(id, nama, detail, supplier, qty, date) {
-    $('#barcode-detail').val(id);
-    $('#nama-detail').val(nama);
-    $('#pembelian-detail').val(detail);
-    $('#supplier-detail').val(supplier);
-    $('#qty-detail').val(qty);
-    $('#date-detail').val(date);
+	$('#barcode-detail').val(id);
+	$('#nama-detail').val(nama);
+	$('#pembelian-detail').val(detail);
+	$('#supplier-detail').val(supplier);
+	$('#qty-detail').val(qty);
+	$('#date-detail').val(date);
 
 };
