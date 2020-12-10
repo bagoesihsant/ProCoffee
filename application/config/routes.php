@@ -87,3 +87,6 @@ $route['auth/lupaPassword'] = "C_auth/lupapassword";
 $route['auth/(:any)'] = "C_auth/$1";
 $route['auth/gantipassword'] = "C_auth/gantipassword";
 
+
+// User Landingpage
+$route['User/LandingPage'] = "Users/C_landingpage/index";
