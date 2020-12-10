@@ -8,6 +8,7 @@ function is_logged_in()
         redirect('auth');
     }else{
         $role_id = $ci->session->userdata('role_id');
+        $kode_user = $ci->session->userdata('kode_user');
         $menu = $ci->uri->segment(1);
 
         $queryMenu = $ci->db->get_where('user_menu', ['menu' => $menu])->row_array();
