@@ -23,22 +23,22 @@
                     <div class="col-md-4">
                         <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
                             <div class="icon"><i class="fa fa-heart"></i></div>
-                            <h3><a href="#">We love our customers</a></h3>
-                            <p class="mb-0">We are known to provide best possible service ever</p>
+                            <h3><a href="#">Kami Peduli Pelanggan Kami</a></h3>
+                            <p class="mb-0">Kami menyediakan produk kopi yang bervariasi</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
                             <div class="icon"><i class="fa fa-tags"></i></div>
-                            <h3><a href="#">Best prices</a></h3>
-                            <p class="mb-0">You can check that the height of the boxes adjust when longer text like this one is used in one of them.</p>
+                            <h3><a href="#">Harga Terbaik</a></h3>
+                            <p class="mb-0">Dapatkan harga terbaik dengan membeli langsung melalui website kami, Atau datang ke lokasi produksi kami</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
                             <div class="icon"><i class="fa fa-thumbs-up"></i></div>
-                            <h3><a href="#">100% satisfaction guaranteed</a></h3>
-                            <p class="mb-0">Free returns on everything for 3 months.</p>
+                            <h3><a href="#">100% Alami tanpa bahan kimia</a></h3>
+                            <p class="mb-0">Bahan mentah untuk kopi 100% alami tanpa bahan kimia apapun</p>
                         </div>
                     </div>
                 </div>
