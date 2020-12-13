@@ -90,3 +90,6 @@ $route['auth/gantipassword'] = "C_auth/gantipassword";
 
 // User Landingpage
 $route['User/LandingPage'] = "Users/C_landingpage/index";
+
+// User Auth (Pelanggan)
+$route['User/Register'] = "C_auth_user/registration";
