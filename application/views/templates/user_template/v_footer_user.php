@@ -6,12 +6,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Pages</h4>
+                    <h4 class="mb-3">Informasi</h4>
                     <ul class="list-unstyled">
-                        <li><a href="text.html">About us</a></li>
-                        <li><a href="text.html">Terms and conditions</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="contact.html">Contact us</a></li>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Terms and conditions</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact us</a></li>
                     </ul>
                     <hr>
                     <h4 class="mb-3">User section</h4>
@@ -25,22 +25,22 @@
                     <h4 class="mb-3">Top categories</h4>
                     <h5>Men</h5>
                     <ul class="list-unstyled">
-                        <li><a href="category.html">T-shirts</a></li>
-                        <li><a href="category.html">Shirts</a></li>
-                        <li><a href="category.html">Accessories</a></li>
+                        <li><a href="#">T-shirts</a></li>
+                        <li><a href="#">Shirts</a></li>
+                        <li><a href="#">Accessories</a></li>
                     </ul>
                     <h5>Ladies</h5>
                     <ul class="list-unstyled">
-                        <li><a href="category.html">T-shirts</a></li>
-                        <li><a href="category.html">Skirts</a></li>
-                        <li><a href="category.html">Pants</a></li>
-                        <li><a href="category.html">Accessories</a></li>
+                        <li><a href="#">T-shirts</a></li>
+                        <li><a href="#">Skirts</a></li>
+                        <li><a href="#">Pants</a></li>
+                        <li><a href="#">Accessories</a></li>
                     </ul>
                 </div>
                 <!-- /.col-lg-3-->
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Where to find us</h4>
-                    <p><strong>Obaju Ltd.</strong><br>13/25 New Avenue<br>New Heaven<br>45Y 73J<br>England<br><strong>Great Britain</strong></p><a href="contact.html">Go to contact page</a>
+                    <h4 class="mb-3">Anda bisa mencari kami di</h4>
+                    <p><strong>Jl. Banywangi</strong><br>Dusun Pasar Alas<br>Desa Garahan<br>Kode pos 68184<br>Kota Jember<br>Jawa Timur <br><strong>Pro Coffee</strong></p>
                     <hr class="d-block d-md-none">
                 </div>
                 <div class="col-lg-3 col-md-6">
