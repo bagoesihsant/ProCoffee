@@ -37,8 +37,8 @@
                     <div class="col-md-4">
                         <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
                             <div class="icon"><i class="fa fa-thumbs-up"></i></div>
-                            <h3><a href="#">100% Alami tanpa bahan kimia</a></h3>
-                            <p class="mb-0">Bahan mentah untuk kopi 100% alami tanpa bahan kimia apapun</p>
+                            <h3><a href="#">100% Alami</a></h3>
+                            <p class="mb-0">Bahan mentah untuk variasi produk kopi kami 100% alami tanpa bahan kimia apapun</p>
                         </div>
                     </div>
                 </div>
