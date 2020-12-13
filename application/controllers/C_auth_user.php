@@ -21,4 +21,10 @@ class C_auth_user extends CI_Controller
         $this->load->view('auth_user/v_forgot_password');
         $this->load->view('templates/user_template/v_footer_user');
     }
+    public function UbahPassword()
+    {
+        $this->load->view('templates/user_template/v_header_user');
+        $this->load->view('auth_user/v_change_password');
+        $this->load->view('templates/user_template/v_footer_user');
+    }
 }
