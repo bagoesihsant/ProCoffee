@@ -18,6 +18,11 @@ class M_stockin extends CI_Model
         return $this->db->get('tbl_stock');
     }
 
+    function total_rows()
+    {
+        return $this->db->get('tbl_stock')->num_rows();
+    }
+
     public function get_data_in()
     {
         // untuk join

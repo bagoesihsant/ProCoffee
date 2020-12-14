@@ -9,7 +9,7 @@ $('#dataTableStock').DataTable({
 
 
 $(document).ready(function () {
-    $(document).on('click', '#select', function () {
+    $(document).on('click', '#pilih', function () {
         var kode_barang = $(this).data('kode_barang');
         var barcode = $(this).data('barcode');
         var name = $(this).data('name');

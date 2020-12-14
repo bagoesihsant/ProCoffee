@@ -14,7 +14,12 @@ class C_kasir extends CI_Controller
 
     public function index()
     {
+        $data['title'] = 'Dashboard Kasir';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         echo 'Selamat datang ' . $data['user']['nama'];
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
+        $this->load->view('templates/admin/v_dashboard_kurir', $data);
+        $this->load->view('templates/admin/footer');
     }
 }

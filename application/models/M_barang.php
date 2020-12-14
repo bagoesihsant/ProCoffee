@@ -14,7 +14,10 @@ class M_barang extends CI_Model
 
         return $this->db->get();
     }
-
+    function total_rows()
+    {
+        return $this->db->get('tbl_barang')->num_rows();
+    }
     // Untuk mengambil id terakhir data items
     public function kode_items()
     {
@@ -81,11 +84,11 @@ class M_barang extends CI_Model
         $sql = "UPDATE tbl_barang SET stok = stok + $qty WHERE kode_barang = '$id'";
         $this->db->query($sql);
     }
-  
+
     public function get_where($id)
     {
         $this->db->where(array('kode_barang' => $id));
-        
+
         $this->db->select('*,tbl_barang.nama as nama_barang, tbl_kategori.nama as nama_kategori, tbl_satuan.nama as nama_satuan');
         $this->db->from('tbl_barang');
         $this->db->join('tbl_kategori', 'tbl_barang.kode_kategori = tbl_kategori.kode_kategori');
@@ -96,7 +99,7 @@ class M_barang extends CI_Model
 
     public function print_dompdf($html, $paper, $orientation, $filename)
     {
-          // instantiate and use the dompdf class
+        // instantiate and use the dompdf class
         $dompdf = new Dompdf\Dompdf(array('enable_remote' => true));
 
         $dompdf->loadHtml($html);
@@ -108,7 +111,6 @@ class M_barang extends CI_Model
         $dompdf->render();
 
         // Output the generated PDF to Browser
-        $dompdf->stream($filename, array('Attachment'=>0));
+        $dompdf->stream($filename, array('Attachment' => 0));
     }
-
 }

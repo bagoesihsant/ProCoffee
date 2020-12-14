@@ -8,6 +8,10 @@ class M_Categories extends CI_Model
         $this->db->order_by('kode_kategori', 'DESC');
         return $this->db->get('tbl_kategori');
     }
+    function total_rows()
+    {
+        return $this->db->get('tbl_kategori')->num_rows();
+    }
     public function getDataProduct()
     {
         return $this->db->get('tbl_kategori');

@@ -11,6 +11,10 @@ class M_user extends CI_Model
         $this->db->update('user', $data);
     }
 
+    function total_rows()
+    {
+        return $this->db->get('user')->num_rows();
+    }
     function select_user()
     {
         $query = "SELECT `user`.*, `user_role`.`role`
