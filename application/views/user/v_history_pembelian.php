@@ -7,15 +7,14 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li aria-current="page" class="breadcrumb-item active">Shopping cart</li>
+                            <li aria-current="page" class="breadcrumb-item active">History pembelian</li>
                         </ol>
                     </nav>
                 </div>
                 <div id="basket" class="col-lg-12">
                     <div class="box">
                         <form method="post" action="checkout1.html">
-                            <h1>Shopping cart</h1>
-                            <p class="text-muted">You currently have 3 item(s) in your cart.</p>
+                            <h1>History</h1>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -58,12 +57,6 @@
                                             <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
                                         </tr>
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th colspan="5">Total</th>
-                                            <th colspan="2">$446.00</th>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                             <!-- /.table-responsive-->
