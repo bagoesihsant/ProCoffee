@@ -29,7 +29,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><a href="#"><img src="img/detailsquare.jpg" alt="White Blouse Armani"></a></td>
+                                            <td><a href="#"><img src="<?= base_url('assets/vendor_user/img/') ?>detailsquare.jpg" alt="White Blouse Armani"></a></td>
                                             <td><a href="#">White Blouse Armani</a></td>
                                             <td>
                                                 <input type="number" value="2" class="form-control">
@@ -40,7 +40,7 @@
                                             <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#"><img src="img/basketsquare.jpg" alt="Black Blouse Armani"></a></td>
+                                            <td><a href="#"><img src="<?= base_url('assets/vendor_user/img/') ?>basketsquare.jpg" alt="Black Blouse Armani"></a></td>
                                             <td><a href="#">Black Blouse Armani</a></td>
                                             <td>
                                                 <input type="number" value="1" class="form-control">
@@ -80,10 +80,10 @@
                             <div class="product same-height">
                                 <div class="flip-container">
                                     <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="img/product2.jpg" alt="" class="img-fluid"></a></div>
-                                        <div class="back"><a href="detail.html"><img src="img/product2_2.jpg" alt="" class="img-fluid"></a></div>
+                                        <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/img/') ?>product2.jpg" alt="" class="img-fluid"></a></div>
+                                        <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/img/') ?>product2_2.jpg" alt="" class="img-fluid"></a></div>
                                     </div>
-                                </div><a href="detail.html" class="invisible"><img src="img/product2.jpg" alt="" class="img-fluid"></a>
+                                </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/img/') ?>product2.jpg" alt="" class="img-fluid"></a>
                                 <div class="text">
                                     <h3>Fur coat</h3>
                                     <p class="price">$143</p>
@@ -95,10 +95,10 @@
                             <div class="product same-height">
                                 <div class="flip-container">
                                     <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="img/product1.jpg" alt="" class="img-fluid"></a></div>
-                                        <div class="back"><a href="detail.html"><img src="img/product1_2.jpg" alt="" class="img-fluid"></a></div>
+                                        <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/img/') ?>product1.jpg" alt="" class="img-fluid"></a></div>
+                                        <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/img/') ?>product1_2.jpg" alt="" class="img-fluid"></a></div>
                                     </div>
-                                </div><a href="detail.html" class="invisible"><img src="img/product1.jpg" alt="" class="img-fluid"></a>
+                                </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/img/') ?>product1.jpg" alt="" class="img-fluid"></a>
                                 <div class="text">
                                     <h3>Fur coat</h3>
                                     <p class="price">$143</p>
@@ -110,10 +110,10 @@
                             <div class="product same-height">
                                 <div class="flip-container">
                                     <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="img/product3.jpg" alt="" class="img-fluid"></a></div>
-                                        <div class="back"><a href="detail.html"><img src="img/product3_2.jpg" alt="" class="img-fluid"></a></div>
+                                        <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/img/') ?>product3.jpg" alt="" class="img-fluid"></a></div>
+                                        <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/img/') ?>product3_2.jpg" alt="" class="img-fluid"></a></div>
                                     </div>
-                                </div><a href="detail.html" class="invisible"><img src="img/product3.jpg" alt="" class="img-fluid"></a>
+                                </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/img/') ?>product3.jpg" alt="" class="img-fluid"></a>
                                 <div class="text">
                                     <h3>Fur coat</h3>
                                     <p class="price">$143</p>
