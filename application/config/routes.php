@@ -92,6 +92,7 @@ $route['auth/gantipassword'] = "C_auth/gantipassword";
 $route['User/LandingPage'] = "Users/C_landingpage/index";
 $route['User/Cart'] = "Users/C_cart/index";
 $route['User/History'] = "Users/C_history_pembelian/index";
+$route['User/Profile'] = "Users/C_user_profile/index";
 
 // User Auth (Pelanggan)
 $route['User/Register'] = "C_auth_user/registration";
