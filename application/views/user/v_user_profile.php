@@ -76,35 +76,31 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="street">Alamat</label>
-                                            <textarea class="form-control" name="" id="" cols="20" rows="20"></textarea>
+                                            <textarea class="form-control" name="" id="" cols="" rows=""></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.row-->
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-3">
+                                    <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
                                             <label for="city">Tanggal lahir</label>
                                             <input id="city" type="text" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-lg-3">
+                                    <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
                                             <label for="zip">Kode Pos</label>
                                             <input id="zip" type="text" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-lg-3">
+                                    <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
                                             <label for="nohp">No hp</label>
                                             <input id="nohp" type="number" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-3">
-                                        <div class="form-group">
-                                            <label for="username">Username</label>
-                                            <input id="username" type="text" class="form-control">
-                                        </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
