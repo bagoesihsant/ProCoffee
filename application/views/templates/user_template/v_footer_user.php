@@ -6,6 +6,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
+                </div>
+                <div class="col-lg-3 col-md-6">
                     <h4 class="mb-3">Informasi</h4>
                     <ul class="list-unstyled">
                         <li><a href="#">Tentang Kami</a></li>
@@ -18,23 +20,6 @@
                     <ul class="list-unstyled">
                         <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
                         <li><a href="register.html">Regiter</a></li>
-                    </ul>
-                </div>
-                <!-- /.col-lg-3-->
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Top categories</h4>
-                    <h5>Men</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">T-shirts</a></li>
-                        <li><a href="#">Shirts</a></li>
-                        <li><a href="#">Accessories</a></li>
-                    </ul>
-                    <h5>Ladies</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">T-shirts</a></li>
-                        <li><a href="#">Skirts</a></li>
-                        <li><a href="#">Pants</a></li>
-                        <li><a href="#">Accessories</a></li>
                     </ul>
                 </div>
                 <!-- /.col-lg-3-->
