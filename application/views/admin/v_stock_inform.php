@@ -160,7 +160,7 @@
                                 <td><?= $data->harga ?></td>
                                 <td><?= $data->stok ?></td>
                                 <td>
-                                    <button class="btn btn-xs btn-info" id="select" data-kode_barang="<?= $data->kode_barang; ?>" data-barcode="<?= $data->barcode; ?>" data-name="<?= $data->nama_barang; ?>" data-unit="<?= $data->nama_satuan; ?>" data-stock="<?= $data->stok ?>">
+                                    <button class="btn btn-xs btn-info" id="pilih" data-kode_barang="<?= $data->kode_barang; ?>" data-barcode="<?= $data->barcode; ?>" data-name="<?= $data->nama_barang; ?>" data-unit="<?= $data->nama_satuan; ?>" data-stock="<?= $data->stok ?>">
                                         <i class="fa fa-check"></i> Pilih
                                     </button>
                                 </td>
