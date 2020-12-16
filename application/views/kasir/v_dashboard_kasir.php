@@ -26,8 +26,8 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>20</h3>
-                            <p>Stock In</p>
+                            <h3><?= $total_stock ?></h3>
+                            <p>Stock </p>
                         </div>
                         <div class="icon">
                             <div class="ion ion-bag">

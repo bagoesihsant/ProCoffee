@@ -44,7 +44,7 @@
                 <div class="small-box bg-info">
                     <div class="inner">
                         <h3>20</h3>
-                        <p>New Orders</p>
+                        <p>Barang Dikirim</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
@@ -59,7 +59,7 @@
                 <div class="small-box bg-success">
                     <div class="inner">
                         <h3>20 <sup style="font-size: 20px">%</sup></h3>
-                        <p>Bounce Rate</p>
+                        <p>Barang Tiba</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
