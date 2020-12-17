@@ -32,7 +32,17 @@
                         <div class="icon">
                             <div class="ion ion-bag">
                             </div>
-                            <a href="#" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="" class="small-box-footer">More Info <i class="fa fas-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="inner">
+                            <h3>Penjualan</h3>
+                            <p>Penjualan</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-documents"></i>
+                            <a href="#" class="small-box-footer">More Info <i class="fa fas-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>

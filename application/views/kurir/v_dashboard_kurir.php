@@ -47,7 +47,7 @@
                         <p>Barang Dikirim</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="ion ion-send"></i>
                     </div>
                     <a href="#" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
