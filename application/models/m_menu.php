@@ -12,7 +12,10 @@ class M_menu extends CI_Model
         $this->db->order_by('kode_menu', 'DESC');
         return $this->db->get('user_menu');
     }
-
+    function total_rows()
+    {
+        return $this->db->get('user_menu')->num_rows();
+    }
     // Fungsi untuk menambahkan data pada tabel
     public function tambahMenu($data)
     {

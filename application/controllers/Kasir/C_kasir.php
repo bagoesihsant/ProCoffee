@@ -9,12 +9,19 @@ class C_kasir extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->view(['M_stockin', 'M_stockOut']);
     }
 
 
     public function index()
     {
+        $data['title'] = 'Dashboard Kasir';
+        $this->data['total_stock'] = $this->M_stockin->total_rows();
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         echo 'Selamat datang ' . $data['user']['nama'];
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
+        $this->load->view('templates/admin/v_dashboard_kurir', $data);
+        $this->load->view('templates/admin/footer');
     }
 }
