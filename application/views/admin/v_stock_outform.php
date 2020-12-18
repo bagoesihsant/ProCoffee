@@ -54,11 +54,26 @@
                     <!-- <div class="col-md-4 col-md-offset-4"> -->
                     <div class="col-md">
 
-                        <form action="<?= site_url('stock/process') ?>" method="post">
+                        <form action="<?= site_url('kasir/C_stockout/process') ?>" method="post">
                             <div class="form-group">
                                 <p>Tanda <b>*</b> Artinya Wajib Di isi</p>
-                                <label for="">Tanggal *</label>
+                                <label for="">Tanggal * </label>
                                 <input type="date" name="date" value="<?= date('Y-m-d') ?>" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Kode Stock Out *</label>
+                                <?php
+                                $data = $this->M_stockOut->LastNumberStock();
+
+                                if ($data->num_rows() > 0) {
+                                    $kode = $data->row_array();
+                                    $kode = $this->hookdevlib->autonumber($kode['kode_stock'], 3, 9);
+                                } else {
+                                    $kode = "STK000000001";
+                                }
+
+                                ?>
+                                <input type="text" name="kode_stock_input" id="kode_stock_input" value="<?= $kode; ?>" class="form-control" readonly>
                             </div>
                             <div>
                                 <label for="barcode">Barcode *</label>
@@ -76,6 +91,7 @@
                                 <label for="">Nama barang *</label>
                                 <input type="text" name="item_name" id="item_name" class="form-control" readonly>
                             </div>
+
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-8">
@@ -90,11 +106,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Detail *</label>
-                                <input type="text" name="detail" class="form-control" placeholder="Rusak / Kadaluarsa / Dll" required>
+                                <input type="text" name="detail_input" class="form-control" placeholder="Rusak / Kadaluarsa / Dll" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Qty *</label>
-                                <input type="number" name="qty" class="form-control" required>
+                                <input type="number" name="qty_input" class="form-control" required>
                             </div>
 
                             <div class="form-group">
@@ -124,7 +140,6 @@
                 </button>
             </div>
             <div class="modal-body table-responsive">
-                <?= form_open_multipart('admin/C_kategori/addDataCategories'); ?>
                 <table class="table table-bordered table-striped" id="dataTableMenu">
                     <thead>
                         <tr>
@@ -138,29 +153,27 @@
                     </thead>
                     <tbody>
                         <!-- membuat perulangan dari variable itemyang ada di Stock.php di folder Controller dan lalu di buat kondisi loopingnya -->
-
-                        <tr>
-                            <!-- barcode ini sesuai dengan field di database atau sesuai dengan query database -->
-                            <td>KBR000001</td>
-                            <td>kopi</td>
-                            <!-- unit name ini adalah alias dari name unit di file item_m.php di dalam folder model di baris code ke 11 -->
-                            <td>Lusin</td>
-                            <td class="text-right">Rp. 100000</td>
-                            <td class="text-right">1</td>
-                            <td class="text-right">
-                                <button class="btn btn-xs btn-info" id="select">
-                                    <i class="fa fa-check"></i> Pilih
-                                </button>
-                            </td>
-                        </tr>
-
+                        <?php $no = 1;
+                        foreach ($item as $ite => $data) :
+                        ?>
+                            <tr>
+                                <!-- barcode ini sesuai dengan field di database atau sesuai dengan query database -->
+                                <td><?= $data->barcode ?></td>
+                                <td><?= $data->nama_barang ?></td>
+                                <td><?= $data->nama_satuan ?></td>
+                                <td><?= $data->harga ?></td>
+                                <td><?= $data->stok ?></td>
+                                <td class="text-right">
+                                    <button class="btn btn-xs btn-info pilih-barang" id="select" data-id="<?= $data->kode_barang; ?>" data-barcode="<?= $data->barcode; ?>" data-name="<?= $data->nama_barang; ?>" data-unit="<?= $data->nama_satuan; ?>" data-stock="<?= $data->stok; ?>">
+                                        <i class="fa fa-check"></i> Pilih
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary" id="btnTambahCategories" name="tambah">Simpan</button>
-                </form>
             </div>
         </div>
     </div>

@@ -60,7 +60,8 @@
 <script src="<?= base_url('assets/'); ?>custom/admin/user.js"></script>
 <script src="<?= base_url('assets/'); ?>custom/admin/aksesMenu.js"></script>
 <script src="<?= base_url('assets/'); ?>custom/kasir/kasir.js"></script>
-
+<script src="<?= base_url('assets/'); ?>custom/admin/stockOut.js"></script>
+<script src="<?= base_url('assets/'); ?>custom/admin/stockIn.js"></script>
 
 <!-- Mencetak pesan dari controller -->
 <script>

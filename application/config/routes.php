@@ -71,6 +71,11 @@ $route['admin/satuan'] = "admin/C_satuan/index";
 // Custome Stock Out
 $route['kasir/stock_out_data'] = "kasir/C_stockout/index";
 $route['kasir/ItemOut'] = "kasir/C_stockout/stock_out_form";
+$route['kasir/StockOut/delete/(:num)/(:num)'] = "kasir/C_stockout/delete_out";
+
+// Custome Stock In
+$route['kasir/stock_in_data'] = "kasir/C_stockin/index";
+$route['kasir/ItemIn'] = "kasir/C_stockin/stock_in_form";
 
 // Route Kasir
 $route['kasir/penjualan'] = "kasir/C_kasir/index";
@@ -79,3 +84,24 @@ $route['kasir/penjualan'] = "kasir/C_kasir/index";
 $route['admin/submenu'] = "admin/C_menu/submenu";
 $route['admin/editSubmenu'] = "admin/C_menu/editSubmenu";
 $route['admin/hapusSubmenu/(:any)'] = "admin/C_menu/hapusSubmenu/$1";
+
+//Route untuk Auth
+$route['auth'] = "C_auth";
+$route['auth/registration'] = "C_auth/registration";
+$route['auth/lupaPassword'] = "C_auth/lupapassword";
+$route['auth/(:any)'] = "C_auth/$1";
+$route['auth/gantipassword'] = "C_auth/gantipassword";
+
+
+// User Landingpage
+$route['User/LandingPage'] = "Users/C_landingpage/index";
+$route['User/Cart'] = "Users/C_cart/index";
+$route['User/History'] = "Users/C_history_pembelian/index";
+$route['User/Profile'] = "Users/C_user_profile/index";
+$route['User/List'] = "Users/C_barang_user/index";
+$route['User/Detail'] = "Users/C_detail_barang_user/index";
+
+// User Auth (Pelanggan)
+$route['User/Register'] = "C_auth_user/registration";
+$route['User/LupaSandi'] = "C_auth_user/LupaPasswordUser";
+$route['User/GantiSandi'] = "C_auth_user/UbahPassword";

@@ -22,26 +22,59 @@ class C_barang extends CI_Controller
 
         $this->load->view('templates/admin/header');
         $this->load->view('templates/admin/sidebar');
-        $this->load->view('admin/v_item', $data);
+        $this->load->view('admin/v_barang', $data);
         $this->load->view('templates/admin/footer');
     }
 
     public function tambah_items()
     {
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('barcode', 'Barcode', 'required');
-        $this->form_validation->set_rules('kategori', 'Kategori', 'required');
-        $this->form_validation->set_rules('unit', 'Unit', 'required');
-        $this->form_validation->set_rules('harga', 'Harga', 'required|numeric');
-        $this->form_validation->set_rules('berat', 'Berat', 'required|numeric');
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+        // form validasi 
+        $this->form_validation->set_rules('nama', 'Nama', 'required',
+        array(
+            'required' => 'Isian tidak boleh kosong'
+        ));
+        $this->form_validation->set_rules('barcode', 'Barcode', 'required',
+        array(
+            'required' => 'Isian tidak boleh kosong'
+        ));
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required',
+        array(
+            'required' => 'Isian tidak boleh kosong'
+        ));
+        $this->form_validation->set_rules('unit', 'Unit', 'required',
+        array(
+            'required' => 'Isian tidak boleh kosong'
+        ));
+        $this->form_validation->set_rules('harga', 'Harga', 'required|numeric',
+        array(
+            'required' => 'Isian tidak boleh kosong',
+            'numeric' => 'Isian harus angka'
+        ));
+        $this->form_validation->set_rules('berat', 'Berat', 'required|numeric',
+        array(
+            'required' => 'Isian tidak boleh kosong',
+            'numeric' => 'Isian harus angka'
+        ));
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required',
+        array(
+            'required' => 'Isian tidak boleh kosong'
+        ));
+        // form validasi end 
 
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata(
                 'pesan_menu',
                 'toastr.error("Error, Data gagal ditambahkan")'
             );
-            redirect('admin/C_barang');
+
+            $data['produk'] = $this->barang->getAllItems()->result();
+            $data['kategori'] = $this->barang->getAllCategories()->result();
+            $data['satuan'] = $this->barang->getAllUnits()->result();
+    
+            $this->load->view('templates/admin/header');
+            $this->load->view('templates/admin/sidebar');
+            $this->load->view('admin/v_barang', $data);
+            $this->load->view('templates/admin/footer');
         } else {
 
             $kode = $this->input->post('kode');
@@ -140,21 +173,58 @@ class C_barang extends CI_Controller
     }
     // hapus items
 
-    public function edit_items()
+    public function edit_barang_aksi()
     {
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('barcode', 'Barcode', 'required');
-        $this->form_validation->set_rules('kategori', 'Kategori', 'required');
-        $this->form_validation->set_rules('unit', 'Unit', 'required');
-        $this->form_validation->set_rules('harga', 'Harga', 'required|numeric');
-        $this->form_validation->set_rules('berat', 'Berat', 'required|numeric');
+        // form validasi 
+        $this->form_validation->set_rules('nama', 'Nama', 'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            ));
+        $this->form_validation->set_rules('barcode', 'Barcode', 'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            ));
+        $this->form_validation->set_rules('kategori', 'Kategori', 'required',
+        array(
+            'required' => 'Isian tidak boleh kosong'
+        ));
+        $this->form_validation->set_rules('unit', 'Unit', 'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            ));
+        $this->form_validation->set_rules('harga', 'Harga', 'required|numeric',
+            array(
+                'required' => 'Isian tidak boleh kosong',
+                'numeric' => 'Isian harus angka'
+            ));
+        $this->form_validation->set_rules('berat', 'Berat', 'required|numeric',
+            array(
+                'required' => 'Isian tidak boleh kosong',
+                'numeric' => 'Isian harus angka'
+            ));
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            ));
+        // form validasi end 
 
         if ($this->form_validation->run() == false) { //jika data gagal tervalidasi
             $this->session->set_flashdata(
                 'pesan_menu',
                 'toastr.error("Error, Data gagal diupdate")'
             );
-            redirect('admin/C_barang');
+
+            $id = $this->input->post('kode');
+
+            $data['edit'] = $this->barang->get_where($id)->result();
+            $data['produk'] = $this->barang->getAllItems()->result();
+            $data['kategori'] = $this->barang->getAllCategories()->result();
+            $data['satuan'] = $this->barang->getAllUnits()->result();
+    
+            $this->load->view('templates/admin/header');
+            $this->load->view('templates/admin/sidebar');
+            $this->load->view('admin/v_edit_barang', $data);
+            $this->load->view('templates/admin/footer');
         } else { //jika data sukses tervalidasi
 
             $kode = $this->input->post('kode');
@@ -164,6 +234,7 @@ class C_barang extends CI_Controller
             $unit = $this->input->post('unit');
             $harga = $this->input->post('harga');
             $berat = $this->input->post('berat');
+            $deskripsi = $this->input->post('deskripsi');
             $gambar_old = $this->input->post('gambar_old');
             $gambar = $_FILES['gambar']; //untuk mengambil file gambar
 
@@ -207,6 +278,7 @@ class C_barang extends CI_Controller
                         'kode_satuan' => $unit,
                         'harga' => $harga,
                         'berat' => $berat,
+                        'deskripsi' => $deskripsi,
                         'gambar' => $namaGambar,
                         'updated' => date('dmY')
                     );
@@ -239,6 +311,7 @@ class C_barang extends CI_Controller
                     'kode_kategori' => $kategori,
                     'kode_satuan' => $unit,
                     'harga' => $harga,
+                    'deskripsi' => $deskripsi,
                     'berat' => $berat,
                     'updated' => date('dmY')
                 );
@@ -262,57 +335,46 @@ class C_barang extends CI_Controller
         }
     }
     
-    public function deskripsi_edit($id)
+    public function edit_barang($id)
     {
-        $data['deskripsi'] = $this->barang->get_where($id)->result();
+        $data['edit'] = $this->barang->get_where($id)->result();
+        $data['produk'] = $this->barang->getAllItems()->result();
+        $data['kategori'] = $this->barang->getAllCategories()->result();
+        $data['satuan'] = $this->barang->getAllUnits()->result();
 
         $this->load->view('templates/admin/header');
         $this->load->view('templates/admin/sidebar');
-        $this->load->view('admin/v_barang_desedit', $data);
+        $this->load->view('admin/v_edit_barang', $data);
         $this->load->view('templates/admin/footer');
         
     }
 
-    public function edit_des_barang()
+    public function generate_barang($id)
     {
-        $this->form_validation->set_rules('deskripsi',"Deskripsi", 'required');
+        $data['barcode'] = $this->barang->get_where($id)->result();
 
-        if ($this->form_validation->run() == false) {
+        $this->load->view('templates/admin/header');
+        $this->load->view('templates/admin/sidebar');
+        $this->load->view('admin/v_generate_barang', $data);
+        $this->load->view('templates/admin/footer');
+        
+    }
 
-        $id = $this->input->post('kode_barang');
+    public function barcode_print($id)
+    {
+        $data['barcode'] = $this->barang->get_where($id)->result();
+        $html = $this->load->view('admin/v_barcode_barang_print', $data, true);
+        $filename = 'Barcode'.$id;
 
-            $this->session->set_flashdata(
-                'pesan_menu',
-                'toastr.error("Data gagal diUpdate, isian tidak boleh kosong")'
-            );
-            redirect('admin/C_barang/deskripsi_edit/'.$id);
-        } else {
-            $deskripsi = $this->input->post('deskripsi');
-            $id = $this->input->post('kode_barang');
+        $this->barang->print_dompdf($html, 'A5', 'landscape', $filename);
+    }
 
-            $where = array (
-                'kode_barang' => $id
-            );
-            $data = array (
-                'deskripsi' => $deskripsi
-            );
+    public function qrcode_print($id)
+    {
+        $data['qrcode'] = $this->barang->get_where($id)->result();
+        $html = $this->load->view('admin/v_barcode_barang_print', $data, true);
+        $filename = 'Qrcode'.$id;
 
-            if ($this->barang->edit_items($where, $data) > 0)
-            {
-                $this->session->set_flashdata(
-                    'pesan_menu',
-                    'toastr.success("Data berhasil diUpdate")'
-                );
-            redirect('admin/C_barang');
-
-            }else{
-                $this->session->set_flashdata(
-                    'pesan_menu',
-                    'toastr.error("Data gagal diUpdate")'
-                );
-            redirect('admin/C_barang/deskripsi_edit/'.$id);
-
-            }
-        }
+        $this->barang->print_dompdf($html, 'A5', 'landscape', $filename);
     }
 }
