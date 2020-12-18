@@ -11,7 +11,11 @@ class M_supplier extends CI_Model
         $this->db->order_by('kode_supplier', 'DESC');
         return $this->db->get('supplier');
     }
-
+    // fungsi untuk menampilkan jumlah record data di database pada dashboard
+    function total_rows()
+    {
+        return $this->db->get('supplier')->num_rows();
+    }
     //fungsi untuk mengambil semua data pada supplier
     public function getAllSupplier()
     {
