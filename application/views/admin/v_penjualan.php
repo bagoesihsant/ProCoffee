@@ -227,26 +227,50 @@
                             <!-- 3rd Row (Total Belanja, Diskon, Grand Total) -->
                             <div class="row my-2">
                                 <!-- 1st Row (Total Belanja) -->
-                                <div class="col-12">
+                                <div class="col-12 my-1">
                                     <div class="row px-2">
                                         <div class="col-5 d-flex">
                                             <h4 class="text-dark mx-auto my-auto">Total Belanja :</h4>
                                         </div>
                                         <div class="col-7 d-flex">
-                                            <h4 class="text-dark total-belanja-transaksi mx-auto my-auto">Rp. 350.000,00</h4>
+                                            <h4 class="text-dark mx-auto total-belanja-transaksi my-auto">Rp. 350.000,00</h4>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- 1st Row (Total Belanja) End -->
                                 <!-- 2nd Row (Diskon Belanja) -->
-                                <div class="col-12">
+                                <div class="col-12 my-1">
                                     <div class="row px-2">
-
+                                        <div class="col-5 d-flex">
+                                            <h4 class="text-dark mx-auto my-auto">Diskon Belanja :</h4>
+                                        </div>
+                                        <div class="col-7 d-flex">
+                                            <h4 class="text-dark mx-auto diskon-belanja-transaksi my-auto">Rp. 15.000,00</h4>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- 2nd Row (Diskon Belanja) End -->
+                                <!-- 3rd Row (Grand Total) -->
+                                <div class="col-12 my-1">
+                                    <div class="row px-2">
+                                        <div class="col-5 d-flex">
+                                            <h4 class="text-dark mx-auto my-auto">Grand Total :</h4>
+                                        </div>
+                                        <div class="col-7 d-flex">
+                                            <h4 class="text-dark mx-auto grand-total-belanja-transaksi my-auto">Rp. 335.000,00</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 3rd Row (Grand Total) End -->
                             </div>
                             <!-- 3rd Row (Total Belanja, Diskon, Grand Total) End -->
+                            <!-- 4th Row (Tombol Proses Belanja, Tombol Batalkan Belanja) -->
+                            <div class="row">
+                                <div class="col-12 my-1">
+                                    <button class="btn btn-success"></button>
+                                </div>
+                            </div>
+                            <!-- 4th Row (Tombol Proses Belanja, Tombol Batalkan Belanja) End -->
                         </div>
                         <!-- Card Body End -->
                     </div>

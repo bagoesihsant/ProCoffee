@@ -60,6 +60,10 @@ $route['admin/menu'] = "admin/C_menu/index";
 $route['admin/editMenu'] = "admin/C_menu/editMenu";
 $route['admin/hapusMenu/(:any)'] = "admin/C_menu/hapusMenu/$1";
 
+// Route Role
+$route['admin/role'] = "admin/C_menu/role";
+$route['admin/']
+
 // Custome Product Routes
 $route['admin/kategori'] = "admin/C_kategori/index";
 $route['admin/satuan'] = "admin/C_satuan/index";
