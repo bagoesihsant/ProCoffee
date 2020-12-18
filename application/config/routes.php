@@ -62,7 +62,6 @@ $route['admin/hapusMenu/(:any)'] = "admin/C_menu/hapusMenu/$1";
 
 // Route Role
 $route['admin/role'] = "admin/C_menu/role";
-$route['admin/']
 
 // Custome Product Routes
 $route['admin/kategori'] = "admin/C_kategori/index";
