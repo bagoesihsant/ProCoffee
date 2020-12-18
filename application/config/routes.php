@@ -60,6 +60,9 @@ $route['admin/menu'] = "admin/C_menu/index";
 $route['admin/editMenu'] = "admin/C_menu/editMenu";
 $route['admin/hapusMenu/(:any)'] = "admin/C_menu/hapusMenu/$1";
 
+// Route Role
+$route['admin/role'] = "admin/C_menu/role";
+$route['admin/']
 
 // Custome Product Routes
 $route['admin/kategori'] = "admin/C_kategori/index";
@@ -74,6 +77,8 @@ $route['kasir/StockOut/delete/(:num)/(:num)'] = "kasir/C_stockout/delete_out";
 $route['kasir/stock_in_data'] = "kasir/C_stockin/index";
 $route['kasir/ItemIn'] = "kasir/C_stockin/stock_in_form";
 
+// Route Kasir
+$route['kasir/penjualan'] = "kasir/C_kasir/index";
 
 // Route Sub Menu
 $route['admin/submenu'] = "admin/C_menu/submenu";
