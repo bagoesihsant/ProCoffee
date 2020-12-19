@@ -12,6 +12,11 @@ class M_stockOut extends CI_Model
         return $query;
     }
 
+    function total_rows()
+    {
+        return $this->db->get('tbl_stock')->num_rows();
+    }
+
     public function LastNumberStock()
     {
         $this->db->order_by('kode_stock', 'DESC');

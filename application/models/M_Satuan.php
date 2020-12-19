@@ -8,7 +8,10 @@ class M_Satuan extends CI_Model
     {
         return $this->db->get('tbl_satuan');
     }
-
+    function total_rows()
+    {
+        return $this->db->get('tbl_satuan')->num_rows();
+    }
     public function LastNumberSatuan()
     {
         $this->db->order_by('kode_satuan', 'DESC');

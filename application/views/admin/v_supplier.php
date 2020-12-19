@@ -78,16 +78,9 @@
                                         )">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
-                                        <a href="#" data-toggle="modal" data-target="#editModal" class="btn btn-xs btn-warning" onClick="edit(
-                                                '<?= $su->kode_supplier ?>',
-                                                '<?= $su->nama ?>',
-                                                '<?= $su->no_hp ?>',
-                                                '<?= $su->alamat ?>',
-                                                '<?= $su->deskripsi ?>'
-                                                )">
+                                        <a href="<?= base_url("admin/C_supplier/edit_supplier/") .$su->kode_supplier ?>" class="btn btn-xs btn-warning pl-2 pr-2">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
-                                        <a href="<?= base_url("admin/C_supplier/deskripsi_edit/") .$su->kode_supplier ?>" class="btn btn-xs btn-success pl-2 pr-2"><i class="fas fa-prescription-bottle"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -154,6 +147,7 @@
                             <sup class="text-danger">*</sup>
                         </label>
                         <input type="text" name="nama" id="nama" class="form-control" value="" required>
+                        <?= form_error('nama', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="notelp">
@@ -161,6 +155,7 @@
                             <sup class="text-danger">*</sup>
                         </label>
                         <input type="text" name="notelp" id="notelp" class="form-control" onkeypress="return hanyaAngka(event)" minlength="11" maxlength="13" required>
+                        <?= form_error('notelp', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="alamat">
@@ -168,6 +163,7 @@
                             <sup class="text-danger">*</sup>
                         </label>
                         <input type="text" name="alamat" id="alamat" class="form-control" required>
+                        <?= form_error('alamat', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">
@@ -175,6 +171,7 @@
                             <sup class="text-danger">*</sup>
                         </label>
                         <textarea name="deskripsi" id="deskripsi" class="form-control ckeditor" required></textarea>
+                        <?= form_error('deskripsi', '<small class="text-danger">', '</small>'); ?>
                     </div>
                     <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
             </div>
@@ -235,55 +232,6 @@
     </div>
 </div>
 <!-- Modal Detail End -->
-
-<!-- Modal Edit -->
-<div class="modal fade" id="editModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Edit Supplier</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="<?= base_url('admin/C_supplier/edit_supplier') ?>" method="post">
-                    <div class="form-group">
-                        <label for="kode">Kode Supplier</label>
-                        <input type="text" name="kode" id="kode-edit" class="form-control" value="CSM001" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="nama">
-                            Nama Supplier
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="nama" id="nama-edit" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="notelp">
-                            No. Telpon / HP
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <input type="text" name="notelp" id="notelp-edit" class="form-control" onkeypress="return hanyaAngka(event)" minlength="11" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat">
-                            Alamat
-                            <sup class="text-danger">*</sup>
-                        </label>
-                        <textarea name="alamat" id="address-edit" class="form-control" required></textarea>
-                    </div>
-                    <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary" id="btnTambahSupplier" name="tambah">Simpan</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal Edit End -->
 
 <!-- modal hapus -->
     <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

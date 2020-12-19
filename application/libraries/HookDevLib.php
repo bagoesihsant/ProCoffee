@@ -34,4 +34,12 @@ class HookDevLib
         // Mengambalikan kode baru
         return $kode;
     }
+
+    // Fungsi format angka ke rupiah
+    public function formatRupiah($angka)
+    {
+        $rupiah = "Rp. ";
+        $rupiah .= number_format($angka, 2, ',', '.');
+        return $rupiah;
+    }
 }

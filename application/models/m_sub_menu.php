@@ -12,7 +12,10 @@ class M_sub_menu extends CI_Model
         $this->db->order_by('user_sub_menu.kode_sub_menu', 'ASC');
         return $this->db->get()->result_array();
     }
-
+    function total_rows()
+    {
+        return $this->db->get('user_sub_menu')->num_rows();
+    }
     // Fungsi untuk mengambil data terakhir pada tabel
     public function getLastId()
     {
