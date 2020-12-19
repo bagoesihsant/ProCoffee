@@ -46,43 +46,11 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
             </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-danger navbar-badge">15</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="fas fa-fw fa-user-alt"></i>
@@ -93,26 +61,22 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="image">
-                                        <img src="https://source.unsplash.com/75x90" alt="User Image" class="rounded elevation-2">
+                                        <img src="<?= base_url() . 'assets/user_img/' . $user['profile_img']; ?>" alt="User profile picture" class="profile-user-img img-fluid">
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <p class="text-md my-1">Bagoes Ihsan</p>
-                                    <p class="text-muted text-sm my-1">bagoesihsant@gmail.com</p>
-                                    <a href="" class="btn btn-sm btn-primary my-1">View Profile</a>
+                                    <p class="text-md my-1"><?= $user['nama']; ?></p>
+                                    <p class="text-muted text-sm my-1"><?= $user['username']; ?></p>
+                                    <a href="<?= base_url('user'); ?>" class="btn btn-sm btn-primary my-1">View Profile</a>
                                 </div>
                             </div>
                         </div>
                         <!-- User Mini Profile End -->
                         <div class="dropdown-divider"></div>
-                        <div class="dropdown-item">
-                            <i class="fas fa-fw fa-cogs text-gray"></i>
-                            <a href="" class="text-gray ml-2">Account Settings</a>
-                        </div>
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-item">
-                            <i class="fas fa-fw fa-cog text-gray"></i>
-                            <a href="" class="text-gray ml-2">Logout</a>
+                            <i class="fas fa-fw fa-sign-out-alt text-red"></i>
+                            <a href="<?= base_url('auth/logout'); ?>" class="text-red ml-2">Logout</a>
                         </div>
                     </div>
                 </li>
