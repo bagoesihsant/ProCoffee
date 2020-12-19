@@ -526,7 +526,7 @@ class C_menu extends CI_Controller
 
         // Load View
         $this->load->view('templates/admin/header', $data);
-        // $this->load->view('templates/admin/sidebar');
+        $this->load->view('templates/admin/sidebar');
         $this->load->view('admin/v_assign_role');
         $this->load->view('templates/admin/footer');
     }

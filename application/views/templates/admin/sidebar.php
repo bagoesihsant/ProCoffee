@@ -1,9 +1,10 @@
 <!-- Main Sidebar Container -->
 <?php
-    $role_id = $this->session->userdata('role_id');
-    $q_menu = "SELECT * FROM user_menu JOIN  user_access_menu
+    $role_id = $this->session->userdata('kode_role');
+    $q_menu = "SELECT *
+                FROM user_menu JOIN  user_access_menu
                 ON user_menu.kode_menu = user_access_menu.kode_menu
-                WHERE user_access_menu.kode_role = $role_id
+                WHERE user_access_menu.kode_access = $role_id
                 ORDER BY user_access_menu.kode_menu ASC
     ";
 

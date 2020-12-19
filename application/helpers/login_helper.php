@@ -7,15 +7,14 @@ function is_logged_in()
     {
         redirect('auth');
     }else{
-        $role_id = $ci->session->userdata('role_id');
-        $kode_user = $ci->session->userdata('kode_user');
+        $role_id = $ci->session->userdata('kode_role');
         $menu = $ci->uri->segment(1);
 
         $queryMenu = $ci->db->get_where('user_menu', ['menu' => $menu])->row_array();
 
-        $menu_id = $queryMenu['id_menu'];
+        $menu_id = $queryMenu['kode_menu'];
 
-        $userAccess = $ci->db->get_where('access_user', [
+        $userAccess = $ci->db->get_where('user_access_menu', [
             'kode_role' => $role_id,
             'kode_menu' => $menu_id
         ]); 
