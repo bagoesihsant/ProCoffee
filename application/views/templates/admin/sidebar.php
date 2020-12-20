@@ -4,7 +4,7 @@
     $q_menu = "SELECT *
                 FROM user_menu JOIN  user_access_menu
                 ON user_menu.kode_menu = user_access_menu.kode_menu
-                WHERE user_access_menu.kode_access = $role_id
+                WHERE user_access_menu.kode_role = '$role_id'
                 ORDER BY user_access_menu.kode_menu ASC
     ";
 
@@ -42,7 +42,7 @@
                     $q_submenu = "SELECT * 
                                     FROM user_sub_menu JOIN user_menu
                                     ON user_sub_menu.kode_menu = user_menu.kode_menu
-                                    WHERE user_sub_menu.kode_menu = $menu_id
+                                    WHERE user_sub_menu.kode_menu = '$menu_id'
                                     AND user_sub_menu.is_active = 1
                     ";
                     $submenu = $this->db->query($q_submenu)->result_array();
@@ -57,7 +57,7 @@
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                 <?php endif; ?>
-                <i class="nav-icon fas <?= $m['icon']; ?>"></i>
+                <!-- <i class="nav-icon fas"></i> -->
                     <p>
                         <?= $m['menu']; ?><i class="right fas fa-angle-left"></i>
                     </p>

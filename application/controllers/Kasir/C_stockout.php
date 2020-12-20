@@ -12,9 +12,10 @@ class C_stockout extends CI_Controller
 
     public function index()
     {
+        $data['title'] = 'Stock Out';
         $data['row'] =  $this->M_stockOut->get_dataOut()->result();
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_stock_out', $data);
         $this->load->view('templates/admin/footer');
     }
@@ -25,8 +26,9 @@ class C_stockout extends CI_Controller
         $data = [
             'item' => $item
         ];
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        $data['title'] = 'Stock Out Form';
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_stock_outform', $data);
         $this->load->view('templates/admin/footer');
     }

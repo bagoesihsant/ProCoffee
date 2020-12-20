@@ -105,3 +105,8 @@ $route['User/Detail'] = "Users/C_detail_barang_user/index";
 $route['User/Register'] = "C_auth_user/registration";
 $route['User/LupaSandi'] = "C_auth_user/LupaPasswordUser";
 $route['User/GantiSandi'] = "C_auth_user/UbahPassword";
+
+
+// User -> Menu ['Menu']
+$route['menu'] = "admin/C_menu";
+$route['menu/submenu'] = "admin/C_menu/submenu";

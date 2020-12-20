@@ -18,8 +18,8 @@ class C_pemilik extends CI_Controller
         $this->data['total_satuan'] = $this->M_Satuan->total_rows();
         $this->data['total_kategori'] = $this->M_Categories->total_rows();
         $this->load->view('templates/admin/header', $data);
-        $this->load->view('templates/admin/sidebar');
-        $this->load->view('pemilik/v_dashboard_pemilik');
+        $this->load->view('templates/admin/sidebar', $data);
+        $this->load->view('pemilik/v_dashboard_pemilik', $data);
         $this->load->view('templates/admin/footer');
     }
 }
