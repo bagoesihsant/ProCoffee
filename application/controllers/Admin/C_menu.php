@@ -19,6 +19,7 @@ class C_menu extends CI_Controller
     {
         // Membuat variabel array data
         // Mengambil isi menu dari database
+        $data['title'] = 'Managemen Menu';
         $data['menu'] = $this->menu->getAllMenu();
 
         // Membuat rule untuk validasi form
@@ -33,8 +34,8 @@ class C_menu extends CI_Controller
         if ($this->form_validation->run() == false) {
             // Jika hasil validasi form mengembalikan false
             $this->load->view('templates/admin/header', $data);
-            $this->load->view('templates/admin/sidebar');
-            $this->load->view('admin/v_menu');
+            $this->load->view('templates/admin/sidebar', $data);
+            $this->load->view('admin/v_menu', $data);
             $this->load->view('templates/admin/footer');
         } else {
             // Jika hasil validasi form mengembalikan true
@@ -185,6 +186,7 @@ class C_menu extends CI_Controller
     {
         // Membuat array data
         // Mengambil data seluruh sub menu
+        $data['title'] = 'Manajemen Submenu';
         $data['submenu'] = $this->menu->getAllSubMenu();
 
         // Membuat aturan validasi form
@@ -204,8 +206,8 @@ class C_menu extends CI_Controller
             // Jika form validation mengembalikan value false
             // Load View
             $this->load->view('templates/admin/header', $data);
-            $this->load->view('templates/admin/sidebar');
-            $this->load->view('admin/v_sub_menu');
+            $this->load->view('templates/admin/sidebar', $data);
+            $this->load->view('admin/v_sub_menu', $data);
             $this->load->view('templates/admin/footer.php');
         } else {
             // Jika form validation mengembalikan value true

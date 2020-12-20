@@ -25,7 +25,7 @@ class C_kasir extends CI_Controller
 
         // Load View
         $this->load->view('templates/admin/header', $data);
-        $this->load->view('templates/admin/sidebar');
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_penjualan');
         $this->load->view('templates/admin/footer');
     }

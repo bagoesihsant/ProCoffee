@@ -16,8 +16,9 @@ class C_satuan extends CI_Controller
     public function index()
     {
         $data['row'] = $this->msatuan->readDatasatuan();
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        $data['title'] = 'Data Satuan';
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_units', $data);
         $this->load->view('templates/admin/footer');
     }

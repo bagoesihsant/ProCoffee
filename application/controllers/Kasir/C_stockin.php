@@ -11,19 +11,21 @@ class C_stockin extends CI_Controller
     }
     public function index()
     {
+        $data['title'] = 'Stock In';
         $data['row'] = $this->M_stockin->get_data_in()->result();
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_stock_in', $data);
         $this->load->view('templates/admin/footer');
     }
     public function stock_in_form()
     {
+        $data['title'] = 'Stock In Form';
         $item = $this->M_barang->getAllItems()->result();
         $data = ['item' => $item];
         $data['supplier'] = $this->M_supplier->getAllSupplier()->result_array();
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_stock_inform', $data);
         $this->load->view('templates/admin/footer');
     }
@@ -46,9 +48,10 @@ class C_stockin extends CI_Controller
     //untuk tampilan awal stock in
     public function stock_in_data()
     {
+        $data['title'] = 'Data Stock In';
         $data['row'] = $this->M_stock->get_stock_in()->result();
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_stock_inform', $data);
         $this->load->view('templates/admin/footer');
     }
