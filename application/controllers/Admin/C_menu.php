@@ -220,7 +220,6 @@ class C_menu extends CI_Controller
                 'kode_menu' => htmlspecialchars($this->input->post('menu_sub_menu', true)),
                 'sub_menu' => htmlspecialchars($this->input->post('sub_menu', true)),
                 'url' => htmlspecialchars($this->input->post('url_sub_menu', true)),
-                'icon' => htmlspecialchars($this->input->post('icon_sub_menu', true)),
                 'is_active' => htmlspecialchars($this->input->post('status_sub_menu', true))
             ];
 
@@ -277,7 +276,6 @@ class C_menu extends CI_Controller
         $this->form_validation->set_rules('menu_sub_menu', 'Menu', 'required|trim');
         $this->form_validation->set_rules('sub_menu', 'Submenu', 'required|trim|alpha_numeric_spaces');
         $this->form_validation->set_rules('url_sub_menu', 'URL', 'required|trim|regex_match[/^[a-zA-Z\/]+$/]');
-        $this->form_validation->set_rules('icon_sub_menu', 'Icon', 'required|trim|regex_match[/^[a-zA-Z\-\s]+$/]');
 
         // Membuat pesan khusus untuk aturan validasi
         $this->form_validation->set_message('required', 'Field %s wajib diisi.');
@@ -296,7 +294,6 @@ class C_menu extends CI_Controller
                 'kode_menu' => htmlspecialchars($this->input->post('menu_sub_menu', true)),
                 'sub_menu' => htmlspecialchars($this->input->post('sub_menu', true)),
                 'url' => htmlspecialchars($this->input->post('url_sub_menu', true)),
-                'icon' => htmlspecialchars($this->input->post('icon_sub_menu', true)),
                 'is_active' => htmlspecialchars($this->input->post('status_sub_menu_edit', true))
             ];
 

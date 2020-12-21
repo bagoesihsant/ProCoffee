@@ -57,7 +57,6 @@
                                 <th>Sub Menu</th>
                                 <th>Menu</th>
                                 <th>URL</th>
-                                <th>Icon</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -76,11 +75,6 @@
                                     <td><?= $submenus['sub_menu']; ?></td>
                                     <td><?= $submenus['menu']; ?></td>
                                     <td><?= $submenus['url']; ?></td>
-                                    <td class="text-center">
-                                        <button class="btn btn-sm btn-secondary">
-                                            <i class="<?= $submenus['icon']; ?>"></i>
-                                        </button>
-                                    </td>
                                     <td class="text-center">
                                         <!-- Memeriksa apakah status menu aktif atau tidak -->
                                         <?php
@@ -122,7 +116,6 @@
                                 <th>Sub Menu</th>
                                 <th>Menu</th>
                                 <th>URL</th>
-                                <th>Icon</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
