@@ -64,4 +64,17 @@ class M_kasir extends CI_Model
         $this->db->where($where);
         return $this->db->get();
     }
+
+    // Mengambil id terakhir dari tabel transaksi
+    public function getLastId()
+    {
+        $this->db->order_by('kode_transaksi', 'DESC');
+        return $this->db->get('transaksi_offline');
+    }
+
+    // Mengambil data kasir
+    public function getLoggedInKasir($where)
+    {
+        return $this->db->get_where('user', $where)->row_array();
+    }
 }

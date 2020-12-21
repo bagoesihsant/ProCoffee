@@ -11,6 +11,8 @@ class C_stockin extends CI_Controller
     }
     public function index()
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Stock In';
         $data['row'] = $this->M_stockin->get_data_in()->result();
         $this->load->view('templates/admin/header', $data);

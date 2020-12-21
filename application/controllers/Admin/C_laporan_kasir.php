@@ -16,6 +16,8 @@ class C_laporan_kasir extends CI_Controller
     // START ITEMS START ITEMS START ITEMS START ITEMS START ITEMS START ITEMS
     public function index()
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/admin/header');
         $this->load->view('admin/v_laporan_kasir');
     }
@@ -33,7 +35,7 @@ class C_laporan_kasir extends CI_Controller
         $data['dtl_transaksi'] = $this->laporan->getAllDtlTransaksi($id)->result();
 
         $html = $this->load->view('admin/v_cetak_laporan_kasir', $data, true);
-        $filename = 'laporan'.$id;
+        $filename = 'laporan' . $id;
 
         $this->laporan->print_dompdf($html, 'A4', 'landscape', $filename);
     }

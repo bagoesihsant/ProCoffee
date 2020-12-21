@@ -12,6 +12,8 @@ class C_stockout extends CI_Controller
 
     public function index()
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Stock Out';
         $data['row'] =  $this->M_stockOut->get_dataOut()->result();
         $this->load->view('templates/admin/header', $data);

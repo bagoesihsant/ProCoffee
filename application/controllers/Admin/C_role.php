@@ -16,6 +16,8 @@ class C_role extends CI_Controller
     // Hak Akses
     public function index()
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat title
         $data['title'] = "Manajemen Hak Akses";
         // Mengambil data dari database
@@ -173,6 +175,8 @@ class C_role extends CI_Controller
     // Manajemen Pemberian Hak Akses
     public function userAkses($kode)
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat title
         $data['title'] = "Manajemen Akses";
         // Mengambil data menu

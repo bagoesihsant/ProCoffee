@@ -16,6 +16,8 @@ class C_barang extends CI_Controller
     // START ITEMS START ITEMS START ITEMS START ITEMS START ITEMS START ITEMS
     public function index()
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Data Barang";
         $data['produk'] = $this->barang->getAllItems()->result();
         $data['kategori'] = $this->barang->getAllCategories()->result();
@@ -30,36 +32,64 @@ class C_barang extends CI_Controller
     public function tambah_items()
     {
         // form validasi 
-        $this->form_validation->set_rules('nama', 'Nama', 'required',
-        array(
-            'required' => 'Isian tidak boleh kosong'
-        ));
-        $this->form_validation->set_rules('barcode', 'Barcode', 'required',
-        array(
-            'required' => 'Isian tidak boleh kosong'
-        ));
-        $this->form_validation->set_rules('kategori', 'Kategori', 'required',
-        array(
-            'required' => 'Isian tidak boleh kosong'
-        ));
-        $this->form_validation->set_rules('unit', 'Unit', 'required',
-        array(
-            'required' => 'Isian tidak boleh kosong'
-        ));
-        $this->form_validation->set_rules('harga', 'Harga', 'required|numeric',
-        array(
-            'required' => 'Isian tidak boleh kosong',
-            'numeric' => 'Isian harus angka'
-        ));
-        $this->form_validation->set_rules('berat', 'Berat', 'required|numeric',
-        array(
-            'required' => 'Isian tidak boleh kosong',
-            'numeric' => 'Isian harus angka'
-        ));
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required',
-        array(
-            'required' => 'Isian tidak boleh kosong'
-        ));
+        $this->form_validation->set_rules(
+            'nama',
+            'Nama',
+            'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            )
+        );
+        $this->form_validation->set_rules(
+            'barcode',
+            'Barcode',
+            'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            )
+        );
+        $this->form_validation->set_rules(
+            'kategori',
+            'Kategori',
+            'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            )
+        );
+        $this->form_validation->set_rules(
+            'unit',
+            'Unit',
+            'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            )
+        );
+        $this->form_validation->set_rules(
+            'harga',
+            'Harga',
+            'required|numeric',
+            array(
+                'required' => 'Isian tidak boleh kosong',
+                'numeric' => 'Isian harus angka'
+            )
+        );
+        $this->form_validation->set_rules(
+            'berat',
+            'Berat',
+            'required|numeric',
+            array(
+                'required' => 'Isian tidak boleh kosong',
+                'numeric' => 'Isian harus angka'
+            )
+        );
+        $this->form_validation->set_rules(
+            'deskripsi',
+            'Deskripsi',
+            'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            )
+        );
         // form validasi end 
 
         if ($this->form_validation->run() == false) {
@@ -71,7 +101,7 @@ class C_barang extends CI_Controller
             $data['produk'] = $this->barang->getAllItems()->result();
             $data['kategori'] = $this->barang->getAllCategories()->result();
             $data['satuan'] = $this->barang->getAllUnits()->result();
-    
+
             $this->load->view('templates/admin/header', $data);
             $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('admin/v_barang', $data);
@@ -177,36 +207,64 @@ class C_barang extends CI_Controller
     public function edit_barang_aksi()
     {
         // form validasi 
-        $this->form_validation->set_rules('nama', 'Nama', 'required',
+        $this->form_validation->set_rules(
+            'nama',
+            'Nama',
+            'required',
             array(
                 'required' => 'Isian tidak boleh kosong'
-            ));
-        $this->form_validation->set_rules('barcode', 'Barcode', 'required',
+            )
+        );
+        $this->form_validation->set_rules(
+            'barcode',
+            'Barcode',
+            'required',
             array(
                 'required' => 'Isian tidak boleh kosong'
-            ));
-        $this->form_validation->set_rules('kategori', 'Kategori', 'required',
-        array(
-            'required' => 'Isian tidak boleh kosong'
-        ));
-        $this->form_validation->set_rules('unit', 'Unit', 'required',
+            )
+        );
+        $this->form_validation->set_rules(
+            'kategori',
+            'Kategori',
+            'required',
             array(
                 'required' => 'Isian tidak boleh kosong'
-            ));
-        $this->form_validation->set_rules('harga', 'Harga', 'required|numeric',
+            )
+        );
+        $this->form_validation->set_rules(
+            'unit',
+            'Unit',
+            'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            )
+        );
+        $this->form_validation->set_rules(
+            'harga',
+            'Harga',
+            'required|numeric',
             array(
                 'required' => 'Isian tidak boleh kosong',
                 'numeric' => 'Isian harus angka'
-            ));
-        $this->form_validation->set_rules('berat', 'Berat', 'required|numeric',
+            )
+        );
+        $this->form_validation->set_rules(
+            'berat',
+            'Berat',
+            'required|numeric',
             array(
                 'required' => 'Isian tidak boleh kosong',
                 'numeric' => 'Isian harus angka'
-            ));
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required',
+            )
+        );
+        $this->form_validation->set_rules(
+            'deskripsi',
+            'Deskripsi',
+            'required',
             array(
                 'required' => 'Isian tidak boleh kosong'
-            ));
+            )
+        );
         // form validasi end 
 
         if ($this->form_validation->run() == false) { //jika data gagal tervalidasi
@@ -221,7 +279,7 @@ class C_barang extends CI_Controller
             $data['produk'] = $this->barang->getAllItems()->result();
             $data['kategori'] = $this->barang->getAllCategories()->result();
             $data['satuan'] = $this->barang->getAllUnits()->result();
-    
+
             $this->load->view('templates/admin/header', $data);
             $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('admin/v_edit_barang', $data);
@@ -262,7 +320,7 @@ class C_barang extends CI_Controller
                     redirect('admin/C_barang');
                     //jika berhasil
                 } else {
-                    
+
                     //untuk menghapus gambar sebelumnya di folder
                     unlink("assets/items_img/" . $gambar_old);
 
@@ -285,14 +343,14 @@ class C_barang extends CI_Controller
                     );
 
                     $edit = $this->barang->edit_items($where, $data);
-                    if($edit>0){
+                    if ($edit > 0) {
                         //alert jika update databse sukses
                         $this->session->set_flashdata(
                             'pesan_menu',
                             'toastr.success("Data berhasil di update")'
                         );
                         redirect('admin/C_barang');
-                    }else{
+                    } else {
                         //alert jika update database gagal
                         $this->session->set_flashdata(
                             'pesan_menu',
@@ -319,7 +377,7 @@ class C_barang extends CI_Controller
 
                 $edit = $this->barang->edit_items($where, $data);
                 // alert(print_r($edit));
-                if ($edit =! 0) {
+                if ($edit = !0) {
                     $this->session->set_flashdata(
                         'pesan_menu',
                         'toastr.success("Data berhasil di update.")'
@@ -335,20 +393,19 @@ class C_barang extends CI_Controller
             }
         }
     }
-    
+
     public function edit_barang($id)
-    {   
+    {
         $data['title'] = 'Edit Barang';
         $data['edit'] = $this->barang->get_where($id)->result();
         $data['produk'] = $this->barang->getAllItems()->result();
         $data['kategori'] = $this->barang->getAllCategories()->result();
         $data['satuan'] = $this->barang->getAllUnits()->result();
-        
+
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_edit_barang', $data);
         $this->load->view('templates/admin/footer');
-        
     }
 
     public function generate_barang($id)
@@ -360,14 +417,13 @@ class C_barang extends CI_Controller
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_generate_barang', $data);
         $this->load->view('templates/admin/footer');
-        
     }
 
     public function barcode_print($id)
     {
         $data['barcode'] = $this->barang->get_where($id)->result();
         $html = $this->load->view('admin/v_barcode_barang_print', $data, true);
-        $filename = 'Barcode'.$id;
+        $filename = 'Barcode' . $id;
 
         $this->barang->print_dompdf($html, 'A5', 'landscape', $filename);
     }
@@ -376,7 +432,7 @@ class C_barang extends CI_Controller
     {
         $data['qrcode'] = $this->barang->get_where($id)->result();
         $html = $this->load->view('admin/v_barcode_barang_print', $data, true);
-        $filename = 'Qrcode'.$id;
+        $filename = 'Qrcode' . $id;
 
         $this->barang->print_dompdf($html, 'A5', 'landscape', $filename);
     }

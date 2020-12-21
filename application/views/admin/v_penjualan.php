@@ -47,19 +47,32 @@
                                     <div class="col-lg-3 col-md-12">
                                         <div class="form-group">
                                             <label for="kode_transaksi">Kode Transaksi</label>
-                                            <input type="text" name="kode_transaksi" id="kode_transaksi" class="form-control" readonly>
+                                            <?php
+                                            // Mengambil data terakhir dalam database
+                                            $data = $this->kasir->getLastId();
+                                            // Memeriksa apakah ada kode yang di dapat dari database
+                                            if ($data->num_rows() > 0) {
+                                                // Jika ada kode yang didapat dari database
+                                                $kode = $data->row_array();
+                                                $kode = $this->hookdevlib->autonumber($kode['kode_transaksi'], 3, 9);
+                                            } else {
+                                                // Jika tidak ada kode yang didapat dari database
+                                                $kode = "TRS000000001";
+                                            }
+                                            ?>
+                                            <input type="text" name="kode_transaksi" id="kode_transaksi" value="<?= $kode; ?>" class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-12">
                                         <div class="form-group">
                                             <label for="tgl_transaksi">Tanggal Transaksi</label>
-                                            <input type="text" name="tgl_transaksi" id="tgl_transaksi" class="form-control" readonly>
+                                            <input type="text" name="tgl_transaksi" id="tgl_transaksi" value="<?= date('d/m/Y'); ?>" class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-12">
                                         <div class="form-group">
                                             <label for="kasir">Nama Kasir Bertugas</label>
-                                            <input type="text" name="kasir" id="kasir" class="form-control" readonly>
+                                            <input type="text" name="kasir" data-id="<?= $kasir['kode_user']; ?>" value="<?= $kasir['nama']; ?>" id="kasir" class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-12">
@@ -267,7 +280,14 @@
                             <!-- 4th Row (Tombol Proses Belanja, Tombol Batalkan Belanja) -->
                             <div class="row">
                                 <div class="col-12 my-1">
-                                    <button class="btn btn-success"></button>
+                                    <button class="btn btn-success w-100">
+                                        <span class="mr-3">Proses Transaksi</span><i class="fas fa-fw fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                                <div class="col-12 my-1">
+                                    <button class="btn btn-danger w-100">
+                                        <span class="mr-2">Batalkan Transaksi</span><i class="fas fa-fw fa-ban"></i>
+                                    </button>
                                 </div>
                             </div>
                             <!-- 4th Row (Tombol Proses Belanja, Tombol Batalkan Belanja) End -->
@@ -285,3 +305,29 @@
     <!-- Main Content End -->
 </div>
 <!-- Content Wrapper End -->
+
+<!-- Modal Pilih Pelanggan -->
+<div class="modal fade" id="formPilihPelanggan">
+    <!-- Modal Dialog -->
+    <div class="modal-dialog">
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Daftar Pelanggan</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Modal Header End -->
+            <!-- Modal Body -->
+            <div class="modal-body">
+
+            </div>
+            <!-- Modal Body End -->
+        </div>
+        <!-- Modal Content End -->
+    </div>
+    <!-- Modal Dialog End -->
+</div>
+<!-- Modal Pilih Pelanggan End -->

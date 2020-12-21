@@ -19,9 +19,16 @@ class C_kasir extends CI_Controller
 
     public function index()
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat Array data
         $data['title'] = "Penjualan";
-        // $data['barang'] = $this->kasir->getAllBarang()->result_array();
+        // Mengambil session
+        $where = [
+            'kode_user' => $this->session->userdata('kode_user')
+        ];
+        // Mengambil kasir atau admin yang sedang login
+        $data['kasir'] = $this->kasir->getLoggedInKasir($where);
 
         // Load View
         $this->load->view('templates/admin/header', $data);

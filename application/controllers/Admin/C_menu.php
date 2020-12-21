@@ -17,6 +17,8 @@ class C_menu extends CI_Controller
     // Index
     public function index()
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat variabel array data
         // Mengambil isi menu dari database
         $data['title'] = 'Managemen Menu';
@@ -188,6 +190,8 @@ class C_menu extends CI_Controller
     // Submenu
     public function submenu()
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat array data
         // Mengambil data seluruh sub menu
         $data['title'] = 'Manajemen Submenu';
