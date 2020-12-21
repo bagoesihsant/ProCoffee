@@ -4,10 +4,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div id="main-slider" class="owl-carousel owl-theme">
-                        <div class="item"><img src="<?= base_url('assets/vendor_user/'); ?>img/main-slider1.jpg" alt="" class="img-fluid"></div>
-                        <div class="item"><img src="<?= base_url('assets/vendor_user/'); ?>img/main-slider2.jpg" alt="" class="img-fluid"></div>
-                        <div class="item"><img src="<?= base_url('assets/vendor_user/'); ?>img/main-slider3.jpg" alt="" class="img-fluid"></div>
-                        <div class="item"><img src="<?= base_url('assets/vendor_user/'); ?>img/main-slider4.jpg" alt="" class="img-fluid"></div>
+                        <div class="item"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi.jpg" alt="" class="img-fluid"></div>
+                        <div class="item"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpg" alt="" class="img-fluid"></div>
                     </div>
                     <!-- /#main-slider-->
                 </div>
@@ -280,9 +278,9 @@
                     <h3>Get Inspired</h3>
                     <p class="lead">Get the inspiration from our world class designers</p>
                     <div id="get-inspired" class="owl-carousel owl-theme">
-                        <div class="item"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/getinspired1.jpg" alt="Get inspired" class="img-fluid"></a></div>
-                        <div class="item"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/getinspired2.jpg" alt="Get inspired" class="img-fluid"></a></div>
-                        <div class="item"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/getinspired3.jpg" alt="Get inspired" class="img-fluid"></a></div>
+                        <div class="item"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi.jpg" alt="Get inspired" class="img-fluid"></a></div>
+                        <div class="item"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpg" alt="Get inspired" class="img-fluid"></a></div>
+                        <!-- <div class="item"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/getinspired3.jpg" alt="Get inspired" class="img-fluid"></a></div> -->
                     </div>
                 </div>
             </div>

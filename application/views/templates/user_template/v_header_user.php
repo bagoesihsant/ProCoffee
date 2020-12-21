@@ -99,7 +99,7 @@
                                             <h5>Lainnya</h5>
                                             <ul class="list-unstyled mb-3">
                                                 <li class="nav-item"><a href="<?= base_url('User/Profile'); ?>" class="nav-link">Profil saya</a></li>
-                                                <li class="nav-item"><a href="category.html" class="nav-link">LogOut</a></li>
+                                                <li class="nav-item"><a href="<?= base_url('User/Register'); ?>" class="nav-link">LogOut</a></li>
                                             </ul>
                                         </div>
 

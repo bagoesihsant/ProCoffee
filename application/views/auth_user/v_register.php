@@ -54,7 +54,7 @@
                             </div>
                             <p><a href="#">Lupa Password?</a></p>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                                <a href="<?= base_url('User/LandingPage'); ?>" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</a>
                             </div>
                         </form>
                     </div>

@@ -23,7 +23,7 @@
                                     <a href="<?= base_url('User/Profile/Edit'); ?>" class="nav-link"><i class="fa fa-pencil"></i>Edit Profil</a>
                                     <a href="<?= base_url('User/Profile/ChangePassword'); ?>" class="nav-link"><i class="fa fa-key"></i>Ganti Password</a>
                                     <a href="<?= base_url('User/History'); ?>" class="nav-link"><i class="fa fa-book"></i>History Pembelian</a>
-                                    <a href="index.html" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a></ul>
+                                    <a href="<?= base_url('User/Register'); ?>" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a></ul>
                             </div>
                         </div>
                         <!-- /.col-lg-3-->
