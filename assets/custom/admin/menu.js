@@ -148,7 +148,6 @@ $('#dataTableSubmenu tbody').on('click', '.btn-edit-submenu', function () {
             formSubmenu.find('#menu_sub_menu').val(data.kode_menu);
             formSubmenu.find('#sub_menu').val(data.sub_menu);
             formSubmenu.find('#url_sub_menu').val(data.url);
-            formSubmenu.find('#icon_sub_menu').val(data.icon);
             if (data.is_active == 1) {
                 formSubmenu.find('#status_sub_menu_edit').attr('checked', true);
             } else if (data.is_active == 0) {
@@ -187,8 +186,6 @@ $('#dataTableSubmenu tbody').on('click', '.btn-view-submenu', function () {
             modalSubmenu.find('#menu_sub_menu').val(data.kode_menu);
             modalSubmenu.find('#sub_menu').val(data.sub_menu);
             modalSubmenu.find('#url_sub_menu').val(data.url);
-            modalSubmenu.find('#icon_sub_menu').val(data.icon);
-            iconSubmenu.find('i').addClass(data.icon);
             if (data.is_active == 1) {
                 modalSubmenu.find('#status_sub_menu').val('AKTIF')
             } else if (data.is_active == 0) {
