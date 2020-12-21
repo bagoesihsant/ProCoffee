@@ -14,6 +14,8 @@ class M_stockOut extends CI_Model
 
     function total_rows()
     {
+        $this->db->select('*');
+        $this->db->where('type', 'out');
         return $this->db->get('tbl_stock')->num_rows();
     }
 
