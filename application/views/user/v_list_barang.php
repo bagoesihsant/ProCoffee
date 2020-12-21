@@ -23,7 +23,7 @@
                         <div class="card-body">
                             <ul class="nav nav-pills flex-column category-menu">
                                 <ul class="list-unstyled">
-                                    <li><a href="category.html" class="nav-link">Halaman Utama</a></li>
+                                    <li><a href="<?= base_url('User/LandingPage') ?>" class="nav-link">Halaman Utama</a></li>
                                     <li><a href="category.html" class="nav-link">Profil Saya</a></li>
                                     <li><a href="category.html" class="nav-link">Keranjang</a></li>
                                     <li><a href="category.html" class="nav-link">History transaksi</a></li>
