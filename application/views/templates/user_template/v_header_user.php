@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>E Comerce Apbase</title>
+    <title><?= $title; ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -40,7 +40,7 @@
                     <div class="col-lg-6 text-center text-lg-right">
                         <ul class="menu list-inline mb-0">
                             <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-                            <li class="list-inline-item"><a href="register.html">Register</a></li>
+                            <li class="list-inline-item"><a href="<?= base_url('User/Register') ?>">Register</a></li>
                         </ul>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                                 </p>
                             </form>
                             <p class="text-center text-muted">Belum Punya Akun?</p>
-                            <p class="text-center text-muted"><a href="register.html"><strong>Register Sekarang</strong></a>! Mudah dan hanya butuh beberapa saat untuk mendapatkan akses beli barang di website kami</p>
+                            <p class="text-center text-muted"><a href="<?= base_url('User/Register') ?>"><strong>Register Sekarang</strong></a>! Mudah dan hanya butuh beberapa saat untuk mendapatkan akses beli barang di website kami</p>
                         </div>
                     </div>
                 </div>
@@ -91,13 +91,14 @@
                                         <div class="col-md-6 col-lg-3">
                                             <h5>Transaksi</h5>
                                             <ul class="list-unstyled mb-3">
-                                                <li class="nav-item"><a href="category.html" class="nav-link">Keranjang</a></li>
-                                                <li class="nav-item"><a href="category.html" class="nav-link">Riwayat Pembelian</a></li>
+                                                <li class="nav-item"><a href="<?= base_url('User/Cart') ?>" class="nav-link">Keranjang</a></li>
+                                                <li class="nav-item"><a href="<?= base_url('User/History') ?>" class="nav-link">Riwayat Pembelian</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-md-6 col-lg-3">
                                             <h5>Lainnya</h5>
                                             <ul class="list-unstyled mb-3">
+                                                <li class="nav-item"><a href="<?= base_url('User/Profile'); ?>" class="nav-link">Profil saya</a></li>
                                                 <li class="nav-item"><a href="category.html" class="nav-link">LogOut</a></li>
                                             </ul>
                                         </div>
@@ -215,7 +216,7 @@
                     <div class="navbar-buttons d-flex justify-content-end">
                         <!-- /.nav-collapse-->
                         <!-- <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse" href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a> -->
-                        <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>3 items in cart</span></a></div>
+                        <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="<?= base_url('User/Cart') ?>" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>3 items in cart</span></a></div>
                     </div>
                 </div>
             </div>
