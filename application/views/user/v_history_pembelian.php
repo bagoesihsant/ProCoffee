@@ -31,29 +31,29 @@
                                         <tr>
                                             <td>KDT0000000001</td>
                                             <td>
-                                                19-Desember-2019
+                                                19-Desember-2020
                                             </td>
                                             <td>
-                                                3123123123123123
+                                                0972837182
                                             </td>
                                             <td>
                                                 <p class="badge bg-warning">pending</p>
                                             </td>
-                                            <td>$246.00</td>
+                                            <td>Rp. 45.000</td>
                                             <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
                                         </tr>
                                         <tr>
                                             <td>KDT0000000002</td>
                                             <td>
-                                                19-Desember-2019
+                                                19-Desember-2020
                                             </td>
                                             <td>
-                                                2131412412312
+                                                086723716
                                             </td>
                                             <td>
                                                 <p class="badge bg-warning">pending</p>
                                             </td>
-                                            <td>$200.00</td>
+                                            <td>Rp. 45.000</td>
                                             <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
                                         </tr>
                                     </tbody>
