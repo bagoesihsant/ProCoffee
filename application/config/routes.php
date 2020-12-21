@@ -61,7 +61,12 @@ $route['admin/editMenu'] = "admin/C_menu/editMenu";
 $route['admin/hapusMenu/(:any)'] = "admin/C_menu/hapusMenu/$1";
 
 // Route Role
-$route['admin/role'] = "admin/C_menu/role";
+$route['admin/role'] = "admin/C_role/index";
+$route['admin/editRole'] = "admin/C_role/editRole";
+$route['admin/deleteRole/(:any)'] = "admin/C_role/deleteRole/$1";
+
+// Route manajemen akses
+$route['admin/userAkses/(:any)'] = "admin/C_role/userAkses/$1";
 
 // Custome Product Routes
 $route['admin/kategori'] = "admin/C_kategori/index";
