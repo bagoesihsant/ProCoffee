@@ -43,7 +43,8 @@ class C_menu extends CI_Controller
             // Membuat array data
             $data = [
                 'kode_menu' => htmlspecialchars($this->input->post('kode_menu', true)),
-                'menu' => htmlspecialchars(ucwords($this->input->post('menu', true)))
+                'menu' => htmlspecialchars(ucwords($this->input->post('menu', true))),
+                'icon' => htmlspecialchars($this->input->post('icon_menu', true))
             ];
 
             // Melakukan penambahan data
@@ -96,10 +97,12 @@ class C_menu extends CI_Controller
         // Membuat rule untuk validasi form
         $this->form_validation->set_rules('kode_menu', 'Kode Menu', 'required|trim|alpha_numeric');
         $this->form_validation->set_rules('menu', 'Menu', 'required|trim|alpha_numeric_spaces');
+        $this->form_validation->set_rules('icon_menu', 'Icon Menu', 'required|trim|regex_match[/^[a-zA-Z\-\s]+$/]');
 
         // Membuat pesan kustom untuk rule validasi form
         $this->form_validation->set_message('required', 'Field %s wajib diisi.');
         $this->form_validation->set_message('alpha_numeric_spaces', 'Field %s hanya boleh berisikan angka dan huruf.');
+        $this->form_validation->set_message('regex_match', 'Karakter yang anda inputkan mengangdung karakter terlarang.');
 
         // Menjalankan form_validation
         if ($this->form_validation->run() == false) {
@@ -110,7 +113,8 @@ class C_menu extends CI_Controller
 
             // Membuat array data
             $data = [
-                'menu' => htmlspecialchars(ucwords($this->input->post('menu', true)))
+                'menu' => htmlspecialchars(ucwords($this->input->post('menu', true))),
+                'icon' => htmlspecialchars($this->input->post('icon_menu', true))
             ];
 
             // Membuat array where
@@ -194,7 +198,6 @@ class C_menu extends CI_Controller
         $this->form_validation->set_rules('menu_sub_menu', 'Menu', 'required|trim');
         $this->form_validation->set_rules('sub_menu', 'Submenu', 'required|trim|alpha_numeric_spaces');
         $this->form_validation->set_rules('url_sub_menu', 'URL', 'required|trim|regex_match[/^[a-zA-Z\/]+$/]');
-        $this->form_validation->set_rules('icon_sub_menu', 'Icon', 'required|trim|regex_match[/^[a-zA-Z\-\s]+$/]');
 
         // Membuat pesan khusus untuk aturan validasi
         $this->form_validation->set_message('required', 'Field %s wajib diisi.');
