@@ -98,6 +98,7 @@
                                         <div class="col-md-6 col-lg-3">
                                             <h5>Lainnya</h5>
                                             <ul class="list-unstyled mb-3">
+                                                <li class="nav-item"><a href="<?= base_url('User/Profile'); ?>" class="nav-link">Profil saya</a></li>
                                                 <li class="nav-item"><a href="category.html" class="nav-link">LogOut</a></li>
                                             </ul>
                                         </div>
