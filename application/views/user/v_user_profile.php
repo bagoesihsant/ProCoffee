@@ -12,21 +12,13 @@
                         </nav>
                     </div>
                     <div class="col-lg-3">
-                        <!--
-              *** CUSTOMER MENU ***
-              _________________________________________________________
-              -->
+
                         <div class="card sidebar-menu">
                             <div class="card-header">
                                 <h3 class="h4 card-title">Customer section</h3>
                             </div>
                             <div class="card-body">
-                                <ul class="nav nav-pills flex-column">
-                                    <a href="<?= base_url('User/Profile'); ?>" class="nav-link active"><i class="fa fa-user"></i>My account</a>
-                                    <a href="<?= base_url('User/ChangePassword'); ?>" class="nav-link"><i class="fa fa-key"></i>Ganti Password</a>
-                                    <a href="<?= base_url('User/History'); ?>" class="nav-link"><i class="fa fa-book"></i>History Pembelian</a>
-                                    <a href="index.html" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a>
-                                </ul>
+                                <ul class="nav nav-pills flex-column"><a href="customer-orders.html" class="nav-link active"><i class="fa fa-user"></i>My account</a><a href="customer-wishlist.html" class="nav-link"><i class="fa fa-book"></i>History Pembelian</a><a href="index.html" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a></ul>
                             </div>
                         </div>
                         <!-- /.col-lg-3-->
@@ -42,7 +34,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="password_old">Old password</label>
+                                            <label for="password_old">Old password</label>z
                                             <input id="password_old" type="password" class="form-control">
                                         </div>
                                     </div>
