@@ -124,6 +124,30 @@
                         <a href="<?= base_url('admin/C_kategori'); ?>" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3><?= $total_stockin ?></h3>
+                            <p>Stock In</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-pie-bag"></i>
+                        </div>
+                        <a href="<?= base_url('kasir/C_stockin'); ?>" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i> </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3><?= $total_stockout ?></h3>
+                            <p>Stock Out</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-pie-bag"></i>
+                        </div>
+                        <a href="<?= base_url('kasir/C_stockout'); ?>" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i> </a>
+                    </div>
+                </div>
             </div>
             <!-- /.row -->
             <!-- Main row -->
