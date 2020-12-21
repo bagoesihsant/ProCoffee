@@ -11,7 +11,7 @@ $('#dataTableRole tbody').on('click', '.btn-view', function () {
     const modal = $('#modalDetail');
 
     $.ajax({
-        url: 'http://localhost/ProCoffee/admin/C_menu/ajaxEditRole',
+        url: 'http://localhost/ProCoffee/admin/C_role/ajaxEditRole',
         data: { kode_role: kode },
         method: 'post',
         dataType: 'json',
@@ -37,7 +37,7 @@ $('#dataTableRole tbody').on('click', '.btn-edit', function () {
     const form = $('#formEditRole');
 
     $.ajax({
-        url: "http://localhost/ProCoffee/admin/C_menu/ajaxEditRole",
+        url: "http://localhost/ProCoffee/admin/C_role/ajaxEditRole",
         data: { kode_role: kode },
         method: "post",
         dataType: "json",
@@ -75,7 +75,7 @@ $('#dataTableRole tbody').on('click', '.btn-delete', function () {
         }
     }).then((result) => {
         if (result.value) {
-            window.location.href = "http://localhost/ProCoffee/admin/C_menu/deleteRole/" + kode;
+            window.location.href = "http://localhost/ProCoffee/admin/C_role/deleteRole/" + kode;
         } else {
             Swal.close();
         }
