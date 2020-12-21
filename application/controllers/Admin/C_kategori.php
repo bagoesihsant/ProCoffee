@@ -14,6 +14,7 @@ class C_kategori extends CI_Controller
 
     public function index()
     {
+        $data['title'] = 'Kategori Produk';
         $data['row'] = $this->mproduk->getDataProduct();
         $this->load->view('templates/admin/header');
         $this->load->view('templates/admin/sidebar');

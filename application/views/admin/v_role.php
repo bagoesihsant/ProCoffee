@@ -80,7 +80,7 @@
                                         <button type="button" data-kode="<?= $roles['kode_role']; ?>" class="btn btn-warning btn-xs mx-auto btn-edit" data-toggle="modal" data-target="#modalEdit">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </button>
-                                        <a href="<?= base_url('admin/C_menu/userAkses/' . $roles['kode_role']); ?>" class="btn btn-info btn-xs mx-auto">
+                                        <a href="<?= base_url('admin/userAkses/' . $roles['kode_role']); ?>" class="btn btn-info btn-xs mx-auto">
                                             <i class="fas fa-fw fa-cog text-white"></i>
                                         </a>
                                     </td>
@@ -132,11 +132,11 @@
             <!-- Modal Header End -->
             <!-- Modal Body -->
             <div class="modal-body">
-                <form action="<?= base_url('admin/C_menu/role'); ?>" method="post">
+                <form action="<?= base_url('admin/role'); ?>" method="post">
                     <!-- Mengambil kode sebelumnya dari database -->
                     <?php
                     // Mengambil data terakhir dari tabel hak akses
-                    $data = $this->menu->getLastIdRole();
+                    $data = $this->role->getLastIdRole();
                     // Memeriksa apakah ada data terakhir yang ditemukan atau tidak
                     if ($data->num_rows() > 0) {
                         // Jika ditemukan data
@@ -221,7 +221,7 @@
             <!-- Modal Header End -->
             <!-- Modal Body -->
             <div class="modal-body">
-                <form action="<?= base_url('admin/C_menu/editRole'); ?>" method="post" id="formEditRole">
+                <form action="<?= base_url('admin/editRole'); ?>" method="post" id="formEditRole">
                     <div class="form-group">
                         <label for="kode_role">Kode Hak Akses</label>
                         <input type="text" name="kode_role" id="kode_role" class="form-control" value="" readonly>

@@ -1,4 +1,15 @@
 <!-- Main Sidebar Container -->
+<?php
+    $role_id = $this->session->userdata('kode_role');
+    $q_menu = "SELECT *
+                FROM user_menu JOIN  user_access_menu
+                ON user_menu.kode_menu = user_access_menu.kode_menu
+                WHERE user_access_menu.kode_role = '$role_id'
+                ORDER BY user_access_menu.kode_menu ASC
+    ";
+
+    $menu = $this->db->query($q_menu)->result_array();
+?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -23,124 +34,55 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="<?= base_url() . "admin/C_admin" ?>" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <!-- Menu Management -->
-                <li class="nav-header">MANAGEMENT</li>
-                <li class="nav-item">
-                    <a href="<?= base_url() . "admin/C_user" ?>" class="nav-link">
-                        <i class="nav-icon fas fa-fw fa-users"></i>
-                        <p>User</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url() . "admin/C_supplier" ?>" class="nav-link">
-                        <i class="nav-icon fas fa-fw fa-truck"></i>
-                        <p>Supplier</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-fw fa-boxes"></i>
-                        <p>
-                            Product
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url() . "admin/C_kategori" ?>" class="nav-link">
-                                <i class="nav-icon far fa-circle text-secondary"></i>
-                                <p>Categories</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url() . "admin/C_satuan" ?>" class="nav-link">
-                                <i class="nav-icon far fa-circle text-secondary"></i>
-                                <p>Units</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url() . "admin/C_barang" ?>" class="nav-link">
-                                <i class="nav-icon far fa-circle text-secondary"></i>
-                                <p>Items</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- Menu Management End -->
-                <!-- Menu Administrator -->
-                <li class="nav-header">ADMINISTRATOR</li>
-                <li class="nav-item">
-                    <a href="<?= base_url() . "admin/C_menu" ?>" class="nav-link">
-                        <i class="nav-icon fas fa-fw fa-folder-plus"></i>
-                        <p>Menu</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <i class="nav-icon fas fa-fw fa-folder-open"></i>
-                        <p>Sub Menu</p>
-                    </a>
-                </li>
-                <!-- Menu Administrator End -->
-                <!-- Menu Kasir -->
-                <li class="nav-header">KASIR</li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <i class="nav-icon fas fa-fw fa-cash-register"></i>
-                        <p>Kasir</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url() . "kasir/C_stockin" ?>" class="nav-link">
-                        <i class="nav-icon fas fa-fw fa-dolly-flatbed"></i>
-                        <p>Stock In</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= base_url() . "kasir/stock_out_data" ?>" class="nav-link">
-                        <i class="nav-icon fas fa-fw fa-truck-loading"></i>
-                        <p>Stock Out</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <i class="nav-icon fas fa-fw fa-receipt"></i>
-                        <p>Pesanan</p>
-                    </a>
-                </li>
+            <!-- Catatan sebelum buat looping, nanti dibuat looping nya seperti starterpack disini + pengefix an beberapa -->
+                <?php
+                    foreach($menu as $m) :
+                    
+                    $menu_id = $m['kode_menu'];
+                    $q_submenu = "SELECT * 
+                                    FROM user_sub_menu JOIN user_menu
+                                    ON user_sub_menu.kode_menu = user_menu.kode_menu
+                                    WHERE user_sub_menu.kode_menu = '$menu_id'
+                                    AND user_sub_menu.is_active = 1
+                    ";
+                    $submenu = $this->db->query($q_submenu)->result_array();
+                  
+                    $ci = get_instance();
+                    $url = $this->uri->segment(1);
+                    if($m['menu'] == $url) :
+                ?>    
+                <li class="nav-item has-treeview menu-open">    
+                    <a href="#" class="nav-link active">
+                <?php else: ?>
                 <li class="nav-item has-treeview">
-                    <a href="" class="nav-link">
-                        <i class="nav-icon fas fa-fw fa-book"></i>
-                        <p>Laporan</p>
-                        <i class="fas fa-angle-left right"></i>
-                    </a>
-                    <!-- Sub Menu Laporan -->
-                    <ul class="nav nav-treeview">
+                    <a href="#" class="nav-link">
+                <?php endif; ?>
+                <!-- <i class="nav-icon fas"></i> -->
+                    <p>
+                        <?= $m['menu']; ?><i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                    <?php foreach($submenu as $sm) : ?>
+                        <ul class="nav nav-treeview">
+                        <?php if($sm['title'] == $title): ?>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
-                                <i class="nav-icon fas fa-fw fa-book"></i>
-                                <p>Laporan Penjualan Online</p>
+                            <a href="<?= base_url() . $sm['url']; ?>" class="nav-link active">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p><?= $sm['title']; ?></p>
                             </a>
                         </li>
+                        <?php else : ?>
                         <li class="nav-item">
-                            <div class="nav-link">
-                                <i class="nav-icon fas fa-fw fa-book"></i>
-                                <p>Laporan Kasir</p>
-                            </div>
+                            <a href="<?= base_url() . $sm['url']; ?>" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p><?= $sm['title']; ?></p>
+                            </a>
                         </li>
+                        <?php endif; ?>
                     </ul>
-                    <!-- Sub Menu Laporan End -->
-                </li>
-                <!-- Menu Kasir End -->
+                    <?php endforeach; ?>
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -20,6 +20,7 @@ class C_pemilik extends CI_Controller
         $this->data['total_stockin'] = $this->M_stockin->total_rows();
         $this->data['total_stockout'] = $this->M_stockOut->total_rows();
         $this->load->view('templates/admin/header', $data);
+
         $this->load->view('templates/admin/sidebar');
         $this->load->view('pemilik/v_dashboard_pemilik', $this->data);
         $this->load->view('templates/admin/footer');

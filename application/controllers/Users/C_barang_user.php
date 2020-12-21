@@ -11,7 +11,8 @@ class C_barang_user extends CI_Controller
 
     public function index()
     {
-        $this->load->view('templates/user_template/v_header_user');
+        $data['title'] = "List Produk";
+        $this->load->view('templates/user_template/v_header_user', $data);
         $this->load->view('User/v_list_barang');
         $this->load->view('templates/user_template/v_footer_user');
     }

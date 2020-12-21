@@ -38,7 +38,7 @@
                     <h4 class="m-0">
                         <!-- Mengambil detail menu -->
                         <?php
-                        $result = $this->menu->getDetailRole(['kode_role' => $kode_role]);
+                        $result = $this->role->getDetailRole(['kode_role' => $kode_role]);
                         ?>
                         Manajemen Akses User - <strong><?= $result['role']; ?></strong>
                     </h4>
@@ -90,7 +90,7 @@
                                         ];
 
                                         // Mengambil data dari database
-                                        $result = $this->menu->checkAccess($data);
+                                        $result = $this->role->checkAccess($data);
 
                                         // Memeriksa apakah ada data yang ditemukan
                                         if ($result->num_rows() > 0) :

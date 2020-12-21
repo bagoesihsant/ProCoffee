@@ -119,9 +119,10 @@ class C_supplier extends CI_Controller
     public function edit_supplier($id)
     {
         $data['edit'] = $this->supplier->get_where($id)->result();
+        $data['title'] = 'Edit Supplier';
 
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_edit_supplier', $data);
         $this->load->view('templates/admin/footer');
         
@@ -161,9 +162,9 @@ class C_supplier extends CI_Controller
             );
 
             $data['edit'] = $this->supplier->get_where($id)->result();
-
-            $this->load->view('templates/admin/header');
-            $this->load->view('templates/admin/sidebar');
+            $data['title'] = 'Edit Supplier';
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('admin/v_edit_supplier', $data);
             $this->load->view('templates/admin/footer');
 

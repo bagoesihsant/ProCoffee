@@ -57,7 +57,6 @@
                                 <th>Sub Menu</th>
                                 <th>Menu</th>
                                 <th>URL</th>
-                                <th>Icon</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -76,11 +75,6 @@
                                     <td><?= $submenus['sub_menu']; ?></td>
                                     <td><?= $submenus['menu']; ?></td>
                                     <td><?= $submenus['url']; ?></td>
-                                    <td class="text-center">
-                                        <button class="btn btn-sm btn-secondary">
-                                            <i class="<?= $submenus['icon']; ?>"></i>
-                                        </button>
-                                    </td>
                                     <td class="text-center">
                                         <!-- Memeriksa apakah status menu aktif atau tidak -->
                                         <?php
@@ -122,7 +116,6 @@
                                 <th>Sub Menu</th>
                                 <th>Menu</th>
                                 <th>URL</th>
-                                <th>Icon</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -206,7 +199,7 @@
                         <input type="text" name="url_sub_menu" id="url_sub_menu" class="form-control" placeholder="ex: admin/menu">
                         <?= form_error('url_sub_menu', '<p class="text-danger text-sm ml-2">', '</p>'); ?>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="icon_sub_menu">Submenu Icon</label>
                         <div class="input-group">
                             <input type="text" name="icon_sub_menu" id="icon_sub_menu" class="form-control" placeholder="ex: fas fa-fw fa-eye">
@@ -217,7 +210,7 @@
                             </div>
                         </div>
                         <?= form_error('icon_sub_menu', '<p class="text-danger text-sm ml-2">', '</p>'); ?>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="status_sub_menu" id="status_sub_menu" class="custom-control-input" value="1" checked>
@@ -289,7 +282,7 @@
                         <label for="url_sub_menu">Submenu URL</label>
                         <input type="text" name="url_sub_menu" id="url_sub_menu" class="form-control" placeholder="ex: admin/submenu">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="icon_sub_menu">Submenu Icon</label>
                         <div class="input-group">
                             <input type="text" name="icon_sub_menu" id="icon_sub_menu" class="form-control" placeholder="ex: fas fa-fw fa-folder-plus">
@@ -299,7 +292,7 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="status_sub_menu_edit" id="status_sub_menu_edit" class="custom-control-input" value="1">
@@ -325,26 +318,26 @@
 
 
 <!-- Modal Preview Icon -->
-<div class="modal fade" id="previewIconModal">
-    <!-- Modal Dialog -->
-    <div class="modal-dialog">
-        <!-- Modal Content -->
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
+<!-- <div class="modal fade" id="previewIconModal"> -->
+<!-- Modal Dialog -->
+<!-- <div class="modal-dialog"> -->
+<!-- Modal Content -->
+<!-- <div class="modal-content"> -->
+<!-- Modal Header -->
+<!-- <div class="modal-header">
                 <h4 class="modal-title">Preview Icon</h4>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
-            <!-- Modal Header End -->
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <!-- Row -->
-                <div class="row icon-row" data-form="">
+            </div> -->
+<!-- Modal Header End -->
+<!-- Modal Body -->
+<!-- <div class="modal-body"> -->
+<!-- Row -->
+<!-- <div class="row icon-row" data-form=""> -->
 
-                    <!-- 4 Icon -->
-                    <div class="col-sm-3 text-center">
+<!-- 4 Icon -->
+<!-- <div class="col-sm-3 text-center">
                         <button type="button" class="btn btn-secondary btn-sm btn-select-icon">
                             <i class="fas fa-eye"></i>
                         </button>
@@ -367,11 +360,11 @@
                             <i class="fas fa-cog"></i>
                         </button>
                         <p class="text-sm text-dark">Setting</p>
-                    </div>
-                    <!-- 4 Icon End -->
+                    </div> -->
+<!-- 4 Icon End -->
 
-                    <!-- 4 Icon -->
-                    <div class="col-sm-3 text-center">
+<!-- 4 Icon -->
+<!-- <div class="col-sm-3 text-center">
                         <button type="button" class="btn btn-sm btn-secondary btn-select-icon">
                             <i class="fas fa-tachometer-alt"></i>
                         </button>
@@ -394,11 +387,11 @@
                             <i class="fas fa-times"></i>
                         </button>
                         <p class="text-sm text-dark">Times</p>
-                    </div>
-                    <!-- 4 Icon End -->
+                    </div> -->
+<!-- 4 Icon End -->
 
-                    <!-- 4 Icon -->
-                    <div class="col-sm-3 text-center">
+<!-- 4 Icon -->
+<!-- <div class="col-sm-3 text-center">
                         <button type="button" class="btn btn-secondary btn-sm btn-select-icon">
                             <i class="fas fa-folder"></i>
                         </button>
@@ -421,11 +414,11 @@
                             <i class="fas fa-users"></i>
                         </button>
                         <p class="text-sm text-dark">Users</p>
-                    </div>
-                    <!-- 4 Icon End -->
+                    </div> -->
+<!-- 4 Icon End -->
 
-                    <!-- 4 Icon -->
-                    <div class="col-sm-3 text-center">
+<!-- 4 Icon -->
+<!-- <div class="col-sm-3 text-center">
                         <button type="button" class="btn btn-sm btn-secondary btn-select-icon">
                             <i class="fas fa-boxes"></i>
                         </button>
@@ -448,11 +441,11 @@
                             <i class="fas fa-truck-loading"></i>
                         </button>
                         <p class="text-sm text-dark">Truck Loading</p>
-                    </div>
-                    <!-- 4 Icon End -->
+                    </div> -->
+<!-- 4 Icon End -->
 
-                    <!-- 4 Icon -->
-                    <div class="col-sm-3 text-center">
+<!-- 4 Icon -->
+<!-- <div class="col-sm-3 text-center">
                         <button type="button" class="btn btn-sm btn-secondary btn-select-icon">
                             <i class="fas fa-sign-out-alt"></i>
                         </button>
@@ -475,18 +468,18 @@
                             <i class="fas fa-link"></i>
                         </button>
                         <p class="text-sm text-dark">Link</p>
-                    </div>
-                    <!-- 4 Icon End -->
+                    </div> -->
+<!-- 4 Icon End -->
 
-                </div>
-                <!-- Row End -->
+<!-- </div> -->
+<!-- Row End -->
 
-                <!-- Separator -->
-                <hr class="text-dark">
-                <!-- Separator End -->
+<!-- Separator -->
+<!-- <hr class="text-dark"> -->
+<!-- Separator End -->
 
-                <!-- Row -->
-                <div class="row mx-2">
+<!-- Row -->
+<!-- <div class="row mx-2">
                     <div class="col-12">
                         <p class="text-sm text-dark">Anda dapat menekan salah satu icon, maka field Icon Submenu akan terisi secara otomatis.</p>
                     </div>
@@ -495,23 +488,23 @@
                             Jika anda membutuhkan icon lainnya, harap kunjungi <a href="https://fontawesome.com/icons" class="text-primary" target="_blank">fontawesome.com <sup><i class="fas fa-xs fa-external-link-alt"></i></sup></a>
                         </p>
                     </div>
-                </div>
-                <!-- Row End -->
-            </div>
-            <!-- Modal Body End -->
-            <!-- Modal Footer -->
-            <div class="modal-footer">
+                </div> -->
+<!-- Row End -->
+<!-- </div> -->
+<!-- Modal Body End -->
+<!-- Modal Footer -->
+<!-- <div class="modal-footer">
                 <button class="btn btn-primary btn-sm" data-dismiss="modal" type="button">
                     <i class="fas fa-fw fa-times"></i>
                     Batal
                 </button>
-            </div>
-            <!-- Modal Footer End -->
-        </div>
-        <!-- Modal Content End -->
-    </div>
-    <!-- Modal Dialog End -->
-</div>
+            </div> -->
+<!-- Modal Footer End -->
+<!-- </div> -->
+<!-- Modal Content End -->
+<!-- </div> -->
+<!-- Modal Dialog End -->
+<!-- </div> -->
 <!-- Modal Preview Icon End -->
 
 <!-- Modal View Submenu -->
@@ -559,22 +552,6 @@
                 <div class="form-group">
                     <label for="url_sub_menu">Submenu URL</label>
                     <input type="text" name="url_sub_menu" id="url_sub_menu" class="form-control" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="icon_sub_menu">Submenu Icon</label>
-                    <input type="text" name="icon_sub_menu" id="icon_sub_menu" class="form-control" readonly>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-6 col-lg-12">
-                            <label for="preview_icon">Submenu Icon Preview</label>
-                        </div>
-                        <div class="col-sm-6 col-lg-12">
-                            <button class="btn btn-secondary btn-lg" id="preview_icon_submenu" disabled>
-                                <i class=""></i>
-                            </button>
-                        </div>
-                    </div>
                 </div>
                 <div class="form-group">
                     <label for="status_sub_menu">Status Submenu</label>

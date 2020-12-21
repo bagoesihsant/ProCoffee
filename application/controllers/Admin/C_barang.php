@@ -16,12 +16,13 @@ class C_barang extends CI_Controller
     // START ITEMS START ITEMS START ITEMS START ITEMS START ITEMS START ITEMS
     public function index()
     {
+        $data['title'] = "Data Barang";
         $data['produk'] = $this->barang->getAllItems()->result();
         $data['kategori'] = $this->barang->getAllCategories()->result();
         $data['satuan'] = $this->barang->getAllUnits()->result();
 
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_barang', $data);
         $this->load->view('templates/admin/footer');
     }
@@ -66,13 +67,13 @@ class C_barang extends CI_Controller
                 'pesan_menu',
                 'toastr.error("Error, Data gagal ditambahkan")'
             );
-
+            $data['title'] = 'Tambah Data Barang';
             $data['produk'] = $this->barang->getAllItems()->result();
             $data['kategori'] = $this->barang->getAllCategories()->result();
             $data['satuan'] = $this->barang->getAllUnits()->result();
     
-            $this->load->view('templates/admin/header');
-            $this->load->view('templates/admin/sidebar');
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('admin/v_barang', $data);
             $this->load->view('templates/admin/footer');
         } else {
@@ -215,14 +216,14 @@ class C_barang extends CI_Controller
             );
 
             $id = $this->input->post('kode');
-
+            $data['title'] = 'Edit Data Barang';
             $data['edit'] = $this->barang->get_where($id)->result();
             $data['produk'] = $this->barang->getAllItems()->result();
             $data['kategori'] = $this->barang->getAllCategories()->result();
             $data['satuan'] = $this->barang->getAllUnits()->result();
     
-            $this->load->view('templates/admin/header');
-            $this->load->view('templates/admin/sidebar');
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('admin/v_edit_barang', $data);
             $this->load->view('templates/admin/footer');
         } else { //jika data sukses tervalidasi
@@ -336,14 +337,15 @@ class C_barang extends CI_Controller
     }
     
     public function edit_barang($id)
-    {
+    {   
+        $data['title'] = 'Edit Barang';
         $data['edit'] = $this->barang->get_where($id)->result();
         $data['produk'] = $this->barang->getAllItems()->result();
         $data['kategori'] = $this->barang->getAllCategories()->result();
         $data['satuan'] = $this->barang->getAllUnits()->result();
-
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_edit_barang', $data);
         $this->load->view('templates/admin/footer');
         
@@ -351,10 +353,11 @@ class C_barang extends CI_Controller
 
     public function generate_barang($id)
     {
+        $data['title'] = 'Generate Barang';
         $data['barcode'] = $this->barang->get_where($id)->result();
 
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_generate_barang', $data);
         $this->load->view('templates/admin/footer');
         

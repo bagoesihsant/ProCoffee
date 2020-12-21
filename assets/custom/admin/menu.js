@@ -49,6 +49,7 @@ $('#dataTableMenu tbody').on('click', '.btn-edit-menu', function () {
             // Jika ajax berhasil dijalankan
             formMenu.find('#kode_menu').val(data.kode_menu);
             formMenu.find('#menu').val(data.menu);
+            formMenu.find('#icon_menu').val(data.icon);
         },
         error: function (e) {
             // Jika ajax gagal dijalankan
@@ -67,6 +68,9 @@ $('#dataTableMenu tbody').on('click', '.btn-view-menu', function () {
     // Mengambil elemen form yang akan diisi dengan data ajax
     const modalMenu = $('#viewModal');
 
+    // Mengambil icon dalam button
+    const iconMenu = modalMenu.find('#preview_icon_menu');
+
     // Melakukan Ajax
     $.ajax({
         url: "http://localhost/ProCoffee/admin/C_menu/ajaxEditMenu",
@@ -79,6 +83,8 @@ $('#dataTableMenu tbody').on('click', '.btn-view-menu', function () {
             // Jika ajax berhasil dijalankan
             modalMenu.find('#kode_menu').val(data.kode_menu);
             modalMenu.find('#menu').val(data.menu);
+            modalMenu.find('#icon_menu').val(data.icon);
+            iconMenu.find('i').addClass(data.icon);
         },
         error: function (e) {
             // Jika ajax gagal dijalankan
@@ -142,7 +148,6 @@ $('#dataTableSubmenu tbody').on('click', '.btn-edit-submenu', function () {
             formSubmenu.find('#menu_sub_menu').val(data.kode_menu);
             formSubmenu.find('#sub_menu').val(data.sub_menu);
             formSubmenu.find('#url_sub_menu').val(data.url);
-            formSubmenu.find('#icon_sub_menu').val(data.icon);
             if (data.is_active == 1) {
                 formSubmenu.find('#status_sub_menu_edit').attr('checked', true);
             } else if (data.is_active == 0) {
@@ -181,8 +186,6 @@ $('#dataTableSubmenu tbody').on('click', '.btn-view-submenu', function () {
             modalSubmenu.find('#menu_sub_menu').val(data.kode_menu);
             modalSubmenu.find('#sub_menu').val(data.sub_menu);
             modalSubmenu.find('#url_sub_menu').val(data.url);
-            modalSubmenu.find('#icon_sub_menu').val(data.icon);
-            iconSubmenu.find('i').addClass(data.icon);
             if (data.is_active == 1) {
                 modalSubmenu.find('#status_sub_menu').val('AKTIF')
             } else if (data.is_active == 0) {
@@ -234,15 +237,15 @@ $(".btn-select-icon").on('click', function () {
 
     // Memeriksa apakah form adalah form tambah atau ubah
     if (row.toString() == "tambah") {
-        form = $('#formTambahSubmenu');
+        form = $('#formTambahMenu');
     } else if (row.toString() == "ubah") {
-        form = $('#formEditSubmenu');
+        form = $('#formUbahMenu');
     }
 
     console.log(form);
 
     // Mendapatkan elemen html input icon submenu
-    const inputIconSubMenu = form.find('#icon_sub_menu');
+    const inputIconSubMenu = form.find('#icon_menu');
 
     // Mendapatkan class icon
     const iconClass = $(this).find('i').attr('class');

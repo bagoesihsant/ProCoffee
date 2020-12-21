@@ -61,7 +61,12 @@ $route['admin/editMenu'] = "admin/C_menu/editMenu";
 $route['admin/hapusMenu/(:any)'] = "admin/C_menu/hapusMenu/$1";
 
 // Route Role
-$route['admin/role'] = "admin/C_menu/role";
+$route['admin/role'] = "admin/C_role/index";
+$route['admin/editRole'] = "admin/C_role/editRole";
+$route['admin/deleteRole/(:any)'] = "admin/C_role/deleteRole/$1";
+
+// Route manajemen akses
+$route['admin/userAkses/(:any)'] = "admin/C_role/userAkses/$1";
 
 // Custome Product Routes
 $route['admin/kategori'] = "admin/C_kategori/index";
@@ -90,6 +95,7 @@ $route['auth/registration'] = "C_auth/registration";
 $route['auth/lupaPassword'] = "C_auth/lupapassword";
 $route['auth/(:any)'] = "C_auth/$1";
 $route['auth/gantipassword'] = "C_auth/gantipassword";
+$route['auth/blocked'] = "C_auth/blocked";
 
 
 // User Landingpage
@@ -104,3 +110,8 @@ $route['User/Detail'] = "Users/C_detail_barang_user/index";
 $route['User/Register'] = "C_auth_user/registration";
 $route['User/LupaSandi'] = "C_auth_user/LupaPasswordUser";
 $route['User/GantiSandi'] = "C_auth_user/UbahPassword";
+
+
+// User -> Menu ['Menu']
+$route['menu'] = "admin/C_menu";
+$route['menu/submenu'] = "admin/C_menu/submenu";
