@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="box">
-                        <h1>Akun Baru</h1>
+                        <h1>Daftar / Register</h1>
                         <p class="lead">Masih belum mendaftarkan diri ke website kami?</p>
                         <p>Dengan register di website kami, anda akan mendapatkan email veritifikasi untuk mengaktifkan akun anda agar bisa login di website kami, dan melakukan transaksi produk kami</p>
                         <!-- <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p> -->
@@ -40,8 +40,8 @@
                 <div class="col-lg-6">
                     <div class="box">
                         <h1>Login</h1>
-                        <p class="lead">Already our customer?</p>
-                        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                        <p class="lead">Sudah punya akun?</p>
+                        <p class="text-muted">Silahkan Login di sini</p>
                         <hr>
                         <form action="customer-orders.html" method="post">
                             <div class="form-group">
