@@ -42,20 +42,6 @@
                                             <td>Rp. 45.000</td>
                                             <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
                                         </tr>
-                                        <tr>
-                                            <td>KDT0000000002</td>
-                                            <td>
-                                                19-Desember-2020
-                                            </td>
-                                            <td>
-                                                086723716
-                                            </td>
-                                            <td>
-                                                <p class="badge bg-warning">pending</p>
-                                            </td>
-                                            <td>Rp. 45.000</td>
-                                            <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -70,4 +56,3 @@
             </div>
         </div>
     </div>
-</div>

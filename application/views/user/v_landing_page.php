@@ -66,10 +66,10 @@
                         <div class="product">
                             <div class="flip-container">
                                 <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1.jpg" alt="" class="img-fluid"></a></div>
+                                    <div class="front"><a href="detail.html"><img style="width: 250px; height:250px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi1.jpeg" alt="" class="img-fluid"></a></div>
 
                                 </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1.jpg" alt="" class="img-fluid"></a>
+                            </div><a href="detail.html" class="invisible"><img style="width: 250px; height:250px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi1.jpeg" alt="" class="img-fluid"></a>
                             <div class="text">
                                 <h3><a href="detail.html">Kopi Rempah</a></h3>
                                 <p class="price">
@@ -81,36 +81,17 @@
                         </div>
                         <!-- /.product-->
                     </div>
+
                     <div class="item">
                         <div class="product">
                             <div class="flip-container">
                                 <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a></div>
+                                    <div class="front"><a href="detail.html"><img style="width: 250px; height:250px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpeg" alt="" class="img-fluid"></a></div>
 
                                 </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a>
+                            </div><a href="detail.html" class="invisible"><img style="width: 250px; height:250px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpeg" alt="" class="img-fluid"></a>
                             <div class="text">
-                                <h3><a href="detail.html">Kopi Original</a></h3>
-                                <p class="price">
-                                    <del></del>Rp 45.000
-                                </p>
-                            </div>
-                            <!-- /.text-->
-
-                            <!-- /.ribbon-->
-                        </div>
-                        <!-- /.product-->
-                    </div>
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a></div>
-
-                                </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">Kopi Gingseng</a></h3>
+                                <h3><a href="detail.html">Kopi Lanang</a></h3>
                                 <p class="price">
                                     <del></del>Rp. 50.000
                                 </p>
@@ -123,43 +104,21 @@
                         <div class="product">
                             <div class="flip-container">
                                 <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a></div>
+                                    <div class="front"><a href="detail.html"><img style="width: 250px; height:250px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopio.jpeg" alt="" class="img-fluid"></a></div>
 
                                 </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a>
+                            </div><a href="detail.html" class="invisible"><img style="width: 250px; height:250px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopio.jpeg" alt="" class="img-fluid"></a>
                             <div class="text">
-                                <h3><a href="detail.html">Kopi Stamina</a></h3>
+                                <h3><a href="detail.html">Kopi Original</a></h3>
                                 <p class="price">
-                                    <del></del>Rp. 55.000
+                                    <del></del>Rp. 45.000
                                 </p>
                             </div>
                             <!-- /.text-->
                         </div>
                         <!-- /.product-->
                     </div>
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a></div>
-                                    <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2_2.jpg" alt="" class="img-fluid"></a></div>
-                                </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">Kopi Lanang</a></h3>
-                                <p class="price">
-                                    <del></del>Rp. 40.000
-                                </p>
-                            </div>
-                            <!-- /.text-->
-                            <div class="ribbon new">
-                                <div class="theribbon">NEW</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon-->
-                        </div>
-                        <!-- /.product-->
-                    </div>
+
 
                     <!-- /.product-slider-->
                 </div>
