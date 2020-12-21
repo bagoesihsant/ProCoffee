@@ -186,7 +186,7 @@
                         </div>
                         <!-- /.products-->
                     </div>
-                    <div class="pages">
+                    <!-- <div class="pages">
                         <p class="loadMore"><a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a></p>
                         <nav aria-label="Page navigation example" class="d-flex justify-content-center">
                             <ul class="pagination">
@@ -199,7 +199,7 @@
                                 <li class="page-item"><a href="#" aria-label="Next" class="page-link"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
                             </ul>
                         </nav>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- /.col-lg-9-->
             </div>
