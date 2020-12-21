@@ -89,9 +89,10 @@
                                 <li>
                                     <div class="row">
                                         <div class="col-md-6 col-lg-3">
-                                            <h5>Transaksi</h5>
+                                            <h5>Transaksi / Fitur Ecomerce</h5>
                                             <ul class="list-unstyled mb-3">
                                                 <li class="nav-item"><a href="<?= base_url('User/Cart') ?>" class="nav-link">Keranjang</a></li>
+                                                <li class="nav-item"><a href="<?= base_url('User/List') ?>" class="nav-link">List Produk</a></li>
                                                 <li class="nav-item"><a href="<?= base_url('User/History') ?>" class="nav-link">Riwayat Pembelian</a></li>
                                             </ul>
                                         </div>

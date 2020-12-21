@@ -21,21 +21,21 @@
                     <div class="col-md-4">
                         <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
                             <div class="icon"><i class="fa fa-heart"></i></div>
-                            <h3><a href="#">Kami Peduli Pelanggan Kami</a></h3>
+                            <h3><a href="<?= base_url('User/LandingPage'); ?>">Kami Peduli Pelanggan Kami</a></h3>
                             <p class="mb-0">Kami menyediakan produk kopi yang bervariasi</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
                             <div class="icon"><i class="fa fa-tags"></i></div>
-                            <h3><a href="#">Harga Terbaik</a></h3>
+                            <h3><a href="<?= base_url('User/LandingPage'); ?>">Harga Terbaik</a></h3>
                             <p class="mb-0">Dapatkan harga terbaik dengan membeli langsung melalui website kami, Atau datang ke lokasi produksi kami</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
                             <div class="icon"><i class="fa fa-thumbs-up"></i></div>
-                            <h3><a href="#">100% Alami</a></h3>
+                            <h3><a href="<?= base_url('User/LandingPage'); ?>">100% Alami</a></h3>
                             <p class="mb-0">Bahan mentah untuk variasi produk kopi kami 100% alami tanpa bahan kimia apapun</p>
                         </div>
                     </div>
@@ -203,19 +203,19 @@
                 <div id="blog-homepage" class="row">
                     <div class="col-sm-6">
                         <div class="post">
-                            <h4><a href="post.html">Fashion now</a></h4>
-                            <p class="author-category">By <a href="#">John Slim</a> in <a href="">Fashion and style</a></p>
+                            <h4>Kopi Rempah</h4>
+                            <p class="author-category">ByChien Ling From Pro Coffee </p>
                             <hr>
-                            <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                            <p class="intro">kopi rempah adalah buatan asli dari desa garahan yang di kelola dari barang mentah sampai menjadi barang jadi. dan memiliki banyak manfaat dan tentu saja manfaat itu di dapatkan di dalam bahan organik asli tanpa pengawet</p>
                             <!-- <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a></p> -->
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="post">
-                            <h4><a href="post.html">Who is who - example blog post</a></h4>
-                            <p class="author-category">By <a href="#">John Slim</a> in <a href="">About Minimal</a></p>
+                            <h4>Berapa jenis varian produk Kopi?</h4>
+                            <p class="author-category">By Chien Ling From Pro Coffee</p>
                             <hr>
-                            <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                            <p class="intro">Kami memiliki banyak varian kopi mulai dari kopi original sampai kopi rempah rempah tersebut</p>
                             <!-- <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a></p> -->
                         </div>
                     </div>
