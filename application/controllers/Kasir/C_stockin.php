@@ -8,11 +8,14 @@ class C_stockin extends CI_Controller
     {
         parent::__construct();
         $this->load->model(['M_barang', 'M_supplier', 'M_stockin']);
+        is_logged_in();
     }
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Stock In';
         $data['row'] = $this->M_stockin->get_data_in()->result();
+
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_stock_in', $data);
@@ -20,10 +23,12 @@ class C_stockin extends CI_Controller
     }
     public function stock_in_form()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Stock In Form';
         $item = $this->M_barang->getAllItems()->result();
         $data = ['item' => $item];
         $data['supplier'] = $this->M_supplier->getAllSupplier()->result_array();
+
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_stock_inform', $data);
@@ -50,6 +55,8 @@ class C_stockin extends CI_Controller
     {
         $data['title'] = 'Data Stock In';
         $data['row'] = $this->M_stock->get_stock_in()->result();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_stock_inform', $data);

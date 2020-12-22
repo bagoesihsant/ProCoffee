@@ -14,11 +14,13 @@ class C_kasir extends CI_Controller
 
         // Load Library
         $this->load->library('pagination');
+        is_logged_in();
     }
 
 
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat Array data
         $data['title'] = "Penjualan";
         // $data['barang'] = $this->kasir->getAllBarang()->result_array();
@@ -26,7 +28,7 @@ class C_kasir extends CI_Controller
         // Load View
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
-        $this->load->view('admin/v_penjualan');
+        $this->load->view('admin/v_penjualan', $data);
         $this->load->view('templates/admin/footer');
     }
 

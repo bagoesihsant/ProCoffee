@@ -10,12 +10,14 @@ class C_role extends CI_Controller
     {
         parent::__construct();
         // Load Model
+        is_logged_in();
         $this->load->model('M_role', 'role');
     }
 
     // Hak Akses
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat title
         $data['title'] = "Manajemen Hak Akses";
         // Mengambil data dari database
@@ -34,8 +36,8 @@ class C_role extends CI_Controller
             // Jika form_validation mengembalikan nilai false
             // Load View
             $this->load->view('templates/admin/header', $data);
-            $this->load->view('templates/admin/sidebar');
-            $this->load->view('admin/v_role');
+            $this->load->view('templates/admin/sidebar', $data);
+            $this->load->view('admin/v_role', $data);
             $this->load->view('templates/admin/footer');
         } else {
             // Jika form_validation mengembalikan nilai true
@@ -173,6 +175,7 @@ class C_role extends CI_Controller
     // Manajemen Pemberian Hak Akses
     public function userAkses($kode)
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat title
         $data['title'] = "Manajemen Akses";
         // Mengambil data menu
@@ -182,8 +185,8 @@ class C_role extends CI_Controller
 
         // Load View
         $this->load->view('templates/admin/header', $data);
-        $this->load->view('templates/admin/sidebar');
-        $this->load->view('admin/v_assign_role');
+        $this->load->view('templates/admin/sidebar', $data);
+        $this->load->view('admin/v_assign_role', $data);
         $this->load->view('templates/admin/footer');
     }
 

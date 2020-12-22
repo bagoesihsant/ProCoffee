@@ -9,6 +9,7 @@ class C_laporan_kasir extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        is_logged_in();
         // Load Model
         $this->load->model('M_cetak_laporan_kasir', 'laporan');
     }

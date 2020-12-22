@@ -6,6 +6,7 @@ class C_user extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_user');
+        is_logged_in();
     }
 
     public function index()
@@ -17,7 +18,8 @@ class C_user extends CI_Controller
         // $data['dt_user'] = $this->db->get('user')->result_array();
         $data['role'] = $this->db->get('user_role')->result_array();
         $data['get_user'] = $this->M_user->select_user();
-
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        
         $this->form_validation->set_rules('nama', 'Nama', 'trim|required');
         $this->form_validation->set_rules(
             'email',

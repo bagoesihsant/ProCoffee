@@ -9,6 +9,7 @@ class C_kategori extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        is_logged_in();
         $this->load->model('M_Categories', 'mproduk');
     }
 
@@ -16,8 +17,9 @@ class C_kategori extends CI_Controller
     {
         $data['title'] = 'Kategori Produk';
         $data['row'] = $this->mproduk->getDataProduct();
-        $this->load->view('templates/admin/header');
-        $this->load->view('templates/admin/sidebar');
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_categories', $data);
         $this->load->view('templates/admin/footer');
     }
