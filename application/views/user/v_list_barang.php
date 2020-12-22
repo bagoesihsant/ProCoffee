@@ -7,7 +7,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li aria-current="page" class="breadcrumb-item active">Ladies</li>
+                            <li aria-current="page" class="breadcrumb-item active">List Produk</li>
                         </ol>
                     </nav>
                 </div>
@@ -18,29 +18,24 @@
                 -->
                     <div class="card sidebar-menu mb-4">
                         <div class="card-header">
-                            <h3 class="h4 card-title">Categories</h3>
+                            <h3 class="h4 card-title">Menu</h3>
                         </div>
                         <div class="card-body">
                             <ul class="nav nav-pills flex-column category-menu">
-                                <li><a href="category.html" class="nav-link">Men <span class="badge badge-secondary">42</span></a>
-                                    <ul class="list-unstyled">
-                                        <li><a href="category.html" class="nav-link">Halaman Utama</a></li>
-                                        <li><a href="category.html" class="nav-link">Profil Saya</a></li>
-                                        <li><a href="category.html" class="nav-link">Cart</a></li>
-                                        <li><a href="category.html" class="nav-link">History transaksi</a></li>
-                                    </ul>
+                                <ul class="list-unstyled">
+                                    <li><a href="<?= base_url('User/LandingPage') ?>" class="nav-link">Halaman Utama</a></li>
+                                    <li><a href="category.html" class="nav-link">Profil Saya</a></li>
+                                    <li><a href="category.html" class="nav-link">Keranjang</a></li>
+                                    <li><a href="category.html" class="nav-link">History transaksi</a></li>
+                                </ul>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <!-- *** MENUS AND FILTERS END ***-->
-                    <div class="banner"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/banner.jpg" alt="sales 2014" class="img-fluid"></a></div>
+                    <!-- <div class="banner"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/banner.jpg" alt="sales 2014" class="img-fluid"></a></div> -->
                 </div>
                 <div class="col-lg-9">
-                    <div class="box">
-                        <h1>Ladies</h1>
-                        <p>In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide.</p>
-                    </div>
                     <div class="box info-bar">
                         <h3 class="text-uppercase text-center">Daftar Produk Dari Pro Coffee</h3>
                     </div>
@@ -49,16 +44,16 @@
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1.jpg" alt="" class="img-fluid"></a></div>
-                                        <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1_2.jpg" alt="" class="img-fluid"></a></div>
+                                        <div class="front"><a href="detail.html"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi3.jpeg" alt="" class="img-fluid"></a></div>
+                                        <!-- <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1_3.jpg" alt="" class="img-fluid"></a></div> -->
                                     </div>
-                                </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1.jpg" alt="" class="img-fluid"></a>
+                                </div><a href="<?= base_url('User/Detail') ?>" class="invisible"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi3.jpeg" alt="" class="img-fluid"></a>
                                 <div class="text">
-                                    <h3><a href="detail.html">Fur coat with very but very very long name</a></h3>
+                                    <h3><a href="<?= base_url('User/Detail') ?>">Fur coat with very but very very long name</a></h3>
                                     <p class="price">
-                                        <del></del>$143.00
+                                        <del></del>Rp. 55.000
                                     </p>
-                                    <p class="buttons"><a href="detail.html" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
+                                    <p class="buttons"><a href="<?= base_url('User/Detail') ?>" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
                                 </div>
                                 <!-- /.text-->
                             </div>
@@ -68,32 +63,19 @@
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a></div>
-                                        <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2_2.jpg" alt="" class="img-fluid"></a></div>
+                                        <div class="front"><a href="<?= base_url('User/Detail') ?>"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpeg" alt="" class="img-fluid"></a></div>
+                                        <!-- <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi2_2.jpeg" alt="" class="img-fluid"></a></div> -->
                                     </div>
-                                </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a>
+                                </div><a href="<?= base_url('User/Detail') ?>" class="invisible"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpeg" alt="" class="img-fluid"></a>
                                 <div class="text">
-                                    <h3><a href="detail.html">White Blouse Armani</a></h3>
+                                    <h3><a href="<?= base_url('User/Detail') ?>">Kopi Lanang</a></h3>
                                     <p class="price">
-                                        <del>$280</del>$143.00
+                                        <del></del>Rp. 50.000
                                     </p>
-                                    <p class="buttons"><a href="detail.html" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
+                                    <p class="buttons"><a href="<?= base_url('User/Detail') ?>" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
                                 </div>
                                 <!-- /.text-->
-                                <div class="ribbon sale">
-                                    <div class="theribbon">SALE</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon-->
-                                <div class="ribbon new">
-                                    <div class="theribbon">NEW</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon-->
-                                <div class="ribbon gift">
-                                    <div class="theribbon">GIFT</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
+
                                 <!-- /.ribbon-->
                             </div>
                             <!-- /.product            -->
@@ -102,107 +84,26 @@
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a></div>
-                                        <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3_2.jpg" alt="" class="img-fluid"></a></div>
+                                        <div class="front"><a href="<?= base_url('User/Detail') ?>"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopio.jpeg" alt="" class="img-fluid"></a></div>
+                                        <!-- <div class="back"><a href="<?= base_url('User/Detail') ?>"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi1.jpeg" alt="" class="img-fluid"></a></div> -->
                                     </div>
-                                </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a>
+                                </div><a href="<?= base_url('User/Detail') ?>" class="invisible"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopio.jpeg" alt="" class="img-fluid"></a>
                                 <div class="text">
-                                    <h3><a href="detail.html">Black Blouse Versace</a></h3>
+                                    <h3><a href="<?= base_url('User/Detail') ?>">Kopi Original</a></h3>
                                     <p class="price">
-                                        <del></del>$143.00
+                                        <del></del>Rp 45.000
                                     </p>
-                                    <p class="buttons"><a href="detail.html" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
+                                    <p class="buttons"><a href="<?= base_url('User/Detail') ?>" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
                                 </div>
                                 <!-- /.text-->
                             </div>
                             <!-- /.product            -->
+
+                            <!-- /.products-->
                         </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a></div>
-                                        <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3_2.jpg" alt="" class="img-fluid"></a></div>
-                                    </div>
-                                </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="detail.html">Black Blouse Versace</a></h3>
-                                    <p class="price">
-                                        <del></del>$143.00
-                                    </p>
-                                    <p class="buttons"><a href="detail.html" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
-                                </div>
-                                <!-- /.text-->
-                            </div>
-                            <!-- /.product            -->
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a></div>
-                                        <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2_2.jpg" alt="" class="img-fluid"></a></div>
-                                    </div>
-                                </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="detail.html">White Blouse Versace</a></h3>
-                                    <p class="price">
-                                        <del></del>$143.00
-                                    </p>
-                                    <p class="buttons"><a href="detail.html" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
-                                </div>
-                                <!-- /.text-->
-                                <div class="ribbon new">
-                                    <div class="theribbon">NEW</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon-->
-                            </div>
-                            <!-- /.product            -->
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1.jpg" alt="" class="img-fluid"></a></div>
-                                        <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1_2.jpg" alt="" class="img-fluid"></a></div>
-                                    </div>
-                                </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1.jpg" alt="" class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="detail.html">Fur coat</a></h3>
-                                    <p class="price">
-                                        <del></del>$143.00
-                                    </p>
-                                    <p class="buttons"><a href="detail.html" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
-                                </div>
-                                <!-- /.text-->
-                                <div class="ribbon gift">
-                                    <div class="theribbon">GIFT</div>
-                                    <div class="ribbon-background"></div>
-                                </div>
-                                <!-- /.ribbon-->
-                            </div>
-                            <!-- /.product            -->
-                        </div>
-                        <!-- /.products-->
                     </div>
-                    <div class="pages">
-                        <p class="loadMore"><a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a></p>
-                        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-                            <ul class="pagination">
-                                <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-                                <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                <li class="page-item"><a href="#" class="page-link">3</a></li>
-                                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                <li class="page-item"><a href="#" aria-label="Next" class="page-link"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-                            </ul>
-                        </nav>
-                    </div>
+                    <!-- /.col-lg-9-->
                 </div>
-                <!-- /.col-lg-9-->
             </div>
         </div>
     </div>
-</div>
