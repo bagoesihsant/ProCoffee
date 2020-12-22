@@ -53,12 +53,12 @@
 
                                     </div>
                                     <!-- Ini gambar  kalau di klik bakalan nganterin ke halaman detail sesuai dengan produk yang di klik-->
-                                    <a href="<?= base_url('User/Detail') ?>" class="invisible"><img style="width: 250px; height:340px;" src="<?= base_url('assets/items_img/') . $data->gambar ?>" alt="" class="img-fluid"></a>
+                                    <a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="invisible"><img style="width: 250px; height:340px;" src="<?= base_url('assets/items_img/') . $data->gambar ?>" alt="" class="img-fluid"></a>
                                     <!-- /Penutup Ini gambar  kalau di klik bakalan nganterin ke halaman detail sesuai dengan produk yang di klik-->
                                     <div class="text">
                                         <h3>
                                             <!-- Ini judul barangnya juga kalau di klik bakalan nganterin ke halaman sesuai ama barang yang di klik -->
-                                            <a href="<?= base_url('User/Detail') ?>"><?= $data->nama_barang; ?></a>
+                                            <a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>"><?= $data->nama_barang; ?></a>
                                             <!-- /Penutup Ini judul barangnya juga kalau di klik bakalan nganterin ke halaman sesuai ama barang yang di klik -->
                                         </h3>
                                         <p class="price">
@@ -68,7 +68,7 @@
                                         </p>
                                         <p class="buttons">
                                             <!-- pembuka tombol langsung tambah barang ke chart -->
-                                            <a href="<?= base_url('User/Detail') ?>" class="btn btn-outline-secondary">View detail</a>
+                                            <a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a>
                                             <!-- Penutup tombol langsung tambah barang ke chart -->
 
                                             <!-- pembuka tombol langsung ke detail barang-->

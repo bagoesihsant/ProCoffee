@@ -106,7 +106,7 @@ $route['User/Profile'] = "Users/C_user_profile/index";
 $route['User/Profile/Edit'] = "Users/C_user_profile/editprofil";
 $route['User/Profile/ChangePassword'] = "Users/C_user_profile/ubahpassword";
 $route['User/List'] = "Users/C_barang_user/index";
-$route['User/Detail'] = "Users/C_detail_barang_user/index";
+$route['User/Detail/(:any)'] = "Users/C_detail_barang_user/index/$1";
 
 // User Auth (Pelanggan)
 $route['User/Register'] = "C_auth_user/registration";
