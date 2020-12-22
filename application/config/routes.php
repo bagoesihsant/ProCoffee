@@ -53,17 +53,6 @@ $route['default_controller'] = 'C_auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-// Custom Routes
-
-// Route Menu
-$route['admin/menu'] = "admin/C_menu/index";
-$route['admin/editMenu'] = "admin/C_menu/editMenu";
-$route['admin/hapusMenu/(:any)'] = "admin/C_menu/hapusMenu/$1";
-
-// Route Role
-$route['admin/role'] = "admin/C_role/index";
-$route['admin/editRole'] = "admin/C_role/editRole";
-$route['admin/deleteRole/(:any)'] = "admin/C_role/deleteRole/$1";
 
 // Route manajemen akses
 $route['admin/userAkses/(:any)'] = "admin/C_role/userAkses/$1";
@@ -84,10 +73,6 @@ $route['kasir/ItemIn'] = "kasir/C_stockin/stock_in_form";
 // Route Kasir
 $route['kasir/penjualan'] = "kasir/C_kasir/index";
 
-// Route Sub Menu
-$route['admin/submenu'] = "admin/C_menu/submenu";
-$route['admin/editSubmenu'] = "admin/C_menu/editSubmenu";
-$route['admin/hapusSubmenu/(:any)'] = "admin/C_menu/hapusSubmenu/$1";
 
 //Route untuk Auth
 $route['auth'] = "C_auth";
@@ -114,6 +99,19 @@ $route['User/LupaSandi'] = "C_auth_user/LupaPasswordUser";
 $route['User/GantiSandi'] = "C_auth_user/UbahPassword";
 
 
-// User -> Menu ['Menu']
+// User Menu ['Menu'] dan submenu ['submenu']
 $route['menu'] = "admin/C_menu";
+$route['menu/ajaxEditMenu'] = "admin/C_menu/ajaxEditMenu";
+$route['menu/editMenu'] = "admin/C_menu/editmenu";
+$route['menu/hapusMenu/(:any)'] = "admin/C_menu/hapusMenu/$1";
+
 $route['menu/submenu'] = "admin/C_menu/submenu";
+$route['menu/submenu/ajaxEditSubmenu'] = "admin/C_menu/ajaxEditSubmenu";
+$route['menu/submenu/editSubmenu'] = "admin/C_menu/editSubmenu";
+$route['menu/submenu/hapusSubmenu/(:any)'] = "admin/C_menu/hapusSubmenu/$1";
+
+// Route Role ['Role] dan akses ['akses']
+$route['role'] = "admin/C_role/index";
+$route['editRole'] = "admin/C_role/editRole";
+$route['deleteRole/(:any)'] = "admin/C_role/deleteRole/$1";
+$route['role'] = "admin/C_role/index";

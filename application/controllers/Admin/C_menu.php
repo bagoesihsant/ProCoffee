@@ -45,7 +45,7 @@ class C_menu extends CI_Controller
             // Membuat array data
             $data = [
                 'kode_menu' => htmlspecialchars($this->input->post('kode_menu', true)),
-                'menu' => htmlspecialchars(ucwords($this->input->post('menu', true))),
+                'menu' => htmlspecialchars(($this->input->post('menu', true))),
                 'icon' => htmlspecialchars($this->input->post('icon_menu', true))
             ];
 
@@ -73,7 +73,7 @@ class C_menu extends CI_Controller
 
 
             // Mengarahkan ulang
-            redirect('admin/menu');
+            redirect('menu');
         }
     }
 
@@ -115,7 +115,7 @@ class C_menu extends CI_Controller
 
             // Membuat array data
             $data = [
-                'menu' => htmlspecialchars(ucwords($this->input->post('menu', true))),
+                'menu' => htmlspecialchars(($this->input->post('menu', true))),
                 'icon' => htmlspecialchars($this->input->post('icon_menu', true))
             ];
 
@@ -147,7 +147,7 @@ class C_menu extends CI_Controller
             }
 
             // Mengarahkan kembali
-            redirect('admin/menu');
+            redirect('menu');
         }
     }
 
@@ -184,7 +184,7 @@ class C_menu extends CI_Controller
 
 
         // Mengarahkan kembali
-        redirect('admin/menu');
+        redirect('menu');
     }
 
     // Submenu
@@ -249,7 +249,7 @@ class C_menu extends CI_Controller
             }
 
             // Mengarahkan kembali
-            redirect('admin/submenu');
+            redirect('menu/submenu');
         }
     }
 
@@ -327,7 +327,7 @@ class C_menu extends CI_Controller
             }
 
             // Mengarahkan kembali
-            redirect('admin/submenu');
+            redirect('menu/submenu');
         }
     }
 
@@ -363,6 +363,6 @@ class C_menu extends CI_Controller
         }
 
         // mengarahkan kembali
-        redirect('admin/submenu');
+        redirect('menu/submenu');
     }
 }

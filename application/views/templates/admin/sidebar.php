@@ -50,7 +50,7 @@
                 <?php endif; ?>
                     <i class="nav-icon fas <?= $m['icon']; ?>"></i>
                     <p>
-                        <?= $m['menu']; ?><i class="right fas fa-angle-left"></i>
+                        <?= $m["menu"]; ?><i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
                     <?php foreach($submenu as $sm) : ?>

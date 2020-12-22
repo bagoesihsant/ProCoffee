@@ -136,7 +136,7 @@
             <!-- Modal Header End -->
             <!-- Modal Body -->
             <div class="modal-body">
-                <form action="<?= base_url('admin/menu'); ?>" method="post">
+                <form action="<?= base_url('menu'); ?>" method="post">
                     <!-- Input Group -->
                     <div class="form-group">
                         <label for="kode_menu">Kode Menu</label>
@@ -210,7 +210,7 @@
             <!-- Modal Header End -->
             <!-- Modal Body -->
             <div class="modal-body">
-                <form action="<?= base_url('admin/editMenu/'); ?>" method="post" id="formEditMenu">
+                <form action="<?= base_url('menu/editMenu/'); ?>" method="post" id="formEditMenu">
                     <!-- Input Group -->
                     <div class="form-group">
                         <label for="kode_menu">Kode Menu</label>
