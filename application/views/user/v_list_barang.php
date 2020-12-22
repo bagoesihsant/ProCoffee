@@ -40,6 +40,7 @@
                         <h3 class="text-uppercase text-center">Daftar Produk Dari Pro Coffee</h3>
                     </div>
                     <div class="row products">
+                        <!-- loppingnya dari sini lung -->
                         <div class="col-lg-4 col-md-6">
                             <div class="product">
                                 <div class="flip-container">
@@ -59,48 +60,7 @@
                             </div>
                             <!-- /.product            -->
                         </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="<?= base_url('User/Detail') ?>"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpeg" alt="" class="img-fluid"></a></div>
-                                        <!-- <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi2_2.jpeg" alt="" class="img-fluid"></a></div> -->
-                                    </div>
-                                </div><a href="<?= base_url('User/Detail') ?>" class="invisible"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpeg" alt="" class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="<?= base_url('User/Detail') ?>">Kopi Lanang</a></h3>
-                                    <p class="price">
-                                        <del></del>Rp. 50.000
-                                    </p>
-                                    <p class="buttons"><a href="<?= base_url('User/Detail') ?>" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
-                                </div>
-                                <!-- /.text-->
-
-                                <!-- /.ribbon-->
-                            </div>
-                            <!-- /.product            -->
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="<?= base_url('User/Detail') ?>"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopio.jpeg" alt="" class="img-fluid"></a></div>
-                                        <!-- <div class="back"><a href="<?= base_url('User/Detail') ?>"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi1.jpeg" alt="" class="img-fluid"></a></div> -->
-                                    </div>
-                                </div><a href="<?= base_url('User/Detail') ?>" class="invisible"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopio.jpeg" alt="" class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="<?= base_url('User/Detail') ?>">Kopi Original</a></h3>
-                                    <p class="price">
-                                        <del></del>Rp 45.000
-                                    </p>
-                                    <p class="buttons"><a href="<?= base_url('User/Detail') ?>" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
-                                </div>
-                                <!-- /.text-->
-                            </div>
-                            <!-- /.product            -->
-
-                            <!-- /.products-->
-                        </div>
+                        <!-- sampe sini -->
                     </div>
                     <!-- /.col-lg-9-->
                 </div>
