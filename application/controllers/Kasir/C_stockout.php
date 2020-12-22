@@ -14,6 +14,8 @@ class C_stockout extends CI_Controller
     {
         $data['title'] = 'Stock Out';
         $data['row'] =  $this->M_stockOut->get_dataOut()->result();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_stock_out', $data);
@@ -27,6 +29,8 @@ class C_stockout extends CI_Controller
             'item' => $item
         ];
         $data['title'] = 'Stock Out Form';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_stock_outform', $data);

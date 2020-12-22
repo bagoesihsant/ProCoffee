@@ -15,6 +15,7 @@ class C_admin extends CI_Controller
     // Index
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->data['total_satuan'] = $this->M_Satuan->total_rows();
         $this->data['total_kategori'] = $this->M_Categories->total_rows();
         $this->data['total_smenu'] = $this->m_sub_menu->total_rows();
@@ -29,7 +30,7 @@ class C_admin extends CI_Controller
 
         // Load View
         $this->load->view('templates/admin/header', $data);
-        $this->load->view('templates/admin/sidebar');
+        $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_dashboard', $this->data);
         $this->load->view('templates/admin/footer');
     }

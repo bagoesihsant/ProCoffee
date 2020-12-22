@@ -15,8 +15,10 @@ class C_satuan extends CI_Controller
     // Units
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['row'] = $this->msatuan->readDatasatuan();
         $data['title'] = 'Data Satuan';
+        
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_units', $data);

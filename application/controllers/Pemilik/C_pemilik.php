@@ -14,6 +14,8 @@ class C_pemilik extends CI_Controller
     public function index()
     {
         $data['title'] = 'Dashboard Pemilik';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        
         $this->data['total_barang'] = $this->M_barang->total_rows();
         $this->data['total_satuan'] = $this->M_Satuan->total_rows();
         $this->data['total_kategori'] = $this->M_Categories->total_rows();

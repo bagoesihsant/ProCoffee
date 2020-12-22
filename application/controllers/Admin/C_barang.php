@@ -16,6 +16,7 @@ class C_barang extends CI_Controller
     // START ITEMS START ITEMS START ITEMS START ITEMS START ITEMS START ITEMS
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = "Data Barang";
         $data['produk'] = $this->barang->getAllItems()->result();
         $data['kategori'] = $this->barang->getAllCategories()->result();
@@ -29,6 +30,7 @@ class C_barang extends CI_Controller
 
     public function tambah_items()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // form validasi 
         $this->form_validation->set_rules('nama', 'Nama', 'required',
         array(
@@ -221,6 +223,7 @@ class C_barang extends CI_Controller
             $data['produk'] = $this->barang->getAllItems()->result();
             $data['kategori'] = $this->barang->getAllCategories()->result();
             $data['satuan'] = $this->barang->getAllUnits()->result();
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     
             $this->load->view('templates/admin/header', $data);
             $this->load->view('templates/admin/sidebar', $data);
@@ -338,6 +341,7 @@ class C_barang extends CI_Controller
     
     public function edit_barang($id)
     {   
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Edit Barang';
         $data['edit'] = $this->barang->get_where($id)->result();
         $data['produk'] = $this->barang->getAllItems()->result();
@@ -355,6 +359,7 @@ class C_barang extends CI_Controller
     {
         $data['title'] = 'Generate Barang';
         $data['barcode'] = $this->barang->get_where($id)->result();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);

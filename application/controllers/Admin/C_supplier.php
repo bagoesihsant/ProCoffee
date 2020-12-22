@@ -17,6 +17,7 @@ class C_supplier extends CI_Controller
     // Supplier  Supplier  Supplier
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Supplier';
         $data['supplier'] = $this->supplier->getAllSupplier()->result();
 
@@ -29,6 +30,7 @@ class C_supplier extends CI_Controller
     // tambah supplier
     public function tambah_supplier()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // form validasi 
         $this->form_validation->set_rules('nama', 'Nama', 'required',
             array(
@@ -120,6 +122,7 @@ class C_supplier extends CI_Controller
     {
         $data['edit'] = $this->supplier->get_where($id)->result();
         $data['title'] = 'Edit Supplier';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
@@ -131,6 +134,7 @@ class C_supplier extends CI_Controller
     // menjalankan aksi edit    
     public function edit_supplier_aksi()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // form validasi 
         $this->form_validation->set_rules('nama', 'Nama', 'required', 
                 array(

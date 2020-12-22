@@ -19,7 +19,8 @@ class C_menu extends CI_Controller
     {
         // Membuat variabel array data
         // Mengambil isi menu dari database
-        $data['title'] = 'Managemen Menu';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Manajemen Menu';
         $data['menu'] = $this->menu->getAllMenu();
 
         // Membuat rule untuk validasi form
@@ -190,6 +191,7 @@ class C_menu extends CI_Controller
     {
         // Membuat array data
         // Mengambil data seluruh sub menu
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Manajemen Submenu';
         $data['submenu'] = $this->menu->getAllSubMenu();
 
