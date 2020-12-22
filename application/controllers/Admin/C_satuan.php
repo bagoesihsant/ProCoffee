@@ -9,6 +9,7 @@ class C_satuan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        is_logged_in();
         $this->load->model('M_Satuan', 'msatuan');
     }
 

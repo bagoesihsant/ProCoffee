@@ -10,6 +10,7 @@ class C_barang extends CI_Controller
     {
         parent::__construct();
         // Load Model
+        is_logged_in();
         $this->load->model('M_barang', 'barang');
     }
 

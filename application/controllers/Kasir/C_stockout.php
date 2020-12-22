@@ -8,6 +8,7 @@ class C_stockout extends CI_Controller
     {
         parent::__construct();
         $this->load->model(['M_barang', 'M_supplier', 'M_stockOut']);
+        is_logged_in();
     }
 
     public function index()

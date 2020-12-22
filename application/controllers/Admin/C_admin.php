@@ -9,6 +9,7 @@ class C_admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        is_logged_in();
         $this->load->model(['M_barang', 'M_supplier', 'm_menu', 'M_user', 'm_sub_menu', 'M_Satuan', 'M_Categories', 'M_stockin', 'M_stockOut']);
     }
 

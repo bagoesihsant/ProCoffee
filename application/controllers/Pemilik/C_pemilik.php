@@ -8,6 +8,7 @@ class C_pemilik extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        is_logged_in();
         $this->load->model(['M_Satuan', 'M_barang', 'M_Categories', 'M_stockin', 'M_stockOut']);
     }
 

@@ -6,6 +6,7 @@ class C_user extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_user');
+        is_logged_in();
     }
 
     public function index()

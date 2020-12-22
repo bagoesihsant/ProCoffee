@@ -14,6 +14,7 @@ class C_kasir extends CI_Controller
 
         // Load Library
         $this->load->library('pagination');
+        is_logged_in();
     }
 
 
