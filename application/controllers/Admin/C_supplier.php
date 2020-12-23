@@ -91,7 +91,7 @@ class C_supplier extends CI_Controller
                     'pesan_menu',
                     'toastr.success("Data berhasil ditambahkan.")'
                 );
-                redirect('admin/C_supplier');
+                redirect('supplier');
             }
         }
     }
@@ -114,7 +114,7 @@ class C_supplier extends CI_Controller
             );
         }
 
-        redirect('admin/C_supplier');
+        redirect('supplier');
     }
 
     // edit supplier
@@ -197,14 +197,14 @@ class C_supplier extends CI_Controller
                     'pesan_menu',
                     'toastr.success("Data berhasil diUpdate")'
                 );
-            redirect('admin/C_supplier');
+            redirect('supplier');
 
             }else{
                 $this->session->set_flashdata(
                     'pesan_menu',
                     'toastr.error("Data gagal diUpdate")'
                 );
-            redirect('admin/C_supplier/edit_supplier/'.$id);
+            redirect('supplier/edit_supplier/'.$id);
 
             }
         }

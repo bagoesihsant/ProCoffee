@@ -43,7 +43,7 @@ class C_satuan extends CI_Controller
             ];
             $this->msatuan->addDataSatuan($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Satuan Barang telah di tambahkan</div>');
-            redirect('admin/satuan');
+            redirect('satuan');
         }
     }
 
@@ -64,7 +64,7 @@ class C_satuan extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Matiin Input idnya woy</div>');
         }
 
-        redirect('admin/satuan');
+        redirect('satuan');
     }
 
     public function deleteUnits($id)
@@ -72,10 +72,10 @@ class C_satuan extends CI_Controller
         $this->msatuan->deleteUnits($id);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Nama Units Barang telah di Hapus</div>');
-            redirect('admin/satuan');
+            redirect('satuan');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Nama Units Barang gagal di Hapus</div>');
-            redirect('admin/satuan');
+            redirect('satuan');
         }
     }
     // end unit

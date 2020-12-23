@@ -67,9 +67,6 @@ $route['kasir/StockOut/delete/(:num)/(:num)'] = "kasir/C_stockout/delete_out";
 $route['kasir/stock_in_data'] = "kasir/C_stockin/index";
 $route['kasir/ItemIn'] = "kasir/C_stockin/stock_in_form";
 
-// Route Kasir
-$route['kasir/penjualan'] = "kasir/C_kasir/index";
-
 
 //Route untuk Auth
 $route['auth'] = "C_auth";
@@ -130,7 +127,20 @@ $route['barang/qrcode_print/(:any)'] = "admin/C_barang/qrcode_print/$1";
 
 // Data Kategori ['Kategori']
 $route['kategori'] = "admin/C_kategori/index";
+$route['kategori/deleteCategory/(:any)'] = "admin/C_kategori/deleteCategory/$1";
+$route['kategori/addDataCategories'] = "admin/C_kategori/addDataCategories";
+$route['kategori/editDataCategories'] = "admin/C_kategori/editDataCategories";
 
-// Custome Product Routes
-$route['admin/kategori'] = "";
-$route['admin/satuan'] = "admin/C_satuan/index";
+// Data Laporan ['Kasir']
+$route['laporan/kasir'] = "kasir/C_kasir/index";
+$route['laporan/kasir/cetak_laporan'] = "admin/v_cetak_laporan_kasir";
+
+// Data Satuan ['Satuan']
+$route['satuan'] = "admin/C_satuan/index";
+$route['satuan/deleteunits/(:any)'] = "admin/C_satuan/deleteUnits/$1";
+$route['satuan/adddataunits'] = "admin/C_satuan/addDataUnits";
+$route['satuan/editdataunits'] = "admin/C_satuan/editDataUnits";
+
+// Data Supplier ['supplier']
+$route['supplier'] = "admin/C_supplier/index";
+

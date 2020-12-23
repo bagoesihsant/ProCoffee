@@ -44,7 +44,7 @@ class C_kategori extends CI_Controller
 
             $this->mproduk->addData($data);
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Kategori Barang telah di tambahkan</div>');
-            redirect('admin/kategori');
+            redirect('kategori');
         }
     }
 
@@ -61,7 +61,7 @@ class C_kategori extends CI_Controller
         } else {
             $this->mproduk->editDataModal($post);
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Kategori Barang telah di edit</div>');
-            redirect('admin/kategori');
+            redirect('kategori');
         }
     }
 
@@ -70,10 +70,10 @@ class C_kategori extends CI_Controller
         $this->mproduk->deleteCategoryModel($id);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Kategori Barang telah di Hapus</div>');
-            redirect('admin/kategori');
+            redirect('kategori');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Kategori Barang gagal di Hapus</div>');
-            redirect('admin/kategori');
+            redirect('kategori');
         }
     }
 }

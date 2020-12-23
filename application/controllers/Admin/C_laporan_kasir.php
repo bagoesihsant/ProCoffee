@@ -25,7 +25,7 @@ class C_laporan_kasir extends CI_Controller
     {
         $data['transaksi'] = $this->laporan->getAllTransaksi($id)->result();
         $data['dtl_transaksi'] = $this->laporan->getAllDtlTransaksi($id)->result();
-        $this->load->view('admin/v_cetak_laporan_kasir', $data);
+        $this->load->view('laporan/kasir/cetak_laporan', $data);
     }
 
     public function Cetak_laporan_kasir($id) //ini yang dipake
@@ -33,7 +33,7 @@ class C_laporan_kasir extends CI_Controller
         $data['transaksi'] = $this->laporan->getAllTransaksi($id)->result();
         $data['dtl_transaksi'] = $this->laporan->getAllDtlTransaksi($id)->result();
 
-        $html = $this->load->view('admin/v_cetak_laporan_kasir', $data, true);
+        $html = $this->load->view('laporan/kasir/cetak_laporan', $data, true);
         $filename = 'laporan'.$id;
 
         $this->laporan->print_dompdf($html, 'A4', 'landscape', $filename);
