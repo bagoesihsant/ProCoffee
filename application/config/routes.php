@@ -56,9 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 
-// Custome Product Routes
-$route['admin/kategori'] = "admin/C_kategori/index";
-$route['admin/satuan'] = "admin/C_satuan/index";
+
 
 // Custome Stock Out
 $route['kasir/stock_out_data'] = "kasir/C_stockout/index";
@@ -129,3 +127,10 @@ $route['barang/tambah_items'] = "admin/C_barang/tambah_items";
 $route['barang/simpan_edit_barang'] = "admin/C_barang/edit_barang_aksi";
 $route['barang/barcode_print/(:any)'] = "admin/C_barang/barcode_print/$1";
 $route['barang/qrcode_print/(:any)'] = "admin/C_barang/qrcode_print/$1";
+
+// Data Kategori ['Kategori']
+$route['kategori'] = "admin/C_kategori/index";
+
+// Custome Product Routes
+$route['admin/kategori'] = "";
+$route['admin/satuan'] = "admin/C_satuan/index";
