@@ -62,62 +62,30 @@
             </div>
             <div class="container">
                 <div class="product-slider owl-carousel owl-theme">
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img style="width: 250px; height:250px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi1.jpeg" alt="" class="img-fluid"></a></div>
+                    <!-- Awal Looping -->
+                    <?php foreach ($limit as $lmt => $data) : ?>
+                        <div class="item">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>"><img style="width: 250px; height:250px;" src="<?= base_url('assets/items_img/') . $data->gambar ?>" alt="" class="img-fluid"></a></div>
 
+                                    </div>
+                                </div><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="invisible"><img style="width: 250px; height:250px;" src="<?= base_url('assets/items_img/') . $data->gambar ?>" alt="" class="img-fluid"></a>
+                                <div class="text">
+                                    <h3><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>"><?= $data->nama_barang; ?></a></h3>
+                                    <p class="price">
+                                        <del></del><?= $data->harga; ?>
+                                    </p>
                                 </div>
-                            </div><a href="detail.html" class="invisible"><img style="width: 250px; height:250px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi1.jpeg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">Kopi Rempah</a></h3>
-                                <p class="price">
-                                    <del></del>Rp 45.000
-                                </p>
+                                <!-- /.text-->
+                                <!-- /.ribbon-->
                             </div>
-                            <!-- /.text-->
-                            <!-- /.ribbon-->
+                            <!-- /.product-->
                         </div>
-                        <!-- /.product-->
-                    </div>
+                    <?php endforeach; ?>
+                    <!-- akhir looping -->
 
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img style="width: 250px; height:250px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpeg" alt="" class="img-fluid"></a></div>
-
-                                </div>
-                            </div><a href="detail.html" class="invisible"><img style="width: 250px; height:250px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpeg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">Kopi Lanang</a></h3>
-                                <p class="price">
-                                    <del></del>Rp. 50.000
-                                </p>
-                            </div>
-                            <!-- /.text-->
-                        </div>
-                        <!-- /.product-->
-                    </div>
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img style="width: 250px; height:250px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopio.jpeg" alt="" class="img-fluid"></a></div>
-
-                                </div>
-                            </div><a href="detail.html" class="invisible"><img style="width: 250px; height:250px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopio.jpeg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">Kopi Original</a></h3>
-                                <p class="price">
-                                    <del></del>Rp. 45.000
-                                </p>
-                            </div>
-                            <!-- /.text-->
-                        </div>
-                        <!-- /.product-->
-                    </div>
 
 
                     <!-- /.product-slider-->
