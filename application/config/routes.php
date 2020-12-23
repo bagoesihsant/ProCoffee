@@ -54,8 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-// Route manajemen akses
-$route['admin/userAkses/(:any)'] = "admin/C_role/userAkses/$1";
+
 
 // Custome Product Routes
 $route['admin/kategori'] = "admin/C_kategori/index";
@@ -111,7 +110,12 @@ $route['menu/submenu/editSubmenu'] = "admin/C_menu/editSubmenu";
 $route['menu/submenu/hapusSubmenu/(:any)'] = "admin/C_menu/hapusSubmenu/$1";
 
 // Route Role ['Role] dan akses ['akses']
+$route['role/editRole'] = "admin/C_role/editRole";
+$route['role/deleteRole/(:any)'] = "admin/C_role/deleteRole/$1";
 $route['role'] = "admin/C_role/index";
-$route['editRole'] = "admin/C_role/editRole";
-$route['deleteRole/(:any)'] = "admin/C_role/deleteRole/$1";
-$route['role'] = "admin/C_role/index";
+$route['role/ajaxeditrole'] = "admin/C_role/ajaxEditRole";
+
+// Route manajemen akses
+$route['role/userAkses/(:any)'] = "admin/C_role/userAkses/$1";
+$route['role/removeAkses'] = "admin/C_role/removeAkses";
+$route['role/addakses'] = "admin/C_role/addAkses";

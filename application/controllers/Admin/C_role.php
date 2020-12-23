@@ -10,8 +10,8 @@ class C_role extends CI_Controller
     {
         parent::__construct();
         // Load Model
-        is_logged_in();
         $this->load->model('M_role', 'role');
+        is_logged_in();
     }
 
     // Hak Akses
@@ -19,7 +19,7 @@ class C_role extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat title
-        $data['title'] = "Manajemen Hak Akses";
+        $data['title'] = "Manajemen Role";
         // Mengambil data dari database
         $data['role'] = $this->role->getAllRole();
 
@@ -71,7 +71,7 @@ class C_role extends CI_Controller
             }
 
             // Mengembalikan ke halaman utama
-            redirect('admin/role/');
+            redirect('role');
         }
     }
 
@@ -135,7 +135,7 @@ class C_role extends CI_Controller
                 );
             }
 
-            redirect('admin/role/');
+            redirect('role');
         }
     }
 
@@ -169,7 +169,7 @@ class C_role extends CI_Controller
             );
         }
 
-        redirect("admin/role/");
+        redirect("role");
     }
 
     // Manajemen Pemberian Hak Akses

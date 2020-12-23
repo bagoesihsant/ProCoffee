@@ -10,11 +10,15 @@ class C_auth extends CI_Controller
         // Load Model
         $this->load->library('form_validation');
         $this->load->model('M_auth', 'model_auth');
+        $this->load->helper('url');
     }
 
     // Index
     public function _index()
     {
+        if ($this->session->userdata('email')) {
+            redirect('user');
+        }
         $data['title'] = 'Login Page';
         $this->load->view('templates/login/header', $data);
         $this->load->view('auth/v_login');
