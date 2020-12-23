@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Items</h1>
+                    <h1 class="m-0 text-dark"><?= $title; ?></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -67,7 +67,7 @@
                                     <td>
                                         <?= $pro->barcode ?>
                                         <br>
-                                        <a href="<?= base_url("admin/C_barang/generate_barang/") .$pro->kode_barang ?>" 
+                                        <a href="<?= base_url("barang/generate_barang/") .$pro->kode_barang ?>" 
                                             class="btn btn-sm btn-outline-secondary">
                                             Generate
                                             <i class="fas fa-barcode pl-2"></i>
@@ -92,12 +92,12 @@
                                         )">
                                             <i class="fas fa-fw fa-eye"></i>
                                         </a>
-                                        <a href="#!" onclick="return deleteConfirm('<?php echo base_url('admin/C_barang/hapus_items/') .$pro->kode_barang ?>')"
+                                        <a href="#!" onclick="return deleteConfirm('<?php echo base_url('barang/hapus_items/') .$pro->kode_barang ?>')"
                                             class="btn btn-danger btn-xs mx-auto">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
 
-                                        <a href="<?= base_url("admin/C_barang/edit_barang/") .$pro->kode_barang ?>" class="btn btn-xs btn-warning">
+                                        <a href="<?= base_url("barang/edit_barang/") .$pro->kode_barang ?>" class="btn btn-xs btn-warning">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
 
@@ -155,7 +155,7 @@
             }
             ?>
             <div class="modal-body">
-                <form action="<?= base_url('admin/C_barang/tambah_items') ?>" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url('barang/tambah_items') ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="kode">Kode Items</label>
                         <input type="text" name="kode" id="kode" class="form-control" value="<?= $kode ?>" readonly>

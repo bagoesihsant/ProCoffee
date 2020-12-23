@@ -119,3 +119,11 @@ $route['role/ajaxeditrole'] = "admin/C_role/ajaxEditRole";
 $route['role/userAkses/(:any)'] = "admin/C_role/userAkses/$1";
 $route['role/removeAkses'] = "admin/C_role/removeAkses";
 $route['role/addakses'] = "admin/C_role/addAkses";
+
+// Data Barang ['Barang']
+$route['barang'] = "admin/C_barang";
+$route['barang/generate_barang/(:any)'] = "admin/C_barang/generate_barang/$1";
+$route['barang/hapus_items/(:any)'] = "admin/C_barang/hapus_items/$1";
+$route['barang/edit_barang/(:any)'] = "admin/C_barang/edit_barang/$1";
+$route['barang/tambah_items'] = "admin/C_barang/tambah_items";
+$route['barang/simpan_edit_barang'] = "admin/C_barang/edit_barang_aksi";

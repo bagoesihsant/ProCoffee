@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <!-- Data Table -->
 
-                    <form method="post" action="<?=base_url('admin/C_barang/edit_barang_aksi')?>">
+                    <form method="post" action="<?=base_url('barang/simpan_edit_barang')?>">
                         <?php foreach($edit as $e) { ?>
                         
                             <div class="form-group">

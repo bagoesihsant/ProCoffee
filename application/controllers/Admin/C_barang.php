@@ -110,7 +110,7 @@ class C_barang extends CI_Controller
                         'pesan_menu',
                         'toastr.error("Error, Data gagal ditambahkan. yang anda upload bukan gambar")'
                     );
-                    redirect('admin/C_barang');
+                    redirect('barang');
                 } else {
                     $namaGambar = $this->upload->data('file_name');
 
@@ -132,13 +132,13 @@ class C_barang extends CI_Controller
                             'pesan_menu',
                             'toastr.success("Data berhasil ditambahkan.")'
                         );
-                        redirect('admin/C_barang');
+                        redirect('barang');
                     } else {
                         $this->session->set_flashdata(
                             'pesan_menu',
                             'toastr.error("Error, Data gagal ditambahkan.")'
                         );
-                        redirect('admin/C_barang');
+                        redirect('barang');
                     }
                 }
             }
@@ -166,13 +166,13 @@ class C_barang extends CI_Controller
                 'pesan_menu',
                 'toastr.success("Data berhasil dihapus.")'
             );
-            redirect('admin/C_barang');
+            redirect('barang');
         } else {
             $this->session->set_flashdata(
                 'pesan_menu',
                 'toastr.error("Error, Data gagal dihapus.")'
             );
-            redirect('admin/C_barang');
+            redirect('barang');
         }
     }
     // hapus items
@@ -263,7 +263,7 @@ class C_barang extends CI_Controller
                         'pesan_menu',
                         'toastr.error("Error, Data gagal ditambahkan. yang anda upload bukan gambar")'
                     );
-                    redirect('admin/C_barang');
+                    redirect('barang');
                     //jika berhasil
                 } else {
                     
@@ -295,14 +295,14 @@ class C_barang extends CI_Controller
                             'pesan_menu',
                             'toastr.success("Data berhasil di update")'
                         );
-                        redirect('admin/C_barang');
+                        redirect('barang');
                     }else{
                         //alert jika update database gagal
                         $this->session->set_flashdata(
                             'pesan_menu',
                             'toastr.danger("Data gagal di update")'
                         );
-                        redirect('admin/C_barang');
+                        redirect('barang');
                     }
                 }
             } else { //jika tidak upload gambar
@@ -328,13 +328,13 @@ class C_barang extends CI_Controller
                         'pesan_menu',
                         'toastr.success("Data berhasil di update.")'
                     );
-                    redirect('admin/C_barang');
+                    redirect('barang');
                 } else {
                     $this->session->set_flashdata(
                         'pesan_menu',
                         'toastr.error("Error, Data gagal diupdate.")'
                     );
-                    redirect('admin/C_barang');
+                    redirect('barang');
                 }
             }
         }
