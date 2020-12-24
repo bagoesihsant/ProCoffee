@@ -145,16 +145,17 @@ $route['akun/verif_password'] = "admin/C_user/verif_password";
 $route['kasir'] = "kasir/C_kasir/index";
 $route['kasir/loadBarang/(:any)'] = "kasir/loadbarang/$1";
 
-// Data Stockin ['Stockin']
+// Data Stockin ['Stockin'] (There is a problem with this one, i'll solve it later)
 $route['kasir/datastockin'] = "kasir/C_stockin/index";
 $route['kasir/ItemIn'] = "kasir/C_stockin/stock_in_form";
 $route['kasir/delete_in/(:any)'] = "kasir/C_stockin/delete_in/$1";
 $route['kasir/stockinprocess'] = "kasir/C_stockin/process";
 
 // Data Stockout ['stockout']
-$route['kasir/stock_out_data'] = "kasir/C_stockout/index";
+$route['kasir/stockoutdata'] = "kasir/C_stockout/index";
 $route['kasir/ItemOut'] = "kasir/C_stockout/stock_out_form";
-$route['kasir/StockOut/delete/(:num)/(:num)'] = "kasir/C_stockout/delete_out";
+$route['kasir/StockOut/delete/(:any)/(:any)'] = "kasir/C_stockout/delete_out/$1/$1";
+$route['kasir/stockout/process'] = "kasir/C_stockout/process";
 
 // Akhiran irman bikin routes
 
