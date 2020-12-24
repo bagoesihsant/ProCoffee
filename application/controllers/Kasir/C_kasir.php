@@ -64,7 +64,7 @@ class C_kasir extends CI_Controller
 
 
         // Membuat konfigurasi paging
-        $config['base_url'] = base_url('C_kasir/loadBarang/');
+        $config['base_url'] = base_url('kasir/loadBarang/');
         $config['use_page_numbers'] = true;
         $config['total_rows'] = $totalData;
         $config['per_page'] = $dataHalaman;

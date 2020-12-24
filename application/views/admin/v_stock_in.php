@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Daftar Stock In</h1>
+                    <h1 class="m-0 text-dark"><?= $title;?></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -84,7 +84,7 @@
                                             )">
                                             <i class="fas fa-fw fa-eye "></i> Detail
                                         </a>
-                                        <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('kasir/C_stockin/delete_in/' . $data->kode_stock . '/' . $data->kode_barang) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
+                                        <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('kasir/delete_in/' . $data->kode_stock . '/' . $data->kode_barang) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
                                             <i class="fas fa-fw fa-trash-alt"></i> Hapus
                                         </a>
 

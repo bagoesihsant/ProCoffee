@@ -54,29 +54,6 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-
-
-
-
-// Custome Stock Out
-$route['kasir/stock_out_data'] = "kasir/C_stockout/index";
-$route['kasir/ItemOut'] = "kasir/C_stockout/stock_out_form";
-$route['kasir/StockOut/delete/(:num)/(:num)'] = "kasir/C_stockout/delete_out";
-
-// Custome Stock In
-$route['kasir/stock_in_data'] = "kasir/C_stockin/index";
-$route['kasir/ItemIn'] = "kasir/C_stockin/stock_in_form";
-
-
-//Route untuk Auth
-$route['auth'] = "C_auth";
-$route['auth/registration'] = "C_auth/registration";
-$route['auth/lupaPassword'] = "C_auth/lupapassword";
-$route['auth/(:any)'] = "C_auth/$1";
-$route['auth/gantipassword'] = "C_auth/gantipassword";
-$route['auth/blocked'] = "C_auth/blocked";
-
-
 // User Landingpage
 $route['User/LandingPage'] = "Users/C_landingpage/index";
 $route['User/Cart'] = "Users/C_cart/index";
@@ -92,6 +69,16 @@ $route['User/Register'] = "C_auth_user/registration";
 $route['User/LupaSandi'] = "C_auth_user/LupaPasswordUser";
 $route['User/GantiSandi'] = "C_auth_user/UbahPassword";
 
+
+// Irman bgt yg bikin routes dibawah ini
+
+//Route untuk Auth
+$route['auth'] = "C_auth";
+$route['auth/registration'] = "C_auth/registration";
+$route['auth/lupaPassword'] = "C_auth/lupapassword";
+$route['auth/(:any)'] = "C_auth/$1";
+$route['auth/gantipassword'] = "C_auth/gantipassword";
+$route['auth/blocked'] = "C_auth/blocked";
 
 // User Menu ['Menu'] dan submenu ['submenu']
 $route['menu'] = "admin/C_menu";
@@ -147,5 +134,28 @@ $route['supplier/edit_supplier/(:any)'] = "admin/C_supplier/edit_supplier/$1";
 $route['supplier/hapus_supplier/(:any)'] = "admin/C_supplier/hapus_supplier/$1";
 $route['supplier/edit_supplier_aksi'] = "admin/C_supplier/edit_supplier_aksi";
 
-// 
+// Data Manajemen User ['CRUD USER']
+$route['akun'] = "admin/C_user/index";
+$route['akun/edit_akun'] = "admin/C_user/edit_user";
+$route['akun/aktifkan'] = "admin/C_user/aktifkan";
+$route['akun/nonaktifkan'] = "admin/C_user/nonaktifkan";
+$route['akun/verif_password'] = "admin/C_user/verif_password";
+
+// Data Manajemen Kasir ['kasir']
+$route['kasir'] = "kasir/C_kasir/index";
+$route['kasir/loadBarang/(:any)'] = "kasir/loadbarang/$1";
+
+// Data Stockin ['Stockin']
+$route['kasir/datastockin'] = "kasir/C_stockin/index";
+$route['kasir/ItemIn'] = "kasir/C_stockin/stock_in_form";
+$route['kasir/delete_in/(:any)'] = "kasir/C_stockin/delete_in/$1";
+$route['kasir/stockinprocess'] = "kasir/C_stockin/process";
+
+// Data Stockout ['stockout']
+$route['kasir/stock_out_data'] = "kasir/C_stockout/index";
+$route['kasir/ItemOut'] = "kasir/C_stockout/stock_out_form";
+$route['kasir/StockOut/delete/(:num)/(:num)'] = "kasir/C_stockout/delete_out";
+
+// Akhiran irman bikin routes
+
 

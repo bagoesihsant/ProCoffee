@@ -53,7 +53,7 @@ class C_stockin extends CI_Controller
     //untuk tampilan awal stock in
     public function stock_in_data()
     {
-        $data['title'] = 'Data Stock In';
+        $data['title'] = 'Stock In Form';
         $data['row'] = $this->M_stock->get_stock_in()->result();
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         
@@ -72,7 +72,7 @@ class C_stockin extends CI_Controller
             if ($this->db->affected_rows() > 0) {
                 $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data Stock In Barang telah ditambahkan</div>');
             }
-            redirect('kasir/stock_in_data');
+            redirect('kasir/datastockin');
         }
     }
 
@@ -93,6 +93,6 @@ class C_stockin extends CI_Controller
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data Stock Barang Telah DIhapus</div>');
         }
-        redirect('kasir/stock_in_data');
+        redirect('kasir/datastockin');
     }
 }

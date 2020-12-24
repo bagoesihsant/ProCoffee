@@ -12,7 +12,7 @@ class C_user extends CI_Controller
     public function index()
     {
         // Blm dipakai karena login blm ada
-        $data['title'] = 'Management User';
+        $data['title'] = 'Manajemen User';
         // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         // $data['dt_user'] = $this->db->get('user')->result_array();
@@ -266,12 +266,12 @@ class C_user extends CI_Controller
                                     <p>Akun Anda</p>
                                     <p>Email : " . $emailAkun . "</p>
                                     <p>Tolong Klik Link Dibawah ini untuk Aktivasi Akun Anda!</p>
-                                    <h4><a href='" . base_url() . "C_auth/activation?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Aktivasi Akun!!</a></h4>
+                                    <h4><a href='" . base_url() . "auth/activation?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Aktivasi Akun!!</a></h4>
                                 </body>
                                 </html>
         ";
         $this->load->library('email', $config);
-        $this->email->from('kingofxavier@gmail.com', 'Aktivasi Akun');
+        $this->email->from('admin@procoffee.com', 'Aktivasi Akun');
         $this->email->to($this->input->post('email'));
 
         $this->email->subject('Aktivasi Akun');
@@ -313,12 +313,12 @@ class C_user extends CI_Controller
                                     <p>Akun Anda</p>
                                     <p>Email : " . $emailAkun . "</p>
                                     <p>Tolong Klik Link Dibawah ini untuk Aktivasi Akun Anda!</p>
-                                    <h4><a href='" . base_url() . "C_auth/gantipassword?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Aktivasi Akun!!</a></h4>
+                                    <h4><a href='" . base_url() . "auth/gantipassword?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Aktivasi Akun!!</a></h4>
                                 </body>
                                 </html>
         ";
         $this->load->library('email', $config);
-        $this->email->from('kingofxavier@gmail.com', 'Reset Password Akun');
+        $this->email->from('admin@procoffee.com', 'Reset Password Akun');
         $this->email->to($this->input->post('email'));
 
         $this->email->subject('Reset Password Akun');
@@ -358,12 +358,12 @@ class C_user extends CI_Controller
                                     <p>Akun Anda</p>
                                     <p>Email : " . $emailAkun . "</p>
                                     <p>Tolong Klik Link Dibawah ini untuk memverifikasi anda berganti email!</p>
-                                    <h4><a href='" . base_url() . "C_auth/gantiemail?email=" . $emailAkun . "&account=" . $id_user . "&token=" . $token . "'>Aktivasi Akun!!</a></h4>
+                                    <h4><a href='" . base_url() . "auth/gantiemail?email=" . $emailAkun . "&account=" . $id_user . "&token=" . $token . "'>Aktivasi Akun!!</a></h4>
                                 </body>
                                 </html>
         ";
         $this->load->library('email', $config);
-        $this->email->from('kingofxavier@gmail.com', 'Berganti Email Baru');
+        $this->email->from('admin@procoffee.com', 'Berganti Email Baru');
         $this->email->to($this->input->post('email'));
 
         $this->email->subject('Ganti Email Baru');
