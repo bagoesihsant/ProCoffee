@@ -39,8 +39,15 @@
                     <div class="col-lg-6 offer mb-3 mb-lg-0"></div>
                     <div class="col-lg-6 text-center text-lg-right">
                         <ul class="menu list-inline mb-0">
-                            <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-                            <li class="list-inline-item"><a href="<?= base_url('User/Register') ?>">Register</a></li>
+                            <?php
+                            $session = $this->session->userdata('id_user');
+                            if (!empty($session)) :
+                            ?>
+                                <p class="text-white">Halo, <a href="<?= base_url('User/Profile') ?>"><?= $this->session->userdata('nama'); ?></a></p>
+                            <?php else : ?>
+                                <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                                <li class="list-inline-item"><a href="<?= base_url('User/Register') ?>">Register</a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
@@ -100,7 +107,7 @@
                                             <h5>Lainnya</h5>
                                             <ul class="list-unstyled mb-3">
                                                 <li class="nav-item"><a href="<?= base_url('User/Profile'); ?>" class="nav-link">Profil saya</a></li>
-                                                <li class="nav-item"><a href="<?= base_url('User/Register'); ?>" class="nav-link">LogOut</a></li>
+                                                <li class="nav-item"><a href="<?= base_url('User/Keluar'); ?>" class="nav-link">LogOut</a></li>
                                             </ul>
                                         </div>
 

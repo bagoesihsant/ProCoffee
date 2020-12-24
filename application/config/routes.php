@@ -97,6 +97,8 @@ $route['User/Detail/(:any)'] = "Users/C_detail_barang_user/index/$1";
 $route['User/Register'] = "C_auth_user/registration";
 $route['User/LupaSandi'] = "C_auth_user/LupaPasswordUser";
 $route['User/GantiSandi'] = "C_auth_user/UbahPassword";
+$route['User/Keluar'] = "C_auth_user/logout";
+$route['User/Masuk'] = "C_auth_user/index";
 
 
 // User Menu ['Menu'] dan submenu ['submenu']
