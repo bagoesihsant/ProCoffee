@@ -39,8 +39,8 @@
                     <div class="col-lg-6 offer mb-3 mb-lg-0"></div>
                     <div class="col-lg-6 text-center text-lg-right">
                         <ul class="menu list-inline mb-0">
-                            <!-- <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-                            <li class="list-inline-item"><a href="<?= base_url('User/Register') ?>">Register</a></li> -->
+                            <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                            <li class="list-inline-item"><a href="<?= base_url('User/Register') ?>">Register</a></li>
                         </ul>
                     </div>
                 </div>

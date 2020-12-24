@@ -113,4 +113,31 @@ class M_barang extends CI_Model
         // Output the generated PDF to Browser
         $dompdf->stream($filename, array('Attachment' => 0));
     }
+
+    // Fungsi untuk tombol Detail barang di Landing page
+    public function getAllDetailItems($id = null)
+    {
+        $this->db->select('*,tbl_barang.nama as nama_barang, tbl_kategori.nama as nama_kategori, tbl_satuan.nama as nama_satuan');
+        $this->db->from('tbl_barang');
+        $this->db->join('tbl_kategori', 'tbl_barang.kode_kategori = tbl_kategori.kode_kategori');
+        $this->db->join('tbl_satuan', 'tbl_barang.kode_satuan = tbl_satuan.kode_satuan');
+        if ($id != null) {
+            $this->db->where('kode_barang', $id);
+        }
+        return $this->db->get();
+    }
+
+    public function LimitRandom($id = null)
+    {
+        $this->db->select('*,tbl_barang.nama as nama_barang, tbl_kategori.nama as nama_kategori, tbl_satuan.nama as nama_satuan');
+        $this->db->from('tbl_barang');
+        $this->db->join('tbl_kategori', 'tbl_barang.kode_kategori = tbl_kategori.kode_kategori');
+        $this->db->join('tbl_satuan', 'tbl_barang.kode_satuan = tbl_satuan.kode_satuan');
+        $this->db->order_by('kode_barang', 'RANDOM');
+        $this->db->limit(5);
+        if ($id != null) {
+            $this->db->where('kode_barang', $id);
+        }
+        return $this->db->get();
+    }
 }
