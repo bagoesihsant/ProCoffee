@@ -124,7 +124,7 @@ class C_auth_user extends CI_Controller
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('id_user');
         $this->session->unset_userdata('nama');
-        $this->session->set_flashdata('message_login', '<div class="alert alert-danger" role="alert">Anda berhasil logout <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+        $this->session->set_flashdata('message_login', '<div class="alert alert-warning" role="alert">Anda berhasil logout <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
         redirect('User/Register');
     }
 }
