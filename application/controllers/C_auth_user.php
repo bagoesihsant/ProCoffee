@@ -7,12 +7,13 @@ class C_auth_user extends CI_Controller
     public function __construct() //ini methodddd
     {
         parent::__construct(); //untuk memanggil method cunstruct
-        
+
     }
 
     public function registration()
     {
-        $this->load->view('templates/user_template/v_header_user');
+        $data['title'] = "Sign in / Sign Up";
+        $this->load->view('auth_user/v_auth_header', $data);
         $this->load->view('auth_user/v_register');
         $this->load->view('templates/user_template/v_footer_user');
     }
