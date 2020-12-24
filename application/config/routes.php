@@ -143,4 +143,9 @@ $route['satuan/editdataunits'] = "admin/C_satuan/editDataUnits";
 
 // Data Supplier ['supplier']
 $route['supplier'] = "admin/C_supplier/index";
+$route['supplier/edit_supplier/(:any)'] = "admin/C_supplier/edit_supplier/$1";
+$route['supplier/hapus_supplier/(:any)'] = "admin/C_supplier/hapus_supplier/$1";
+$route['supplier/edit_supplier_aksi'] = "admin/C_supplier/edit_supplier_aksi";
+
+// 
 

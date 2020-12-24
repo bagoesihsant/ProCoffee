@@ -88,7 +88,7 @@ class C_user extends CI_Controller
 
             if ($lahir == $today) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Gagal Disimpan, Date haruslah valid</div>');
-                redirect('admin/C_user');
+                redirect('akun');
             } else {
                 $data = [
                     'kode_user' => htmlspecialchars($id_user),
@@ -122,7 +122,7 @@ class C_user extends CI_Controller
 
             $this->db->insert('user', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Disimpan</div>');
-            redirect('admin/C_user');
+            redirect('akun');
         }
     }
 
@@ -133,7 +133,7 @@ class C_user extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[20]');
         if ($this->form_validation->run() == false) {
-            redirect('admin/C_user');
+            redirect('akun');
         } else {
             $email_lawas = htmlspecialchars($this->input->post('email_lawas'));
             $id_user = htmlspecialchars($this->input->post('id_user'));
@@ -163,10 +163,10 @@ class C_user extends CI_Controller
                     $this->_sendEmail_validasi_email($token, $id_user);
 
                     $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">Data Berhasil Diperbarui dan email verifikasi berhasil dikirim!</div>');
-                    redirect('admin/C_user');
+                    redirect('akun');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">Data Gagal Diperbarui!, Aktivasi akun terlebih dahulu!</div>');
-                    redirect('admin/C_user');
+                    redirect('akun');
                 }
             } else {
                 $data = array(
@@ -180,7 +180,7 @@ class C_user extends CI_Controller
 
 
                 $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">Data Berhasil Diperbarui</div>');
-                redirect('admin/C_user');
+                redirect('akun');
             }
         }
     }
@@ -193,7 +193,7 @@ class C_user extends CI_Controller
         $status = htmlspecialchars($this->input->post('status'));
         $this->M_user->status($id, $status);
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Akun Berhasil Dinonaktifkan</div>');
-        redirect('admin/C_user');
+        redirect('akun');
     }
     public function aktifkan()
     {
@@ -201,7 +201,7 @@ class C_user extends CI_Controller
         $status = htmlspecialchars($this->input->post('status'));
         $this->M_user->status($id, $status);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Akun Berhasil Diaktifkan</div>');
-        redirect('admin/C_user');
+        redirect('akun');
     }
 
     // Send Email & All of it Configuration
@@ -231,10 +231,10 @@ class C_user extends CI_Controller
                 $this->db->insert('user_reset_password', $user_token);
                 $this->_sendEmail_reset_password($token);
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="success">Silahkan Cek Email Anda Untuk Reset Password!!</div>');
-                redirect('admin/C_user');
+                redirect('akun');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email Anda Belum Terdaftar! Atau Akun Belum Aktif</div>');
-                redirect('admin/C_user');
+                redirect('akun');
             }
         }
     }
