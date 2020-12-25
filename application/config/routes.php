@@ -49,7 +49,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'C_auth';
+$route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -62,25 +62,23 @@ $route['User/Profile'] = "Users/C_user_profile/index";
 $route['User/Profile/Edit'] = "Users/C_user_profile/editprofil";
 $route['User/Profile/ChangePassword'] = "Users/C_user_profile/ubahpassword";
 $route['User/List'] = "Users/C_barang_user/index";
-$route['User/Detail/(:any)'] = "Users/C_detail_barang_user/index/$1";
+$route['User/Detail'] = "Users/C_detail_barang_user/index";
 
 // User Auth (Pelanggan)
 $route['User/Register'] = "C_auth_user/registration";
 $route['User/LupaSandi'] = "C_auth_user/LupaPasswordUser";
 $route['User/GantiSandi'] = "C_auth_user/UbahPassword";
-$route['User/Keluar'] = "C_auth_user/logout";
-$route['User/Masuk'] = "C_auth_user/index";
 
 
 // Irman bgt yg bikin routes dibawah ini
 
-//Route untuk Auth
-$route['auth'] = "C_auth";
-$route['auth/registration'] = "C_auth/registration";
-$route['auth/lupaPassword'] = "C_auth/lupapassword";
-$route['auth/(:any)'] = "C_auth/$1";
-$route['auth/gantipassword'] = "C_auth/gantipassword";
-$route['auth/blocked'] = "C_auth/blocked";
+// //Route untuk Auth
+// $route['auth'] = "C_auth";
+// $route['auth/registration'] = "C_auth/registration";
+// $route['auth/lupaPassword'] = "C_auth/lupapassword";
+// $route['auth/(:any)'] = "C_auth/$1";
+// $route['auth/gantipassword'] = "C_auth/gantipassword";
+// $route['auth/blocked'] = "C_auth/blocked";
 
 // User Menu ['Menu'] dan submenu ['submenu']
 $route['menu'] = "admin/C_menu";
@@ -160,3 +158,5 @@ $route['kasir/StockOut/delete/(:any)/(:any)'] = "kasir/C_stockout/delete_out/$1/
 $route['kasir/stockout/process'] = "kasir/C_stockout/process";
 
 // Akhiran irman bikin routes
+
+
