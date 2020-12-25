@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <!-- Data Table -->
 
-                    <form method="post" action="<?=base_url('admin/C_supplier/edit_supplier_aksi')?>">
+                    <form method="post" action="<?=base_url('supplier/edit_supplier_aksi')?>">
                         <?php foreach($edit as $e) { ?>
                         
                             <div class="form-group">
@@ -84,7 +84,7 @@
                         <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
                         
                             <div class="col-sm-6 float-right text-right mt-3">
-                                <a href="<?=base_url('admin/C_supplier')?>" class="btn btn-sm btn-secondary">
+                                <a href="<?=base_url('supplier')?>" class="btn btn-sm btn-secondary">
                                 <i class="fas fa-chevron-left"></i>
                                     <span>Kembali</span>
                                 </a>

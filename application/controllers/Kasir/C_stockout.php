@@ -29,7 +29,7 @@ class C_stockout extends CI_Controller
         $data = [
             'item' => $item
         ];
-        $data['title'] = 'Stock Out Form';
+        $data['title'] = 'Stock Out';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         
         $this->load->view('templates/admin/header', $data);
@@ -48,7 +48,7 @@ class C_stockout extends CI_Controller
             if ($this->db->affected_rows() > 0) {
                 $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data Stok Out Barang telah di tambahkan</div>');
             }
-            redirect('kasir/stock_out_data');
+            redirect('kasir/stockoutdata');
         }
     }
 
@@ -68,6 +68,6 @@ class C_stockout extends CI_Controller
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data Stok Out Barang telah di Hapus</div>');
         }
-        redirect('kasir/stock_out_data');
+        redirect('kasir/stockoutdata');
     }
 }

@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="text-dark m-0">Daftar Hak Akses</h1>
+                    <h1 class="text-dark m-0"><?= $title; ?></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-right">
@@ -14,7 +14,7 @@
                             <a href="">Home</a>
                         </li>
                         <li class="breadcrumb-item">
-                            Hak Akses
+                            Role
                         </li>
                     </ol>
                 </div>
@@ -34,7 +34,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h4 class="m-0">Tabel Hak Akses</h4>
+                            <h4 class="m-0">Tabel Role</h4>
                         </div>
                         <div class="col-sm-6">
                             <a href="" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modalTambah">
@@ -80,7 +80,7 @@
                                         <button type="button" data-kode="<?= $roles['kode_role']; ?>" class="btn btn-warning btn-xs mx-auto btn-edit" data-toggle="modal" data-target="#modalEdit">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </button>
-                                        <a href="<?= base_url('admin/userAkses/' . $roles['kode_role']); ?>" class="btn btn-info btn-xs mx-auto">
+                                        <a href="<?= base_url('role/userAkses/' . $roles['kode_role']); ?>" class="btn btn-info btn-xs mx-auto">
                                             <i class="fas fa-fw fa-cog text-white"></i>
                                         </a>
                                     </td>
@@ -132,7 +132,7 @@
             <!-- Modal Header End -->
             <!-- Modal Body -->
             <div class="modal-body">
-                <form action="<?= base_url('admin/role'); ?>" method="post">
+                <form action="<?= base_url('role'); ?>" method="post">
                     <!-- Mengambil kode sebelumnya dari database -->
                     <?php
                     // Mengambil data terakhir dari tabel hak akses
@@ -221,7 +221,7 @@
             <!-- Modal Header End -->
             <!-- Modal Body -->
             <div class="modal-body">
-                <form action="<?= base_url('admin/editRole'); ?>" method="post" id="formEditRole">
+                <form action="<?= base_url('role/editRole'); ?>" method="post" id="formEditRole">
                     <div class="form-group">
                         <label for="kode_role">Kode Hak Akses</label>
                         <input type="text" name="kode_role" id="kode_role" class="form-control" value="" readonly>

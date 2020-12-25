@@ -33,7 +33,7 @@
             <?php 
                 }
         }else{ //jika tidak keduanya maka akan kembali ke index barang
-            redirect('admin/C_barang');
+            redirect('barang');
         }
             ?>
 </body>

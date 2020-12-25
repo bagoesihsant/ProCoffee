@@ -114,7 +114,7 @@
                 <h5 class="modal-title" id="newroleModal">Create New Data</h5>
                 </button>
             </div>
-            <?= form_open_multipart('admin/C_user'); ?>
+            <?= form_open_multipart('akun'); ?>
             <div class="modal-body">
                 <div class="form-group">
                     <label for="">Nama</label>
@@ -205,7 +205,7 @@ foreach ($get_user as $i) :
                 <div class="modal-header">
                     <h3 class="modal-title" id="myModalLabel">Edit User</h3>
                 </div>
-                <?= form_open_multipart('admin/C_user/edit_user'); ?>
+                <?= form_open_multipart('akun/edit_akun'); ?>
                 <input type="text" name="id_user" value="<?= $id; ?>" hidden>
                 <input type="text" name="email_lawas" value="<?= $email; ?>" hidden>
                 <div class="modal-body">
@@ -253,7 +253,7 @@ foreach ($get_user as $i) :
                 <div class="modal-header">
                     <h3 class="modal-title" id="myModalLabel">Akfitkan Data User</h3>
                 </div>
-                <form action="<?= base_url() . 'admin/C_user/aktifkan'; ?>" method="post" class="form-horizontal">
+                <form action="<?= base_url() . 'akun/aktifkan'; ?>" method="post" class="form-horizontal">
                     <div class="modal-body">
                         <p>Apakah Anda yakin mau mengaktifkan data user ini? <b><?= $nama; ?></b></p>
                     </div>
@@ -275,7 +275,7 @@ foreach ($get_user as $i) :
                 <div class="modal-header">
                     <h3 class="modal-title" id="myModalLabel">Nonaktifkan Data User</h3>
                 </div>
-                <form action="<?= base_url() . 'admin/C_user/nonaktifkan'; ?>" method="post" class="form-horizontal">
+                <form action="<?= base_url() . 'akun/nonaktifkan'; ?>" method="post" class="form-horizontal">
                     <div class="modal-body">
                         <p>Apakah Anda yakin mau menonaktifkan data user ini? <b><?= $nama; ?></b></p>
                     </div>
@@ -297,7 +297,7 @@ foreach ($get_user as $i) :
                 <div class="modal-header">
                     <h3 class="modal-title" id="myModalLabel">Send Token Password</h3>
                 </div>
-                <form action="<?= base_url() . 'admin/C_user/verif_password'; ?>" method="post" class="form-horizontal">
+                <form action="<?= base_url() . 'akun/verif_password'; ?>" method="post" class="form-horizontal">
                     <div class="modal-body">
                         <p>Apakah Anda yakin mengirim token password data user ini? <b><?= $nama; ?></b></p>
                     </div>

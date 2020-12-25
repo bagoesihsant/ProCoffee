@@ -54,35 +54,6 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-// Route manajemen akses
-$route['admin/userAkses/(:any)'] = "admin/C_role/userAkses/$1";
-
-// Custome Product Routes
-$route['admin/kategori'] = "admin/C_kategori/index";
-$route['admin/satuan'] = "admin/C_satuan/index";
-
-// Custome Stock Out
-$route['kasir/stock_out_data'] = "kasir/C_stockout/index";
-$route['kasir/ItemOut'] = "kasir/C_stockout/stock_out_form";
-$route['kasir/StockOut/delete/(:num)/(:num)'] = "kasir/C_stockout/delete_out";
-
-// Custome Stock In
-$route['kasir/stock_in_data'] = "kasir/C_stockin/index";
-$route['kasir/ItemIn'] = "kasir/C_stockin/stock_in_form";
-
-// Route Kasir
-$route['kasir/penjualan'] = "kasir/C_kasir/index";
-
-
-//Route untuk Auth
-$route['auth'] = "C_auth";
-$route['auth/registration'] = "C_auth/registration";
-$route['auth/lupaPassword'] = "C_auth/lupapassword";
-$route['auth/(:any)'] = "C_auth/$1";
-$route['auth/gantipassword'] = "C_auth/gantipassword";
-$route['auth/blocked'] = "C_auth/blocked";
-
-
 // User Landingpage
 $route['User/LandingPage'] = "Users/C_landingpage/index";
 $route['User/Cart'] = "Users/C_cart/index";
@@ -101,6 +72,16 @@ $route['User/Keluar'] = "C_auth_user/logout";
 $route['User/Masuk'] = "C_auth_user/index";
 
 
+// Irman bgt yg bikin routes dibawah ini
+
+//Route untuk Auth
+$route['auth'] = "C_auth";
+$route['auth/registration'] = "C_auth/registration";
+$route['auth/lupaPassword'] = "C_auth/lupapassword";
+$route['auth/(:any)'] = "C_auth/$1";
+$route['auth/gantipassword'] = "C_auth/gantipassword";
+$route['auth/blocked'] = "C_auth/blocked";
+
 // User Menu ['Menu'] dan submenu ['submenu']
 $route['menu'] = "admin/C_menu";
 $route['menu/ajaxEditMenu'] = "admin/C_menu/ajaxEditMenu";
@@ -113,7 +94,69 @@ $route['menu/submenu/editSubmenu'] = "admin/C_menu/editSubmenu";
 $route['menu/submenu/hapusSubmenu/(:any)'] = "admin/C_menu/hapusSubmenu/$1";
 
 // Route Role ['Role] dan akses ['akses']
+$route['role/editRole'] = "admin/C_role/editRole";
+$route['role/deleteRole/(:any)'] = "admin/C_role/deleteRole/$1";
 $route['role'] = "admin/C_role/index";
-$route['editRole'] = "admin/C_role/editRole";
-$route['deleteRole/(:any)'] = "admin/C_role/deleteRole/$1";
-$route['role'] = "admin/C_role/index";
+$route['role/ajaxeditrole'] = "admin/C_role/ajaxEditRole";
+
+// Route manajemen akses
+$route['role/userAkses/(:any)'] = "admin/C_role/userAkses/$1";
+$route['role/removeAkses'] = "admin/C_role/removeAkses";
+$route['role/addakses'] = "admin/C_role/addAkses";
+
+// Data Barang ['Barang']
+$route['barang'] = "admin/C_barang";
+$route['barang/generate_barang/(:any)'] = "admin/C_barang/generate_barang/$1";
+$route['barang/hapus_items/(:any)'] = "admin/C_barang/hapus_items/$1";
+$route['barang/edit_barang/(:any)'] = "admin/C_barang/edit_barang/$1";
+$route['barang/tambah_items'] = "admin/C_barang/tambah_items";
+$route['barang/simpan_edit_barang'] = "admin/C_barang/edit_barang_aksi";
+$route['barang/barcode_print/(:any)'] = "admin/C_barang/barcode_print/$1";
+$route['barang/qrcode_print/(:any)'] = "admin/C_barang/qrcode_print/$1";
+
+// Data Kategori ['Kategori']
+$route['kategori'] = "admin/C_kategori/index";
+$route['kategori/deleteCategory/(:any)'] = "admin/C_kategori/deleteCategory/$1";
+$route['kategori/addDataCategories'] = "admin/C_kategori/addDataCategories";
+$route['kategori/editDataCategories'] = "admin/C_kategori/editDataCategories";
+
+// Data Laporan ['Kasir']
+$route['laporan/kasir'] = "kasir/C_kasir/index";
+$route['laporan/kasir/cetak_laporan'] = "admin/v_cetak_laporan_kasir";
+
+// Data Satuan ['Satuan']
+$route['satuan'] = "admin/C_satuan/index";
+$route['satuan/deleteunits/(:any)'] = "admin/C_satuan/deleteUnits/$1";
+$route['satuan/adddataunits'] = "admin/C_satuan/addDataUnits";
+$route['satuan/editdataunits'] = "admin/C_satuan/editDataUnits";
+
+// Data Supplier ['supplier']
+$route['supplier'] = "admin/C_supplier/index";
+$route['supplier/edit_supplier/(:any)'] = "admin/C_supplier/edit_supplier/$1";
+$route['supplier/hapus_supplier/(:any)'] = "admin/C_supplier/hapus_supplier/$1";
+$route['supplier/edit_supplier_aksi'] = "admin/C_supplier/edit_supplier_aksi";
+
+// Data Manajemen User ['CRUD USER']
+$route['akun'] = "admin/C_user/index";
+$route['akun/edit_akun'] = "admin/C_user/edit_user";
+$route['akun/aktifkan'] = "admin/C_user/aktifkan";
+$route['akun/nonaktifkan'] = "admin/C_user/nonaktifkan";
+$route['akun/verif_password'] = "admin/C_user/verif_password";
+
+// Data Manajemen Kasir ['kasir']
+$route['kasir'] = "kasir/C_kasir/index";
+$route['kasir/loadBarang/(:any)'] = "kasir/loadbarang/$1";
+
+// Data Stockin ['Stockin'] (There is a problem with this one, i'll solve it later)
+$route['kasir/datastockin'] = "kasir/C_stockin/index";
+$route['kasir/ItemIn'] = "kasir/C_stockin/stock_in_form";
+$route['kasir/delete_in/(:any)'] = "kasir/C_stockin/delete_in/$1";
+$route['kasir/stockinprocess'] = "kasir/C_stockin/process";
+
+// Data Stockout ['stockout']
+$route['kasir/stockoutdata'] = "kasir/C_stockout/index";
+$route['kasir/ItemOut'] = "kasir/C_stockout/stock_out_form";
+$route['kasir/StockOut/delete/(:any)/(:any)'] = "kasir/C_stockout/delete_out/$1/$1";
+$route['kasir/stockout/process'] = "kasir/C_stockout/process";
+
+// Akhiran irman bikin routes
