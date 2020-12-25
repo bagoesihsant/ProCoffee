@@ -97,7 +97,7 @@ class C_auth_user extends CI_Controller
                 'email' => htmlspecialchars($this->input->post('email_input')),
                 'password' => password_hash($this->input->post('password_satu'), PASSWORD_DEFAULT),
                 'is_active' => 1,
-                'date_created' => time()
+                'created' => time()
             ];
 
             $this->db->insert('user_online', $data);

@@ -1,17 +1,15 @@
 <div class="col-lg-9">
     <div class="box">
-        <h1>My account</h1>
-        <p class="lead">Change your personal details or your password here.</p>
-        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+        <h1>Akun Saya</h1>
+        <p class="lead">Ini adalah halaman akun anda atau bio anda</p>
+        <p class="text-muted">Jika ingin mengubah atau melengkapi data silahkan klik menu edit profile</p>
 
-        <h3 class="mt-5">Personal details</h3>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="firstname">Nama Lengkap</label>
-
-                    <p>Soleh goa hantu</p>
+                    <label class="font-weight-bold">Nama Lengkap</label>
+                    <p><?= $user['nama']; ?></p>
                 </div>
             </div>
         </div>
@@ -19,8 +17,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="street">Alamat</label>
-                    <p>Jember Jl 12 Grinhill awda awdw</p>
+                    <label class="font-weight-bold">Alamat</label>
+                    <?php if (!$user['alamat']) : ?>
+                        <br>
+                        <p class="badge bg-warning">Belum ada alamat!</p>
+                    <?php else : ?>
+                        <p><?= $user['alamat']; ?></p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -28,28 +31,42 @@
         <div class="row">
             <div class="col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label for="city">Tanggal lahir</label>
-                    <p>1999-12-11</p>
+                    <label class="font-weight-bold">tanggal lahir</label>
+                    <?php if (!$user['tanggal_lahir']) : ?>
+                        <p class="badge bg-warning">Tanggal lahir belum di masukkan!</p>
+                    <?php else : ?>
+                        <p><?= $user['tanggal_lahir']; ?></p>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label for="zip">Kode Pos</label>
-                    <p>1291</p>
+                    <label class="font-weight-bold">Kode Pos</label>
+                    <?php if (!$user['kode_pos']) : ?>
+                        <br>
+                        <p class="badge bg-warning">kode pos belum di masukkan!</p>
+                    <?php else : ?>
+                        <p><?= $user['kode_pos']; ?></p>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label for="nohp">No hp</label>
-                    <p>0881211311</p>
+                    <label class="font-weight-bold">No hp</label>
+                    <?php if (!$user['nohp']) : ?>
+                        <br>
+                        <p class="badge bg-warning">Nomor Hp belum di masukkan!</p>
+                    <?php else : ?>
+                        <p><?= $user['nohp']; ?></p>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <p>aloawd@gmail.com</p>
+                    <label class="font-weight-bold">Email</label>
+                    <p><?= $user['email']; ?></p>
                 </div>
             </div>
             <div class="col-md-12 text-center">
