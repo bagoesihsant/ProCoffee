@@ -40,67 +40,48 @@
                         <h3 class="text-uppercase text-center">Daftar Produk Dari Pro Coffee</h3>
                     </div>
                     <div class="row products">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi3.jpeg" alt="" class="img-fluid"></a></div>
-                                        <!-- <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1_3.jpg" alt="" class="img-fluid"></a></div> -->
-                                    </div>
-                                </div><a href="<?= base_url('User/Detail') ?>" class="invisible"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi3.jpeg" alt="" class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="<?= base_url('User/Detail') ?>">Fur coat with very but very very long name</a></h3>
-                                    <p class="price">
-                                        <del></del>Rp. 55.000
-                                    </p>
-                                    <p class="buttons"><a href="<?= base_url('User/Detail') ?>" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
-                                </div>
-                                <!-- /.text-->
-                            </div>
-                            <!-- /.product            -->
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="<?= base_url('User/Detail') ?>"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpeg" alt="" class="img-fluid"></a></div>
-                                        <!-- <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi2_2.jpeg" alt="" class="img-fluid"></a></div> -->
-                                    </div>
-                                </div><a href="<?= base_url('User/Detail') ?>" class="invisible"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpeg" alt="" class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="<?= base_url('User/Detail') ?>">Kopi Lanang</a></h3>
-                                    <p class="price">
-                                        <del></del>Rp. 50.000
-                                    </p>
-                                    <p class="buttons"><a href="<?= base_url('User/Detail') ?>" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
-                                </div>
-                                <!-- /.text-->
+                        <!-- loppingnya dari sini lung -->
+                        <?php foreach ($PL as $p => $data) : ?>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
 
-                                <!-- /.ribbon-->
-                            </div>
-                            <!-- /.product            -->
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="<?= base_url('User/Detail') ?>"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopio.jpeg" alt="" class="img-fluid"></a></div>
-                                        <!-- <div class="back"><a href="<?= base_url('User/Detail') ?>"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi1.jpeg" alt="" class="img-fluid"></a></div> -->
-                                    </div>
-                                </div><a href="<?= base_url('User/Detail') ?>" class="invisible"><img style="width: 250px; height:340px;" src="<?= base_url('assets/vendor_user/'); ?>img/kopio.jpeg" alt="" class="img-fluid"></a>
-                                <div class="text">
-                                    <h3><a href="<?= base_url('User/Detail') ?>">Kopi Original</a></h3>
-                                    <p class="price">
-                                        <del></del>Rp 45.000
-                                    </p>
-                                    <p class="buttons"><a href="<?= base_url('User/Detail') ?>" class="btn btn-outline-secondary">View detail</a><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
-                                </div>
-                                <!-- /.text-->
-                            </div>
-                            <!-- /.product            -->
+                                            <div class="front"><a href="detail.html"><img style="width: 250px; height:340px;" src="<?= base_url('assets/items_img/') . $data->gambar ?>" alt="" class="img-fluid"></a></div>
+                                            <!-- <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1_3.jpg" alt="" class="img-fluid"></a></div> -->
+                                        </div>
 
-                            <!-- /.products-->
-                        </div>
+                                    </div>
+                                    <!-- Ini gambar  kalau di klik bakalan nganterin ke halaman detail sesuai dengan produk yang di klik-->
+                                    <a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="invisible"><img style="width: 250px; height:340px;" src="<?= base_url('assets/items_img/') . $data->gambar ?>" alt="" class="img-fluid"></a>
+                                    <!-- /Penutup Ini gambar  kalau di klik bakalan nganterin ke halaman detail sesuai dengan produk yang di klik-->
+                                    <div class="text">
+                                        <h3>
+                                            <!-- Ini judul barangnya juga kalau di klik bakalan nganterin ke halaman sesuai ama barang yang di klik -->
+                                            <a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>"><?= $data->nama_barang; ?></a>
+                                            <!-- /Penutup Ini judul barangnya juga kalau di klik bakalan nganterin ke halaman sesuai ama barang yang di klik -->
+                                        </h3>
+                                        <p class="price">
+                                            <!-- Ini harga Barang -->
+                                            <del></del>Rp. <?= $data->harga; ?>
+                                            <!-- Penutup Ini harga Barang -->
+                                        </p>
+                                        <p class="buttons">
+                                            <!-- pembuka tombol langsung tambah barang ke chart -->
+                                            <a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a>
+                                            <!-- Penutup tombol langsung tambah barang ke chart -->
+
+                                            <!-- pembuka tombol langsung ke detail barang-->
+                                            <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            <!-- Penutup tombol langsung ke detail barang-->
+                                        </p>
+                                    </div>
+                                    <!-- /.text-->
+                                </div>
+                                <!-- /.product -->
+                            </div>
+                            <!-- sampe sini penutup loopingnya -->
+                        <?php endforeach; ?>
                     </div>
                     <!-- /.col-lg-9-->
                 </div>

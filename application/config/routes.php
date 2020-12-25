@@ -62,12 +62,14 @@ $route['User/Profile'] = "Users/C_user_profile/index";
 $route['User/Profile/Edit'] = "Users/C_user_profile/editprofil";
 $route['User/Profile/ChangePassword'] = "Users/C_user_profile/ubahpassword";
 $route['User/List'] = "Users/C_barang_user/index";
-$route['User/Detail'] = "Users/C_detail_barang_user/index";
+$route['User/Detail/(:any)'] = "Users/C_detail_barang_user/index/$1";
 
 // User Auth (Pelanggan)
 $route['User/Register'] = "C_auth_user/registration";
 $route['User/LupaSandi'] = "C_auth_user/LupaPasswordUser";
 $route['User/GantiSandi'] = "C_auth_user/UbahPassword";
+$route['User/Keluar'] = "C_auth_user/logout";
+$route['User/Masuk'] = "C_auth_user/index";
 
 
 // Irman bgt yg bikin routes dibawah ini
@@ -158,5 +160,3 @@ $route['kasir/StockOut/delete/(:any)/(:any)'] = "kasir/C_stockout/delete_out/$1/
 $route['kasir/stockout/process'] = "kasir/C_stockout/process";
 
 // Akhiran irman bikin routes
-
-

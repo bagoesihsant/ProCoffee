@@ -40,7 +40,7 @@
                             <div id="productMain" class="row">
                                 <div class="col-md-6">
                                     <div data-slider-id="1" class="owl-carousel shop-detail-carousel">
-                                        <div class="item"> <img src="<?= base_url('assets/vendor_user/'); ?>img/kopio.jpeg" alt="" class="img-fluid"></div>
+                                        <div class="item"> <img src="<?= base_url('assets/items_img/') . $row->gambar ?>" alt="" class="img-fluid"></div>
                                         <!-- <div class="item"> <img src="<?= base_url('assets/vendor_user/'); ?>img/detailbig2.jpg" alt="" class="img-fluid"></div>
                                         <div class="item"> <img src="<?= base_url('assets/vendor_user/'); ?>img/detailbig3.jpg" alt="" class="img-fluid"></div> -->
                                     </div>
@@ -52,10 +52,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="box">
-                                        <h1 class="text-center">Kopi Original</h1>
-                                        <p class="goToDescription">Kopi Bubuk</p>
-                                        <p class="price">Rp. 45.000</p>
-                                        <p class="text-center buttons"><a href="<?= base_url('User/Cart'); ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a></p>
+                                        <h1 class="text-center"><?= $row->nama_barang; ?></h1>
+                                        <p class="goToDescription"><?= $row->nama_kategori; ?></p>
+                                        <p class="price"><?= $row->harga; ?></p>
+                                        <p class="text-center buttons"><a href="<?= base_url('User/List'); ?>" class="btn btn-outline-primary"><i class="fa fa-arrow-left"></i> Kembali</a><a href="<?= base_url('User/Cart'); ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a></p>
                                     </div>
                                     <!-- <div data-slider-id="1" class="owl-thumbs">
                                         <button class="owl-thumb-item"><img src="<?= base_url('assets/vendor_user/'); ?>img/detailsquare.jpg" alt="" class="img-fluid"></button>
@@ -65,19 +65,7 @@
                                 </div>
                             </div>
                             <div id="details" class="box">
-                                <p></p>
-                                <h4>Detail Produk</h4>
-                                <p>Kopi Original</p>
-                                <h4>Kopi Original</h4>
-
-                                <blockquote>
-                                    <p><em>Kopi Asli buatan asal garahan Kecamatan silo kabupaten jember ini memiliki rasa khas pegunungan karena di kelola dari barang mentah sampai barang jadi dengan proses tanpa campur aduk zat kimia</em></p>
-                                </blockquote>
-                                <hr>
-                                <!-- <div class="social">
-                                    <h4>Show it to your friends</h4>
-                                    <p><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></p>
-                                </div> -->
+                                <?= $row->deskripsi; ?>
                             </div>
 
                         </div>
