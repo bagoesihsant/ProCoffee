@@ -159,4 +159,7 @@ $route['kasir/ItemOut'] = "kasir/C_stockout/stock_out_form";
 $route['kasir/StockOut/delete/(:any)/(:any)'] = "kasir/C_stockout/delete_out/$1/$1";
 $route['kasir/stockout/process'] = "kasir/C_stockout/process";
 
+// Data GIS ['Gis']
+$route['gis/mapping'] = "gis/c_gis/mapping";
+$route['gis/createmapping'] = "gis/C_gis/create_mapping";
 // Akhiran irman bikin routes
