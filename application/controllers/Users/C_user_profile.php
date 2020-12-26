@@ -61,10 +61,10 @@ class C_user_profile extends CI_Controller
             $result = $this->M_usero->edit_user($data, $where);
             if ($result > 0) {
                 $this->session->set_flashdata('message_edit_user', '<div class="alert alert-success" role="alert">akun anda telah di update <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                // redirect('User/Profile/Edit');
+                redirect('User/Profile/Edit');
             } else {
                 $this->session->set_flashdata('message_edit_user', '<div class="alert alert-danger" role="alert">Terjadi kesalahan koneksi atau input data <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                // redirect('User/Profile/Edit');
+                redirect('User/Profile/Edit');
             }
         }
     }
