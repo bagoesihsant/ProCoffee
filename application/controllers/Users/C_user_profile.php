@@ -71,9 +71,10 @@ class C_user_profile extends CI_Controller
     public function ubahpassword()
     {
         $data['title'] = "Ubah Password";
+        $data['user'] = $this->db->get_where('user_online', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/user_template/v_header_user', $data);
         $this->load->view('templates/user_template/v_sidemenu_profile');
-        $this->load->view('User/v_change_password');
+        $this->load->view('User/v_change_password', $data);
         $this->load->view('templates/user_template/v_footer_user');
     }
 }

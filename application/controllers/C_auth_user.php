@@ -44,7 +44,7 @@ class C_auth_user extends CI_Controller
                     $data = [
                         'email' => $user['email'],
                         'id_user' => $user['kode_usero'],
-                        'nama' => $user['nama']
+                        'nama_as' => $user['nama']
                     ];
 
                     $this->session->set_userdata($data);
