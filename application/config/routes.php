@@ -89,7 +89,7 @@ $route['User/Cart'] = "Users/C_cart/index";
 $route['User/History'] = "Users/C_history_pembelian/index";
 $route['User/Profile'] = "Users/C_user_profile/index";
 $route['User/Profile/Edit'] = "Users/C_user_profile/editprofil";
-$route['User/Profile/ChangePassword'] = "Users/C_user_profile/ubahpassword";
+$route['User/Profile/ChangePassword'] = "Users/C_user_profile/ubahpassworduser";
 $route['User/List'] = "Users/C_barang_user/index";
 $route['User/Detail/(:any)'] = "Users/C_detail_barang_user/index/$1";
 
