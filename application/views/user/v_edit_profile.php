@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="alamat_lengkap">Alamat<span class="text-danger">*</span></label>
+                        <label for="alamat_input">Alamat<span class="text-danger">*</span></label>
                         <textarea class="form-control" name="alamat_input" id="alamat_input" cols="" rows=""><?= $user['alamat']; ?></textarea>
                         <?= form_error('alamat_input', '<span class="text-danger">', '</span>'); ?>
                     </div>
@@ -31,7 +31,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="form-group">
                         <label for="tanggal_lahir_input">Tanggal lahir<span class="text-danger">*</span></label>
-                        <input id="tanggal_lahir_input" value="<?= $user['tanggal_lahir']; ?>" name="tanggal_lahir_input" type="text" class="form-control">
+                        <input id="tanggal_lahir_input" value="<?= $user['tanggal_lahir']; ?>" name="tanggal_lahir_input" type="date" class="form-control">
                         <?= form_error('tanggal_lahir_input', '<span class="text-danger">', '</span>'); ?>
                     </div>
                 </div>

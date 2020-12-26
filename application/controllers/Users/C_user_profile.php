@@ -27,7 +27,7 @@ class C_user_profile extends CI_Controller
         $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required', [
             'required' => 'Nama lengkap wajib di isi!'
         ]);
-        $this->form_validation->set_rules('alamat_lengkap', 'Nama Lengkap', 'trim|required', [
+        $this->form_validation->set_rules('alamat_input', 'Nama Lengkap', 'trim|required', [
             'required' => 'Alamat wajib di isi!'
         ]);
         $this->form_validation->set_rules('tanggal_lahir_input', 'Tanggal Lahir', 'required', [
@@ -49,7 +49,7 @@ class C_user_profile extends CI_Controller
             $data = [
                 'nama' => htmlspecialchars($this->input->post('nama_lengkap', true)),
                 'email' => $this->session->userdata('email'),
-                'alamat' => htmlspecialchars($this->input->post('alamat_lengkap', true)),
+                'alamat' => htmlspecialchars($this->input->post('alamat_input', true)),
                 'tanggal_lahir' => htmlspecialchars($this->input->post('tanggal_lahir_input', true)),
                 'kode_pos' => htmlspecialchars($this->input->post('kode_pos_input', true)),
                 'nohp' => htmlspecialchars($this->input->post('nohp_input', true))
