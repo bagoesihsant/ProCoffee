@@ -5,7 +5,7 @@
                 FROM user_menu JOIN  user_access_menu
                 ON user_menu.kode_menu = user_access_menu.kode_menu
                 WHERE user_access_menu.kode_role = '$role_id'
-                ORDER BY user_access_menu.kode_menu ASC
+                ORDER BY user_menu.menu ASC
     ";
 
     $menu = $this->db->query($q_menu)->result_array();

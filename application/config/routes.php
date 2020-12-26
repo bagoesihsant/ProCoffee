@@ -164,4 +164,11 @@ $route['gis/mapping'] = "gis/c_gis/mapping";
 $route['gis/createmapping'] = "gis/C_gis/create_mapping";
 $route['gis/edit_mapping/(:any)'] = "gis/C_gis/edit_mapping/$1";
 $route['gis/hapus_mapping'] = "gis/C_gis/hapus_mapping";
+
+// Data Dashboard ['Dashboard']
+$route['dashboard'] = "C_dashboard";
+$route['dashboard/admin'] = "admin/C_admin";
+$route['dashboard/kasir'] = "pemilik/C_pemilik";
+$route['dashboard/pelanggan'] = "pelanggan/C_pelanggan";
+$route['dashboard/kurir'] = "kurir/C_kurir";
 // Akhiran irman bikin routes
