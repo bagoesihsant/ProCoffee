@@ -46,6 +46,7 @@
                         </form>
                     </div>
                 </div>
+                <!-- login open -->
                 <div class="col-lg-6">
                     <div class="box">
                         <h1>Login</h1>
