@@ -65,7 +65,7 @@
                         <td><?= $cb['longitude']; ?></td>
                         <td><?= $cb['keterangan']; ?></td>
                         <td class="text-right">
-                            <a href="<?= base_url() . 'C_gis/edit_mapping/' . $id_cabang; ?>"><button class="btn btn-info btn-xs btn-round">Edit Data</button></a>
+                            <a href="<?= base_url() . 'gis/edit_mapping/' . $id_cabang; ?>"><button class="btn btn-info btn-xs btn-round">Edit Data</button></a>
                             <button class="btn btn-danger btn-xs btn-round" data-toggle="modal" data-target="#modal_hapus<?= $id_cabang; ?>">Hapus Data</button>
                         </td>
                     </tr>
@@ -113,7 +113,7 @@ foreach ($getCabang as $i) :
             <div class="modal-header">
                 <h3 class="modal-title" id="myModalLabel">Hapus Data</h3>
             </div>
-            <form action="<?= base_url() . 'C_gis/hapus_mapping'; ?>" method="post" class="form-horizontal">
+            <form action="<?= base_url() . 'gis/hapus_mapping'; ?>" method="post" class="form-horizontal">
                 <div class="modal-body">
                     <p>Apakah Anda yakin mau menghapus data ini? <b><?= $nama_cabang; ?></b></p>
                 </div>

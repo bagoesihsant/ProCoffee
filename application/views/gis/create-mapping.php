@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="col-sm">
                         <!-- text input -->
-                            <form action="<?= base_url('C_gis/create_mapping'); ?>" method="post">
+                            <form action="<?= base_url('gis/createmapping'); ?>" method="post">
                                 <div class="form-group">
                                     <label>Nama Cabang</label>
                                     <input type="text" name="nama_cabang" class="form-control" placeholder="Masukkan Nama Cabang" required>
@@ -75,7 +75,7 @@
                                     <input type="text" name="keterangan" class="form-control" placeholder="Masukkan Keterangan" required>
                                 </div>
                                 <div class="card-footer">
-                                    <a href="<?= base_url() . 'C_gis/mapping'; ?>" class="btn btn-secondary">Batal</a>
+                                    <a href="<?= base_url() . 'gis/mapping'; ?>" class="btn btn-secondary">Batal</a>
                                     <button type="submit" class="btn btn-success">Simpan Data</button>
                                     <button id="location-button" type="button" class="btn btn-primary">Get Location Data</button>
                                 </div>

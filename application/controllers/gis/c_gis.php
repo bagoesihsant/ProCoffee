@@ -42,23 +42,10 @@ class C_gis extends CI_Controller
 
         $data['getCabang'] = $this->db->get('cabang')->result_array();
 
-
-        // Testing
-
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('gis/mapping', $data);
-        $this->load->view('templates/admin/footer');
-
-        // Closed Testing
-
-        // $this->load->view('templates/header', $data);
-        // $this->load->view('templates/sidebar', $data);
-        // $this->load->view('templates/topbar', $data);
-        // $this->load->view('gis/mapping', $data);
-        // $this->load->view('templates/custom-footer', $data);
-        // $this->load->view('templates/dist-footer', $data);
-        // $this->load->view('templates/footer', $data);
+        $this->load->view('templates/admin/footer', $data);
     }
     public function create_mapping()
     {
@@ -74,21 +61,12 @@ class C_gis extends CI_Controller
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
         
         if($this->form_validation->run() == false){
-            
-            // testing
+
             $this->load->view('templates/admin/header', $data);
             $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('gis/create-mapping', $data);
-            $this->load->view('templates/admin/footer');
-            // closed testing
+            $this->load->view('templates/admin/footer', $data);
             
-            // $this->load->view('templates/header', $data);
-            // $this->load->view('templates/sidebar', $data);
-            // $this->load->view('templates/topbar', $data);
-            // $this->load->view('gis/create-mapping', $data);
-            // $this->load->view('templates/dist-footer', $data);
-            // $this->load->view('templates/custom-footer', $data);
-            // $this->load->view('templates/footer', $data);
         }else{
             $q = $this->db->query("SELECT * FROM cabang");
             $c_q = $q->num_rows();
@@ -112,7 +90,7 @@ class C_gis extends CI_Controller
             ];
             $this->db->insert('cabang', $data);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Berhasil Disimpan</div>');
-            redirect('C_gis/mapping');
+            redirect('gis/mapping');
         }
     }
     public function edit_mapping($id_cabang)
@@ -131,11 +109,9 @@ class C_gis extends CI_Controller
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
         
         if($this->form_validation->run() == false){
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('gis/edit-mapping', $data);
-            $this->load->view('templates/footer', $data);
         }else{
             $id_cabang = htmlspecialchars($this->input->post('id_cabang'));
             $nama_cabang = htmlspecialchars($this->input->post('nama_cabang'));
@@ -148,7 +124,7 @@ class C_gis extends CI_Controller
 
             $this->M_mapping->edit_mapping($id_cabang, $nama_cabang, $alamat, $status_cabang, $pemilik_cabang, $latitude, $longitude, $keterangan);
             $this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">Data Berhasil Disimpan</div>');
-            redirect('C_gis/mapping');
+            redirect('gis/mapping');
         }
     }
     public function hapus_mapping()
@@ -156,7 +132,7 @@ class C_gis extends CI_Controller
         $id = htmlspecialchars($this->input->post('id_cabang'));
         $this->M_mapping->hapus_mapping($id);
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data Berhasil Dihapus</div>');
-        redirect('C_gis/mapping');
+        redirect('gis/mapping');
     }
 }
 

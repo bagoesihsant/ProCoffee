@@ -162,4 +162,6 @@ $route['kasir/stockout/process'] = "kasir/C_stockout/process";
 // Data GIS ['Gis']
 $route['gis/mapping'] = "gis/c_gis/mapping";
 $route['gis/createmapping'] = "gis/C_gis/create_mapping";
+$route['gis/edit_mapping/(:any)'] = "gis/C_gis/edit_mapping/$1";
+$route['gis/hapus_mapping'] = "gis/C_gis/hapus_mapping";
 // Akhiran irman bikin routes
