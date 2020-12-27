@@ -174,5 +174,6 @@ $route['dashboard/kurir'] = "kurir/C_kurir";
 
 // Data User ['User']
 $route['user/changepassword'] = "user/edit_password";
+$route['user/edit'] = "user/edit";
 
 // Akhiran irman bikin routes

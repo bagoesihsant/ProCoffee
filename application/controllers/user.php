@@ -40,13 +40,10 @@ class User extends CI_Controller
         );
 
         if ($this->form_validation->run() == false){
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('user/edit', $data);
-            $this->load->view('templates/custom-footer', $data);
-            $this->load->view('templates/dist-footer', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/sidebar', $data);
+            $this->load->view('user/edit_user', $data);
+            $this->load->view('templates/admin/footer');
         }else{
             $nama = $this->input->post('nama');
             $about = $this->input->post('about');
