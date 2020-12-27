@@ -28,6 +28,8 @@ class C_admin extends CI_Controller
         $this->data['total_stockout'] = $this->M_stockOut->total_rows();
         $this->data['total_role'] = $this->M_role->total_rows();
         $data['title'] = 'Dashboard';
+
+        $data['cabang'] = $this->db->get('cabang')->result_array();
         // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();;
 
         // Load View
