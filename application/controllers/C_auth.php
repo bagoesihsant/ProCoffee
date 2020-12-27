@@ -442,8 +442,6 @@ class C_auth extends CI_Controller
     public function blocked()
     {
         $data['title'] = 'Blocked';
-        $this->load->view('templates/login/header', $data);
         $this->load->view('auth/v_blocked');
-        $this->load->view('templates/login/footer');
     }
 }
