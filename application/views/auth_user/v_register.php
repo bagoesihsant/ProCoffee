@@ -57,7 +57,7 @@
                         <form action="<?= base_url('User/Masuk') ?>" method="POST">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input id="email" name="email" value="<?= set_value('email'); ?>" type="text" class="form-control">
+                                <input id="email" name="email" type="text" class="form-control">
                                 <?= form_error('email', '<span class="text-danger">', '</span>'); ?>
                             </div>
                             <div class="form-group">

@@ -14,19 +14,24 @@
                 <div class="col-lg-3"></div>
                 <div class="col-lg-6">
                     <div class="box">
+
                         <h1>Lupa Password</h1>
                         <p class="lead">Anda telah melupakan password?</p>
                         <p class="text-muted">Jangan Panik anda bisa melakukan reset password jika anda memasukan email yang terhubung dengan akun anda, lalu sistem akan mengirim kan email untuk mengantarkan anda ke halaman reset password</p>
+                        <?= $this->session->flashdata('message_forgot'); ?>
                         <hr>
-                        <form action="customer-orders.html" method="post">
+                        <form action="<?= base_url('User/LupaSandi'); ?>" method="post">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input id="email" type="text" placeholder="Masukan Email anda" class="form-control">
+                                <input id="email" name="email" type="text" placeholder="Masukan Email anda" class="form-control">
+                                <?= form_error('email', '<span class="text-danger">', '</span>'); ?>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Submit</button>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-recycle"></i> Reset Password</button>
                             </div>
                         </form>
+                        <br>
+                        <p><a href="<?= base_url('User/Register'); ?>">Kembali Ke halaman Sign in / Sign out</a></p>
                     </div>
                 </div>
             </div>

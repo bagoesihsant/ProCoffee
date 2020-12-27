@@ -154,8 +154,8 @@ class C_auth_user extends CI_Controller
             'protocol' => 'smtp',
             'smtp_host' => 'smtp.googlemail.com',
             'smtp_crypto' => 'tls',
-            'smtp_user' => 'Procoffee99@gmail.com',
-            'smtp_pass' => '4lun9d14n2',
+            'smtp_user' => 'lulungbangor@gmail.com',
+            'smtp_pass' => 'lulung123',
             'smtp_port' => 587,
             'mailtype' => 'html',
             'charset' => 'utf-8',
@@ -191,7 +191,7 @@ class C_auth_user extends CI_Controller
                                     <p>Akun Anda</p>
                                     <p>Email : " . $emailAkun . "</p>
                                     <p>Tolong Klik Link Dibawah ini untuk Reset Password!</p>
-                                    <h4><a href='" . base_url() . "auth/resetpassword?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Reset Password!!</a></h4>
+                                    <h4><a href='" . base_url() . "C_auth_user/resetpassword?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Reset Password!!</a></h4>
                                 </body>
                                 </html>
         ";
@@ -199,14 +199,14 @@ class C_auth_user extends CI_Controller
 
         $this->load->library('email', $config);
 
-        $this->email->from('Procoffee999@gmail.com', 'Pro Coffee');
+        $this->email->from('lulungbangor@gmail.com', 'Pro Coffee');
         $this->email->to($this->input->post('email_input'));
         if ($type == 'verify') {
             $this->email->subject('Veritifikasi akun anda');
             $this->email->message($pesanEmailVerif);
             $this->email->set_mailtype('html');
-        } else {
-            $this->email->subject('Veritifikasi akun anda');
+        } elseif ($type == 'forgot') {
+            $this->email->subject('Reset Password akun anda');
             $this->email->message($ResetPasswordPelanggan);
             $this->email->set_mailtype('html');
         }
@@ -269,13 +269,40 @@ class C_auth_user extends CI_Controller
 
     public function LupaPasswordUser()
     {
-        $this->load->view('templates/user_template/v_header_user');
-        $this->load->view('auth_user/v_forgot_password');
-        $this->load->view('templates/user_template/v_footer_user');
+        $data['title'] = "Lupa Password";
+
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/user_template/v_header_user', $data);
+            $this->load->view('auth_user/v_forgot_password');
+            $this->load->view('templates/user_template/v_footer_user');
+        } else {
+            $email = $this->input->post('email');
+            $user = $this->db->get_where('user_online', ['email' => $email, 'is_active' => 1])->row_array();
+
+            if ($user) {
+                // bikin token kalau emailnya ada
+                $token = base64_encode(random_bytes(32));
+                $user_token = [
+                    'email' => $email,
+                    'token' => $token,
+                    'created_at' => time()
+                ];
+
+                $this->db->insert('user_reset_password', $user_token);
+                $this->_sendEmail($token, 'forgot');
+                $this->session->set_flashdata('message_forgot', '<div class="alert alert-success" role="alert">Email sudah terkirim, silahkan cek email anda untuk mendapatkan link menuju halaman ganti password!<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                redirect('User/LupaSandi');
+            } else {
+                $this->session->set_flashdata('message_forgot', '<div class="alert alert-danger" role="alert">Email tidak terdaftar di sistem atau belum malakukan aktivasi!<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                redirect('User/LupaSandi');
+            }
+        }
     }
     public function UbahPassword()
     {
-        $this->load->view('templates/user_template/v_header_user');
+        $data['title'] = "Ubah Password";
+        $this->load->view('templates/user_template/v_header_user', $data);
         $this->load->view('auth_user/v_change_password');
         $this->load->view('templates/user_template/v_footer_user');
     }
