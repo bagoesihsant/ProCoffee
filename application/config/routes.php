@@ -171,4 +171,8 @@ $route['dashboard/admin'] = "admin/C_admin";
 $route['dashboard/kasir'] = "pemilik/C_pemilik";
 $route['dashboard/pelanggan'] = "pelanggan/C_pelanggan";
 $route['dashboard/kurir'] = "kurir/C_kurir";
+
+// Data User ['User']
+$route['user/changepassword'] = "user/edit_password";
+
 // Akhiran irman bikin routes

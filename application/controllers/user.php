@@ -93,13 +93,10 @@ class User extends CI_Controller
         $this->form_validation->set_rules('passwordBaru2', 'Pengulangan Password Baru', 'required|trim|min_length[8]|matches[passwordBaru1]');
 
         if($this->form_validation->run() == false){
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('user/edit_password', $data);
-            $this->load->view('templates/custom-footer', $data);
-            $this->load->view('templates/dist-footer', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/admin/footer');
         }else{
             $passwordSkrg = $this->input->post('passwordSkrg');
             $passwordBaru = $this->input->post('passwordBaru1');
