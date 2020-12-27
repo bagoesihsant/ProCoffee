@@ -25,4 +25,9 @@ class C_detail_barang_user extends CI_Controller
         $this->load->view('User/v_detail_barang', $data);
         $this->load->view('templates/user_template/v_footer_user');
     }
+
+    public function process()
+    {
+        // ini untuk tambah cartnya
+    }
 }
