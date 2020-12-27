@@ -191,7 +191,7 @@ class C_auth_user extends CI_Controller
                                     <p>Akun Anda</p>
                                     <p>Email : " . $emailAkun . "</p>
                                     <p>Tolong Klik Link Dibawah ini untuk Reset Password!</p>
-                                    <h4><a href='" . base_url() . "C_auth_user/resetpassword?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Reset Password!!</a></h4>
+                                    <h4><a href='" . base_url() . "User/resetpassword?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Reset Password!!</a></h4>
                                 </body>
                                 </html>
         ";
@@ -199,7 +199,7 @@ class C_auth_user extends CI_Controller
 
         $this->load->library('email', $config);
 
-        $this->email->from('lulungbangor@gmail.com', 'Pro Coffee');
+        $this->email->from('emailpass49@gmail.com', 'Pro Coffee');
         $this->email->to($this->input->post('email_input'));
         if ($type == 'verify') {
             $this->email->subject('Veritifikasi akun anda');
@@ -271,13 +271,13 @@ class C_auth_user extends CI_Controller
     {
         $data['title'] = "Lupa Password";
 
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('email_input', 'Email', 'required|trim|valid_email');
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/user_template/v_header_user', $data);
             $this->load->view('auth_user/v_forgot_password');
             $this->load->view('templates/user_template/v_footer_user');
         } else {
-            $email = $this->input->post('email');
+            $email = $this->input->post('email_input');
             $user = $this->db->get_where('user_online', ['email' => $email, 'is_active' => 1])->row_array();
 
             if ($user) {
@@ -299,11 +299,57 @@ class C_auth_user extends CI_Controller
             }
         }
     }
-    public function UbahPassword()
+    public function resetPassword()
     {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user_online', ['email' => $email])->row_array();
+        if ($user) {
+            // kalau ada user dengan email tersebut maka cek token
+            $user_token = $this->db->get_where('user_reset_password', ['token' => $token])->row_array();
+
+            if ($user_token) {
+                // Kalau tokennya ada maka lakuin ubah password
+                $this->session->set_userdata('reset_email', $email);
+                $this->changePassword();
+            } else {
+                // kalau nggak maka lempar keluar lagi
+                $this->session->set_flashdata('message_login', '<div class="alert alert-danger" role="alert">Reset password gagal Token salah!<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                redirect('User/Register');
+            }
+        } else {
+            // kalau gak ada maka lempar keluar
+            $this->session->set_flashdata('message_login', '<div class="alert alert-danger" role="alert">Reset password gagal email salah!<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+            redirect('User/Register');
+        }
+    }
+
+    public function changePassword()
+    {
+        if (!$this->session->userdata('reset_email')) {
+            $this->session->set_flashdata('message_login', '<div class="alert alert-danger" role="alert">Maaf anda tidak mendapatkan akses kecuali melakukan proses reset password secara normal!<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+            redirect('User/Register');
+        }
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Password Ulang', 'required|trim|min_length[3]|matches[password1]');
         $data['title'] = "Ubah Password";
-        $this->load->view('templates/user_template/v_header_user', $data);
-        $this->load->view('auth_user/v_change_password');
-        $this->load->view('templates/user_template/v_footer_user');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/user_template/v_header_user', $data);
+            $this->load->view('auth_user/v_change_password');
+            $this->load->view('templates/user_template/v_footer_user');
+        } else {
+            $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+
+            $email = $this->session->userdata('reset_email');
+
+            $this->db->set('password', $password);
+            $this->db->where('email', $email);
+            $this->db->update('user_online');
+
+            $this->session->unset_userdata('reset_email');
+            $this->session->set_flashdata('message_login', '<div class="alert alert-success" role="alert">Password sudah di ubah silahkan login!<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+            redirect('User/Register');
+        }
     }
 }

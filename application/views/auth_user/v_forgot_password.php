@@ -22,9 +22,9 @@
                         <hr>
                         <form action="<?= base_url('User/LupaSandi'); ?>" method="post">
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input id="email" name="email" type="text" placeholder="Masukan Email anda" class="form-control">
-                                <?= form_error('email', '<span class="text-danger">', '</span>'); ?>
+                                <label for="email_input">Email</label>
+                                <input id="email_input" name="email_input" type="text" placeholder="Masukan Email anda" class="form-control">
+                                <?= form_error('email_input', '<span class="text-danger">', '</span>'); ?>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-recycle"></i> Reset Password</button>

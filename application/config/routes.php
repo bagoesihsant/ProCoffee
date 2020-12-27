@@ -95,8 +95,10 @@ $route['User/Detail/(:any)'] = "Users/C_detail_barang_user/index/$1";
 
 // User Auth (Pelanggan)
 $route['User/Register'] = "C_auth_user/registration";
+$route['User/resetpassword'] = "C_auth_user/resetpassword";
+$route['User/ubahPasswords'] = "C_auth_user/changePassword";
 $route['User/LupaSandi'] = "C_auth_user/LupaPasswordUser";
-$route['User/GantiSandi'] = "C_auth_user/UbahPassword";
+$route['User/UbahSandi'] = "C_auth_user/changePassword";
 $route['User/Keluar'] = "C_auth_user/logout";
 $route['User/Masuk'] = "C_auth_user/index";
 
