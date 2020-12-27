@@ -10,21 +10,54 @@ class C_dashboard extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model([
+            'M_barang', 
+            'M_supplier', 
+            'm_menu', 
+            'M_user', 
+            'm_sub_menu', 
+            'M_Satuan', 
+            'M_Categories', 
+            'M_stockin', 
+            'M_stockOut', 
+            'M_role'
+            ]);
     }
-
     public function index()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->data['total_satuan'] = $this->M_Satuan->total_rows();
+        $this->data['total_kategori'] = $this->M_Categories->total_rows();
+        $this->data['total_smenu'] = $this->m_sub_menu->total_rows();
+        $this->data['total_user'] = $this->M_user->total_rows();
+        $this->data['total_menu'] = $this->m_menu->total_rows();
+        $this->data['total_supplier'] = $this->M_supplier->total_rows();
+        $this->data['total_barang'] = $this->M_barang->total_rows();
+        $this->data['total_stockin'] = $this->M_stockin->total_rows();
+        $this->data['total_stockout'] = $this->M_stockOut->total_rows();
+        $this->data['total_role'] = $this->M_role->total_rows();
+        $data['title'] = 'Dashboard';
+
+        $data['cabang'] = $this->db->get('cabang')->result_array();
+        // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();;
+
+        // Load View dengan mencari role apakah yang dimiliki user
+        $this->load->view('templates/admin/header', $data);
+        $this->load->view('templates/admin/sidebar', $data);
+        // if else
         $data = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         if($data['kode_role'] == "RL0000000001"){
-            redirect("dashboard/admin");
+            $this->load->view('admin/v_dashboard', $this->data);
         }elseif($data['kode_role'] == "RL0000000002"){
-            redirect("dashboard/kasir");
+            $this->load->view('pemilik/v_dashboard_pemilik', $this->data);
         }elseif($data['kode_role'] == "RL0000000003"){
-            redirect("dashboard/pelanggan");
+            $this->load->view('pelanggan/v_pelanggan', $data);
         }elseif($data['kode_role'] == "RL0000000004"){
-            redirect("dashboard/kurir");
+            $this->load->view('templates/admin/v_dashboard_kurir', $data);
         }else{
             redirect("user");
-        }
+        }        
+        // akhiran if else
+        $this->load->view('templates/admin/footer');
     }
 }

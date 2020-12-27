@@ -10,7 +10,18 @@ class C_admin extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
-        $this->load->model(['M_barang', 'M_supplier', 'm_menu', 'M_user', 'm_sub_menu', 'M_Satuan', 'M_Categories', 'M_stockin', 'M_stockOut', 'M_role']);
+        $this->load->model([
+            'M_barang', 
+            'M_supplier', 
+            'm_menu', 
+            'M_user', 
+            'm_sub_menu', 
+            'M_Satuan', 
+            'M_Categories', 
+            'M_stockin', 
+            'M_stockOut', 
+            'M_role'
+            ]);
     }
 
     // Index
@@ -35,6 +46,7 @@ class C_admin extends CI_Controller
         // Load View
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
+
         $this->load->view('admin/v_dashboard', $this->data);
         $this->load->view('templates/admin/footer');
     }

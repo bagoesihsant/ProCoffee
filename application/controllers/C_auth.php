@@ -63,7 +63,7 @@ class C_auth extends CI_Controller
                         'kode_user' => $userName['kode_user']
                     ];
                     $this->session->set_userdata($data);
-                    redirect('user');
+                    redirect('dashboard');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
                     redirect('auth');
