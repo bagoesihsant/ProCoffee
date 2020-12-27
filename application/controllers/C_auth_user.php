@@ -112,7 +112,7 @@ class C_auth_user extends CI_Controller
             // penutupan persiapan token
 
             // setelah itu lakukan input data sesuai inputan registrasi
-            $this->db->insert('user_reset_password', $data);
+            $this->db->insert('user_reset_password', $user_token);
             $this->db->insert('user_online', $data);
             // lalu email akan di kirim ke email sang pendaftar
 
@@ -173,12 +173,54 @@ class C_auth_user extends CI_Controller
             'newline' => "\r\n"
         ];
 
+        $emailAkun = htmlspecialchars($this->input->post('email'));
+        // Pembukaan pesan email veritifikasi
+        $pesanEmailVerif = "
+                                <html>
+                                <head>
+                                    <title>Kode Verifikasi</title>
+                                </head>
+                                <body>
+                                    <h2>Terimakasih telah Mendaftarkan akun anda</h2>
+                                    <p>Akun Anda</p>
+                                    <p>Email : " . $emailAkun . "</p>
+                                    <p>Tolong Klik Link Dibawah ini untuk aktivasi akun!</p>
+                                    <h4><a href='" . base_url() . "C_auth_user/verify?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Aktivasi!</a></h4>
+                                </body>
+                                </html>
+        ";
+        // Penutup pesan email veritifikasi
+        // ######################################## //
+        // Pembukaan pesan tipe reset passsword
+        $ResetPasswordPelanggan = "
+                                <html>
+                                <head>
+                                    <title>Kode Reset Password</title>
+                                </head>
+                                <body>
+                                    <h2>Silahkan Klik Link Dibawah Ini!!</h2>
+                                    <p>Akun Anda</p>
+                                    <p>Email : " . $emailAkun . "</p>
+                                    <p>Tolong Klik Link Dibawah ini untuk Reset Password!</p>
+                                    <h4><a href='" . base_url() . "auth/resetpassword?email=" . $emailAkun . "&token=" . urlencode($token) . "'>Reset Password!!</a></h4>
+                                </body>
+                                </html>
+        ";
+        // Penutupan pesan tipe reset passsword
+
         $this->load->library('email', $config);
 
         $this->email->from('Procoffee999@gmail.com', 'Pro Coffee');
         $this->email->to($this->input->post('email_input'));
-        $this->email->subject('Veritifikasi akun anda');
-        $this->email->message('Halo test ngan');
+        if ($type == 'verify') {
+            $this->email->subject('Veritifikasi akun anda');
+            $this->email->message($pesanEmailVerif);
+            $this->email->set_mailtype('html');
+        } else {
+            $this->email->subject('Veritifikasi akun anda');
+            $this->email->message($ResetPasswordPelanggan);
+            $this->email->set_mailtype('html');
+        }
 
         if ($this->email->send()) {
             return true;
