@@ -107,7 +107,7 @@ class C_auth_user extends CI_Controller
             $user_token = [
                 'email' => $email,
                 'token' => $token,
-                'date_created' => time()
+                'created_at' => time()
             ];
             // penutupan persiapan token
 
@@ -119,22 +119,11 @@ class C_auth_user extends CI_Controller
             $this->_sendEmail($token, 'verify');
 
 
-            $this->session->set_flashdata('message_register', '<div class="alert alert-success" role="alert">akun anda telah terdaftar <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+            $this->session->set_flashdata('message_register', '<div class="alert alert-success" role="alert">Akun sudah telah terdaftar silahkan cek email lalu klik link dari pesan Procoffee <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
             redirect('User/Register');
         }
     }
-    public function LupaPasswordUser()
-    {
-        $this->load->view('templates/user_template/v_header_user');
-        $this->load->view('auth_user/v_forgot_password');
-        $this->load->view('templates/user_template/v_footer_user');
-    }
-    public function UbahPassword()
-    {
-        $this->load->view('templates/user_template/v_header_user');
-        $this->load->view('auth_user/v_change_password');
-        $this->load->view('templates/user_template/v_footer_user');
-    }
+
 
     public function logout()
     {
@@ -165,15 +154,15 @@ class C_auth_user extends CI_Controller
             'protocol' => 'smtp',
             'smtp_host' => 'smtp.googlemail.com',
             'smtp_crypto' => 'tls',
-            'smtp_user' => 'Procoffee999@gmail.com',
-            'smtp_pass' => '#adl)-1231',
+            'smtp_user' => 'Procoffee99@gmail.com',
+            'smtp_pass' => '4lun9d14n2',
             'smtp_port' => 587,
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'newline' => "\r\n"
         ];
 
-        $emailAkun = htmlspecialchars($this->input->post('email'));
+        $emailAkun = htmlspecialchars($this->input->post('email_input'));
         // Pembukaan pesan email veritifikasi
         $pesanEmailVerif = "
                                 <html>
@@ -228,5 +217,66 @@ class C_auth_user extends CI_Controller
             echo $this->email->print_debugger();
             die();
         }
+    }
+
+    public function verify()
+    {
+        // cara mengambil data email dan token dari url
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->db->get_where('user_online', ['email' => $email])->row_array();
+
+        if ($user) {
+            // kalau email nya ada untuk veritifikasi maka cek apakah email dengan token tersebut ada atau tokennya ilegal atau gak valid
+            $user_token =  $this->db->get_where('user_reset_password', ['token' => $token])->row_array();
+            // lalu saring lagi menggunakan if else
+            if ($user_token) {
+                // kalau email dengan token tersebut benar benar ada maka
+                if (time() - $user_token['created_at'] < (60 * 60 * 24)) {
+                    // kalau tokennya belum kadar luarsa atau belum 1 hari
+                    // lakukan pembaruan status aktivasi
+                    $this->db->set('is_active', 1);
+                    $this->db->where('email', $email);
+                    $this->db->update('user_online');
+
+                    // setelah di update lalu akan menghapus token yang sudah di pakai
+                    $this->db->delete('user_reset_password', ['email' => $email]);
+                    $this->session->set_flashdata('message_login', '<div class="alert alert-success" role="alert">Akun ' . $email . ' sudah terverifikasi silahkan login!<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    redirect('User/Register');
+                } else {
+
+                    // kaalu token sudah habis masa aktif lebih dari 2 hari
+                    // melakukan penghapusan email yang belum veritifikasi lebih dari 1 hari
+                    $this->db->delete('user_online', ['email' => $email]);
+                    // melakukan penghapusan token yang sudah kadaluarsa
+                    $this->db->delete('user_reset_password', ['email' => $email]);
+
+                    $this->session->set_flashdata('message_login', '<div class="alert alert-danger" role="alert">Gagak karena token kadaluarsa!<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    redirect('User/Register');
+                }
+            } else {
+                // kolau email dengan token yang salah maka
+                $this->session->set_flashdata('message_login', '<div class="alert alert-danger" role="alert">Gagal karena menggunakan token ilegal!<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                redirect('User/Register');
+            }
+        } else {
+            // kalau gak ada
+            $this->session->set_flashdata('message_login', '<div class="alert alert-danger" role="alert">Email tidak terdaftar di sistem!<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+            redirect('User/Register');
+        }
+    }
+
+    public function LupaPasswordUser()
+    {
+        $this->load->view('templates/user_template/v_header_user');
+        $this->load->view('auth_user/v_forgot_password');
+        $this->load->view('templates/user_template/v_footer_user');
+    }
+    public function UbahPassword()
+    {
+        $this->load->view('templates/user_template/v_header_user');
+        $this->load->view('auth_user/v_change_password');
+        $this->load->view('templates/user_template/v_footer_user');
     }
 }

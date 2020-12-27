@@ -65,7 +65,7 @@
                                 <input id="password" name="password" type="password" class="form-control">
                                 <?= form_error('password', '<span class="text-danger">', '</span>'); ?>
                             </div>
-                            <p><a href="#">Lupa Password?</a></p>
+                            <p><a href="<?= base_url('User/LupaSandi') ?>">Lupa Password?</a></p>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
                             </div>

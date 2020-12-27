@@ -7,7 +7,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li aria-current="page" class="breadcrumb-item active">New account / Sign in</li>
+                            <li aria-current="page" class="breadcrumb-item active">Lupas password</li>
                         </ol>
                     </nav>
                 </div>
