@@ -60,15 +60,15 @@
                             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                         </div>
                         <div class="modal-body">
-                            <form action="customer-orders.html" method="post">
+                            <form action="<?= base_url('User/Masuk'); ?>" method="post">
                                 <div class="form-group">
-                                    <input id="email-modal" type="text" placeholder="email" class="form-control">
+                                    <input id="email" name="email" type="text" placeholder="email" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <input id="password-modal" type="password" placeholder="password" class="form-control">
+                                    <input id="password" name="password" type="password" placeholder="password" class="form-control">
                                 </div>
                                 <p class="text-center">
-                                    <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
                                 </p>
                             </form>
                             <p class="text-center text-muted">Belum Punya Akun?</p>
@@ -91,30 +91,35 @@
                 <div id="navigation" class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
-                        <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">User<b class="caret"></b></a>
-                            <ul class="dropdown-menu megamenu">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-md-6 col-lg-3">
-                                            <h5>Transaksi / Fitur Ecomerce</h5>
-                                            <ul class="list-unstyled mb-3">
-                                                <li class="nav-item"><a href="<?= base_url('User/Cart') ?>" class="nav-link">Keranjang</a></li>
-                                                <li class="nav-item"><a href="<?= base_url('User/List') ?>" class="nav-link">List Produk</a></li>
-                                                <li class="nav-item"><a href="<?= base_url('User/History') ?>" class="nav-link">Riwayat Pembelian</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-6 col-lg-3">
-                                            <h5>Lainnya</h5>
-                                            <ul class="list-unstyled mb-3">
-                                                <li class="nav-item"><a href="<?= base_url('User/Profile'); ?>" class="nav-link">Profil saya</a></li>
-                                                <li class="nav-item"><a href="<?= base_url('User/Keluar'); ?>" class="nav-link">LogOut</a></li>
-                                            </ul>
-                                        </div>
+                        <?php if ($this->session->userdata('email')) : ?>
+                            <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">User<b class="caret"></b></a>
+                                <ul class="dropdown-menu megamenu">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-3">
+                                                <h5>Transaksi / Fitur Ecomerce</h5>
+                                                <ul class="list-unstyled mb-3">
+                                                    <li class="nav-item"><a href="<?= base_url('User/Cart') ?>" class="nav-link">Keranjang</a></li>
+                                                    <li class="nav-item"><a href="<?= base_url('User/List') ?>" class="nav-link">List Produk</a></li>
+                                                    <li class="nav-item"><a href="<?= base_url('User/History') ?>" class="nav-link">Riwayat Pembelian</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6 col-lg-3">
+                                                <h5>Lainnya</h5>
+                                                <ul class="list-unstyled mb-3">
+                                                    <li class="nav-item"><a href="<?= base_url('User/Profile'); ?>" class="nav-link">Profil saya</a></li>
+                                                    <li class="nav-item"><a href="<?= base_url('User/Keluar'); ?>" class="nav-link">LogOut</a></li>
 
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </li>
+                        <?php else : ?>
+                        <?php endif; ?>
 
                     </ul>
                     <div class="navbar-buttons d-flex justify-content-end">

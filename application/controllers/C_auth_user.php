@@ -72,6 +72,9 @@ class C_auth_user extends CI_Controller
 
     public function registration()
     {
+        if ($this->session->userdata('email')) {
+            redirect('User/LandingPage');
+        }
         $this->form_validation->set_rules('name_input', 'Nama Lengkap', 'required|trim');
         $this->form_validation->set_rules('email_input', 'Email', 'required|trim|valid_email|is_unique[user_online.email]', [
             'is_unique' => 'Email ini sudah di pakai orang lain',
