@@ -22,7 +22,7 @@ class C_auth extends CI_Controller
         $data['title'] = 'Login Page';
         $this->load->view('templates/login/header', $data);
         $this->load->view('auth/v_login');
-        $this->load->view('templates/login/footer') ;
+        $this->load->view('templates/login/footer');
     }
     public function index()
     {
@@ -56,7 +56,7 @@ class C_auth extends CI_Controller
                     ];
                     $this->session->set_userdata($data);
                     redirect('user');
-                }elseif(password_verify($password, $userName['password'])){
+                } elseif (password_verify($password, $userName['password'])) {
                     $data = [
                         'email' => $userName['email'],
                         'kode_role' => $userName['kode_role'],
@@ -84,35 +84,35 @@ class C_auth extends CI_Controller
     {
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 
-        if($this->form_validation->run() == false){
+        if ($this->form_validation->run() == false) {
             $data['title'] = 'Forgot Password';
             $this->load->view('templates/login/header', $data);
             $this->load->view('auth/v_forgot-password');
-            $this->load->view('templates/login/footer');    
-        }else{
+            $this->load->view('templates/login/footer');
+        } else {
             $email = htmlspecialchars($this->input->post('email'));
             $user = $this->db->get_where('user', ['email' => $email, 'active_status' => 1])->row_array();
 
-            if($user) {
+            if ($user) {
                 $token = base64_encode(random_bytes(32));
-                $user_token = 
-                [
-                    'email' => $email,
-                    'token' => $token,
-                    'created_at' => time()
-                ];
+                $user_token =
+                    [
+                        'email' => $email,
+                        'token' => $token,
+                        'created_at' => time()
+                    ];
 
                 $this->db->insert('user_reset_password', $user_token);
                 $this->_sendEmail($token, 'Lupa');
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="success">Silahkan Cek Email Anda Untuk Reset Password</div>');
                 redirect('auth');
-            }else{
+            } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email Anda Belum Terdaftar!</div>');
                 redirect('auth/lupapassword');
             }
-        } 
+        }
     }
-    
+
     private function _sendEmail($token, $type)
     {
         // Config Setting 
@@ -181,12 +181,12 @@ class C_auth extends CI_Controller
 
     function alpha_dash_username($str)
     {
-        return ( ! preg_match("/^([-a-z0-9])+$/i", $str)) ? FALSE : TRUE;
-    } 
+        return (!preg_match("/^([-a-z0-9])+$/i", $str)) ? FALSE : TRUE;
+    }
     function alpha_dash_name($str)
     {
-        return ( ! preg_match("/^([-a-z ])+$/i", $str)) ? FALSE : TRUE;
-    } 
+        return (!preg_match("/^([-a-z ])+$/i", $str)) ? FALSE : TRUE;
+    }
 
     public function registration()
     {
@@ -395,24 +395,24 @@ class C_auth extends CI_Controller
 
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
-        if($user) {
+        if ($user) {
             $user_token = $this->db->get_where('user_reset_password', ['token' => $token])->row_array();
-            if($user_token){
+            if ($user_token) {
                 $this->session->set_userdata('reset_email', $email);
                 $this->gantiPassword();
-            }else{
+            } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal! Email/Token Salah!</div>');
                 redirect('auth');
             }
-        }else{
+        } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password Gagal! Email Salah!</div>');
             redirect('auth');
         }
     }
-    
+
     public function gantiPassword()
     {
-        if(!$this->session->userdata('reset_email')) {
+        if (!$this->session->userdata('reset_email')) {
             redirect('auth');
         }
         $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[8]|matches[password2]');
@@ -441,9 +441,9 @@ class C_auth extends CI_Controller
 
     public function blocked()
     {
-            $data['title'] = 'Blocked';
-            $this->load->view('templates/login/header', $data);
-            $this->load->view('auth/v_blocked');
-            $this->load->view('templates/login/footer');
+        $data['title'] = 'Blocked';
+        $this->load->view('templates/login/header', $data);
+        $this->load->view('auth/v_blocked');
+        $this->load->view('templates/login/footer');
     }
 }

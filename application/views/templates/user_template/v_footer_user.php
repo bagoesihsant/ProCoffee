@@ -59,6 +59,7 @@
     <script src="<?= base_url('assets/vendor_user/'); ?>vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="<?= base_url('assets/vendor_user/'); ?>vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
     <script src="<?= base_url('assets/vendor_user/'); ?>js/front.js"></script>
+
     </body>
 
     </html>

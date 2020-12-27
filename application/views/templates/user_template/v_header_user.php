@@ -43,7 +43,7 @@
                             $session = $this->session->userdata('id_user');
                             if (!empty($session)) :
                             ?>
-                                <p class="text-white">Halo, <a href="<?= base_url('User/Profile') ?>"><?= $this->session->userdata('nama'); ?></a></p>
+                                <p class="text-white">Halo, <a href="<?= base_url('User/Profile') ?>"><?= $this->session->userdata('email'); ?></a></p>
                             <?php else : ?>
                                 <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
                                 <li class="list-inline-item"><a href="<?= base_url('User/Register') ?>">Register</a></li>
