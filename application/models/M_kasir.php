@@ -39,6 +39,12 @@ class M_kasir extends CI_Model
         return $this->db->get();
     }
 
+    // Mengambil barang tertentu sesuai dengan kode barang
+    public function getOneBarang($where)
+    {
+        return $this->db->get_where('tbl_barang', $where);
+    }
+
     // Mengambil semua barang yang dicari dari database dengan limit
     public function loadLimitedBarang($dataHalaman, $pagenum, $match)
     {
@@ -57,7 +63,7 @@ class M_kasir extends CI_Model
     // Mengambil semua daftar barang yang ada di tabel cart_offline atau keranjang kasir
     public function loadKeranjang($where)
     {
-        $this->db->select('*');
+        $this->db->select('*, tbl_barang.nama as nama_barang, user.nama as nama_user');
         $this->db->from('tbl_cart_offline');
         $this->db->join('tbl_barang', 'tbl_barang.kode_barang = tbl_cart_offline.kode_barang');
         $this->db->join('user', 'user.kode_user = tbl_cart_offline.kode_user');
@@ -104,6 +110,15 @@ class M_kasir extends CI_Model
         $this->db->set($data);
         $this->db->where($where);
         $this->db->update('tbl_cart_offline');
+        return $this->db->affected_rows();
+    }
+
+    // Mengurangi stok pada tabel barang jika barang tersebut ditambahkan ke cart
+    public function updateStokBarang($data, $where)
+    {
+        $this->db->set($data);
+        $this->db->where($where);
+        $this->db->update('tbl_barang');
         return $this->db->affected_rows();
     }
 }

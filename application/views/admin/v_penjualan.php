@@ -166,7 +166,7 @@
                             <!-- 2nd Row (List Group Belanjaan) -->
                             <div class="row my-2">
                                 <div class="col-md-12">
-                                    <ul class="list-group">
+                                    <ul class="list-group" id="list-group-cart">
                                         <li class="list-group-item">
                                             <!-- Item Row -->
                                             <div class="row itemRow">
@@ -295,7 +295,7 @@
                                             <h4 class="text-dark mr-auto my-auto">Kembalian :</h4>
                                         </div>
                                         <div class="col-7 d-flex">
-                                            <h4 class="text-dark mx-auto grand-total-belanja-transaksi my-auto">Rp. 335.000,00</h4>
+                                            <h4 class="text-dark mx-auto kembalian-belanja-transaksi my-auto">Rp. 335.000,00</h4>
                                         </div>
                                     </div>
                                 </div>
