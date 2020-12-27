@@ -3,6 +3,9 @@ $(document).ready(function () {
     // Menjalankan fungsi loadPagination
     loadPagination(0, '');
 
+    // Membuat dataTable
+    $('#dataTablePelanggan').DataTable();
+
     // Menjalankan fungsi pada form pencarian barang jika tombol search ditekan
     $('#formCariBarang').on('submit', function (event) {
 
@@ -111,6 +114,7 @@ $(document).ready(function () {
 
         // Melakukan looping data yang dikirimkan dari controller
         for (index in result) {
+            const kodeBarang = result[index].kode_barang;
             const namaBarang = result[index].nama_barang;
             const hargaBarang = result[index].harga;
             const imageBarang = result[index].gambar;
@@ -121,9 +125,9 @@ $(document).ready(function () {
             element += "<div class='card'>";
             element += "<img src='http://localhost/ProCoffee/assets/items_img/" + imageBarang + "' class='mx-auto mt-2 img-thumbnail' alt='product image' style='object-fit: cover;'>";
             element += "<p class='text-dark text-center mt-2'>" + namaBarang + "</p>";
-            element += "<p class='text-dark text-center text-sm mt-0'>" + formatRupiah(hargaBarang) + "</p>";
+            element += "<p class='text-dark text-center text-sm mt-0 harga-barang-kasir' data-harga='" + hargaBarang + "'>" + formatRupiah(hargaBarang) + "</p>";
             element += "<div class='card-footer'>";
-            element += "<a href='javsacript:void(0)' class='btn btn-warning btn-sm w-100 stretched-link'><i class='fas fa-fw fa-cart-arrow-down'></a>";
+            element += "<a href='javascript:void(0)' class='btn btn-warning btn-sm w-100 stretched-link btn-tambah-keranjang' data-id='" + kodeBarang + "'><i class='fas fa-fw fa-cart-arrow-down'></a>";
             element += "</div>";
             element += "</div>";
             element += "</div>";
@@ -148,7 +152,6 @@ $(document).ready(function () {
 
     }
 
-
     function formatRupiah(money) {
         // Mengubah data yang berupa angka menjadi string
         const reverseMoney = money.toString().split('').reverse().join(''),
@@ -158,5 +161,36 @@ $(document).ready(function () {
         return "Rp. " + hasilAkhir;
 
     }
+
+    // Membuat fungsi jika tombol cari atau pilih pelanggan ditekan
+    $('#pilihAnggota').on('click', function () {
+        // Mengambil data pelanggan dari tombol
+        const namaPelanggan = $('#nama_pelanggan_modal').text();
+        const idPelanggan = $('#nama_pelanggan_modal').data('id');
+        // Mengisi value dari input cari pelanggan
+        $('#pelanggan').val(namaPelanggan);
+        $('#pelanggan').attr('data-id', idPelanggan);
+        // Menutup Modal
+        $('#formPilihPelanggan').modal('hide');
+    });
+
+    // Membuat fungsi jika tombol tambah barang ditekan
+    $('#rowBarang').on('click', '.btn-tambah-keranjang', function () {
+
+        // Mengambil data barang
+        const kodeBarang = $(this).data('id');
+        const hargaBarang = $(this).closest('.card').find('.harga-barang-kasir').data('harga');
+
+        // Menjalankan ajax untuk tambah data barang
+        $.ajax({
+            url: "http://localhost/ProCoffee/kasir/C_kasir/tambahKeranjang",
+            method: "post",
+            data: { kode_barang: kodeBarang, harga_barang: hargaBarang },
+            success: function (result) {
+                console.log(result);
+            }
+        });
+
+    })
 
 });

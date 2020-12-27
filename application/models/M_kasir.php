@@ -61,7 +61,7 @@ class M_kasir extends CI_Model
         $this->db->from('tbl_cart_offline');
         $this->db->join('tbl_barang', 'tbl_barang.kode_barang = tbl_cart_offline.kode_barang');
         $this->db->join('user', 'user.kode_user = tbl_cart_offline.kode_user');
-        $this->db->where($where);
+        $this->db->where('tbl_cart_offline.kode_user', $where);
         return $this->db->get();
     }
 
@@ -76,5 +76,34 @@ class M_kasir extends CI_Model
     public function getLoggedInKasir($where)
     {
         return $this->db->get_where('user', $where)->row_array();
+    }
+
+    // Mengambil data pelanggan
+    public function getAllPelanggan($where)
+    {
+        return $this->db->get_where('user', $where)->result_array();
+    }
+
+
+    // Menambahkan data barang yang dibeli oleh pelanggan kedalam tabel cart_offline
+    public function tambahKeranjang($data)
+    {
+        $this->db->insert('tbl_cart_offline', $data);
+        return $this->db->affected_rows();
+    }
+
+    // Memeriksa apakah ada user yang mendaftarkan sebuah barang
+    public function daftarCart($where)
+    {
+        return $this->db->get_where('tbl_cart_offline', $where);
+    }
+
+    // Menambahkan stok pada cart user jika barang tersebut sudah terdaftar
+    public function tambahStokCart($data, $where)
+    {
+        $this->db->set($data);
+        $this->db->where($where);
+        $this->db->update('tbl_cart_offline');
+        return $this->db->affected_rows();
     }
 }

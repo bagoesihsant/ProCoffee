@@ -115,4 +115,99 @@ class C_kasir extends CI_Controller
         // Print JSON
         echo json_encode($data);
     }
+
+    public function loadKeranjang()
+    {
+        // Berfungsi untuk mengambil data keranjang dari transaksi oleh kasir N
+        // dimana N adalah kasir yang sedang mengakses sistem informasi
+        // Membuat variabel untuk kasir yang sedang bertugas
+        $kasir = $this->session->userdata('kode_user');
+
+        // Mengambil data dari tabel keranjang
+        $result = $this->kasir->loadKeranjang($kasir)->result_array();
+
+        // Mencetak data yang didapatkan dari database dalam format json
+        echo json_encode($result);
+    }
+
+    public function tambahKeranjang()
+    {
+        // Berfungsi untuk menambahkan barang yang akan dibeli kedalam tabel keranjang oleh kasir N
+        // dimana N adalah kasir yang sedang mengakses sitem informasi
+
+        // Membuat variabel untuk kasir yang bertugas
+        $kasir = $this->session->userdata('kode_user');
+        $kode_barang = $this->input->post('kode_barang', true);
+
+        // Memeriksa apakah barang sudah terdaftar dalam cart
+        $where = [
+            'kode_user' => $kasir,
+            'kode_barang' => $kode_barang
+        ];
+
+        // Membuat variabel message untuk diterima oleh JavaScript melalui ajax
+        $message['error_status'] = "";
+        $message['error_message'] = "";
+
+        // Melakukan pemeriksaan
+        $daftarCart = $this->kasir->daftarCart($where)->num_rows();
+
+        // Memeriksa apakah ditemukan data yang sama
+        if ($daftarCart > 0) {
+            // Jika ada data yang ditemukan
+            // Melakukan penambahan jumlah stok pada barang yang ditemukan
+
+            // Mengambil data terakhir
+            $detailCart = $this->kasir->daftarCart($where)->row_array();
+
+            // Menambahkan stok barang tersebut
+            $value = [
+                'qty' => $detailCart['qty'] + 1
+            ];
+
+            // Melakukan update 
+            $result = $this->kasir->tambahStokCart($value, $where);
+
+            // Memeriksa apakah stok berhasil di update atau tidak
+            if ($result > 0) {
+                // Jika data berhasil diubah
+                $message['error_status'] = false;
+                $message['error_message'] = "Data stok berhasil diubah";
+            } else {
+                // Jika data gagal diubah
+                $message['error_status'] = true;
+                $message['error_message'] = "Data stok gagal diubah";
+            }
+        } else {
+            // Jika tidak ada yang ditemukan
+            // Melakukan penambahan barang kedalam tabel cart offline
+
+            // Membuat variabel data
+            $data = [
+                'kode_barang' => $this->input->post('kode_barang', true),
+                'harga' => $this->input->post('harga_barang', true),
+                'qty' => 1,
+                'discount' => 0,
+                'total' => 1,
+                'kode_user' => $kasir
+            ];
+
+            // Menjalankan proses penambahan data ke keranjang offline
+            $result = $this->kasir->tambahKeranjang($data);
+
+            // Memeriksa apakah data berhasil ditambahkan atau tidak
+            if ($result > 0) {
+                // Jika data berhasil ditambahkan
+                $message['error_status'] = false;
+                $message['error_message'] = "Data barang berhasil ditambahkan";
+            } else {
+                // Jika data gagal ditambahkan
+                $message['error_status'] = true;
+                $message['error_message'] = "Data barang gagal ditambahkan";
+            }
+        }
+
+        // Mencetak dalam format json
+        echo json_encode($message);
+    }
 }
