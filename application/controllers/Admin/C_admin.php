@@ -10,7 +10,7 @@ class C_admin extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
-        $this->load->model(['M_barang', 'M_supplier', 'm_menu', 'M_user', 'm_sub_menu', 'M_Satuan', 'M_Categories', 'M_stockin', 'M_stockOut']);
+        $this->load->model(['M_barang', 'M_supplier', 'm_menu', 'M_user', 'm_sub_menu', 'M_Satuan', 'M_Categories', 'M_stockin', 'M_stockOut', 'M_role']);
     }
 
     // Index
@@ -26,6 +26,7 @@ class C_admin extends CI_Controller
         $this->data['total_barang'] = $this->M_barang->total_rows();
         $this->data['total_stockin'] = $this->M_stockin->total_rows();
         $this->data['total_stockout'] = $this->M_stockOut->total_rows();
+        $this->data['total_role'] = $this->M_role->total_rows();
         $data['title'] = 'Dashboard';
         // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();;
 
