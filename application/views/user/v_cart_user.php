@@ -63,7 +63,7 @@
                                 <div class="right">
                                     <!-- <button class="btn btn-outline-secondary"><i class="fa fa-refresh"></i> Update cart</button> -->
                                     <!-- <button type="submit" class="btn btn-primary">Proses checkout <i class="fa fa-chevron-right"></i></button> -->
-                                    <a href="<?= base_url('User/History'); ?>" class="btn btn-primary">Proses checkout <i class="fa fa-chevron-right"></i></a>
+                                    <button id="pay-button" class="btn btn-primary">Proses checkout <i class="fa fa-chevron-right"></i></button>
                                 </div>
                             </div>
                         </form>

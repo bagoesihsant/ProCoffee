@@ -23,7 +23,7 @@ class Snap extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$params = array('server_key' => 'your_server_key', 'production' => false);
+		$params = array('server_key' => 'SB-Mid-server-sxX-L8vWKZeSFqBVj7BU9Kvj', 'production' => false);
 		$this->load->library('midtrans');
 		$this->midtrans->config($params);
 		$this->load->helper('url');
@@ -40,21 +40,21 @@ class Snap extends CI_Controller
 		// Required
 		$transaction_details = array(
 			'order_id' => rand(),
-			'gross_amount' => 94000, // no decimal allowed for creditcard
+			'gross_amount' => 4000, // no decimal allowed for creditcard
 		);
 
 		// Optional
 		$item1_details = array(
 			'id' => 'a1',
-			'price' => 18000,
-			'quantity' => 3,
+			'price' => 1000,
+			'quantity' => 2,
 			'name' => "Apple"
 		);
 
 		// Optional
 		$item2_details = array(
 			'id' => 'a2',
-			'price' => 20000,
+			'price' => 1000,
 			'quantity' => 2,
 			'name' => "Orange"
 		);
