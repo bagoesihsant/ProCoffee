@@ -63,7 +63,7 @@ class C_auth extends CI_Controller
                         'kode_user' => $userName['kode_user']
                     ];
                     $this->session->set_userdata($data);
-                    redirect('user');
+                    redirect('dashboard');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
                     redirect('auth');
@@ -442,8 +442,6 @@ class C_auth extends CI_Controller
     public function blocked()
     {
         $data['title'] = 'Blocked';
-        $this->load->view('templates/login/header', $data);
         $this->load->view('auth/v_blocked');
-        $this->load->view('templates/login/footer');
     }
 }

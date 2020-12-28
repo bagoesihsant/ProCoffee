@@ -167,8 +167,13 @@ $route['gis/hapus_mapping'] = "gis/C_gis/hapus_mapping";
 
 // Data Dashboard ['Dashboard']
 $route['dashboard'] = "C_dashboard";
-$route['dashboard/admin'] = "admin/C_admin";
-$route['dashboard/kasir'] = "pemilik/C_pemilik";
-$route['dashboard/pelanggan'] = "pelanggan/C_pelanggan";
-$route['dashboard/kurir'] = "kurir/C_kurir";
+// $route['dashboard/admin'] = "admin/C_admin";
+// $route['dashboard/kasir'] = "pemilik/C_pemilik";
+// $route['dashboard/pelanggan'] = "pelanggan/C_pelanggan";
+// $route['dashboard/kurir'] = "kurir/C_kurir";
+
+// Data User ['User']
+$route['user/changepassword'] = "user/edit_password";
+$route['user/edit'] = "user/edit";
+
 // Akhiran irman bikin routes

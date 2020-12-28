@@ -6,8 +6,7 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // is_logged_in();
-        // $this->load->model('model_admin');
+        is_logged_in();
     }
 
     public function index()
@@ -40,42 +39,43 @@ class User extends CI_Controller
         );
 
         if ($this->form_validation->run() == false){
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('user/edit', $data);
-            $this->load->view('templates/custom-footer', $data);
-            $this->load->view('templates/dist-footer', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/sidebar', $data);
+            $this->load->view('user/edit_user', $data);
+            $this->load->view('templates/admin/footer');
         }else{
             $nama = $this->input->post('nama');
             $about = $this->input->post('about');
             $email = $this->input->post('email');
-
+            $alamat = $this->input->post('alamat');
+            $date_update = time();
             //cek jika ada gambar/foto
             $upload_image = $_FILES['image']['name'];
 
             if ($upload_image) {
                 $config['allowed_types'] = 'gif|jpg|jpeg|png';
                 $config['max_size'] = '2048';
-                $config['upload_path'] = './assets/dist/img/user/';
+                $config['upload_path'] = 'assets/user_img/';
 
                 $this->load->library('upload', $config);
 
                 if ($this->upload->do_upload('image')) {
-                    $old_image = $data['user']['image'];
+                    $old_image = $data['user']['profile_img'];
                     if ($old_image != 'default.jpg') {
-                        unlink(FCPATH . 'assets/dist/img/user/' . $old_image);
+                        unlink(FCPATH . 'assets/user_img/' . $old_image);
                     }
                     $new_image = $this->upload->data('file_name');
-                    $this->db->set('image', $new_image);
+                    $this->db->set('profile_img', $new_image);
                 } else {
                     echo $this->upload->display_errors();
                 }
             }
             $this->db->set('nama', $nama);
+            $this->db->set('updated_at', $date_update);
             $this->db->set('about', $about);
+            $this->db->set('alamat', $alamat);
             $this->db->where('email', $email);
+
             $this->db->update('user');
             $this->session->set_flashdata('message', '<div class="text-center alert alert-success" role="alert">Selamat Data telah diperbarui</div>');
             redirect('user');
@@ -93,13 +93,10 @@ class User extends CI_Controller
         $this->form_validation->set_rules('passwordBaru2', 'Pengulangan Password Baru', 'required|trim|min_length[8]|matches[passwordBaru1]');
 
         if($this->form_validation->run() == false){
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/admin/header', $data);
+            $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('user/edit_password', $data);
-            $this->load->view('templates/custom-footer', $data);
-            $this->load->view('templates/dist-footer', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/admin/footer');
         }else{
             $passwordSkrg = $this->input->post('passwordSkrg');
             $passwordBaru = $this->input->post('passwordBaru1');
