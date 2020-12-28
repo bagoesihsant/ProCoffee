@@ -148,7 +148,10 @@ $route['akun/verif_password'] = "admin/C_user/verif_password";
 
 // Data Manajemen Kasir ['kasir']
 $route['kasir'] = "kasir/C_kasir/index";
-$route['kasir/loadBarang/(:any)'] = "kasir/loadbarang/$1";
+$route['kasir/loadBarang/(:any)'] = "kasir/C_kasir/loadbarang/$1";
+$route['kasir/loadKeranjang/'] = "kasir/C_kasir/loadKeranjang";
+$route['kasir/tambahKeranjang'] = "kasir/C_kasir/tambahKeranjang";
+$route['kasir/hapusKeranjang'] = "kasir/C_kasir/hapusKeranjang";
 
 // Data Stockin ['Stockin'] (There is a problem with this one, i'll solve it later)
 $route['kasir/datastockin'] = "kasir/C_stockin/index";
