@@ -11,17 +11,17 @@ class C_dashboard extends CI_Controller
         parent::__construct();
         is_logged_in();
         $this->load->model([
-            'M_barang', 
-            'M_supplier', 
-            'm_menu', 
-            'M_user', 
-            'm_sub_menu', 
-            'M_Satuan', 
-            'M_Categories', 
-            'M_stockin', 
-            'M_stockOut', 
+            'M_barang',
+            'M_supplier',
+            'm_menu',
+            'M_user',
+            'm_sub_menu',
+            'M_Satuan',
+            'M_Categories',
+            'M_stockin',
+            'M_stockOut',
             'M_role'
-            ]);
+        ]);
     }
     public function index()
     {
@@ -46,7 +46,7 @@ class C_dashboard extends CI_Controller
         $this->load->view('templates/admin/sidebar', $data);
         // if else
         $kdrole = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        if($kdrole['kode_role'] == "RL0000000001"){
+        if ($kdrole['kode_role'] == "RL0000000001") {
             $this->load->view('admin/v_dashboard', $data);
         }elseif($kdrole['kode_role'] == "RL0000000002"){
             $this->load->view('pemilik/v_dashboard_pemilik', $data);
