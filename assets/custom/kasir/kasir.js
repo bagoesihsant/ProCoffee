@@ -111,7 +111,7 @@ $(document).ready(function () {
     function loadKeranjang() {
         // Menjalankan ajax
         $.ajax({
-            url: "http://localhost/ProCoffee/kasir/C_kasir/loadKeranjang",
+            url: "http://localhost/ProCoffee/kasir/loadKeranjang",
             dataType: "json",
             success: function (result) {
                 // Memeriksa apakah ada data di dalam tabel cart offline
@@ -290,7 +290,7 @@ $(document).ready(function () {
 
         // Menjalankan ajax untuk tambah data barang
         $.ajax({
-            url: "http://localhost/ProCoffee/kasir/C_kasir/tambahKeranjang",
+            url: "http://localhost/ProCoffee/kasir/tambahKeranjang",
             method: "post",
             data: { kode_barang: kodeBarang, harga_barang: hargaBarang },
             success: function (result) {
@@ -323,7 +323,7 @@ $(document).ready(function () {
 
         // Menjalankan ajax untuk tambah data barang
         $.ajax({
-            url: "http://localhost/ProCoffee/kasir/C_kasir/tambahKeranjang",
+            url: "http://localhost/ProCoffee/kasir/tambahKeranjang",
             method: "post",
             data: { kode_barang: kodeBarang, harga_barang: hargaBarang },
             dataType: 'json',
@@ -357,7 +357,7 @@ $(document).ready(function () {
 
         // Menjalankan ajax
         $.ajax({
-            url: "http://localhost/ProCoffee/kasir/C_kasir/hapusKeranjang",
+            url: "http://localhost/ProCoffee/kasir/hapusKeranjang",
             data: { kode_barang: kodeBarang, harga_barang: hargaBarang },
             method: 'post',
             success: function (result) {

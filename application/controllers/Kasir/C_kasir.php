@@ -308,7 +308,6 @@ class C_kasir extends CI_Controller
         // Mengambil data yang dikirim dari ajax kedalam variabel
         $kasir = $this->session->userdata('kode_user');
         $kode_barang = $this->input->post('kode_barang', true);
-        $harga_barang = $this->input->post('harga_barang', true);
 
         // Membuat variabel where
         $where = [
