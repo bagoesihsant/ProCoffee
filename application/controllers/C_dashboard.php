@@ -57,6 +57,8 @@ class C_dashboard extends CI_Controller
             $this->load->view('pelanggan/v_pelanggan', $data);
         }elseif($kdrole['kode_role'] == "RL0000000004"){
             $this->load->view('kurir/v_dashboard_kurir', $data);
+        }elseif($kdrole['kode_role'] == "RL0000000005"){
+            $this->load->view('kurir/v_dashboard_pemilik', $data);
         }else{
             redirect('user');
         }      
