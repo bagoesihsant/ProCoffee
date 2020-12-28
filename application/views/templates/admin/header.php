@@ -68,6 +68,26 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
+                                    <?php
+                                     if($user['kode_role'] == "RL0000000001")
+                                     {
+                                         echo "<p class='badge badge-danger'>Administrator</p>";
+                                     }
+                                     elseif($user['kode_role'] == "RL0000000002")
+                                     {
+                                        echo "<p class='badge badge-info'>Kasir</p>";
+                                     }
+                                     elseif($user['kode_role'] == "RL0000000003")
+                                     {
+                                        echo "<p class='badge badge-success'>Pelanggan</p>";
+                                     }
+                                     elseif($user['kode_role'] == "RL0000000004")
+                                     {
+                                        echo "<p class='badge badge-primary'>Kurir</p>";
+                                     }else{
+                                        echo "<p class='badge badge-secondary'>Pengguna</p>";
+                                     }        
+                                    ?>
                                     <p class="text-md my-1"><?= $user['nama']; ?></p>
                                     <p class="text-muted text-sm my-1"><?= $user['username']; ?></p>
                                     <a href="<?= base_url('user'); ?>" class="btn btn-sm btn-primary my-1">View Profile</a>

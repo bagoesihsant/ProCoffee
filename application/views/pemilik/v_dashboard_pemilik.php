@@ -13,7 +13,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard Admin/Pemilik</li>
+                        <li class="breadcrumb-item active">Dashboard Kasir</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -33,68 +33,39 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3><?= $total_stockin ?></h3>
-                            <p>Total Stock In</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="<?= base_url('kasir/C_stockin'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3><?= $total_stockout ?></h3>
-                            <p>Total Stock Out</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
-                        </div>
-                        <a href="<?= base_url('kasir/C_stockout'); ?>" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i> </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>53</h3>
+                            <h3>0</h3>
                             <p>Laporan Penjualan</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-person-add"></i>
+                            <i class="fas fa-cart-plus fa-fw"></i>
                         </div>
                         <a href="#" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <!-- /col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3><?= $total_satuan ?></h3>
-                            <p>Total Satuan</p>
+                            <h3>Rp. 0 ,-</h3>
+                            <p>Total Transaksi</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-bag"></i>
+                            <i class="fas fa-dollar-sign fa-fw"></i>
                         </div>
-                        <a href="<?= base_url('admin/C_satuan'); ?>" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="#" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-success">
+                    <!-- small box -->
+                    <div class="small-box bg-primary">
                         <div class="inner">
-                            <h3><?= $total_kategori ?></h3>
-                            <p>Total Kategori</p>
+                            <h3>#jumlah pelanggan terdaftar</h3>
+                            <p>Total Pelanggan</p>
                         </div>
                         <div class="icon">
-
-                            <i class="ion ion-bag"></i>
-
+                            <i class="fas fa-user-check fa-fw"></i>
                         </div>
-                        <a href="<?= base_url('admin/C_kategori'); ?>" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i> </a>
+                        <a href="#" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
