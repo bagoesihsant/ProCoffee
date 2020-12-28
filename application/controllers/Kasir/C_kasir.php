@@ -172,7 +172,7 @@ class C_kasir extends CI_Controller
             ];
 
             // Melakukan update 
-            $result = $this->kasir->tambahStokCart($value, $where);
+            $result = $this->kasir->ubahStokCart($value, $where);
 
             // Memeriksa apakah stok berhasil di update atau tidak
             if ($result > 0) {
@@ -296,6 +296,166 @@ class C_kasir extends CI_Controller
         }
 
         // Mencetak dalam format json
+        echo json_encode($message);
+    }
+
+    public function hapusKeranjang()
+    {
+        // Berfungsi untuk mengurangi jumlah barang yang akan dibeli dalam tabel keranjang oleh kasir N
+        // dimana N adalah kasir yang sedang mengakses sitem informasi
+
+        // Mengambil data yang dikirim dari ajax kedalam variabel
+        $kasir = $this->session->userdata('kode_user');
+        $kode_barang = $this->input->post('kode_barang', true);
+        $harga_barang = $this->input->post('harga_barang', true);
+
+        // Membuat variabel where
+        $where = [
+            'kode_user' => $kasir,
+            'kode_barang' => $kode_barang
+        ];
+
+        // Membuat variabel error message
+        $message['error_status'] = "";
+        $message['error_message'] = "";
+
+        // Memeriksa apakah ada data yang dicari dalam tabel cart 
+        $result = $this->kasir->daftarCart($where);
+
+        // Memeriksa apakah ada data yang dicari
+        if ($result->num_rows() > 0) {
+            // Jika ada yang ditemukan
+
+            // Mengambil data kasir
+            $detailCart = $result->row_array();
+
+            // Memeriksa jumlah qty yang ada dalam keranjang
+            $qtyCart = $detailCart['qty'];
+
+            if ($qtyCart > 1) {
+                // Jika jumlah barang dalam keranjang lebih dari 1
+
+                // Mengurangi jumlah barang dalam keranjang
+                $minusQtyCart = [
+                    'qty' => ($qtyCart - 1),
+                    'total' => (($detailCart['harga'] * ($qtyCart - 1)) - $detailCart['discount'])
+                ];
+
+                // Melakukan pengurangan jumlah barang dalam keranjang
+                $updateQtyKeranjang = $this->kasir->ubahStokCart($minusQtyCart, $where);
+
+                // Memeriksa apakah ada perubahan atau tidak
+                if ($updateQtyKeranjang > 0) {
+                    // Jika data berubah
+
+                    // Membuat variabel untuk mengambil data barang
+                    $whereBarang = [
+                        'kode_barang' => $kode_barang
+                    ];
+
+                    // Mengambil data barang
+                    $dataBarang = $this->kasir->getOneBarang($whereBarang);
+
+                    // Memeriksa apakah ada barang yang ditemukan
+                    if ($dataBarang->num_rows() > 0) {
+                        // Jika ada barang yang ditemukan
+                        // Mengambil data barang
+                        $rowBarang = $dataBarang->row_array();
+
+                        // Mengambil stok barang
+                        $stokBarang = $rowBarang['stok'];
+
+                        // Membuat row untuk update barang
+                        $updateStokBarang = [
+                            'stok' => ($stokBarang + 1)
+                        ];
+
+                        // Menjalankan perubahan
+                        $resultStok = $this->kasir->updateStokBarang($updateStokBarang, $whereBarang);
+
+                        // Memeriksa apakah stok berhasil dikurangi
+                        if ($resultStok > 0) {
+                            // Jika stok berhasil dikurangi
+                            $message['error_status'] = false;
+                            $message['error_message'] = "Data barang berhasil ditambahkan";
+                        } else {
+                            // Jika stok gagal dikurangi
+                            $message['error_status'] = true;
+                            $message['error_message'] = "Data barang gagal ditambahkan";
+                        }
+                    } else {
+                        // Jika tidak ada barang yang ditemukan
+                        $message['error_status'] = true;
+                        $message['error_message'] = "Data barang tidak ditemukan";
+                    }
+                } else {
+                    // Jika data tidak berubah
+                    $message['error_status'] = true;
+                    $message['error_message'] = "Data gagal dirubah";
+                }
+            } else if ($qtyCart <= 1) {
+                // Jika jumlah barang dalam keranjang adalah 1 atau kurang dari 1
+
+                // Hapus barang dari cart
+                $hapusCart = $this->kasir->hapusBarang($where);
+
+                // Memeriksa apakah barang berhasil dihapus atau tidak
+                if ($hapusCart > 0) {
+                    // Jika berhasil dihapus
+
+                    // Membuat variabel untuk mengambil data barang
+                    $whereBarang = [
+                        'kode_barang' => $kode_barang
+                    ];
+
+                    // Mengambil data barang di tabel barang
+                    $dataBarang = $this->kasir->getOneBarang($whereBarang);
+
+                    // Memeriksa apakah ada data barang yang ditemukan atau tidak
+                    if ($dataBarang->num_rows() > 0) {
+                        // Jika ada barang yang ditemukan
+
+                        // Mengambil data barang
+                        $rowBarang = $dataBarang->row_array();
+
+                        // Mengambil stok barang
+                        $stokBarang = $rowBarang['stok'];
+
+                        // Membuat array untuk perubahan stok barang
+                        $updateStokBarang = [
+                            'stok' => ($stokBarang + 1)
+                        ];
+
+                        // Menjalankan edit stok
+                        $resultUpdate = $this->kasir->updateStokBarang($updateStokBarang, $whereBarang);
+
+                        // Memeriksa apakah update berhasil atau tidak
+                        if ($resultUpdate > 0) {
+                            // Jika berhasil
+                            $message['error_status'] = false;
+                            $message['error_message'] = "Data barang berhasil diubah";
+                        } else {
+                            // Jika tidak berhasil
+                            $message['error_status'] = true;
+                            $message['error_message'] = "Data barang gagal diubah";
+                        }
+                    } else {
+                        // Jika tidak ada barang yang ditemukan
+                        $message['error_status'] = true;
+                        $message['error_message'] = "Data barang tidak ditemukan";
+                    }
+                } else {
+                    // Jika tidak berhasil dihapus
+                    $message['error_status'] = true;
+                    $message['error_message'] = "Data barang gagal dihapus dari keranjang";
+                }
+            }
+        } else {
+            // Jika tidak ada yang ditemukan
+            $message['error_status'] = true;
+            $message['error_message'] = "Tidak ada barang yang ditemukan";
+        }
+
         echo json_encode($message);
     }
 }

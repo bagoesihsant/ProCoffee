@@ -270,13 +270,13 @@ $(document).ready(function () {
     }
 
     // Membuat fungsi jika tombol cari atau pilih pelanggan ditekan
-    $('#pilihAnggota').on('click', function () {
+    $('#dataTablePelanggan tbody').on('click', '.pilihAnggota', function () {
         // Mengambil data pelanggan dari tombol
-        const namaPelanggan = $('#nama_pelanggan_modal').text();
-        const idPelanggan = $('#nama_pelanggan_modal').data('id');
+        const namaPelanggan = $(this).closest('tr').find('#nama_pelanggan_modal').text();
+        const idPelanggan = $(this).closest('tr').find('#nama_pelanggan_modal').data('id');
         // Mengisi value dari input cari pelanggan
         $('#pelanggan').val(namaPelanggan);
-        $('#pelanggan').attr('data-id', idPelanggan);
+        $('#pelanggan').data('id', idPelanggan);
         // Menutup Modal
         $('#formPilihPelanggan').modal('hide');
     });
@@ -314,7 +314,7 @@ $(document).ready(function () {
 
     })
 
-    // Membuat fungsi jika tombol plus dan minus pada cart ditekan
+    // Membuat fungsi jika tombol plus pada cart ditekan
     $('#list-group-cart').on('click', '.add_stok_cart', function () {
 
         // Mengambil data attribut
@@ -326,6 +326,7 @@ $(document).ready(function () {
             url: "http://localhost/ProCoffee/kasir/C_kasir/tambahKeranjang",
             method: "post",
             data: { kode_barang: kodeBarang, harga_barang: hargaBarang },
+            dataType: 'json',
             success: function (result) {
                 console.log(result);
 
@@ -345,6 +346,38 @@ $(document).ready(function () {
             }
         });
 
+    })
+
+    // Membuat fungsi jika tombol minus dalam cart ditekan
+    $('#list-group-cart').on('click', '.remove_stok_cart', function () {
+
+        // Mengambil data dari tombol
+        const kodeBarang = $(this).data('id');
+        const hargaBarang = $(this).data('harga');
+
+        // Menjalankan ajax
+        $.ajax({
+            url: "http://localhost/ProCoffee/kasir/C_kasir/hapusKeranjang",
+            data: { kode_barang: kodeBarang, harga_barang: hargaBarang },
+            method: 'post',
+            success: function (result) {
+                console.log(result);
+
+                // Load Ulang Keranjang
+                loadKeranjang();
+
+                // Mengambil data dari form cari barang
+                var keyword = $('#cari_barang').val();
+                // Memeriksa apakah keyword kosong atau tidak
+                if (keyword == '') {
+                    // Jika kosong
+                    loadPagination(0, '');
+                } else {
+                    // Jika tidak kosong
+                    loadPagination(0, keyword);
+                }
+            }
+        });
     })
 
 });

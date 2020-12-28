@@ -79,7 +79,7 @@
                                         <div class="form-group">
                                             <label for="pelanggan">Nama Pelanggan</label>
                                             <div class="input-group">
-                                                <input type="text" name="pelanggan" id="pelanggan" data-id="" class="form-control" readonly>
+                                                <input type="text" name="pelanggan" id="pelanggan" data-id="a" class="form-control" readonly>
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#formPilihPelanggan">
                                                         <i class="fas fa-fw fa-search"></i>
@@ -373,7 +373,7 @@
                                 <td id="nama_pelanggan_modal" data-id="<?= $dPelanggan['kode_user']; ?>"><?= $dPelanggan['nama']; ?></td>
                                 <td><?= $dPelanggan['notelp']; ?></td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary" id="pilihAnggota">
+                                    <button class="btn btn-sm btn-primary pilihAnggota">
                                         <span class="mr-2">Pilih</span><i class="fas fa-fw fa-search"></i>
                                     </button>
                                 </td>

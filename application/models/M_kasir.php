@@ -105,7 +105,7 @@ class M_kasir extends CI_Model
     }
 
     // Menambahkan stok pada cart user jika barang tersebut sudah terdaftar
-    public function tambahStokCart($data, $where)
+    public function ubahStokCart($data, $where)
     {
         $this->db->set($data);
         $this->db->where($where);
@@ -119,6 +119,13 @@ class M_kasir extends CI_Model
         $this->db->set($data);
         $this->db->where($where);
         $this->db->update('tbl_barang');
+        return $this->db->affected_rows();
+    }
+
+    // Menghapus barang dalam keranjang jika stok nya kurang dari sama dengan 1
+    public function hapusBarang($where)
+    {
+        $this->db->delete('tbl_cart_offline', $where);
         return $this->db->affected_rows();
     }
 }
