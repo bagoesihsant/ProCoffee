@@ -48,15 +48,13 @@ class C_dashboard extends CI_Controller
         $kdrole = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         if($kdrole['kode_role'] == "RL0000000001"){
             $this->load->view('admin/v_dashboard', $data);
-        }elseif($data['kode_role'] == "RL0000000002"){
+        }elseif($kdrole['kode_role'] == "RL0000000002"){
             $this->load->view('pemilik/v_dashboard_pemilik', $data);
-        }elseif($data['kode_role'] == "RL0000000003"){
+        }elseif($kdrole['kode_role'] == "RL0000000003"){
             $this->load->view('pelanggan/v_pelanggan', $data);
-        }elseif($data['kode_role'] == "RL0000000004"){
+        }elseif($kdrole['kode_role'] == "RL0000000004"){
             $this->load->view('templates/admin/v_dashboard_kurir', $data);
-        }else{
-            redirect("user");
-        }        
+        }      
         // akhiran if else
         $this->load->view('templates/admin/footer');
     }
