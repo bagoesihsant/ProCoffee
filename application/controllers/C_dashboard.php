@@ -49,7 +49,6 @@ class C_dashboard extends CI_Controller
         if($kdrole['kode_role'] == "RL0000000001"){
             $this->load->view('admin/v_dashboard', $data);
         }elseif($data['kode_role'] == "RL0000000002"){
-            $data['badge'] = "<i class='badge badge-danger'>Administrator</i>";
             $this->load->view('pemilik/v_dashboard_pemilik', $data);
         }elseif($data['kode_role'] == "RL0000000003"){
             $this->load->view('pelanggan/v_pelanggan', $data);
