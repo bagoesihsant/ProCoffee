@@ -18,14 +18,16 @@
                         <p class="lead">Ubah lah password Anda</p>
                         <p class="text-muted">Ubah password anda sesuai dengan anda ingin kan, saran <strong>Buat lah password yang mudah di ingat dan pastikan tidak ada orang yang mengetahui passwrod baru anda</strong></p>
                         <hr>
-                        <form action="customer-orders.html" method="post">
+                        <form action="<?= base_url('User/ubahPasswords') ?>" method="post">
                             <div class="form-group">
-                                <label for="password">Password baru</label>
-                                <input id="password" type="text" placeholder="Masukan password anda" class="form-control">
+                                <label for="password1">Password baru</label>
+                                <input id="password1" name="password1" type="password" placeholder="Masukan password anda" class="form-control">
+                                <?= form_error('password1', '<span class="text-danger">', '</span>'); ?>
                             </div>
                             <div class="form-group">
-                                <label for="passwords">Ulangi Password</label>
-                                <input id="passwords" type="text" placeholder="Ulangi password baru anda" class="form-control">
+                                <label for="password2">Ulangi Password</label>
+                                <input id="password2" name="password2" type="password" placeholder="Ulangi password baru anda" class="form-control">
+                                <?= form_error('password2', '<span class="text-danger">', '</span>'); ?>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Submit</button>

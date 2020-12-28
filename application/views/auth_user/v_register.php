@@ -57,7 +57,7 @@
                         <form action="<?= base_url('User/Masuk') ?>" method="POST">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input id="email" name="email" value="<?= set_value('email'); ?>" type="text" class="form-control">
+                                <input id="email" name="email" type="text" class="form-control">
                                 <?= form_error('email', '<span class="text-danger">', '</span>'); ?>
                             </div>
                             <div class="form-group">
@@ -65,7 +65,7 @@
                                 <input id="password" name="password" type="password" class="form-control">
                                 <?= form_error('password', '<span class="text-danger">', '</span>'); ?>
                             </div>
-                            <p><a href="#">Lupa Password?</a></p>
+                            <p><a href="<?= base_url('User/LupaSandi') ?>">Lupa Password?</a></p>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
                             </div>

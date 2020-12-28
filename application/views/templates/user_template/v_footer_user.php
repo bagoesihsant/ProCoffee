@@ -7,13 +7,18 @@
             <div class="row">
                 <div class="col-lg-1 col-md-4">
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">User section</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-                        <li><a href="register.html">Regiter</a></li>
-                    </ul>
-                </div>
+                <?php if (!$this->session->userdata('email')) : ?>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="mb-3">User section</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                            <li><a href="<?= base_url('Use/Register') ?>">Regiter</a></li>
+                        </ul>
+                    </div>
+                <?php else : ?>
+                    <div class="col-lg-3 col-md-6">
+                    </div>
+                <?php endif; ?>
                 <!-- /.col-lg-3-->
                 <div class="col-lg-3 col-md-6">
                     <h4 class="mb-3">Anda bisa mencari kami di</h4>

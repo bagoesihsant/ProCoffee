@@ -63,11 +63,14 @@ $route['User/Profile/Edit'] = "Users/C_user_profile/editprofil";
 $route['User/Profile/ChangePassword'] = "Users/C_user_profile/ubahpassworduser";
 $route['User/List'] = "Users/C_barang_user/index";
 $route['User/Detail/(:any)'] = "Users/C_detail_barang_user/index/$1";
+$route['User/Beli/process'] = "Users/C_detail_barang_user/process";
 
 // User Auth (Pelanggan)
 $route['User/Register'] = "C_auth_user/registration";
+$route['User/resetpassword'] = "C_auth_user/resetpassword";
+$route['User/ubahPasswords'] = "C_auth_user/changePassword";
 $route['User/LupaSandi'] = "C_auth_user/LupaPasswordUser";
-$route['User/GantiSandi'] = "C_auth_user/UbahPassword";
+$route['User/UbahSandi'] = "C_auth_user/changePassword";
 $route['User/Keluar'] = "C_auth_user/logout";
 $route['User/Masuk'] = "C_auth_user/index";
 
