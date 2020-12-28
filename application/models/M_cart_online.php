@@ -9,7 +9,7 @@ class M_cart_online extends CI_Model
     {
         // query di buat tanggal 28 lung sekarang tidur dulu soalnya besok kuliah
         $user_login = $this->session->userdata('id_user');
-        $query = "SELECT `tbl_barang`.*, `tbl_barang`.`name` AS `nama_barang`, `tbl_cart_online`.* 
+        $query = "SELECT `tbl_barang`.*, `tbl_barang`.`nama` AS `nama_barang`, `tbl_cart_online`.* 
         FROM `tbl_barang` JOIN `tbl_cart_online`
         ON `tbl_barang`.`kode_barang` = `tbl_cart_online`.`kode_barang`
         WHERE `kode_usero` = '$user_login'";
@@ -30,5 +30,13 @@ class M_cart_online extends CI_Model
             'tgl_transaksi' => date('Y-m-d H:i:s')
         ];
         $this->db->insert('tbl_cart_online', $params);
+    }
+
+    public function delete($id)
+    {
+        $user_params = $this->session->userdata('id_user');
+        $this->db->where('kode_barang', $id);
+        $this->db->where('kode_usero', $user_params);
+        $this->db->delete('tbl_cart_online');
     }
 }
