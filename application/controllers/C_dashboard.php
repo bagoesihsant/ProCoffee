@@ -20,7 +20,8 @@ class C_dashboard extends CI_Controller
             'M_Categories',
             'M_stockin',
             'M_stockOut',
-            'M_role'
+            'M_role',
+            'M_gis'
         ]);
     }
     public function index()
@@ -36,6 +37,8 @@ class C_dashboard extends CI_Controller
         $data['total_stockin'] = $this->M_stockin->total_rows();
         $data['total_stockout'] = $this->M_stockOut->total_rows();
         $data['total_role'] = $this->M_role->total_rows();
+        $data['total_cabang'] = $this->M_gis->total_rows();
+        $data['cabang_aktif'] = $this->M_gis->cabang_aktif();
         $data['title'] = 'Dashboard';
 
         $data['cabang'] = $this->db->get('cabang')->result_array();
@@ -53,7 +56,7 @@ class C_dashboard extends CI_Controller
         }elseif($kdrole['kode_role'] == "RL0000000003"){
             $this->load->view('pelanggan/v_pelanggan', $data);
         }elseif($kdrole['kode_role'] == "RL0000000004"){
-            $this->load->view('templates/admin/v_dashboard_kurir', $data);
+            $this->load->view('kurir/v_dashboard_kurir', $data);
         }else{
             redirect('user');
         }      
