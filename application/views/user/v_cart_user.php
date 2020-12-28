@@ -16,6 +16,7 @@
                         <form method="post" action="checkout1.html">
                             <h1>Shopping cart</h1>
                             <p class="text-muted">You currently have 3 item(s) in your cart.</p>
+                            <?= $this->session->flashdata('message_cart_del'); ?>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -29,22 +30,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><a href="#"><img src="<?= base_url('assets/vendor_user/img/') ?>kopio.jpeg" alt="White Blouse Armani"></a></td>
-                                            <td><a href="#">Kopi Original</a></td>
-                                            <td>
-                                                <input type="number" value="1" class="form-control">
-                                            </td>
-                                            <td>Rp. 45.000</td>
-                                            <td>Rp. 45.000</td>
-                                            <td colspan="2"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                        </tr>
-
+                                        <?php foreach ($cart as $data) : ?>
+                                            <tr>
+                                                <td><a href="#"><img src="<?= base_url('assets/items_img/') . $data['gambar'] ?>" alt="White Blouse Armani"></a></td>
+                                                <td><a href="#"><?= $data['nama_barang']; ?></a></td>
+                                                <td>
+                                                    <input type="number" value="1" class="form-control">
+                                                </td>
+                                                <td><?= $data['harga']; ?></td>
+                                                <td><?= $data['harga']; ?></td>
+                                                <td colspan="2"><a href="#modalDelete" data-toggle="modal" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('User/Cart/delete/' . $data['kode_barang']); ?>')"><i class="fa fa-trash-o"></i></a></td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th colspan="5">Total</th>
-                                            <th colspan="2">Rp. 45.000</th>
+                                            <th id="total_bayar" colspan="2">Rp. 45.000</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -89,6 +91,25 @@
                     </div>
                 </div>
                 <!-- /.col-md-3-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDelete">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-tittle">Yakin Anda Ingin Menghapus Data ini?</h4>
+            </div>
+            <div class="modal-footer">
+                <form action="" id="formDelete" method="post">
+                    <button class="btn btn-default" data-dismiss="modal">Tidak</button>
+                    <button class="btn btn-danger" type="submit">Hapus</button>
+                </form>
             </div>
         </div>
     </div>

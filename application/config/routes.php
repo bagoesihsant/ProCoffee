@@ -86,6 +86,7 @@ $route['auth/blocked'] = "C_auth/blocked";
 // User Landingpage
 $route['User/LandingPage'] = "Users/C_landingpage/index";
 $route['User/Cart'] = "Users/C_cart/index";
+$route['User/Cart/delete/(:any)'] = "Users/C_cart/delete_cart/$1";
 $route['User/History'] = "Users/C_history_pembelian/index";
 $route['User/Profile'] = "Users/C_user_profile/index";
 $route['User/Profile/Edit'] = "Users/C_user_profile/editprofil";
