@@ -77,9 +77,9 @@ $(document).ready(function () {
 
         // Memeriksa apakah ada keyword dikirim atau tidak
         if (keyword == '') {
-            url = "http://localhost/ProCoffee/kasir/loadbarang/" + pageNum;
+            url = "http://localhost/ProCoffee/kasir/loadBarang/" + pageNum;
         } else {
-            url = "http://localhost/ProCoffee/kasir/loadbarang/" + pageNum;
+            url = "http://localhost/ProCoffee/kasir/loadBarang/" + pageNum;
         }
 
         // Menjalankan ajax
