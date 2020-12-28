@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Daftar Sub Menu</h1>
+                    <h1 class="m-0 text-dark"><?= $title; ?></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -152,7 +152,7 @@
             <!-- Modal Body -->
             <div class="modal-body">
                 <!-- Form -->
-                <form action="<?= base_url('admin/submenu'); ?>" method="post" id="formTambahSubmenu">
+                <form action="<?= base_url('menu/submenu'); ?>" method="post" id="formTambahSubmenu">
                     <div class="form-group">
                         <?php
                         // Melakukan autonumber
@@ -251,7 +251,7 @@
             <!-- Modal Body -->
             <div class="modal-body">
                 <!-- Form -->
-                <form action="<?= base_url('admin/editSubmenu'); ?>" method="post" id="formEditSubmenu">
+                <form action="<?= base_url('menu/submenu/editSubmenu'); ?>" method="post" id="formEditSubmenu">
                     <div class="form-group">
                         <label for="kode_sub_menu">Kode Submenu</label>
                         <input type="text" name="kode_sub_menu" id="kode_sub_menu" class="form-control" readonly>

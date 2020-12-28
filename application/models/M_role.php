@@ -5,6 +5,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_role extends CI_Model
 {
 
+    public function total_rows()
+    {
+        return $this->db->get('user_role')->num_rows();
+    }
     // Fungsi untuk mengambil semua data pada tabel
     public function getAllMenu()
     {

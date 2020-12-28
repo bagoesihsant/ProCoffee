@@ -10,6 +10,7 @@ class C_barang extends CI_Controller
     {
         parent::__construct();
         // Load Model
+        is_logged_in();
         $this->load->model('M_barang', 'barang');
     }
 
@@ -31,6 +32,7 @@ class C_barang extends CI_Controller
 
     public function tambah_items()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // form validasi 
         $this->form_validation->set_rules(
             'nama',
@@ -137,7 +139,7 @@ class C_barang extends CI_Controller
                         'pesan_menu',
                         'toastr.error("Error, Data gagal ditambahkan. yang anda upload bukan gambar")'
                     );
-                    redirect('admin/C_barang');
+                    redirect('barang');
                 } else {
                     $namaGambar = $this->upload->data('file_name');
 
@@ -159,13 +161,13 @@ class C_barang extends CI_Controller
                             'pesan_menu',
                             'toastr.success("Data berhasil ditambahkan.")'
                         );
-                        redirect('admin/C_barang');
+                        redirect('barang');
                     } else {
                         $this->session->set_flashdata(
                             'pesan_menu',
                             'toastr.error("Error, Data gagal ditambahkan.")'
                         );
-                        redirect('admin/C_barang');
+                        redirect('barang');
                     }
                 }
             }
@@ -193,13 +195,13 @@ class C_barang extends CI_Controller
                 'pesan_menu',
                 'toastr.success("Data berhasil dihapus.")'
             );
-            redirect('admin/C_barang');
+            redirect('barang');
         } else {
             $this->session->set_flashdata(
                 'pesan_menu',
                 'toastr.error("Error, Data gagal dihapus.")'
             );
-            redirect('admin/C_barang');
+            redirect('barang');
         }
     }
     // hapus items
@@ -279,7 +281,7 @@ class C_barang extends CI_Controller
             $data['produk'] = $this->barang->getAllItems()->result();
             $data['kategori'] = $this->barang->getAllCategories()->result();
             $data['satuan'] = $this->barang->getAllUnits()->result();
-
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $this->load->view('templates/admin/header', $data);
             $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('admin/v_edit_barang', $data);
@@ -317,7 +319,7 @@ class C_barang extends CI_Controller
                         'pesan_menu',
                         'toastr.error("Error, Data gagal ditambahkan. yang anda upload bukan gambar")'
                     );
-                    redirect('admin/C_barang');
+                    redirect('barang');
                     //jika berhasil
                 } else {
 
@@ -349,14 +351,14 @@ class C_barang extends CI_Controller
                             'pesan_menu',
                             'toastr.success("Data berhasil di update")'
                         );
-                        redirect('admin/C_barang');
-                    } else {
+                        redirect('barang');
+                    }else{
                         //alert jika update database gagal
                         $this->session->set_flashdata(
                             'pesan_menu',
                             'toastr.danger("Data gagal di update")'
                         );
-                        redirect('admin/C_barang');
+                        redirect('barang');
                     }
                 }
             } else { //jika tidak upload gambar
@@ -382,20 +384,21 @@ class C_barang extends CI_Controller
                         'pesan_menu',
                         'toastr.success("Data berhasil di update.")'
                     );
-                    redirect('admin/C_barang');
+                    redirect('barang');
                 } else {
                     $this->session->set_flashdata(
                         'pesan_menu',
                         'toastr.error("Error, Data gagal diupdate.")'
                     );
-                    redirect('admin/C_barang');
+                    redirect('barang');
                 }
             }
         }
     }
 
     public function edit_barang($id)
-    {
+    {   
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Edit Barang';
         $data['edit'] = $this->barang->get_where($id)->result();
         $data['produk'] = $this->barang->getAllItems()->result();
@@ -412,6 +415,7 @@ class C_barang extends CI_Controller
     {
         $data['title'] = 'Generate Barang';
         $data['barcode'] = $this->barang->get_where($id)->result();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);

@@ -33,16 +33,29 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3><?= $total_barang ?></h3>
-                            <p>Total Barang</p>
+                            <h3><?= $total_stockin ?></h3>
+                            <p>Total Stock In</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="<?= base_url('admin/C_barang'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="<?= base_url('kasir/C_stockin'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3><?= $total_stockout ?></h3>
+                            <p>Total Stock Out</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="<?= base_url('kasir/C_stockout'); ?>" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i> </a>
+                    </div>
+                </div>
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
@@ -53,7 +66,7 @@
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More Info <i class="fa fas-arrow-circle-right"></i></a>
+                        <a href="#" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- /col -->
@@ -67,7 +80,7 @@
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="<?= base_url('admin/C_satuan'); ?>" class="small-box-footer">More Info <i class="fa fas-arrow-circle-right"></i></a>
+                        <a href="<?= base_url('admin/C_satuan'); ?>" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
@@ -77,11 +90,11 @@
                             <p>Total Kategori</p>
                         </div>
                         <div class="icon">
-                            <div class="ion">
-                                <i class="ion ion-bag"></i>
-                            </div>
-                            <a href="<?= base_url('admin/C_kategori'); ?>" class="small-box-footer">More Info <i class="fa fas-arrow-circle-right"></i> </a>
+
+                            <i class="ion ion-bag"></i>
+
                         </div>
+                        <a href="<?= base_url('admin/C_kategori'); ?>" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i> </a>
                     </div>
                 </div>
             </div>

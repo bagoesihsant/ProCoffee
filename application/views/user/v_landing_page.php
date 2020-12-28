@@ -4,10 +4,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div id="main-slider" class="owl-carousel owl-theme">
-                        <div class="item"><img src="<?= base_url('assets/vendor_user/'); ?>img/main-slider1.jpg" alt="" class="img-fluid"></div>
-                        <div class="item"><img src="<?= base_url('assets/vendor_user/'); ?>img/main-slider2.jpg" alt="" class="img-fluid"></div>
-                        <div class="item"><img src="<?= base_url('assets/vendor_user/'); ?>img/main-slider3.jpg" alt="" class="img-fluid"></div>
-                        <div class="item"><img src="<?= base_url('assets/vendor_user/'); ?>img/main-slider4.jpg" alt="" class="img-fluid"></div>
+                        <div class="item"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi.jpg" alt="" class="img-fluid"></div>
+                        <div class="item"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpg" alt="" class="img-fluid"></div>
                     </div>
                     <!-- /#main-slider-->
                 </div>
@@ -23,21 +21,21 @@
                     <div class="col-md-4">
                         <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
                             <div class="icon"><i class="fa fa-heart"></i></div>
-                            <h3><a href="#">Kami Peduli Pelanggan Kami</a></h3>
+                            <h3><a href="<?= base_url('User/LandingPage'); ?>">Kami Peduli Pelanggan Kami</a></h3>
                             <p class="mb-0">Kami menyediakan produk kopi yang bervariasi</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
                             <div class="icon"><i class="fa fa-tags"></i></div>
-                            <h3><a href="#">Harga Terbaik</a></h3>
+                            <h3><a href="<?= base_url('User/LandingPage'); ?>">Harga Terbaik</a></h3>
                             <p class="mb-0">Dapatkan harga terbaik dengan membeli langsung melalui website kami, Atau datang ke lokasi produksi kami</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
                             <div class="icon"><i class="fa fa-thumbs-up"></i></div>
-                            <h3><a href="#">100% Alami</a></h3>
+                            <h3><a href="<?= base_url('User/LandingPage'); ?>">100% Alami</a></h3>
                             <p class="mb-0">Bahan mentah untuk variasi produk kopi kami 100% alami tanpa bahan kimia apapun</p>
                         </div>
                     </div>
@@ -64,205 +62,32 @@
             </div>
             <div class="container">
                 <div class="product-slider owl-carousel owl-theme">
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1.jpg" alt="" class="img-fluid"></a></div>
-                                    <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1_2.jpg" alt="" class="img-fluid"></a></div>
+                    <!-- Awal Looping -->
+                    <?php foreach ($limit as $lmt => $data) : ?>
+                        <div class="item">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>"><img style="width: 250px; height:250px;" src="<?= base_url('assets/items_img/') . $data->gambar ?>" alt="" class="img-fluid"></a></div>
+
+                                    </div>
+                                </div><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="invisible"><img style="width: 250px; height:250px;" src="<?= base_url('assets/items_img/') . $data->gambar ?>" alt="" class="img-fluid"></a>
+                                <div class="text">
+                                    <h3><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>"><?= $data->nama_barang; ?></a></h3>
+                                    <p class="price">
+                                        <del></del><?= $data->harga; ?>
+                                    </p>
                                 </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1.jpg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">Fur coat with very but very very long name</a></h3>
-                                <p class="price">
-                                    <del></del>$143.00
-                                </p>
+                                <!-- /.text-->
+                                <!-- /.ribbon-->
                             </div>
-                            <!-- /.text-->
-                            <div class="ribbon sale">
-                                <div class="theribbon">SALE</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon-->
-                            <div class="ribbon new">
-                                <div class="theribbon">NEW</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon-->
-                            <div class="ribbon gift">
-                                <div class="theribbon">GIFT</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon-->
+                            <!-- /.product-->
                         </div>
-                        <!-- /.product-->
-                    </div>
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a></div>
-                                    <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2_2.jpg" alt="" class="img-fluid"></a></div>
-                                </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">White Blouse Armani</a></h3>
-                                <p class="price">
-                                    <del>$280</del>$143.00
-                                </p>
-                            </div>
-                            <!-- /.text-->
-                            <div class="ribbon sale">
-                                <div class="theribbon">SALE</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon-->
-                            <div class="ribbon new">
-                                <div class="theribbon">NEW</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon-->
-                            <div class="ribbon gift">
-                                <div class="theribbon">GIFT</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon-->
-                        </div>
-                        <!-- /.product-->
-                    </div>
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a></div>
-                                    <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3_2.jpg" alt="" class="img-fluid"></a></div>
-                                </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">Black Blouse Versace</a></h3>
-                                <p class="price">
-                                    <del></del>$143.00
-                                </p>
-                            </div>
-                            <!-- /.text-->
-                        </div>
-                        <!-- /.product-->
-                    </div>
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a></div>
-                                    <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3_2.jpg" alt="" class="img-fluid"></a></div>
-                                </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">Black Blouse Versace</a></h3>
-                                <p class="price">
-                                    <del></del>$143.00
-                                </p>
-                            </div>
-                            <!-- /.text-->
-                        </div>
-                        <!-- /.product-->
-                    </div>
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a></div>
-                                    <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2_2.jpg" alt="" class="img-fluid"></a></div>
-                                </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">White Blouse Versace</a></h3>
-                                <p class="price">
-                                    <del></del>$143.00
-                                </p>
-                            </div>
-                            <!-- /.text-->
-                            <div class="ribbon new">
-                                <div class="theribbon">NEW</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon-->
-                        </div>
-                        <!-- /.product-->
-                    </div>
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1.jpg" alt="" class="img-fluid"></a></div>
-                                    <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1_2.jpg" alt="" class="img-fluid"></a></div>
-                                </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1.jpg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">Fur coat</a></h3>
-                                <p class="price">
-                                    <del></del>$143.00
-                                </p>
-                            </div>
-                            <!-- /.text-->
-                            <div class="ribbon gift">
-                                <div class="theribbon">GIFT</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon-->
-                        </div>
-                        <!-- /.product-->
-                    </div>
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a></div>
-                                    <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2_2.jpg" alt="" class="img-fluid"></a></div>
-                                </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product2.jpg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">White Blouse Armani</a></h3>
-                                <p class="price">
-                                    <del>$280</del>$143.00
-                                </p>
-                            </div>
-                            <!-- /.text-->
-                            <div class="ribbon sale">
-                                <div class="theribbon">SALE</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon-->
-                            <div class="ribbon new">
-                                <div class="theribbon">NEW</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon-->
-                            <div class="ribbon gift">
-                                <div class="theribbon">GIFT</div>
-                                <div class="ribbon-background"></div>
-                            </div>
-                            <!-- /.ribbon-->
-                        </div>
-                        <!-- /.product-->
-                    </div>
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a></div>
-                                    <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3_2.jpg" alt="" class="img-fluid"></a></div>
-                                </div>
-                            </div><a href="detail.html" class="invisible"><img src="<?= base_url('assets/vendor_user/'); ?>img/product3.jpg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">Black Blouse Versace</a></h3>
-                                <p class="price">
-                                    <del></del>$143.00
-                                </p>
-                            </div>
-                            <!-- /.text-->
-                        </div>
-                        <!-- /.product-->
-                    </div>
+                    <?php endforeach; ?>
+                    <!-- akhir looping -->
+
+
+
                     <!-- /.product-slider-->
                 </div>
                 <!-- /.container-->
@@ -280,9 +105,9 @@
                     <h3>Get Inspired</h3>
                     <p class="lead">Get the inspiration from our world class designers</p>
                     <div id="get-inspired" class="owl-carousel owl-theme">
-                        <div class="item"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/getinspired1.jpg" alt="Get inspired" class="img-fluid"></a></div>
-                        <div class="item"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/getinspired2.jpg" alt="Get inspired" class="img-fluid"></a></div>
-                        <div class="item"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/getinspired3.jpg" alt="Get inspired" class="img-fluid"></a></div>
+                        <div class="item"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi.jpg" alt="Get inspired" class="img-fluid"></a></div>
+                        <div class="item"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/kopi2.jpg" alt="Get inspired" class="img-fluid"></a></div>
+                        <!-- <div class="item"><a href="#"><img src="<?= base_url('assets/vendor_user/'); ?>img/getinspired3.jpg" alt="Get inspired" class="img-fluid"></a></div> -->
                     </div>
                 </div>
             </div>
@@ -305,19 +130,19 @@
                 <div id="blog-homepage" class="row">
                     <div class="col-sm-6">
                         <div class="post">
-                            <h4><a href="post.html">Fashion now</a></h4>
-                            <p class="author-category">By <a href="#">John Slim</a> in <a href="">Fashion and style</a></p>
+                            <h4>Kopi Rempah</h4>
+                            <p class="author-category">ByChien Ling From Pro Coffee </p>
                             <hr>
-                            <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                            <p class="intro">kopi rempah adalah buatan asli dari desa garahan yang di kelola dari barang mentah sampai menjadi barang jadi. dan memiliki banyak manfaat dan tentu saja manfaat itu di dapatkan di dalam bahan organik asli tanpa pengawet</p>
                             <!-- <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a></p> -->
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="post">
-                            <h4><a href="post.html">Who is who - example blog post</a></h4>
-                            <p class="author-category">By <a href="#">John Slim</a> in <a href="">About Minimal</a></p>
+                            <h4>Berapa jenis varian produk Kopi?</h4>
+                            <p class="author-category">By Chien Ling From Pro Coffee</p>
                             <hr>
-                            <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                            <p class="intro">Kami memiliki banyak varian kopi mulai dari kopi original sampai kopi rempah rempah tersebut</p>
                             <!-- <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a></p> -->
                         </div>
                     </div>

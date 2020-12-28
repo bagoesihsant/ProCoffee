@@ -11,7 +11,7 @@ $('#dataTableAkses tbody').on('click', '.btn-aktivasi-menu', function () {
 
     // Menjalankan ajax
     $.ajax({
-        url: "http://localhost/ProCoffee/admin/C_role/removeAkses",
+        url: "http://localhost/ProCoffee/role/removeAkses",
         data: { kode_role: role, kode_menu: menu },
         method: "post",
         dataType: "json",
@@ -30,9 +30,9 @@ $('#dataTableAkses tbody').on('click', '.btn-aktivasi-menu', function () {
                     }
                 }).then((result) => {
                     if (result.value) {
-                        window.location.href = "http://localhost/ProCoffee/admin/userAkses/" + role;
+                        window.location.href = "http://localhost/ProCoffee/role/userAkses/" + role;
                     } else {
-                        window.location.href = "http://localhost/ProCoffee/admin/userAkses/" + role;
+                        window.location.href = "http://localhost/ProCoffee/role/userAkses/" + role;
                     }
                 });
             } else {
@@ -49,9 +49,9 @@ $('#dataTableAkses tbody').on('click', '.btn-aktivasi-menu', function () {
                     }
                 }).then((result) => {
                     if (result.value) {
-                        window.location.href = "http://localhost/ProCoffee/admin/userAkses/" + role;
+                        window.location.href = "http://localhost/ProCoffee/role/userAkses/" + role;
                     } else {
-                        window.location.href = "http://localhost/ProCoffee/admin/userAkses/" + role;
+                        window.location.href = "http://localhost/ProCoffee/role/userAkses/" + role;
                     }
                 });
             }
@@ -73,7 +73,7 @@ $('#dataTableAkses tbody').on('click', '.btn-disable-menu', function () {
 
     // Menjalankan ajax
     $.ajax({
-        url: "http://localhost/ProCoffee/admin/C_role/addAkses",
+        url: "http://localhost/ProCoffee/role/addakses",
         data: { kode_role: role, kode_menu: menu },
         method: "post",
         dataType: "json",
@@ -92,9 +92,9 @@ $('#dataTableAkses tbody').on('click', '.btn-disable-menu', function () {
                     }
                 }).then((result) => {
                     if (result.value) {
-                        window.location.href = "http://localhost/ProCoffee/admin/userAkses/" + role;
+                        window.location.href = "http://localhost/ProCoffee/role/userAkses/" + role;
                     } else {
-                        window.location.href = "http://localhost/ProCoffee/admin/userAkses/" + role;
+                        window.location.href = "http://localhost/ProCoffee/role/userAkses/" + role;
                     }
                 });
             } else {
@@ -111,9 +111,9 @@ $('#dataTableAkses tbody').on('click', '.btn-disable-menu', function () {
                     }
                 }).then((result) => {
                     if (result.value) {
-                        window.location.href = "http://localhost/ProCoffee/admin/userAkses/" + role;
+                        window.location.href = "http://localhost/ProCoffee/role/userAkses/" + role;
                     } else {
-                        window.location.href = "http://localhost/ProCoffee/admin/userAkses/" + role;
+                        window.location.href = "http://localhost/ProCoffee/role/userAkses/" + role;
                     }
                 });
             }

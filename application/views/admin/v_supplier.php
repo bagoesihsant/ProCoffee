@@ -78,7 +78,7 @@
                                         )">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
-                                        <a href="<?= base_url("admin/C_supplier/edit_supplier/") .$su->kode_supplier ?>" class="btn btn-xs btn-warning pl-2 pr-2">
+                                        <a href="<?= base_url("supplier/edit_supplier/") .$su->kode_supplier ?>" class="btn btn-xs btn-warning pl-2 pr-2">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
                                     </td>
@@ -133,7 +133,7 @@
             }
             ?>
             <div class="modal-body">
-                <form action="<?= base_url() . 'admin/C_supplier/tambah_supplier' ?>" method="post">
+                <form action="<?= base_url() . 'supplier' ?>" method="post">
                     <div class="form-group">
                         <label for="kode">
                             Kode Supplier
@@ -243,7 +243,7 @@
                     <h3 class="text-center font-weight-bold">Hapus Data</h3>
                     <h5 class="font-weight-light">Apa anda yakin ingin menghapus data ini?</h5>
 
-                    <a class="btn btn-danger mr-1" href="<?= base_url() . 'admin/C_supplier/hapus_supplier/' . $su->kode_supplier ?> ">Hapus</a>
+                    <a class="btn btn-danger mr-1" href="<?= base_url() . 'supplier/hapus_supplier/' . $su->kode_supplier ?> ">Hapus</a>
                     <button class="btn btn-secondary mt-1" type="button" data-dismiss="modal">Batal</button>
                 </div>
             </div>

@@ -14,6 +14,7 @@ class C_kasir extends CI_Controller
 
         // Load Library
         $this->load->library('pagination');
+        is_logged_in();
     }
 
 
@@ -33,7 +34,7 @@ class C_kasir extends CI_Controller
         // Load View
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
-        $this->load->view('admin/v_penjualan');
+        $this->load->view('admin/v_penjualan', $data);
         $this->load->view('templates/admin/footer');
     }
 
@@ -69,7 +70,7 @@ class C_kasir extends CI_Controller
 
 
         // Membuat konfigurasi paging
-        $config['base_url'] = base_url('C_kasir/loadBarang/');
+        $config['base_url'] = base_url('kasir/loadBarang/');
         $config['use_page_numbers'] = true;
         $config['total_rows'] = $totalData;
         $config['per_page'] = $dataHalaman;

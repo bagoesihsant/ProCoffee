@@ -33,7 +33,7 @@
                         <div class="card-body card-primary card-outline">
                             <?= $this->session->flashdata('message'); ?>
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md">
                                     <div class="form-group label-floating">
                                         <label class="control-label"><i class="fas fa-user mr-1"></i> Name</label>
                                         <label class="form-control" name="about" id="about"><?= $user['nama']; ?></label>
@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                                 <input type="email" class="" value="<?= $user['email']; ?>" name="email" id="email" hidden>
-                                <div class="col-md-4">
+                                <div class="col-md">
                                     <div class="form-group label-floating">
                                         <label class="control-label"><i class="far fa-envelope mr-1"></i> Email</label>
                                         <label type="email" class="form-control" value=""><?= $user['email']; ?></label>
@@ -86,10 +86,10 @@
                                                                             }  ?></a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Joined Date</b> <a class="float-right"><i class="label label-success"><?= date('d F Y', $user['created_at']); ?></i></a>
+                                    <b>Joined Date</b> <a class="float-right"><i class="badge badge-success"><?= date('d F Y', $user['created_at']); ?></i></a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Change Date</b> <a class="float-right"><?= date('d F Y', $user['updated_at']); ?></i></a>
+                                    <b>Change Date</b> <a class="float-right"><i class="badge badge-info"><?= date('d F Y', $user['updated_at']); ?></i></a>
                                 </li>
                             </ul>
 
@@ -109,4 +109,3 @@
 </section>
 </div>
 <!-- /.content-wrapper -->
-

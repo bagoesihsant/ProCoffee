@@ -5,17 +5,9 @@
     <div id="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-1 col-md-4">
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="mb-3">Informasi</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Terms and conditions</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Contact us</a></li>
-                    </ul>
-                    <hr>
                     <h4 class="mb-3">User section</h4>
                     <ul class="list-unstyled">
                         <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
@@ -49,7 +41,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mb-2 mb-lg-0">
-                    <p class="text-center text-lg-left">©2019 Your name goes here.</p>
+                    <p class="text-center text-lg-left">©<?= date('Y'); ?> HookwayDev & Procoffee </p>
                 </div>
                 <div class="col-lg-6">
                     <p class="text-center text-lg-right">Template design by <a href="https://bootstrapious.com/">Bootstrapious</a>
@@ -67,6 +59,7 @@
     <script src="<?= base_url('assets/vendor_user/'); ?>vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="<?= base_url('assets/vendor_user/'); ?>vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
     <script src="<?= base_url('assets/vendor_user/'); ?>js/front.js"></script>
+
     </body>
 
     </html>

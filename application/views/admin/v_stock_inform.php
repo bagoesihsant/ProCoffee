@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Daftar Stock In</h1>
+                    <h1 class="m-0 text-dark"><?= $title; ?></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -32,7 +32,7 @@
                 <!-- Card Header -->
                 <div class="card-header">
                     <div class="float-right">
-                        <a href="<?= site_url('kasir/stock_in_data') ?>" class="btn btn-warning btn-flat">
+                        <a href="<?= site_url('kasir/datastockin') ?>" class="btn btn-warning btn-flat">
                             <i class="fa fa-arrow-circle-left"></i> Back
                         </a>
                     </div>
@@ -47,7 +47,7 @@
                 <div class="card-body">
                     <!-- Table Sub Menu -->
                     <div class="col-md">
-                        <form action="<?= site_url('kasir/C_stockin/process'); ?>" method="POST">
+                        <form action="<?= site_url('kasir/stockinprocess'); ?>" method="POST">
                             <div class="form-group">
                                 <p>Tanda <b>*</b> Artinya Wajib Di isi</p>
                                 <label for="">Tanggal * </label>

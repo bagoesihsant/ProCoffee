@@ -5,7 +5,7 @@
                 FROM user_menu JOIN  user_access_menu
                 ON user_menu.kode_menu = user_access_menu.kode_menu
                 WHERE user_access_menu.kode_role = '$role_id'
-                ORDER BY user_access_menu.kode_menu ASC
+                ORDER BY user_menu.menu ASC
     ";
 
     $menu = $this->db->query($q_menu)->result_array();
@@ -19,15 +19,6 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="<?= base_url('assets/'); ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
-            </div>
-        </div> -->
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -57,25 +48,25 @@
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                 <?php endif; ?>
-                <!-- <i class="nav-icon fas"></i> -->
+                    <i class="nav-icon fas <?= $m['icon']; ?>"></i>
                     <p>
-                        <?= $m['menu']; ?><i class="right fas fa-angle-left"></i>
+                        <?= $m["menu"]; ?><i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
                     <?php foreach($submenu as $sm) : ?>
                         <ul class="nav nav-treeview">
-                        <?php if($sm['title'] == $title): ?>
+                        <?php if($sm['sub_menu'] == $title): ?>
                         <li class="nav-item">
                             <a href="<?= base_url() . $sm['url']; ?>" class="nav-link active">
                             <i class="far fa-circle nav-icon"></i>
-                            <p><?= $sm['title']; ?></p>
+                            <p><?= $sm['sub_menu']; ?></p>
                             </a>
                         </li>
                         <?php else : ?>
                         <li class="nav-item">
                             <a href="<?= base_url() . $sm['url']; ?>" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p><?= $sm['title']; ?></p>
+                            <p><?= $sm['sub_menu']; ?></p>
                             </a>
                         </li>
                         <?php endif; ?>

@@ -85,7 +85,7 @@
                                         <?php
                                         // Membuat Array Data
                                         $data = [
-                                            'kode_menu' => $kode_role,
+                                            'kode_role' => $kode_role,
                                             'kode_menu' => $menus['kode_menu']
                                         ];
 

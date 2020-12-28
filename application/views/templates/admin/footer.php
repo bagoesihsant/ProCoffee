@@ -29,9 +29,6 @@
 <script src="<?= base_url('assets/'); ?>plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
 <script src="<?= base_url('assets/'); ?>plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="<?= base_url('assets/'); ?>plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?= base_url('assets/'); ?>plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <!-- jQuery Knob Chart -->
 <script src="<?= base_url('assets/'); ?>plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
@@ -45,12 +42,13 @@
 <script src="<?= base_url('assets/'); ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url('assets/'); ?>dist/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= base_url('assets/'); ?>dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url('assets/'); ?>dist/js/demo.js"></script>
 <!-- load script ckeditor -->
 <script type="text/javascript" src="<?= base_url('assets/ckeditor/ckeditor.js') ?>"></script>
+<!-- GIS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="<?= base_url() ?>assets/leaflet-locatecontrol/src/L.Control.Locate.js"></script>
 
 <!-- Load File JavaScript yang dibuat secara custom untuk kebutuhan tertentu -->
 <script src="<?= base_url('assets/'); ?>custom/admin/menu.js"></script>
@@ -62,6 +60,16 @@
 <script src="<?= base_url('assets/'); ?>custom/kasir/kasir.js"></script>
 <script src="<?= base_url('assets/'); ?>custom/admin/stockOut.js"></script>
 <script src="<?= base_url('assets/'); ?>custom/admin/stockIn.js"></script>
+<script src="<?= base_url('assets/'); ?>dist/js/display.js"></script>
+<?php 
+    if($title != "Edit Data Mapping") :
+?>
+<script src="<?= base_url('assets/'); ?>custom/gis/gis.js"></script>
+<?php
+    endif;
+?>
+
+
 
 <!-- Mencetak pesan dari controller -->
 <script>

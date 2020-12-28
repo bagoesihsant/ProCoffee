@@ -10,6 +10,7 @@ class C_supplier extends CI_Controller
     {
         parent::__construct();
         // Load Model
+        is_logged_in();
         $this->load->model('M_supplier', 'supplier');
     }
 
@@ -31,6 +32,7 @@ class C_supplier extends CI_Controller
     // tambah supplier
     public function tambah_supplier()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // form validasi 
         $this->form_validation->set_rules(
             'nama',
@@ -106,7 +108,7 @@ class C_supplier extends CI_Controller
                     'pesan_menu',
                     'toastr.success("Data berhasil ditambahkan.")'
                 );
-                redirect('admin/C_supplier');
+                redirect('supplier');
             }
         }
     }
@@ -129,7 +131,7 @@ class C_supplier extends CI_Controller
             );
         }
 
-        redirect('admin/C_supplier');
+        redirect('supplier');
     }
 
     // edit supplier
@@ -138,6 +140,7 @@ class C_supplier extends CI_Controller
     {
         $data['edit'] = $this->supplier->get_where($id)->result();
         $data['title'] = 'Edit Supplier';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
@@ -148,6 +151,7 @@ class C_supplier extends CI_Controller
     // menjalankan aksi edit    
     public function edit_supplier_aksi()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // form validasi 
         $this->form_validation->set_rules(
             'nama',
@@ -223,13 +227,13 @@ class C_supplier extends CI_Controller
                     'pesan_menu',
                     'toastr.success("Data berhasil diUpdate")'
                 );
-                redirect('admin/C_supplier');
-            } else {
+                redirect('supplier');
+            }else{
                 $this->session->set_flashdata(
                     'pesan_menu',
                     'toastr.error("Data gagal diUpdate")'
                 );
-                redirect('admin/C_supplier/edit_supplier/' . $id);
+                redirect('supplier/edit_supplier/'.$id);
             }
         }
     }

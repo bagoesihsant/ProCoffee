@@ -65,7 +65,7 @@
                                         <a href="#" data-toggle="modal" data-target="#detailModal<?= $data->kode_satuan; ?>" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
                                         </a>
-                                        <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('admin/C_satuan/deleteUnits/' . $data->kode_satuan) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
+                                        <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('satuan/deleteunits/' . $data->kode_satuan) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
                                         <a href="#" data-toggle="modal" data-target="#editModal<?= $data->kode_satuan; ?>" class="btn btn-xs btn-warning">
@@ -99,7 +99,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <?= form_open_multipart('admin/C_satuan/addDataUnits'); ?>
+                <?= form_open_multipart('satuan/adddataunits'); ?>
                 <div class="form-group">
                     <label for="kode">Kode Satuan</label>
                     <?php
@@ -202,7 +202,7 @@ foreach ($row->result() as $rw => $r) :  ?>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <?= form_open_multipart('admin/C_satuan/editDataUnits'); ?>
+                    <?= form_open_multipart('satuan/editdataunits'); ?>
                     <div class="form-group">
                         <label for="kode">Kode Satuan</label>
                         <input type="text" name="kode" value="<?= $r->kode_satuan ?>" id="kode" class="form-control" readonly>

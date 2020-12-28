@@ -20,6 +20,9 @@ class M_stockin extends CI_Model
 
     function total_rows()
     {
+        $this->db->select('*');
+
+        $this->db->where('type', 'in');
         return $this->db->get('tbl_stock')->num_rows();
     }
 

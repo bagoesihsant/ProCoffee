@@ -45,7 +45,7 @@
                 } ?>
 
                 <br>
-                <a href="<?=base_url('admin/C_barang/barcode_print/'). $b->kode_barang?>" target="_blank" class="btn btn-outline-secondary btn-sm">
+                <a href="<?=base_url('barang/barcode_print/'). $b->kode_barang?>" target="_blank" class="btn btn-outline-secondary btn-sm">
                         <i class="fas fa-print pl"></i>
                         Cetak Barcode 
                 </a>
@@ -90,13 +90,13 @@
                 <?=$b->barcode?>
 
                     <br>
-                    <a href="<?=base_url('admin/C_barang/qrcode_print/'). $b->kode_barang?>" target="_blank" class="btn btn-outline-secondary btn-sm">
+                    <a href="<?=base_url('barang/qrcode_print/'). $b->kode_barang?>" target="_blank" class="btn btn-outline-secondary btn-sm">
                         <i class="fas fa-print pl"></i>
                         Cetak Qrcode 
                     </a>
 
                     <div class="text-right">
-                        <a href="<?= base_url('admin/C_barang')?>" class="btn btn-primary btn-sm">
+                        <a href="<?= base_url('barang')?>" class="btn btn-primary btn-sm">
                             <i class="fas fa-chevron-left"></i>
                             kembali
                         </a>

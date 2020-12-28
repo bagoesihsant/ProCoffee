@@ -11,6 +11,7 @@ class C_role extends CI_Controller
         parent::__construct();
         // Load Model
         $this->load->model('M_role', 'role');
+        is_logged_in();
     }
 
     // Hak Akses
@@ -19,7 +20,7 @@ class C_role extends CI_Controller
         // Mengambil data user yang sedang login
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat title
-        $data['title'] = "Manajemen Hak Akses";
+        $data['title'] = "Manajemen Role";
         // Mengambil data dari database
         $data['role'] = $this->role->getAllRole();
 
@@ -36,8 +37,8 @@ class C_role extends CI_Controller
             // Jika form_validation mengembalikan nilai false
             // Load View
             $this->load->view('templates/admin/header', $data);
-            $this->load->view('templates/admin/sidebar');
-            $this->load->view('admin/v_role');
+            $this->load->view('templates/admin/sidebar', $data);
+            $this->load->view('admin/v_role', $data);
             $this->load->view('templates/admin/footer');
         } else {
             // Jika form_validation mengembalikan nilai true
@@ -71,7 +72,7 @@ class C_role extends CI_Controller
             }
 
             // Mengembalikan ke halaman utama
-            redirect('admin/role/');
+            redirect('role');
         }
     }
 
@@ -135,7 +136,7 @@ class C_role extends CI_Controller
                 );
             }
 
-            redirect('admin/role/');
+            redirect('role');
         }
     }
 
@@ -169,7 +170,7 @@ class C_role extends CI_Controller
             );
         }
 
-        redirect("admin/role/");
+        redirect("role");
     }
 
     // Manajemen Pemberian Hak Akses
@@ -186,8 +187,8 @@ class C_role extends CI_Controller
 
         // Load View
         $this->load->view('templates/admin/header', $data);
-        $this->load->view('templates/admin/sidebar');
-        $this->load->view('admin/v_assign_role');
+        $this->load->view('templates/admin/sidebar', $data);
+        $this->load->view('admin/v_assign_role', $data);
         $this->load->view('templates/admin/footer');
     }
 

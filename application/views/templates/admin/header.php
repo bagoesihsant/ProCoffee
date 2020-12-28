@@ -34,6 +34,9 @@
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- leaflet.CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/leaflet-locatecontrol/dist/L.Control.Locate.min.css" />
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -52,7 +55,7 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <a class="nav-link" data-toggle="dropdown" href="#">Selamat Datang "<?= $user['username']; ?>"
                         <i class="fas fa-fw fa-user-alt"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

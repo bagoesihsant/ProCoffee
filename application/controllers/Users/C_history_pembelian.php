@@ -11,7 +11,8 @@ class C_history_pembelian extends CI_Controller
 
     public function index()
     {
-        $this->load->view('templates/user_template/v_header_user');
+        $data['title'] = "Histori Pembelian";
+        $this->load->view('templates/user_template/v_header_user', $data);
         $this->load->view('User/v_history_pembelian');
         $this->load->view('templates/user_template/v_footer_user');
     }

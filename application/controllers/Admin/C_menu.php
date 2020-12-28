@@ -11,6 +11,7 @@ class C_menu extends CI_Controller
         parent::__construct();
         // Load Model
         $this->load->model('M_menu', 'menu');
+        is_logged_in();
     }
 
 
@@ -21,7 +22,8 @@ class C_menu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat variabel array data
         // Mengambil isi menu dari database
-        $data['title'] = 'Managemen Menu';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Manajemen Menu';
         $data['menu'] = $this->menu->getAllMenu();
 
         // Membuat rule untuk validasi form
@@ -45,7 +47,7 @@ class C_menu extends CI_Controller
             // Membuat array data
             $data = [
                 'kode_menu' => htmlspecialchars($this->input->post('kode_menu', true)),
-                'menu' => htmlspecialchars(ucwords($this->input->post('menu', true))),
+                'menu' => htmlspecialchars(($this->input->post('menu', true))),
                 'icon' => htmlspecialchars($this->input->post('icon_menu', true))
             ];
 
@@ -73,7 +75,7 @@ class C_menu extends CI_Controller
 
 
             // Mengarahkan ulang
-            redirect('admin/menu');
+            redirect('menu');
         }
     }
 
@@ -115,7 +117,7 @@ class C_menu extends CI_Controller
 
             // Membuat array data
             $data = [
-                'menu' => htmlspecialchars(ucwords($this->input->post('menu', true))),
+                'menu' => htmlspecialchars(($this->input->post('menu', true))),
                 'icon' => htmlspecialchars($this->input->post('icon_menu', true))
             ];
 
@@ -147,7 +149,7 @@ class C_menu extends CI_Controller
             }
 
             // Mengarahkan kembali
-            redirect('admin/menu');
+            redirect('menu');
         }
     }
 
@@ -211,7 +213,7 @@ class C_menu extends CI_Controller
 
 
         // Mengarahkan kembali
-        redirect('admin/menu');
+        redirect('menu');
     }
 
     // Submenu
@@ -221,6 +223,7 @@ class C_menu extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat array data
         // Mengambil data seluruh sub menu
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Manajemen Submenu';
         $data['submenu'] = $this->menu->getAllSubMenu();
 
@@ -277,7 +280,7 @@ class C_menu extends CI_Controller
             }
 
             // Mengarahkan kembali
-            redirect('admin/submenu');
+            redirect('menu/submenu');
         }
     }
 
@@ -355,7 +358,7 @@ class C_menu extends CI_Controller
             }
 
             // Mengarahkan kembali
-            redirect('admin/submenu');
+            redirect('menu/submenu');
         }
     }
 
@@ -391,6 +394,6 @@ class C_menu extends CI_Controller
         }
 
         // mengarahkan kembali
-        redirect('admin/submenu');
+        redirect('menu/submenu');
     }
 }

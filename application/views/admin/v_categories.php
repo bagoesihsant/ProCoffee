@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Categories</h1>
+                    <h1 class="m-0 text-dark"><?= $title; ?></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -65,7 +65,7 @@
                                         <a href="#" data-toggle="modal" data-target="#detailModal<?= $r->kode_kategori; ?>" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
                                         </a>
-                                        <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('admin/C_kategori/deleteCategory/' . $r->kode_kategori) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
+                                        <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('kategori/deleteCategory/' . $r->kode_kategori) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
                                         <a href="#" data-toggle="modal" data-target="#editModal<?= $r->kode_kategori; ?>" class="btn btn-xs btn-warning">
@@ -99,7 +99,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <?= form_open_multipart('admin/C_kategori/addDataCategories'); ?>
+                <?= form_open_multipart('kategori/addDataCategories'); ?>
                 <div class="form-group">
                     <label for="kode">Kode Categories</label>
                     <?php
@@ -148,7 +148,7 @@ foreach ($row->result() as $rw => $r) : $no++; ?>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <?= form_open_multipart('admin/C_kategori/editDataCategories'); ?>
+                    <?= form_open_multipart('kategori/editDataCategories'); ?>
                     <div class="form-group">
                         <label for="kode">Kode Categories</label>
                         <input type="text" name="kode_kategori" value="<?= $r->kode_kategori ?>" id="kode_kategori" class="form-control" readonly>

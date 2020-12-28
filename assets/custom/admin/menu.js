@@ -39,7 +39,7 @@ $('#dataTableMenu tbody').on('click', '.btn-edit-menu', function () {
 
     // Melakukan Ajax
     $.ajax({
-        url: "http://localhost/ProCoffee/admin/C_menu/ajaxEditMenu",
+        url: "http://localhost/ProCoffee/menu/ajaxEditMenu",
         data: {
             kode_menu: kodeMenu
         },
@@ -73,7 +73,7 @@ $('#dataTableMenu tbody').on('click', '.btn-view-menu', function () {
 
     // Melakukan Ajax
     $.ajax({
-        url: "http://localhost/ProCoffee/admin/C_menu/ajaxEditMenu",
+        url: "http://localhost/ProCoffee/menu/ajaxEditMenu",
         data: {
             kode_menu: kodeMenu
         },
@@ -117,7 +117,7 @@ $('#dataTableMenu tbody').on('click', '.btn-delete-menu', function () {
     }).then((result) => {
         if (result.value) {
             // Memindahkan ke halaman lain jika di konfirmasi
-            window.location.href = "http://localhost/ProCoffee/admin/hapusMenu/" + kodeMenu;
+            window.location.href = "http://localhost/ProCoffee/menu/hapusMenu/" + kodeMenu;
         } else if (result.dismiss == Swal.DismissReason.cancel) {
             // Menutup sweet alert jika di cancel
             Swal.close();
@@ -137,7 +137,7 @@ $('#dataTableSubmenu tbody').on('click', '.btn-edit-submenu', function () {
 
     // Menjalankan ajax
     $.ajax({
-        url: "http://localhost/ProCoffee/admin/C_menu/ajaxEditSubmenu",
+        url: "http://localhost/ProCoffee/menu/submenu/ajaxEditSubmenu",
         data: {
             kode_sub_menu: kodeSubmenu
         },
@@ -175,7 +175,7 @@ $('#dataTableSubmenu tbody').on('click', '.btn-view-submenu', function () {
 
     // Menjalankan ajax
     $.ajax({
-        url: "http://localhost/ProCoffee/admin/C_menu/ajaxEditSubmenu",
+        url: "http://localhost/ProCoffee/menu/submenu/ajaxEditSubmenu",
         data: {
             kode_sub_menu: kodeSubmenu
         },
@@ -219,7 +219,7 @@ $('#dataTableSubmenu tbody').on('click', '.btn-delete-submenu', function () {
     }).then((result) => {
         if (result.value) {
             // Memindahkan ke halaman lain jika di konfirmasi
-            window.location.href = "http://localhost/ProCoffee/admin/hapusSubmenu/" + kodeMenu;
+            window.location.href = "http://localhost/ProCoffee/menu/submenu/hapusSubmenu/" + kodeMenu;
         } else if (result.dismiss == Swal.DismissReason.cancel) {
             // Menutup sweet alert jika di cancel
             Swal.close();
