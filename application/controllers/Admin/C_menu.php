@@ -18,6 +18,8 @@ class C_menu extends CI_Controller
     // Index
     public function index()
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat variabel array data
         // Mengambil isi menu dari database
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -160,26 +162,53 @@ class C_menu extends CI_Controller
             'kode_menu' => $kode
         ];
 
-        // Menjalankan fungsi untuk menghapus menu
-        $result = $this->menu->hapusMenu($data);
-
-        // Memeriksa apakah menu berhasil dihapus
-        if ($result > 0) {
-            // Jika menu berhasil dihapus
-
-            // Membuat session
-            $this->session->set_flashdata(
-                'pesan_menu',
-                'toastr.success("Selamat, Data berhasil dihapus.")'
-            );
-        } else {
+        // Memeriksa apakah data dari tabel menu masih ada kaitannya dengan tabel lainnya
+        // Membuat variabel untuk menampung status
+        $checkData = "";
+        // Memeriksa apakah data dari tabel menu masih ada kaitannya dengan tabel submenu
+        $statusSubmenu = $this->menu->checkSubmenu($kode);
+        if ($statusSubmenu->num_rows() > 0) {
+            // Jika masih ada keterkaitan dari tabel menu dengan tabel submenu
             // Jika menu gagal dihapus
-
             // Membuat session
             $this->session->set_flashdata(
                 'pesan_menu',
                 'toastr.error("Error, Data gagal dihapus.")'
             );
+        } else {
+            // Memeriksa apakah data dari tabel menu masih ada kaitannya dengan tabel akses menu
+            $statusAksesmenu = $this->menu->checkAkses($kode);
+            if ($statusAksesmenu->num_rows() > 0) {
+                // Jika masih ada keterkaitan dari tabel menu dengan tabel akses menu
+                // Jika menu gagal dihapus
+                // Membuat session
+                $this->session->set_flashdata(
+                    'pesan_menu',
+                    'toastr.error("Error, Data gagal dihapus.")'
+                );
+            } else {
+                // Menjalankan fungsi untuk menghapus menu
+                $result = $this->menu->hapusMenu($data);
+
+                // Memeriksa apakah menu berhasil dihapus
+                if ($result > 0) {
+                    // Jika menu berhasil dihapus
+
+                    // Membuat session
+                    $this->session->set_flashdata(
+                        'pesan_menu',
+                        'toastr.success("Selamat, Data berhasil dihapus.")'
+                    );
+                } else {
+                    // Jika menu gagal dihapus
+
+                    // Membuat session
+                    $this->session->set_flashdata(
+                        'pesan_menu',
+                        'toastr.error("Error, Data gagal dihapus.")'
+                    );
+                }
+            }
         }
 
 
@@ -190,6 +219,8 @@ class C_menu extends CI_Controller
     // Submenu
     public function submenu()
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Membuat array data
         // Mengambil data seluruh sub menu
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

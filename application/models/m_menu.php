@@ -93,4 +93,24 @@ class M_menu extends CI_Model
         $this->db->delete('user_sub_menu', $data);
         return $this->db->affected_rows();
     }
+
+    // Fungsi untuk memeriksa apakah masih ada data dari tabel menu yang menempel di tabel submenu
+    public function checkSubmenu($where)
+    {
+        $this->db->select('*');
+        $this->db->from('user_menu');
+        $this->db->join('user_sub_menu', 'user_menu.kode_menu = user_sub_menu.kode_menu');
+        $this->db->where('user_menu.kode_menu', $where);
+        return $this->db->get();
+    }
+
+    // Fungsi untuk memeriksa apakah masih ada data dari tabel menu yang menempel di tabel submenu
+    public function checkAkses($where)
+    {
+        $this->db->select('*');
+        $this->db->from('user_menu');
+        $this->db->join('user_access_menu', 'user_menu.kode_menu = user_access_menu.kode_menu');
+        $this->db->where('user_menu.kode_menu', $where);
+        return $this->db->get();
+    }
 }

@@ -16,6 +16,7 @@ class C_satuan extends CI_Controller
     // Units
     public function index()
     {
+        // Mengambil data user yang sedang login
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['row'] = $this->msatuan->readDatasatuan();
         $data['title'] = 'Data Satuan';

@@ -15,6 +15,8 @@ class C_kategori extends CI_Controller
 
     public function index()
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Kategori Produk';
         $data['row'] = $this->mproduk->getDataProduct();
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

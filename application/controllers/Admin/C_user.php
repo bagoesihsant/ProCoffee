@@ -11,6 +11,8 @@ class C_user extends CI_Controller
 
     public function index()
     {
+        // Mengambil data user yang sedang login
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // Blm dipakai karena login blm ada
         $data['title'] = 'Manajemen User';
         // $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

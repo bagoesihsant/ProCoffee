@@ -47,28 +47,41 @@
                                     <div class="col-lg-3 col-md-12">
                                         <div class="form-group">
                                             <label for="kode_transaksi">Kode Transaksi</label>
-                                            <input type="text" name="kode_transaksi" id="kode_transaksi" class="form-control" readonly>
+                                            <?php
+                                            // Mengambil data terakhir dalam database
+                                            $data = $this->kasir->getLastId();
+                                            // Memeriksa apakah ada kode yang di dapat dari database
+                                            if ($data->num_rows() > 0) {
+                                                // Jika ada kode yang didapat dari database
+                                                $kode = $data->row_array();
+                                                $kode = $this->hookdevlib->autonumber($kode['kode_transaksi'], 3, 9);
+                                            } else {
+                                                // Jika tidak ada kode yang didapat dari database
+                                                $kode = "TRS000000001";
+                                            }
+                                            ?>
+                                            <input type="text" name="kode_transaksi" id="kode_transaksi" value="<?= $kode; ?>" class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-12">
                                         <div class="form-group">
                                             <label for="tgl_transaksi">Tanggal Transaksi</label>
-                                            <input type="text" name="tgl_transaksi" id="tgl_transaksi" class="form-control" readonly>
+                                            <input type="text" name="tgl_transaksi" id="tgl_transaksi" value="<?= date('d/m/Y'); ?>" class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-12">
                                         <div class="form-group">
                                             <label for="kasir">Nama Kasir Bertugas</label>
-                                            <input type="text" name="kasir" id="kasir" class="form-control" readonly>
+                                            <input type="text" name="kasir" data-id="<?= $kasir['kode_user']; ?>" value="<?= $kasir['nama']; ?>" id="kasir" class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-12">
                                         <div class="form-group">
                                             <label for="pelanggan">Nama Pelanggan</label>
                                             <div class="input-group">
-                                                <input type="text" name="pelanggan" id="pelanggan" class="form-control" readonly>
+                                                <input type="text" name="pelanggan" id="pelanggan" data-id="a" class="form-control" readonly>
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-primary" type="button">
+                                                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#formPilihPelanggan">
                                                         <i class="fas fa-fw fa-search"></i>
                                                     </button>
                                                 </div>
@@ -153,7 +166,7 @@
                             <!-- 2nd Row (List Group Belanjaan) -->
                             <div class="row my-2">
                                 <div class="col-md-12">
-                                    <ul class="list-group">
+                                    <ul class="list-group" id="list-group-cart">
                                         <li class="list-group-item">
                                             <!-- Item Row -->
                                             <div class="row itemRow">
@@ -245,7 +258,7 @@
                                             <h4 class="text-dark mx-auto my-auto">Diskon Belanja :</h4>
                                         </div>
                                         <div class="col-7 d-flex">
-                                            <h4 class="text-dark mx-auto diskon-belanja-transaksi my-auto">Rp. 15.000,00</h4>
+                                            <input type="text" name="diskonBelanja" id="diskonBelanja" class="mx-auto my-auto form-control" value="15.000">
                                         </div>
                                     </div>
                                 </div>
@@ -264,10 +277,41 @@
                                 <!-- 3rd Row (Grand Total) End -->
                             </div>
                             <!-- 3rd Row (Total Belanja, Diskon, Grand Total) End -->
+                            <!-- 3rd Extra Row (Cash, Kembalian) -->
+                            <div class="row">
+                                <div class="col-12 my-1">
+                                    <div class="row px-2">
+                                        <div class="col-5 d-flex">
+                                            <h4 class="text-dark mr-auto my-auto">Cash :</h4>
+                                        </div>
+                                        <div class="col-7 d-flex">
+                                            <input type="text" name="cashBelanja" id="cashBelanja" class="mx-auto my-auto form-control" value="15.000">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 my-1">
+                                    <div class="row px-2">
+                                        <div class="col-5 d-flex">
+                                            <h4 class="text-dark mr-auto my-auto">Kembalian :</h4>
+                                        </div>
+                                        <div class="col-7 d-flex">
+                                            <h4 class="text-dark mx-auto kembalian-belanja-transaksi my-auto">Rp. 335.000,00</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 3rd Extra Row (Cash, Kembalian) End -->
                             <!-- 4th Row (Tombol Proses Belanja, Tombol Batalkan Belanja) -->
                             <div class="row">
                                 <div class="col-12 my-1">
-                                    <button class="btn btn-success"></button>
+                                    <button class="btn btn-success w-100">
+                                        <span class="mr-3">Proses Transaksi</span><i class="fas fa-fw fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                                <div class="col-12 my-1">
+                                    <button class="btn btn-danger w-100">
+                                        <span class="mr-2">Batalkan Transaksi</span><i class="fas fa-fw fa-ban"></i>
+                                    </button>
                                 </div>
                             </div>
                             <!-- 4th Row (Tombol Proses Belanja, Tombol Batalkan Belanja) End -->
@@ -285,3 +329,79 @@
     <!-- Main Content End -->
 </div>
 <!-- Content Wrapper End -->
+
+<!-- Modal Pilih Pelanggan -->
+<div class="modal fade" id="formPilihPelanggan">
+    <!-- Modal Dialog -->
+    <div class="modal-dialog">
+        <!-- Modal Content -->
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Daftar Pelanggan</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Modal Header End -->
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <!-- Table Pelanggan -->
+                <table id="dataTablePelanggan" class="table table-bordered table-striped">
+                    <!-- Thead -->
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nama Pelanggan</th>
+                            <th>No. Telp</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <!-- Thead End -->
+                    <!-- Tbody -->
+                    <tbody>
+                        <!-- Looping Database -->
+                        <?php
+                        // Mengambil data dari database
+                        $pelanggan = $this->kasir->getAllPelanggan(['kode_role' => 'RL0000000003']);
+                        // Melakukan looping dari database
+                        $i = 1;
+                        foreach ($pelanggan as $dPelanggan) :
+                        ?>
+                            <tr>
+                                <td><?= $i; ?></td>
+                                <td id="nama_pelanggan_modal" data-id="<?= $dPelanggan['kode_user']; ?>"><?= $dPelanggan['nama']; ?></td>
+                                <td><?= $dPelanggan['notelp']; ?></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary pilihAnggota">
+                                        <span class="mr-2">Pilih</span><i class="fas fa-fw fa-search"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php
+                            $i++;
+                        endforeach;
+                        ?>
+                        <!-- Looping Database End -->
+                    </tbody>
+                    <!-- Tbody End -->
+                    <!-- Tfoot -->
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Nama Pelanggan</th>
+                            <th>No. Telp</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                    <!-- Tfoot End -->
+                </table>
+                <!-- Table Pelanggan End -->
+            </div>
+            <!-- Modal Body End -->
+        </div>
+        <!-- Modal Content End -->
+    </div>
+    <!-- Modal Dialog End -->
+</div>
+<!-- Modal Pilih Pelanggan End -->

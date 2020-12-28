@@ -18,6 +18,7 @@ class C_supplier extends CI_Controller
     // Supplier  Supplier  Supplier
     public function index()
     {
+        // Mengambil data user yang sedang login
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Supplier';
         $data['supplier'] = $this->supplier->getAllSupplier()->result();
@@ -33,25 +34,41 @@ class C_supplier extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // form validasi 
-        $this->form_validation->set_rules('nama', 'Nama', 'required',
+        $this->form_validation->set_rules(
+            'nama',
+            'Nama',
+            'required',
             array(
                 'required' => 'Isian tidak boleh kosong'
-            ));
-        $this->form_validation->set_rules('notelp', 'No Telepon', 'required|numeric|min_length[11]|max_length[13]',
+            )
+        );
+        $this->form_validation->set_rules(
+            'notelp',
+            'No Telepon',
+            'required|numeric|min_length[11]|max_length[13]',
             array(
                 'required' => 'Isian tidak boleh kosong',
                 'numeric' => 'Isian harus angka',
                 'min_length' => 'Isian minimal 11 karakter',
                 'max_length' => 'Isian maksimal 13 karakter'
-            ));
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required',
+            )
+        );
+        $this->form_validation->set_rules(
+            'alamat',
+            'Alamat',
+            'required',
             array(
                 'required' => 'Isian tidak boleh kosong'
-            ));
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required',
+            )
+        );
+        $this->form_validation->set_rules(
+            'deskripsi',
+            'Deskripsi',
+            'required',
             array(
                 'required' => 'Isian tidak boleh kosong'
-            ));
+            )
+        );
         // form validasi end 
 
         if ($this->form_validation->run() == false) { //jika data gagal tervalidasi
@@ -60,7 +77,7 @@ class C_supplier extends CI_Controller
                 'pesan_menu',
                 'toastr.error("Data gagal ditambahkan.")'
             );
-            
+
             $data['title'] = 'Supplier';
             $data['supplier'] = $this->supplier->getAllSupplier()->result();
 
@@ -74,7 +91,7 @@ class C_supplier extends CI_Controller
             $nama = htmlspecialchars($this->input->post('nama'));
             $notelp = $this->input->post('notelp');
             $alamat = htmlspecialchars($this->input->post('alamat'));
-            $deskripsi =$this->input->post('deskripsi');
+            $deskripsi = $this->input->post('deskripsi');
 
             $data = array(
                 'kode_supplier' => $kode,
@@ -129,7 +146,6 @@ class C_supplier extends CI_Controller
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_edit_supplier', $data);
         $this->load->view('templates/admin/footer');
-        
     }
 
     // menjalankan aksi edit    
@@ -137,25 +153,41 @@ class C_supplier extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // form validasi 
-        $this->form_validation->set_rules('nama', 'Nama', 'required', 
-                array(
-                    'required' => 'Isian tidak boleh kosong'
-                ));
-        $this->form_validation->set_rules('notelp', 'No Telepon', 'required|numeric|min_length[11]|max_length[13]',
-                array(
-                    'required' => 'Isian tidak boleh kosong',
-                    'numeric' => 'Data yang dimasukkan harus berupa angka',
-                    'min_length' => 'Data yang dimasukkan minimal 11 karakter',
-                    'max_length' => 'Data yang dimasukkan maksimal 13 karakter'
-                ));
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required',
-                array(
-                    'required' => 'Isian tidak boleh kosong'
-                ));
-        $this->form_validation->set_rules('deskripsi',"Deskripsi", 'required',
-                array(
-                    'required' => 'Isian tidak boleh kosong'
-                ));
+        $this->form_validation->set_rules(
+            'nama',
+            'Nama',
+            'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            )
+        );
+        $this->form_validation->set_rules(
+            'notelp',
+            'No Telepon',
+            'required|numeric|min_length[11]|max_length[13]',
+            array(
+                'required' => 'Isian tidak boleh kosong',
+                'numeric' => 'Data yang dimasukkan harus berupa angka',
+                'min_length' => 'Data yang dimasukkan minimal 11 karakter',
+                'max_length' => 'Data yang dimasukkan maksimal 13 karakter'
+            )
+        );
+        $this->form_validation->set_rules(
+            'alamat',
+            'Alamat',
+            'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            )
+        );
+        $this->form_validation->set_rules(
+            'deskripsi',
+            "Deskripsi",
+            'required',
+            array(
+                'required' => 'Isian tidak boleh kosong'
+            )
+        );
         // form validasi end 
 
         if ($this->form_validation->run() == false) {
@@ -172,7 +204,6 @@ class C_supplier extends CI_Controller
             $this->load->view('templates/admin/sidebar', $data);
             $this->load->view('admin/v_edit_supplier', $data);
             $this->load->view('templates/admin/footer');
-
         } else {
             $kode = $this->input->post('kode');
             $nama = htmlspecialchars($this->input->post('nama'));
@@ -180,10 +211,10 @@ class C_supplier extends CI_Controller
             $alamat = htmlspecialchars($this->input->post('alamat'));
             $deskripsi = $this->input->post('deskripsi');
 
-            $where = array (
+            $where = array(
                 'kode_supplier' => $kode
             );
-            $data = array (
+            $data = array(
                 'nama' => $nama,
                 'no_hp' => $notelp,
                 'alamat' => $alamat,
@@ -191,21 +222,18 @@ class C_supplier extends CI_Controller
                 'updated' => date('dmY')
             );
 
-            if ($this->supplier->edit_supplier($data, $where) > 0)
-            {
+            if ($this->supplier->edit_supplier($data, $where) > 0) {
                 $this->session->set_flashdata(
                     'pesan_menu',
                     'toastr.success("Data berhasil diUpdate")'
                 );
-            redirect('supplier');
-
+                redirect('supplier');
             }else{
                 $this->session->set_flashdata(
                     'pesan_menu',
                     'toastr.error("Data gagal diUpdate")'
                 );
-            redirect('supplier/edit_supplier/'.$id);
-
+                redirect('supplier/edit_supplier/'.$id);
             }
         }
     }

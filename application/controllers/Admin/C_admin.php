@@ -27,6 +27,7 @@ class C_admin extends CI_Controller
     // Index
     public function index()
     {
+        // Mengambil data user yang sedang login
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->data['total_satuan'] = $this->M_Satuan->total_rows();
         $this->data['total_kategori'] = $this->M_Categories->total_rows();
