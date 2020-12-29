@@ -71,9 +71,9 @@
                                     <td><?= $data->qty; ?></td>
                                     <td><?= $data->date; ?></td>
                                     <td class="d-flex justify-content-around">
-                                        <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
+                                        <!-- <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
                                             <i class="fas fa-fw fa-eye text-white"></i>
-                                        </a>
+                                        </a> -->
                                         <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('kasir/StockOut/delete/' . $data->kode_stock . '/' . $data->kode_barang) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
