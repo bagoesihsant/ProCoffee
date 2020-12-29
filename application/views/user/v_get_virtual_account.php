@@ -18,7 +18,7 @@
                             <form id="payment-form" method="post" action="<?= site_url() ?>/Users/C_history_pembelian/finish">
                                 <input type="hidden" name="result_type" id="result-type" value="">
                                 <input type="hidden" name="result_data" id="result-data" value="">
-                                <input type="text" name="id_transaksi" id="id_transaksi" value="<?= $row->kode_transaksi; ?>">
+                                <input type="hidden" name="id_transaksi" id="id_transaksi" value="<?= $row->kode_transaksi; ?>">
                                 <div class="row">
                                 </div>
                                 <!-- /.row-->

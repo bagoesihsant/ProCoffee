@@ -8,10 +8,12 @@ class C_user_profile extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_usero');
+        $this->load->model('M_usero');
     }
 
     public function index()
     {
+        $data['jumlah_carto'] = $this->M_usero->count_cart();
         $data['title'] = "Profil Saya";
         $data['user'] = $this->db->get_where('user_online', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/user_template/v_header_user', $data);
@@ -21,6 +23,7 @@ class C_user_profile extends CI_Controller
     }
     public function editprofil()
     {
+        $data['jumlah_carto'] = $this->M_usero->count_cart();
         $data['title'] = "Edit Profile";
         $data['user'] = $this->db->get_where('user_online', ['email' => $this->session->userdata('email')])->row_array();
 
@@ -70,6 +73,7 @@ class C_user_profile extends CI_Controller
     }
     public function ubahpassworduser()
     {
+        $data['jumlah_carto'] = $this->M_usero->count_cart();
         $data['title'] = "Ubah Password";
         $data['user'] = $this->db->get_where('user_online', ['email' => $this->session->userdata('email')])->row_array();
 

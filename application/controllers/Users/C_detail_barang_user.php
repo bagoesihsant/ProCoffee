@@ -9,6 +9,7 @@ class C_detail_barang_user extends CI_Controller
         parent::__construct();
         $this->load->model('M_barang', 'mbarang');
         $this->load->model('M_cart_online', 'mcart');
+        $this->load->model('M_usero');
     }
 
     public function index($id)
@@ -21,6 +22,7 @@ class C_detail_barang_user extends CI_Controller
                 'row' => $item
             );
         }
+        $data['jumlah_carto'] = $this->M_usero->count_cart();
         $data['title'] = "Detail Barang";
         $this->load->view('templates/user_template/v_header_user', $data);
         $this->load->view('User/v_detail_barang', $data);
