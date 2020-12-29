@@ -228,12 +228,12 @@ class C_supplier extends CI_Controller
                     'toastr.success("Data berhasil diUpdate")'
                 );
                 redirect('supplier');
-            }else{
+            } else {
                 $this->session->set_flashdata(
                     'pesan_menu',
                     'toastr.error("Data gagal diUpdate")'
                 );
-                redirect('supplier/edit_supplier/'.$id);
+                redirect('supplier/edit_supplier/' . $id);
             }
         }
     }

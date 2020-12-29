@@ -64,13 +64,7 @@
                                     <td><?= $su->nama; ?></td>
                                     <td><?= $su->alamat ?></td>
                                     <td class="d-flex justify-content-around">
-                                        <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info" id="detail" onClick="detail(
-                                                '<?= $su->kode_supplier ?>',
-                                                '<?= $su->nama ?>',
-                                                '<?= $su->no_hp ?>',
-                                                '<?= $su->alamat ?>',
-                                                '<?= $su->deskripsi ?>'
-                                                )">
+                                        <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info previewSupplier" id="detail" data-kode="<?= $su->kode_supplier; ?>" data-nama="<?= $su->nama; ?>" data-notelp="<?= $su->no_hp; ?>" data-alamat="<?= $su->alamat; ?>" data-deskripsi="<?= $su->deskripsi; ?>">
                                             <i class="fas fa-fw fa-eye text-white"></i>
                                         </a>
                                         <a href="" class="btn btn-xs btn-danger btnDeleteSupplier" data-target="#hapusModal" data-toggle="modal" onClick="hapus(
@@ -78,7 +72,7 @@
                                         )">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
-                                        <a href="<?= base_url("supplier/edit_supplier/") .$su->kode_supplier ?>" class="btn btn-xs btn-warning pl-2 pr-2">
+                                        <a href="<?= base_url("supplier/edit_supplier/") . $su->kode_supplier ?>" class="btn btn-xs btn-warning pl-2 pr-2">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
                                     </td>
@@ -129,11 +123,11 @@
                 $kode = $this->hookdevlib->autonumber($kode['kode_supplier'], 2, 10);
             } else {
                 // Jika tidak ditemukan id
-                $kode = "SP000000001";
+                $kode = "SP0000000001";
             }
             ?>
             <div class="modal-body">
-                <form action="<?= base_url() . 'supplier' ?>" method="post">
+                <form action="<?= base_url() . 'supplier/tambah' ?>" method="post">
                     <div class="form-group">
                         <label for="kode">
                             Kode Supplier
@@ -198,31 +192,31 @@
             <div class="modal-body" id="modal-tampil">
                 <div class="form-group">
                     <label for="kode">Kode Supplier</label>
-                    <p id="kode-detail"  class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
+                    <p id="kode-detail" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="nama">
                         Nama Supplier
                     </label>
-                    <p id="nama-detail"  class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
+                    <p id="nama-detail" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="notelp">
                         No. Telpon / HP
                     </label>
-                    <p id="notelp-detail"  class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
+                    <p id="notelp-detail" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="alamat">
                         Alamat
                     </label>
-                    <p id="address-detail"  class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
+                    <p id="address-detail" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
                 <div class="form-group">
                     <label for="deskripsi">
                         Deskripsi
                     </label>
-                        <p id="deskripsi-detail" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
+                    <p id="deskripsi-detail" class="border pl-2 pr-2 pt-2 pb-2 rounded" readonly></p>
                 </div>
             </div>
             <div class="modal-footer">
@@ -234,27 +228,26 @@
 <!-- Modal Detail End -->
 
 <!-- modal hapus -->
-    <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <input type="text" id="kode-hapus" hidden>
-                <div class="modal-body text-center">
-                    <i class="fa fa-exclamation-triangle text-danger fa-7x mb-3 mt-2"></i> <br>
-                    <h3 class="text-center font-weight-bold">Hapus Data</h3>
-                    <h5 class="font-weight-light">Apa anda yakin ingin menghapus data ini?</h5>
+<div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <input type="text" id="kode-hapus" hidden>
+            <div class="modal-body text-center">
+                <i class="fa fa-exclamation-triangle text-danger fa-7x mb-3 mt-2"></i> <br>
+                <h3 class="text-center font-weight-bold">Hapus Data</h3>
+                <h5 class="font-weight-light">Apa anda yakin ingin menghapus data ini?</h5>
 
-                    <a class="btn btn-danger mr-1" href="<?= base_url() . 'supplier/hapus_supplier/' . $su->kode_supplier ?> ">Hapus</a>
-                    <button class="btn btn-secondary mt-1" type="button" data-dismiss="modal">Batal</button>
-                </div>
+                <a class="btn btn-danger mr-1" href="<?= base_url() . 'supplier/hapus_supplier/' . $su->kode_supplier ?> ">Hapus</a>
+                <button class="btn btn-secondary mt-1" type="button" data-dismiss="modal">Batal</button>
             </div>
         </div>
     </div>
+</div>
 <!-- modal hapus end -->
 
 <!-- script -->
 <script>
-
-    CKEDITOR.replace('deskripsi');
+    // CKEDITOR.replace('deskripsi');
 
     // script validasi hanya angka
     function hanyaAngka(event) {
@@ -264,13 +257,17 @@
         return true;
     }
 
-    // script modal dinamis detail
-    function detail(id, nama, no_hp, address, deskripsi) {
-        document.getElementById("kode-detail").innerHTML = id;
-        document.getElementById("nama-detail").innerHTML = nama;
-        document.getElementById("notelp-detail").innerHTML = no_hp;
-        document.getElementById("address-detail").innerHTML = address;
-        document.getElementById("deskripsi-detail").innerHTML = deskripsi;
+
+    // Membuat fungsi untuk klik tombol preview pada preview supplier
+    var buttonPreview = document.getElementsByClassName('previewSupplier');
+    for (var i = 0; i < buttonPreview.length; i++) {
+        buttonPreview[i].onclick = function() {
+            document.getElementById("kode-detail").innerHTML = $(this).data('kode');
+            document.getElementById("nama-detail").innerHTML = $(this).data('nama');
+            document.getElementById("notelp-detail").innerHTML = $(this).data('notelp');
+            document.getElementById("address-detail").innerHTML = $(this).data('alamat');
+            document.getElementById("deskripsi-detail").innerHTML = $(this).data('deskripsi');
+        }
     }
 
     //script modal dinamis edit
@@ -279,12 +276,11 @@
         $('#nama-edit').val(nama);
         $('#notelp-edit').val(no_hp);
         $('#address-edit').val(address);
-        
+
     }
 
     //script hapus modal
     function hapus(id) {
         $('#kode-hapus').val(id);
     }
-
 </script>
