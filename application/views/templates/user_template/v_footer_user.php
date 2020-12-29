@@ -134,6 +134,16 @@
             // add them and output it
         });
     </script>
+    <script>
+        // Menghitung total berat qty yg dibeli lurr
+	$('#formMu').click(function(){
+		var bil1 = parseInt($('#ratrat').val())
+		var bil2 = parseInt($('#jumlah_beli').val())	
+
+		var hasil = bil1 * bil2
+		$('#berat_input').attr('value', hasil);
+	})
+    </script>
 
     </body>
 

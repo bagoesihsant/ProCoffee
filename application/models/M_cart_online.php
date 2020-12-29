@@ -19,13 +19,26 @@ class M_cart_online extends CI_Model
         $querys = $this->db->query($query)->result_array();
         return $querys;
     }
+    public function count_cart($user_param = null)
+    {
+        $user_login = $this->session->userdata('id_user');
+        $query = "SELECT `tbl_barang`.*, `tbl_barang`.`nama` AS `nama_barang`, `tbl_cart_online`.* 
+        FROM `tbl_barang` JOIN `tbl_cart_online`
+        ON `tbl_barang`.`kode_barang` = `tbl_cart_online`.`kode_barang`
+        WHERE `kode_usero` = '$user_login'";
+        if ($user_param != null) {
+            $this->db->where('kode_usero', $user_param);
+        }
+        $querys = $this->db->query($query)->num_rows();
+        return $querys;
+    }
 
     public function add_cart($post)
     {
         $params = [
             'kode_usero' => $this->session->userdata('id_user'),
             'kode_barang' => $post['kode_barang_input'],
-            'qty_dibeli' => 1,
+            'qty_dibeli' => $post['jumlah_beli'],
             'total_berat' => $post['berat_input'],
             'tgl_transaksi' => date('Y-m-d H:i:s')
         ];
@@ -35,7 +48,7 @@ class M_cart_online extends CI_Model
     public function delete($id)
     {
         $user_params = $this->session->userdata('id_user');
-        $this->db->where('kode_barang', $id);
+        $this->db->where('kode_cart', $id);
         $this->db->where('kode_usero', $user_params);
         $this->db->delete('tbl_cart_online');
     }
