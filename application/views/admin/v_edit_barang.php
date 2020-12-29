@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <!-- Data Table -->
 
-                    <form method="post" action="<?= base_url('barang/simpan_edit_barang') ?>">
+                    <form method="post" action="<?= base_url('barang/simpan_edit_barang') ?>" enctype="multipart/form-data">
                         <?php foreach ($edit as $e) { ?>
 
                             <div class="form-group">
