@@ -13,7 +13,7 @@
                 </div>
                 <div id="basket" class="col-lg">
                     <div class="box">
-                        <form method="post" id="formku">
+                        <form method="post" id="formku" action="#">
                             <h1>Shopping cart</h1>
                             <p class="text-muted">You currently have 3 item(s) in your cart.</p>
                             <?= $this->session->flashdata('message_cart_del'); ?>
@@ -85,18 +85,17 @@
 									<select name="opsi_ongkir" id="opsi_ongkir" class="form-control mb-3 pb-1" onchange="get_harga_ongkir()">
 									</select>
 								
-								<?php foreach ($row as $op) : 
+								<?php foreach ($cart as $op) : 
 									$cs = $this->session->userdata('customerid');?>
                                     <!-- Inputan untuk kedalam detail transaksi(checkout) -->
-                                        <input type="hidden" name="id_brg_tmp[]" value="<?= $op['id_item']; ?>">
-                                        <input type="hidden" name="harga_brg_tmp[]" value="<?= $op['price']; ?>">
+                                        <input type="hidden" name="id_brg_tmp[]" value="<?= $op['kode_cart']; ?>">
+                                        <input type="hidden" name="harga_brg_tmp[]" value="<?= $op['harga']; ?>">
                                         <input type="hidden" name="qty_brg_tmp[]" value="<?= $op['qty_dibeli']; ?>">
                                     <!-- Akhir inputan -->
 
                                     <!-- Inputan hidden -->
-                                        <input type="hidden" value="<?=$op['id_cart'];?>" name="cartid" placeholder="id cart">
                                         <input type="hidden" value="<?=$cs;?>" name="idcustomer" placeholder="id customer">
-                                        <input type="hidden" value="<?=$op['id_item'];?>" name="iditem"  placeholder="id item">
+                                        <input type="hidden" value="<?=$op['kode_cart'];?>" name="iditem"  placeholder="id item">
                                         <input type="hidden" value="<?=$op['qty_dibeli'];?>" name="qtybeli" id="qtybeli" placeholder="qty">
                                         <input type="hidden" value="<?=$op['total_berat'];?>" name="berat" id="berat" class="berat">
                                         <input type="hidden" value="<?=$op['tgl_transaksi'];?>" name="tglbeli" placeholder="tgl">
