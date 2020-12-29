@@ -16,7 +16,7 @@ class C_stockin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Stock In';
         $data['row'] = $this->M_stockin->get_data_in()->result();
-
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_stock_in', $data);
@@ -35,21 +35,21 @@ class C_stockin extends CI_Controller
         $this->load->view('admin/v_stock_inform', $data);
         $this->load->view('templates/admin/footer');
     }
-    // public function stock_in_add()
-    // {
-    //     $item = $this->M_barang->getAllItems()->result();
+    public function stock_in_add()
+    {
+        $item = $this->M_barang->getAllItems()->result();
 
-    //     $supplier = $this->M_supplier->getAllSupplier()->result();
+        $supplier = $this->M_supplier->getAllSupplier()->result();
 
-    //     $data = [
-    //         'item' => $item,
-    //         'supplier' => $supplier
-    //     ];
-    //     $this->load->view('templates/admin/header');
-    //     $this->load->view('templates/admin/sidebar');
-    //     $this->load->view('admin/v_stock_inform', $data);
-    //     $this->load->view('templates/admin/footer');
-    // }
+        $data = [
+            'item' => $item,
+            'supplier' => $supplier
+        ];
+        $this->load->view('templates/admin/header');
+        $this->load->view('templates/admin/sidebar');
+        $this->load->view('admin/v_stock_inform', $data);
+        $this->load->view('templates/admin/footer');
+    }
 
     //untuk tampilan awal stock in
     public function stock_in_data()
@@ -57,7 +57,7 @@ class C_stockin extends CI_Controller
         $data['title'] = 'Stock In Form';
         $data['row'] = $this->M_stock->get_stock_in()->result();
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        
+
         $this->load->view('templates/admin/header', $data);
         $this->load->view('templates/admin/sidebar', $data);
         $this->load->view('admin/v_stock_inform', $data);

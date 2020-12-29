@@ -32,7 +32,7 @@
                 <!-- Card Header -->
                 <div class="card-header">
                     <div class="float-right">
-                        <a href="<?= site_url('kasir/datastockin') ?>" class="btn btn-warning btn-flat">
+                        <a href="<?= site_url('kasir/datastockin'); ?>" class="btn btn-warning btn-flat">
                             <i class="fa fa-arrow-circle-left"></i> Back
                         </a>
                     </div>
