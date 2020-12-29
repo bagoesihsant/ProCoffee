@@ -8,10 +8,12 @@ class C_landingpage extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_barang', 'mbarang');
+        $this->load->model('M_usero');
     }
 
     public function index()
     {
+        $data['jumlah_carto'] = $this->M_usero->count_cart();
         $data['limit'] = $this->mbarang->LimitRandom()->result();
         $data['title'] = "Pro Coffee";
         $this->load->view('templates/user_template/v_header_user', $data);

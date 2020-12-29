@@ -17,7 +17,14 @@ $(document).ready(function () {
 		$('#modal-item').modal('hide');
 	})
 });
+function detail(id, nama, detail, qty, date) {
+	$('#barcode-detail').val(id);
+	$('#nama-detail').val(nama);
+	$('#pembelian-detail').val(detail);
+	$('#qty-detail').val(qty);
+	$('#date-detail').val(date);
 
+};
 // penutup javascript biasa
 
 // jquery

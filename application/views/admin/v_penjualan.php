@@ -66,7 +66,7 @@
                                     <div class="col-lg-3 col-md-12">
                                         <div class="form-group">
                                             <label for="tgl_transaksi">Tanggal Transaksi</label>
-                                            <input type="text" name="tgl_transaksi" id="tgl_transaksi" value="<?= date('d/m/Y'); ?>" class="form-control" readonly>
+                                            <input type="text" name="tgl_transaksi" id="tgl_transaksi" value="<?= date('Y-m-d'); ?>" class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-12">
@@ -246,7 +246,7 @@
                                             <h4 class="text-dark mx-auto my-auto">Total Belanja :</h4>
                                         </div>
                                         <div class="col-7 d-flex">
-                                            <h4 class="text-dark mx-auto total-belanja-transaksi my-auto">Rp. 350.000,00</h4>
+                                            <h4 class="text-dark mx-auto total-belanja-transaksi my-auto" data-total="">Rp. 350.000,00</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -270,7 +270,7 @@
                                             <h4 class="text-dark mx-auto my-auto">Grand Total :</h4>
                                         </div>
                                         <div class="col-7 d-flex">
-                                            <h4 class="text-dark mx-auto grand-total-belanja-transaksi my-auto">Rp. 335.000,00</h4>
+                                            <h4 class="text-dark mx-auto grand-total-belanja-transaksi my-auto" data-total="">Rp. 335.000,00</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -295,7 +295,7 @@
                                             <h4 class="text-dark mr-auto my-auto">Kembalian :</h4>
                                         </div>
                                         <div class="col-7 d-flex">
-                                            <h4 class="text-dark mx-auto kembalian-belanja-transaksi my-auto">Rp. 335.000,00</h4>
+                                            <h4 class="text-dark mx-auto kembalian-belanja-transaksi my-auto" data-kembalian="">Rp. 335.000,00</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -304,12 +304,12 @@
                             <!-- 4th Row (Tombol Proses Belanja, Tombol Batalkan Belanja) -->
                             <div class="row">
                                 <div class="col-12 my-1">
-                                    <button class="btn btn-success w-100">
+                                    <button class="btn btn-success w-100" id="proses_transaksi">
                                         <span class="mr-3">Proses Transaksi</span><i class="fas fa-fw fa-paper-plane"></i>
                                     </button>
                                 </div>
                                 <div class="col-12 my-1">
-                                    <button class="btn btn-danger w-100">
+                                    <button class="btn btn-danger w-100" id="batal_transaksi">
                                         <span class="mr-2">Batalkan Transaksi</span><i class="fas fa-fw fa-ban"></i>
                                     </button>
                                 </div>

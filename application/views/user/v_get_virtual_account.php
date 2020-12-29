@@ -6,8 +6,8 @@
                     <!-- breadcrumb-->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li aria-current="page" class="breadcrumb-item active">History pembelian</li>
+                            <li class="breadcrumb-item"><a href="<?= base_url('User/LandingPage'); ?>">Home</a></li>
+                            <li aria-current="page" class="breadcrumb-item active">Ambil Virtual Account</li>
                         </ol>
                     </nav>
                 </div>
@@ -18,7 +18,7 @@
                             <form id="payment-form" method="post" action="<?= site_url() ?>/Users/C_history_pembelian/finish">
                                 <input type="hidden" name="result_type" id="result-type" value="">
                                 <input type="hidden" name="result_data" id="result-data" value="">
-                                <input type="text" name="id_transaksi" id="id_transaksi" value="<?= $row->kode_transaksi; ?>">
+                                <input type="hidden" name="id_transaksi" id="id_transaksi" value="<?= $row->kode_transaksi; ?>">
                                 <div class="row">
                                 </div>
                                 <!-- /.row-->

@@ -67,37 +67,25 @@
                                     <td>
                                         <?= $pro->barcode ?>
                                         <br>
-                                        <a href="<?= base_url("barang/generate_barang/") .$pro->kode_barang ?>" 
-                                            class="btn btn-sm btn-outline-secondary">
+                                        <a href="<?= base_url("barang/generate_barang/") . $pro->kode_barang ?>" class="btn btn-sm btn-outline-secondary">
                                             Generate
                                             <i class="fas fa-barcode pl-2"></i>
                                             <i class="fas fa-qrcode pl-2"></i>
                                         </a>
-                                        
+
                                     </td>
                                     <td><?= $pro->nama_barang ?></td>
                                     <td><?= $pro->harga ?></td>
-                                    <td class="text-center"><img src="<?= base_url('assets/items_img/') .$pro->gambar?>" alt="Gambar tidak ditemukan" width="100"></td>
+                                    <td class="text-center"><img src="<?= base_url('assets/items_img/') . $pro->gambar ?>" alt="Gambar tidak ditemukan" width="100"></td>
                                     <td class="d-flex justify-content-center">
-                                        <a href="" class="btn btn-primary btn-xs mx-auto" data-toggle="modal" data-target="#detailModal" onClick="detail(
-                                            '<?= $pro->kode_barang ?>',
-                                            '<?= $pro->nama_barang ?>',
-                                            '<?= $pro->nama_kategori ?>',
-                                            '<?= $pro->nama_satuan ?>',
-                                            '<?= $pro->harga ?>',
-                                            '<?= $pro->berat ?>',
-                                            '<?= $pro->stok ?>',
-                                            '<?= $pro->deskripsi ?>',
-                                            '<?= $pro->gambar ?>'
-                                        )">
+                                        <a href="" class="btn btn-primary btn-xs mx-auto previewBarang" data-toggle="modal" data-target="#detailModal" data-id="<?= $pro->kode_barang; ?>" data-nama="<?= $pro->nama_barang; ?>" data-kategori="<?= $pro->nama_kategori; ?>" data-unit="<?= $pro->nama_satuan; ?>" data-harga="<?= $pro->harga; ?>" data-berat="<?= $pro->berat; ?>" data-stok="<?= $pro->stok; ?>" data-deskripsi="<?= $pro->deskripsi ?>" data-gambar="<?= $pro->gambar; ?>">
                                             <i class="fas fa-fw fa-eye"></i>
                                         </a>
-                                        <a href="#!" onclick="return deleteConfirm('<?php echo base_url('barang/hapus_items/') .$pro->kode_barang ?>')"
-                                            class="btn btn-danger btn-xs mx-auto">
+                                        <a href="#!" onclick="return deleteConfirm('<?php echo base_url('barang/hapus_items/') . $pro->kode_barang ?>')" class="btn btn-danger btn-xs mx-auto">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
 
-                                        <a href="<?= base_url("barang/edit_barang/") .$pro->kode_barang ?>" class="btn btn-xs btn-warning">
+                                        <a href="<?= base_url("barang/edit_barang/") . $pro->kode_barang ?>" class="btn btn-xs btn-warning">
                                             <i class="fas fa-fw fa-edit text-white"></i>
                                         </a>
 
@@ -327,20 +315,20 @@
 
 <!-- modal hapus -->
 <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <input type="text" id="kode-hapus" hidden>
-                <div class="modal-body text-center">
-                    <i class="fa fa-exclamation-triangle text-danger fa-7x mb-3 mt-2"></i> <br>
-                    <h3 class="text-center font-weight-bold">Hapus Data</h3>
-                    <h5 class="font-weight-light">Apa anda yakin ingin menghapus data ini?</h5>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <input type="text" id="kode-hapus" hidden>
+            <div class="modal-body text-center">
+                <i class="fa fa-exclamation-triangle text-danger fa-7x mb-3 mt-2"></i> <br>
+                <h3 class="text-center font-weight-bold">Hapus Data</h3>
+                <h5 class="font-weight-light">Apa anda yakin ingin menghapus data ini?</h5>
 
-                    <a class="btn btn-danger mr-1" id="btn-delete">Hapus</a>
-                    <button class="btn btn-secondary mt-1" type="button" data-dismiss="modal">Batal</button>
-                </div>
+                <a class="btn btn-danger mr-1" id="btn-delete">Hapus</a>
+                <button class="btn btn-secondary mt-1" type="button" data-dismiss="modal">Batal</button>
             </div>
         </div>
     </div>
+</div>
 <!-- modal hapus end -->
 
 <script>
@@ -352,18 +340,20 @@
         return true;
     }
 
-    //function modal detail
-    function detail(kode, nama, kategori, unit, harga, berat, stok, deskripsi, gambar) {
-        
-        document.getElementById("kode-detail").innerHTML = kode;
-        document.getElementById("nama-detail").innerHTML = nama;
-        document.getElementById("kategori-detail").innerHTML = kategori;
-        document.getElementById("unit-detail").innerHTML = unit;
-        document.getElementById("harga-detail").innerHTML = harga;
-        document.getElementById("berat-detail").innerHTML = berat;
-        document.getElementById("stok-detail").innerHTML = stok;
-        document.getElementById("deskripsi-detail").innerHTML = deskripsi;
-        document.getElementById("gambar-detail").src = '<?= base_url('assets/items_img/') ?>' + gambar;
+    // Membuat fungsi ketika tombol preview pada data table ditekan
+    var buttonPreview = document.getElementsByClassName('previewBarang');
+    for (var i = 0; i < buttonPreview.length; i++) {
+        buttonPreview[i].onclick = function() {
+            document.getElementById("kode-detail").innerHTML = $(this).data('id');
+            document.getElementById("nama-detail").innerHTML = $(this).data('nama');
+            document.getElementById("kategori-detail").innerHTML = $(this).data('kategori');
+            document.getElementById("unit-detail").innerHTML = $(this).data('unit');
+            document.getElementById("harga-detail").innerHTML = $(this).data('harga');
+            document.getElementById("berat-detail").innerHTML = $(this).data('berat');
+            document.getElementById("stok-detail").innerHTML = $(this).data('stok');
+            document.getElementById("deskripsi-detail").innerHTML = $(this).data('deskripsi');
+            document.getElementById("gambar-detail").src = '<?= base_url('assets/items_img/') ?>' + $(this).data('gambar');
+        }
     }
 
     // function modal edit
@@ -388,8 +378,8 @@
         // x.appendChild(image);
     }
 
-    function deleteConfirm(url){
-  $('#btn-delete').attr('href', url);
-  $('#hapusModal').modal();
-  }
+    function deleteConfirm(url) {
+        $('#btn-delete').attr('href', url);
+        $('#hapusModal').modal();
+    }
 </script>

@@ -6,7 +6,7 @@
                     <!-- breadcrumb-->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<?= base_url('User/LandingPage'); ?>">Home</a></li>
                             <li aria-current="page" class="breadcrumb-item active">Shopping cart</li>
                         </ol>
                     </nav>
@@ -113,7 +113,7 @@
                                 </div>
                                 <!-- /.table-responsive-->
                                 <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
-                                    <div class="left"><a href="<?= base_url('User/LandingPage') ?>" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Belanja Lagi</a></div>
+                                    <div class="left"><a href="<?= base_url('User/List') ?>" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Belanja Lagi</a></div>
                                     <div class="right">
                                         <button type="submit" name="transak" class="btn btn-success">Lanjut Beli Bossku</button>
                                         <button id="pay-button" class="btn btn-primary">Proses checkout <i class="fa fa-chevron-right"></i></button>

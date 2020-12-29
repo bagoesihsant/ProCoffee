@@ -352,7 +352,7 @@ class C_barang extends CI_Controller
                             'toastr.success("Data berhasil di update")'
                         );
                         redirect('barang');
-                    }else{
+                    } else {
                         //alert jika update database gagal
                         $this->session->set_flashdata(
                             'pesan_menu',
@@ -397,7 +397,7 @@ class C_barang extends CI_Controller
     }
 
     public function edit_barang($id)
-    {   
+    {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Edit Barang';
         $data['edit'] = $this->barang->get_where($id)->result();

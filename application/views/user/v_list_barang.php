@@ -24,9 +24,9 @@
                             <ul class="nav nav-pills flex-column category-menu">
                                 <ul class="list-unstyled">
                                     <li><a href="<?= base_url('User/LandingPage') ?>" class="nav-link">Halaman Utama</a></li>
-                                    <li><a href="category.html" class="nav-link">Profil Saya</a></li>
-                                    <li><a href="category.html" class="nav-link">Keranjang</a></li>
-                                    <li><a href="category.html" class="nav-link">History transaksi</a></li>
+                                    <li><a href="<?= base_url('User/Profile'); ?>" class="nav-link">Profil Saya</a></li>
+                                    <li><a href="<?= base_url('User/Cart'); ?>" class="nav-link">Keranjang</a></li>
+                                    <li><a href="<?= base_url('User/History'); ?>" class="nav-link">History transaksi</a></li>
                                 </ul>
                                 </li>
                             </ul>
@@ -39,6 +39,7 @@
                     <div class="box info-bar">
                         <h3 class="text-uppercase text-center">Daftar Produk Dari Pro Coffee</h3>
                     </div>
+                    <?= $this->session->flashdata('message_cart_list'); ?>
                     <div class="row products">
                         <!-- loppingnya dari sini lung -->
                         <?php foreach ($PL as $p => $data) : ?>
@@ -47,7 +48,7 @@
                                     <div class="flip-container">
                                         <div class="flipper">
 
-                                            <div class="front"><a href="detail.html"><img style="width: 250px; height:340px;" src="<?= base_url('assets/items_img/') . $data->gambar ?>" alt="" class="img-fluid"></a></div>
+                                            <div class="front"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>"><img style="width: 250px; height:340px;" src="<?= base_url('assets/items_img/') . $data->gambar ?>" alt="" class="img-fluid"></a></div>
                                             <!-- <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1_3.jpg" alt="" class="img-fluid"></a></div> -->
                                         </div>
 
@@ -67,13 +68,33 @@
                                             <!-- Penutup Ini harga Barang -->
                                         </p>
                                         <p class="buttons">
-                                            <!-- pembuka tombol langsung tambah barang ke chart -->
-                                            <a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a>
-                                            <!-- Penutup tombol langsung tambah barang ke chart -->
+                                            <form action="<?= base_url('Users/C_barang_user/process'); ?>" method="post">
+                                                <input type="hidden" name="kode_barang_input" value="<?= $data->kode_barang; ?>">
+                                                <input type="hidden" name="nama_barang" value="<?= $data->nama_barang; ?>">
+                                                <input type="hidden" name="berat_input" value="<?= $data->berat; ?>">
+                                                <!-- pembuka tombol langsung tambah barang ke chart -->
+                                                <!-- <a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a> -->
+                                                <!-- Penutup tombol langsung tambah barang ke chart -->
 
-                                            <!-- pembuka tombol langsung ke detail barang-->
-                                            <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                            <!-- Penutup tombol langsung ke detail barang-->
+                                                <!-- pembuka tombol langsung ke detail barang-->
+                                                <?php $sesion_login = $this->session->userdata('email');
+                                                if ($sesion_login) :
+                                                ?>
+                                                    <?php
+                                                    $kose_user_beli = $this->session->userdata('id_user');
+                                                    $id_item = $data->kode_barang;
+                                                    $query = "SELECT * FROM tbl_cart_online WHERE kode_barang = '$id_item' AND kode_usero = '$kose_user_beli'";
+                                                    $qr = $this->db->query($query);
+                                                    if ($qr->num_rows() > 0) : ?>
+                                                        <p class="text-center buttons"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a><a href="<?= base_url('User/Cart'); ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Lihat Cart</a></p>
+                                                    <?php else : ?>
+                                                        <p class="text-center buttons"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a><button type="submit" name="tambah_cart_list" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</button></p>
+                                                    <?php endif; ?>
+                                                <?php else : ?>
+                                                    <p class="text-center buttons"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a><a href="<?= base_url('User/Register'); ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Login dahulu</a></p>
+                                                <?php endif; ?>
+                                                <!-- Penutup tombol langsung ke detail barang-->
+                                            </form>
                                         </p>
                                     </div>
                                     <!-- /.text-->

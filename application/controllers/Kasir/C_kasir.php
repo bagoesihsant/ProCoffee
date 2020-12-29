@@ -151,9 +151,16 @@ class C_kasir extends CI_Controller
             'kode_barang' => $kode_barang
         ];
 
+        $whereBarang = [
+            'kode_barang' => $kode_barang
+        ];
+
         // Membuat variabel message untuk diterima oleh JavaScript melalui ajax
         $message['error_status'] = "";
         $message['error_message'] = "";
+
+        // Membuat variabel untuk memeriksa stok barang yang ada di tabel barang
+        $rowBarang = $this->kasir->getOneBarang($whereBarang);
 
         // Melakukan pemeriksaan
         $daftarCart = $this->kasir->daftarCart($where)->num_rows();
@@ -163,68 +170,87 @@ class C_kasir extends CI_Controller
             // Jika ada data yang ditemukan
             // Melakukan penambahan jumlah stok pada barang yang ditemukan
 
-            // Mengambil data terakhir
-            $detailCart = $this->kasir->daftarCart($where)->row_array();
+            // Memeriksa apakah ada data yang ditemukan
+            if ($rowBarang->num_rows() > 0) {
+                // Jika ada data yang ditemukan
+                // Mengambil data barang
+                $detailRowBarang = $rowBarang->row_array();
 
-            // Menambahkan stok barang tersebut
-            $value = [
-                'qty' => $detailCart['qty'] + 1,
-                'total' => (($detailCart['harga'] * ($detailCart['qty'] + 1) - $detailCart['discount']))
-            ];
+                // Memeriksa stok barang
+                if ($detailRowBarang['stok'] > 0) {
+                    // Jika stok lebih dari 0 maka tambahkan ke cart
+                    // Mengambil data terakhir
+                    $detailCart = $this->kasir->daftarCart($where)->row_array();
 
-            // Melakukan update 
-            $result = $this->kasir->ubahStokCart($value, $where);
-
-            // Memeriksa apakah stok berhasil di update atau tidak
-            if ($result > 0) {
-                // Jika data berhasil diubah// Jika data berhasil ditambahkan
-
-                // Membuat variabel data khusus
-                $barang = [
-                    'kode_barang' => $kode_barang
-                ];
-
-                // Mengambil data barang dari tabel barang
-                $dataBarang = $this->kasir->getOneBarang($barang);
-
-                // memeriksa apakah ada data barang yang ditemukan atau tidak
-                if ($dataBarang->num_rows() > 0) {
-                    // Jika ada data barang yang ditemukan
-
-                    // mengambil barang
-                    $getBarang = $dataBarang->row_array();
-
-                    // Membuat variabel data
-                    $qtyBarang = $getBarang['stok'];
-
-                    $ubahStokBarang = [
-                        'stok' => ($qtyBarang - 1)
+                    // Menambahkan stok barang tersebut
+                    $value = [
+                        'qty' => $detailCart['qty'] + 1,
+                        'total' => (($detailCart['harga'] * ($detailCart['qty'] + 1) - $detailCart['discount']))
                     ];
 
-                    // Menjalankan perubahan
-                    $resultStok = $this->kasir->updateStokBarang($ubahStokBarang, $barang);
+                    // Melakukan update 
+                    $result = $this->kasir->ubahStokCart($value, $where);
 
-                    // Memeriksa apakah stok berhasil dikurangi
-                    if ($resultStok > 0) {
-                        // Jika stok berhasil dikurangi
-                        $message['error_status'] = false;
-                        $message['error_message'] = "Data barang berhasil ditambahkan";
+                    // Memeriksa apakah stok berhasil di update atau tidak
+                    if ($result > 0) {
+                        // Jika data berhasil diubah// Jika data berhasil ditambahkan
+
+                        // Membuat variabel data khusus
+                        $barang = [
+                            'kode_barang' => $kode_barang
+                        ];
+
+                        // Mengambil data barang dari tabel barang
+                        $dataBarang = $this->kasir->getOneBarang($barang);
+
+                        // memeriksa apakah ada data barang yang ditemukan atau tidak
+                        if ($dataBarang->num_rows() > 0) {
+                            // Jika ada data barang yang ditemukan
+
+                            // mengambil barang
+                            $getBarang = $dataBarang->row_array();
+
+                            // Membuat variabel data
+                            $qtyBarang = $getBarang['stok'];
+
+                            $ubahStokBarang = [
+                                'stok' => ($qtyBarang - 1)
+                            ];
+
+                            // Menjalankan perubahan
+                            $resultStok = $this->kasir->updateStokBarang($ubahStokBarang, $barang);
+
+                            // Memeriksa apakah stok berhasil dikurangi
+                            if ($resultStok > 0) {
+                                // Jika stok berhasil dikurangi
+                                $message['error_status'] = false;
+                                $message['error_message'] = "Data barang berhasil ditambahkan";
+                            } else {
+                                // Jika stok gagal dikurangi
+                                $message['error_status'] = true;
+                                $message['error_message'] = "Data barang gagal ditambahkan";
+                            }
+                        } else {
+                            // Jika tidak ada data barang yand ditemukan
+
+                            // Jika data gagal ditambahkan
+                            $message['error_status'] = true;
+                            $message['error_message'] = "Data barang gagal ditambahkan";
+                        }
                     } else {
-                        // Jika stok gagal dikurangi
+                        // Jika data gagal diubah
                         $message['error_status'] = true;
-                        $message['error_message'] = "Data barang gagal ditambahkan";
+                        $message['error_message'] = "Data stok gagal diubah";
                     }
                 } else {
-                    // Jika tidak ada data barang yand ditemukan
-
-                    // Jika data gagal ditambahkan
+                    // Jika stok kurang dari sama dengan 0
                     $message['error_status'] = true;
-                    $message['error_message'] = "Data barang gagal ditambahkan";
+                    $message['error_message'] = "Stok barang habis";
                 }
             } else {
-                // Jika data gagal diubah
+                // Jika tidak ada data yang ditemukan
                 $message['error_status'] = true;
-                $message['error_message'] = "Data stok gagal diubah";
+                $message['error_message'] = "Data barang tidak terdaftar";
             }
         } else {
             // Jika tidak ada yang ditemukan
@@ -265,20 +291,28 @@ class C_kasir extends CI_Controller
                     // Membuat variabel data
                     $qtyBarang = $getBarang['stok'];
 
-                    $ubahStokBarang = [
-                        'stok' => ($qtyBarang - 1)
-                    ];
+                    // Memeriksa jumlah stok terlebih dahulu
+                    if ($qtyBarang > 0) {
+                        // Jika stok lebih dari 0
+                        $ubahStokBarang = [
+                            'stok' => ($qtyBarang - 1)
+                        ];
 
-                    // Menjalankan perubahan
-                    $resultStok = $this->kasir->updateStokBarang($ubahStokBarang, $barang);
+                        // Menjalankan perubahan
+                        $resultStok = $this->kasir->updateStokBarang($ubahStokBarang, $barang);
 
-                    // Memeriksa apakah stok berhasil dikurangi
-                    if ($resultStok > 0) {
-                        // Jika stok berhasil dikurangi
-                        $message['error_status'] = false;
-                        $message['error_message'] = "Data barang berhasil ditambahkan";
+                        // Memeriksa apakah stok berhasil dikurangi
+                        if ($resultStok > 0) {
+                            // Jika stok berhasil dikurangi
+                            $message['error_status'] = false;
+                            $message['error_message'] = "Data barang berhasil ditambahkan";
+                        } else {
+                            // Jika stok gagal dikurangi
+                            $message['error_status'] = true;
+                            $message['error_message'] = "Data barang gagal ditambahkan";
+                        }
                     } else {
-                        // Jika stok gagal dikurangi
+                        // Jika stok kurang dari sama dengan 0
                         $message['error_status'] = true;
                         $message['error_message'] = "Data barang gagal ditambahkan";
                     }
@@ -454,6 +488,113 @@ class C_kasir extends CI_Controller
             // Jika tidak ada yang ditemukan
             $message['error_status'] = true;
             $message['error_message'] = "Tidak ada barang yang ditemukan";
+        }
+
+        echo json_encode($message);
+    }
+
+    public function prosesTransaksi()
+    {
+        // Berfungsi untuk memproses transaksi semua barang yang berada di keranjang yang ditambahkan oleh kasir N
+        // Dimana N adalah user (kasir) yang sedang login
+
+        // Mengambil data yang dikirimkan melalui AJAX
+        $data = [
+            'kode_transaksi' => $this->input->post('kode_transaksi'),
+            'invoice' => date('Ymdhis'),
+            'kode_pembeli' => $this->input->post('kode_pembeli'),
+            'kode_kasir' => $this->session->userdata('kode_user'),
+            'total_price' => $this->input->post('total_harga'),
+            'discount' => $this->input->post('diskon'),
+            'final_price' => $this->input->post('grand_total'),
+            'cash' => $this->input->post('cash'),
+            'remaining' => $this->input->post('remaining'),
+            'note' => 'Transaksi Berhasil',
+            'date' => $this->input->post('tgl_transaksi'),
+            'created' => date('Y-m-d H:i:s')
+        ];
+
+        // Mengambil array barang yang dikirimkan melalui ajax
+        $arrayBarang = [];
+        $arrayBarang = $this->input->post('array_barang');
+        // Mengambil array pembelian barang sesuai dengan ajax
+        $arrayQtyBarang = [];
+        $arrayQtyBarang = $this->input->post('array_qty');
+
+        // Membuat pesan error
+        $message['error_status'] = "";
+        $message['error_message'] = "";
+
+        // Menginputkan data transaksi kedalam tabel transaksi offline
+        $resultTransaksi = $this->kasir->tambahTransaksi($data);
+
+        // Memeriksa hasil transaksi
+        if ($resultTransaksi > 0) {
+            // Jika transaksi berhasil
+
+            // Melakukan insert data barang kedalam detail barang
+            // Melakukan looping untuk menambahkan ke tabel detail transaksi
+            for ($i = 0; $i < count($arrayBarang); $i++) {
+                // Mengambil data barang
+                $rowBarang = $this->kasir->getOneBarang(['kode_barang' => $arrayBarang[$i]]);
+
+                // Memeriksa apakah ada data yang ditemukan atau tidak
+                if ($rowBarang->num_rows() > 0) {
+                    // Jika ada data yang ditemukan
+
+                    $detailBarang = $rowBarang->row_array();
+
+                    // Membuat array data
+                    $dataBarangInsert = [
+                        'kode_transaksi' => $data['kode_transaksi'],
+                        'kode_barang' => $arrayBarang[$i],
+                        'price' => $detailBarang['harga'],
+                        'qty' => $arrayQtyBarang[$i],
+                        'discount_item' => 0,
+                        'total' => ($arrayQtyBarang[$i] * $detailBarang['harga'])
+                    ];
+
+                    // Melakukan proses tambah data
+                    $resultTambahDetail = $this->kasir->tambahDetail($dataBarangInsert);
+
+                    // Memeriksa apakah proses insert berhasil atau tidak
+                    if ($resultTambahDetail > 0) {
+                        // Jika proses insert berhasil
+
+                        // Membuat array untuk menghapus barang dalam keranjang setelah di proses
+                        $hapusCartDetail = [
+                            'kode_user' => $this->session->userdata('kode_user'),
+                            'kode_barang' => $arrayBarang[$i]
+                        ];
+
+                        // Menghapus data yang ada di keranjang
+                        $resultHapus = $this->kasir->hapusCartDetail($hapusCartDetail);
+
+                        // Memeriksa apakah penghapusan berhasil
+                        if ($resultHapus > 0) {
+                            // Jika penghapusan berhasil
+                            $message['error_status'] = false;
+                            $message['error_message'] = "Data berhasil ditambahkan";
+                        } else {
+                            // Jika penghapusan gagal
+                            $message['error_status'] = true;
+                            $message['error_message'] = "Data gagal ditambahkan";
+                        }
+                    } else {
+                        // Jika proses insert gagal
+                        $message['error_status'] = true;
+                        $message['error_message'] = "Data gagal ditambahkan";
+                    }
+                } else {
+                    // Jika tidak ada data yang ditemukan
+                    $message['error_status'] = true;
+                    $message['error_message'] = "Data gagal ditambahkan";
+                }
+            }
+        } else {
+            // Jika transaksi gagal
+            $message['error_status'] = true;
+            $message['error_message'] = "Data gagal ditambahkan";
         }
 
         echo json_encode($message);

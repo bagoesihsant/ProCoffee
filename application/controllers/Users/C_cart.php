@@ -14,10 +14,12 @@ class C_cart extends CI_Controller
         // penutupan load midtrans
         $this->load->model('M_barang', 'mbarang');
         $this->load->model('M_cart_online', 'mcart');
+        $this->load->model('M_usero');
     }
 
     public function index()
     {
+        $data['jumlah_carto'] = $this->M_usero->count_cart();
         $data['cart'] = $this->mcart->get_cart_data();
         $data['hitung_cart'] = $this->mcart->count_cart();
         $data['get_cart'] = $this->mcart->get_cart_all();

@@ -128,4 +128,25 @@ class M_kasir extends CI_Model
         $this->db->delete('tbl_cart_offline', $where);
         return $this->db->affected_rows();
     }
+
+    // Menambahkan data yang dikiriman melalui ajax kedalam tabel transaksi offline
+    public function tambahTransaksi($data)
+    {
+        $this->db->insert('transaksi_offline', $data);
+        return $this->db->affected_rows();
+    }
+
+    // Menambahkan data yang dikirimkan melalui ajax kedalam tabel cart
+    public function tambahDetail($data)
+    {
+        $this->db->insert('dtl_transaksi_offline', $data);
+        return $this->db->affected_rows();
+    }
+
+    // Menghapus data cart yang terdaftar dengan kode_user dan kode_brang tersebut
+    public function hapusCartDetail($where)
+    {
+        $this->db->delete('tbl_cart_offline', $where);
+        return $this->db->affected_rows();
+    }
 }
