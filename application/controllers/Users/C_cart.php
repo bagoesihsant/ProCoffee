@@ -148,4 +148,58 @@ class C_cart extends CI_Controller
         var_dump($result);
         echo '</pre>';
     }
+    public function check_out()
+	{
+		$query = $this->db->query('SELECT * FROM transaksi_online');
+		$tabel = $query->num_rows();
+		$date = date('dm', time());
+		$id_p = "IDC" . $tabel . $date;
+
+		$user_params = $this->session->userdata('id_user');
+		$post = $this->input->post(null, TRUE);
+		if (isset($_POST['transak'])) {
+			$id = $this->input->post('id_brg_tmp');
+			$harga = $this->input->post('harga_brg_tmp');
+			$qty = $this->input->post('qty_brg_tmp');
+
+			$hitungData_dtl = $this->db->query("SELECT * FROM dtl_transaksi_online");
+			$hitung_dtl = $hitungData_dtl->num_rows();
+
+			$number_id_brg = count($id);
+			$number_harga = count($harga);
+			$jml_beli = 0;
+
+            $params =
+            [
+                'kode_transaksi' => $id_p,
+                'kode_usero'  => $user_params,
+                'order_id' => 0,
+                'alamat' => $post['alamat'],
+                'tgl_kirim' => 0,
+                'total_harga' => $post['total_bayar'],
+                'tipe_pembayaran' => 0,
+                'waktu_transaksi' => date('Y-m-d H:i:s'),
+                'bank' => 0,
+                'virtual_akun' => 0,
+                'pdf_url' => 0,
+                'status_code' => 0
+            ];
+
+            $this->db->insert('transaksi_online', $params);
+
+			if ($number_id_brg >= 1 && $number_harga >= 1) {
+				for ($i = 0; $i <= $number_id_brg; $i++) {
+					$hitung_dtl++;
+					if (isset($harga[$i]) != '' && isset($qty[$i]) != '') {
+						$this->db->query("INSERT INTO dtl_transaksi_online VALUES('','$id_p', '$id[$i]','$hitung_dtl', '$harga[$i]','$qty[$i]', '0', '$jml_beli')");
+					}
+				}
+            }
+            $this->db->delete('tbl_cart_online', array('kode_usero' => $user_params));
+			if ($this->db->affected_rows() > 0) {
+				echo "<script>alert('Sukses');</script>";
+			}
+		}
+		echo "<script>window.location='" . site_url('User/LandingPage') . "';</script>";
+	}
 }

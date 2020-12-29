@@ -13,7 +13,7 @@
                 </div>
                 <div id="basket" class="col-lg">
                     <div class="box">
-                        <form method="post" id="formku" action="#">
+                        <form method="post" id="formku" enctype="multipart/form-data" action="<?=base_url('cart/check_out');?>">
                             <h1>Shopping cart</h1>
                             <p class="text-muted">You currently have 3 item(s) in your cart.</p>
                             <?= $this->session->flashdata('message_cart_del'); ?>
@@ -85,7 +85,7 @@
 								<?php foreach ($cart as $op) : 
 									$cs = $this->session->userdata('id_user');?>
                                     <!-- Inputan untuk kedalam detail transaksi(checkout) -->
-                                        <input type="hidden" name="id_brg_tmp[]" value="<?= $op['kode_cart']; ?>">
+                                        <input type="hidden" name="id_brg_tmp[]" value="<?= $op['kode_barang']; ?>">
                                         <input type="hidden" name="harga_brg_tmp[]" value="<?= $op['harga']; ?>">
                                         <input type="hidden" name="qty_brg_tmp[]" value="<?= $op['qty_dibeli']; ?>">
                                     <!-- Akhir inputan -->
@@ -108,7 +108,7 @@
                                     
                                     <div class="form-group">
                                         <label for="street">Alamat Kirim</label>
-                                        <textarea class="form-control" name="" id="" cols="" rows="8" placeholder="Mohon di isi dengan alamat yang benar"></textarea>
+                                        <textarea class="form-control" name="alamat" id="" cols="" rows="8" placeholder="Mohon di isi dengan alamat yang benar" required></textarea>
                                     </div>
                                 </div>
                                 <!-- /.table-responsive-->
