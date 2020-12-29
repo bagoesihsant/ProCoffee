@@ -66,7 +66,7 @@
                                     <div class="col-lg-3 col-md-12">
                                         <div class="form-group">
                                             <label for="tgl_transaksi">Tanggal Transaksi</label>
-                                            <input type="text" name="tgl_transaksi" id="tgl_transaksi" value="<?= date('d/m/Y'); ?>" class="form-control" readonly>
+                                            <input type="text" name="tgl_transaksi" id="tgl_transaksi" value="<?= date('Y-m-d'); ?>" class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-12">
@@ -304,12 +304,12 @@
                             <!-- 4th Row (Tombol Proses Belanja, Tombol Batalkan Belanja) -->
                             <div class="row">
                                 <div class="col-12 my-1">
-                                    <button class="btn btn-success w-100">
+                                    <button class="btn btn-success w-100" id="proses_transaksi">
                                         <span class="mr-3">Proses Transaksi</span><i class="fas fa-fw fa-paper-plane"></i>
                                     </button>
                                 </div>
                                 <div class="col-12 my-1">
-                                    <button class="btn btn-danger w-100">
+                                    <button class="btn btn-danger w-100" id="batal_transaksi">
                                         <span class="mr-2">Batalkan Transaksi</span><i class="fas fa-fw fa-ban"></i>
                                     </button>
                                 </div>
