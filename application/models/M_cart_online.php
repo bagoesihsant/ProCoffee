@@ -19,6 +19,26 @@ class M_cart_online extends CI_Model
         $querys = $this->db->query($query)->result_array();
         return $querys;
     }
+    public function get_cart_all($user_param = null)
+    {
+        $user_login = $this->session->userdata('id_user');
+        $query = "SELECT * 
+                    FROM `tbl_barang` JOIN `tbl_cart_online`
+                    ON `tbl_barang`.`kode_barang` = `tbl_cart_online`.`kode_barang`
+                    WHERE `kode_usero` = '$user_login'
+        ";
+        if($user_param != null)
+        {
+            $this->db->where('kode_usero', $user_param);
+        }
+        $querys = $this->db->query($query)->result_array();
+        return $querys;
+    }
+    public function edit_qty($id, $qty, $berat_total)
+    {
+        $hasil_cart = $this->db->query("UPDATE tbl_cart_online SET qty_dibeli='$qty', total_berat = '$berat_total' WHERE kode_cart = '$id'");
+        return $hasil_cart;
+    }
     public function count_cart($user_param = null)
     {
         $user_login = $this->session->userdata('id_user');

@@ -20,6 +20,7 @@ class C_cart extends CI_Controller
     {
         $data['cart'] = $this->mcart->get_cart_data();
         $data['hitung_cart'] = $this->mcart->count_cart();
+        $data['get_cart'] = $this->mcart->get_cart_all();
         $data['title'] = "Keranjang";
         $this->load->view('templates/user_template/v_header_user', $data);
         $this->load->view('User/v_cart_user', $data);
@@ -37,7 +38,22 @@ class C_cart extends CI_Controller
             redirect('User/Cart');
         }
     }
+    public function editcart()
+    {
+        $this->form_validation->set_rules('quantity', 'Quantity', 'required');
 
+        if($this->form_validation->run() == false){
+            redirect('User/Cart');
+        }else{
+            $id = $this->input->post('id_cart');
+            $qty = $this->input->post('quantity');
+            $berat = $this->input->post('berat');
+            $berat_total = $qty * $berat;
+            $this->mcart->edit_qty($id, $qty, $berat_total);
+            $this->session->set_flashdata('message', '<div class="alert alert-info" role="alert">Data Berhasil Diubah</div>');
+            redirect('User/Cart');
+        }
+    }
     public function token()
     {
 
