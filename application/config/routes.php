@@ -57,6 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 // User Landingpage
 $route['User/LandingPage'] = "Users/C_landingpage/index";
 $route['User/Cart'] = "Users/C_cart/index";
+$route['cart/editcart'] = "Users/C_cart/editcart";
 $route['User/Cart/delete/(:any)'] = "Users/C_cart/delete_cart/$1";
 $route['User/History/ambilnomorvirtual/(:any)'] = "Users/C_history_pembelian/ambilVirtualaccount/$1";
 $route['User/History'] = "Users/C_history_pembelian/index";
