@@ -15,7 +15,7 @@
                     <div class="box">
                         <form method="post" id="formku" enctype="multipart/form-data" action="<?=base_url('cart/check_out');?>">
                             <h1>Shopping cart</h1>
-                            <p class="text-muted">You currently have 3 item(s) in your cart.</p>
+                            <p class="text-muted">Isi Keranjang Anda Saat Ini  (<?= $hitung_cart; ?>)</p>
                             <?= $this->session->flashdata('message_cart_del'); ?>
                             <?= $this->session->flashdata('message'); ?>
                             <div class="table-responsive">
