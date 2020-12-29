@@ -69,8 +69,18 @@
             event.preventDefault();
             $(this).attr("disabled", "disabled");
 
+            var id = $('#id_transaksi').val();
+            var total_bayar = $('#total_pembayaran').val();
+            var tanggal = $('#waktu_transaksi_input').val();
+
             $.ajax({
-                url: '<?= site_url() ?>/Users/C_cart/token',
+                type: "POST",
+                url: '<?= site_url() ?>/Users/C_history_pembelian/token',
+                data: {
+                    id: id,
+                    total_bayar: total_bayar,
+                    tanggal: tanggal
+                },
                 cache: false,
 
                 success: function(data) {
@@ -109,6 +119,19 @@
                     });
                 }
             });
+        });
+    </script>
+
+    <script>
+        $('input').keyup(function() { // run anytime the value changes
+            var firstValue = Number($('#first').val()); // get value of field
+            var secondValue = Number($('#second').val()); // convert it to a float
+            var thirdValue = Number($('#third').val());
+            var fourthValue = Number($('#fourth').val());
+
+            $('#total_expenses1').html(firstValue + secondValue + thirdValue + fourthValue); // add them and output it
+            document.getElementById('total_expenses2').value = firstValue + secondValue + thirdValue + fourthValue;
+            // add them and output it
         });
     </script>
 
