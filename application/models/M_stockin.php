@@ -57,7 +57,7 @@ class M_stockin extends CI_Model
             'created' => time(),
             // ambil data dari session 
             // untuk query insert di dalam kurung tersebut ada 2 parameter, parameter pertama adalah tabel "tbl_stock", dan yang kedua adalah array param yang menampung data dari inputan dan akan dimasukkan ke tabel tbl_stock
-            'kode_user' => "USR602232001"
+            'kode_user' => $this->session->userdata('kode_user')
         ];
         $this->db->insert('tbl_stock', $params);
     }
