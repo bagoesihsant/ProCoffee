@@ -246,7 +246,7 @@
                                             <h4 class="text-dark mx-auto my-auto">Total Belanja :</h4>
                                         </div>
                                         <div class="col-7 d-flex">
-                                            <h4 class="text-dark mx-auto total-belanja-transaksi my-auto">Rp. 350.000,00</h4>
+                                            <h4 class="text-dark mx-auto total-belanja-transaksi my-auto" data-total="">Rp. 350.000,00</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -270,7 +270,7 @@
                                             <h4 class="text-dark mx-auto my-auto">Grand Total :</h4>
                                         </div>
                                         <div class="col-7 d-flex">
-                                            <h4 class="text-dark mx-auto grand-total-belanja-transaksi my-auto">Rp. 335.000,00</h4>
+                                            <h4 class="text-dark mx-auto grand-total-belanja-transaksi my-auto" data-total="">Rp. 335.000,00</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -295,7 +295,7 @@
                                             <h4 class="text-dark mr-auto my-auto">Kembalian :</h4>
                                         </div>
                                         <div class="col-7 d-flex">
-                                            <h4 class="text-dark mx-auto kembalian-belanja-transaksi my-auto">Rp. 335.000,00</h4>
+                                            <h4 class="text-dark mx-auto kembalian-belanja-transaksi my-auto" data-kembalian="">Rp. 335.000,00</h4>
                                         </div>
                                     </div>
                                 </div>

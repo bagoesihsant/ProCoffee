@@ -129,6 +129,64 @@ $(document).ready(function () {
                     $('#list-group-cart').empty();
                     // Menambahkan elemen html kedalam list-group-item
                     createCartItem(result.result);
+                    // Mengosongkan semua nominal
+                    emptyNominal();
+                    // Menghitung perubahan yang terjadi
+                    var totalHargaKeranjang = 0;
+                    var totalGrandBelanja = 0;
+                    var kembalianBelanja = 0;
+
+                    $('.total-harga-item').each(function (index) {
+                        totalHargaKeranjang += parseInt($(this).data('harga'));
+                        $('.total-belanja-transaksi').text(formatRupiah(totalHargaKeranjang));
+                        totalGrandBelanja = totalHargaKeranjang;
+                        $('.grand-total-belanja-transaksi').text(formatRupiah(totalGrandBelanja));
+                    });
+
+                    $('#diskonBelanja').on('keyup', function () {
+                        var diskon = $(this).val();
+
+                        // Memeriksa apakah diskon angka atau bukan
+                        if (parseInt(diskon)) {
+                            // Jika angka
+                            var totalHargaKLama = totalHargaKeranjang;
+                            // Memeriksa apakah jumlah diskon lebih besar dari total harga
+                            if (parseInt(diskon) > parseInt(totalHargaKeranjang)) {
+                                // Jika diskon lebih besar
+                                totalGrandBelanja = totalHargaKLama;
+                                $('.grand-total-belanja-transaksi').text(formatRupiah(totalHargaKLama));
+                            } else {
+                                // Jika diskon lebih kecil
+                                totalGrandBelanja = parseInt(totalHargaKeranjang) - parseInt(diskon);
+                                $('.grand-total-belanja-transaksi').text(formatRupiah(parseInt(totalHargaKeranjang) - parseInt(diskon)));
+                            }
+                        } else {
+                            // Jika bukan angka
+                            $('.grand-total-belanja-transaksi').text("Anda tidak memasukkan angka");
+                        }
+
+                    });
+
+                    $('#cashBelanja').on('keyup', function () {
+                        var cash = $(this).val();
+
+                        // Memeriksa apakah input berupa angka atau tidak
+                        if (parseInt(cash)) {
+                            // Jika input berupa angka
+                            // Memeriksa apakah jumlah pembayaran lebih besar dari cash
+                            if (totalGrandBelanja > cash) {
+                                $('.kembalian-belanja-transaksi').text(formatRupiah(0));
+                            } else {
+                                kembalianBelanja = parseInt(cash) - parseInt(totalGrandBelanja);
+                                $('.kembalian-belanja-transaksi').text(formatRupiah(kembalianBelanja));
+                            }
+                        } else {
+                            // Jika input bukan berupa angka
+                            $('.kembalian-belanja-transaksi').text("Anda tidak memasukkan angka");
+                        }
+
+                    });
+
                 }
             }
         });
@@ -201,9 +259,9 @@ $(document).ready(function () {
             element += "<p class='my-0' id='cart-item-name'>" + namaBarang + "</p>";
             element += "<small> Jumlah: <span id='qty-item-keranjang'>" + qtyBarang + "</span></small>";
             element += "<br>";
-            element += "<small class='text-success'>Harga per Unit: <span id='harga-item-keranjang'>" + formatRupiah(hargaBarang) + "</span></small>";
+            element += "<small class='text-success'>Harga per Unit: <span id='harga-item-keranjang' data-harga='" + hargaBarang + "' data-id='" + kodeBarang + "'>" + formatRupiah(hargaBarang) + "</span></small>";
             element += "<br>";
-            element += "<small>Total Harga: <span id='total-harga-item'>" + formatRupiah(hargaTotal) + "</span></small>";
+            element += "<small>Total Harga: <span id='total-harga-item' data-harga='" + hargaTotal + "' data-id='" + kodeBarang + "' class='total-harga-item'>" + formatRupiah(hargaTotal) + "</span></small>";
             element += "</div>";
             element += "<div class='col-sm-3 d-flex align-items-center'>";
             element += "<a href='javascript:void(0)' class='btn btn-xs btn-success rounded mx-1 my-auto add_stok_cart' data-id='" + kodeBarang + "' data-harga='" + hargaBarang + "'><i class='fas fa-fw fa-plus align-middle'></i></a>";
