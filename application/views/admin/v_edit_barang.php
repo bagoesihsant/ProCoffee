@@ -143,7 +143,7 @@
                             <p class="text-danger text-form text-sm">Semua yang bertanda * wajib diisi</p>
 
                             <div class="col-sm-6 float-right text-right mt-3">
-                                <a href="<?= base_url('admin/barang') ?>" class="btn btn-sm btn-secondary">
+                                <a href="<?= base_url('barang') ?>" class="btn btn-sm btn-secondary">
                                     <i class="fas fa-chevron-left"></i>
                                     <span>Kembali</span>
                                 </a>
