@@ -24,9 +24,9 @@
                             <ul class="nav nav-pills flex-column category-menu">
                                 <ul class="list-unstyled">
                                     <li><a href="<?= base_url('User/LandingPage') ?>" class="nav-link">Halaman Utama</a></li>
-                                    <li><a href="category.html" class="nav-link">Profil Saya</a></li>
-                                    <li><a href="category.html" class="nav-link">Keranjang</a></li>
-                                    <li><a href="category.html" class="nav-link">History transaksi</a></li>
+                                    <li><a href="<?= base_url('User/Profile'); ?>" class="nav-link">Profil Saya</a></li>
+                                    <li><a href="<?= base_url('User/Cart'); ?>" class="nav-link">Keranjang</a></li>
+                                    <li><a href="<?= base_url('User/History'); ?>" class="nav-link">History transaksi</a></li>
                                 </ul>
                                 </li>
                             </ul>
@@ -47,7 +47,7 @@
                                     <div class="flip-container">
                                         <div class="flipper">
 
-                                            <div class="front"><a href="detail.html"><img style="width: 250px; height:340px;" src="<?= base_url('assets/items_img/') . $data->gambar ?>" alt="" class="img-fluid"></a></div>
+                                            <div class="front"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>"><img style="width: 250px; height:340px;" src="<?= base_url('assets/items_img/') . $data->gambar ?>" alt="" class="img-fluid"></a></div>
                                             <!-- <div class="back"><a href="detail.html"><img src="<?= base_url('assets/vendor_user/'); ?>img/product1_3.jpg" alt="" class="img-fluid"></a></div> -->
                                         </div>
 

@@ -8,10 +8,12 @@ class C_barang_user extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_barang', 'mbarang');
+        $this->load->model('M_usero');
     }
 
     public function index()
     {
+        $data['jumlah_carto'] = $this->m_usero->count_cart();
         // PL maksudnya produk landing page
         $data['PL'] =  $this->mbarang->getAllItems()->result();
         $data['title'] = "List Produk";

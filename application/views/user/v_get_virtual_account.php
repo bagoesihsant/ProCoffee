@@ -6,8 +6,8 @@
                     <!-- breadcrumb-->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li aria-current="page" class="breadcrumb-item active">History pembelian</li>
+                            <li class="breadcrumb-item"><a href="<?= base_url('User/LandingPage'); ?>">Home</a></li>
+                            <li aria-current="page" class="breadcrumb-item active">Ambil Virtual Account</li>
                         </ol>
                     </nav>
                 </div>
