@@ -156,10 +156,10 @@ $route['kasir/tambahKeranjang'] = "kasir/C_kasir/tambahKeranjang";
 $route['kasir/hapusKeranjang'] = "kasir/C_kasir/hapusKeranjang";
 $route['kasir/prosesTransaksi'] = "kasir/C_kasir/prosesTransaksi";
 
-// Data Stockin ['Stockin'] (There is a problem with this one, i'll solve it later)
+// Data Stockin ['Stockin']
 $route['kasir/datastockin'] = "kasir/C_stockin/index";
 $route['kasir/ItemIn'] = "kasir/C_stockin/stock_in_form";
-$route['kasir/delete_in/(:any)'] = "kasir/C_stockin/delete_in/$1";
+$route['kasir/stockin/delete_in/(:any)/(:any)'] = "kasir/C_stockin/delete_in/$1/$1";
 $route['kasir/stockinprocess'] = "kasir/C_stockin/process";
 
 // Data Stockout ['stockout']
