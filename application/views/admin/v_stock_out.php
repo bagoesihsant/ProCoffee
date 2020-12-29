@@ -51,8 +51,6 @@
                                 <th>Barcode</th>
                                 <th>Nama Barang</th>
                                 <th>Qty</th>
-                                <th>Detail</th>
-                                <th>Tanggal</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -64,16 +62,20 @@
                             foreach ($row as $rw => $data) :
                             ?>
                                 <tr>
-                                    <td><?= $no; ?></td>
+                                    <td><?= $no++; ?></td>
                                     <td><?= $data->barcode; ?></td>
                                     <td><?= $data->nama; ?></td>
-                                    <td><?= $data->detail; ?></td>
                                     <td><?= $data->qty; ?></td>
-                                    <td><?= $data->date; ?></td>
                                     <td class="d-flex justify-content-around">
-                                        <!-- <a href="#" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info">
-                                            <i class="fas fa-fw fa-eye text-white"></i>
-                                        </a> -->
+                                        <a href="" data-toggle="modal" data-target="#detailModal" class="btn btn-xs btn-info" onClick="detail(
+                                            '<?= $data->barcode ?>',
+                                            '<?= $data->nama ?>',
+                                            '<?= $data->detail ?>',
+                                            '<?= $data->qty ?>',
+                                            '<?= date("d-m-Y", $data->date) ?>'
+                                            )">
+                                            <i class="fas fa-fw fa-eye "></i>
+                                        </a>
                                         <a href="#modalDelete" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('kasir/StockOut/delete/' . $data->kode_stock . '/' . $data->kode_barang) ?>')" data-toggle="modal" data-target="" class="btn btn-xs btn-danger btnDeleteUnits">
                                             <i class="fas fa-fw fa-trash-alt"></i>
                                         </a>
@@ -92,7 +94,39 @@
 </section>
 <!-- Main Content End -->
 
+<!-- modal detail -->
+<div class="modal fade" id="detailModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Stock Detail</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body table-responsive" id="modal-tampil">
+                <div class="form-group">
+                    <label for="barcode">Barcode</label>
+                    <input type="text" name="barcode" id="barcode-detail" class="form-control" readonly>
+                </div>
+                <div class="form-grou">
+                    <label for="nama">Nama Barang</label>
+                    <input type="text" name="nama" id="nama-detail" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="pembelian">Detail Keluar</label>
+                    <input type="text" name="detail" id="pembelian-detail" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="qty">Date</label>
+                    <input type="text" name="qty" id="qty-detail" class="form-control" readonly>
+                </div>
+            </div>
 
+        </div>
+    </div>
+</div>
+<!-- penutup modal detail -->
 
 <!-- Modal delete -->
 <div class="modal fade" id="modalDelete">
