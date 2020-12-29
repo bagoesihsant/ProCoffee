@@ -27,7 +27,7 @@ class C_stockin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['title'] = 'Stock In Form';
         $item = $this->M_barang->getAllItems()->result();
-        $data = ['item' => $item];
+        $data['item'] = $item;
         $data['supplier'] = $this->M_supplier->getAllSupplier()->result_array();
 
         $this->load->view('templates/admin/header', $data);
