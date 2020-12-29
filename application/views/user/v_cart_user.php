@@ -43,8 +43,9 @@
                                                 <td><?= $data['qty_dibeli'] ?> Unit</td>
                                                 <td><?= $data['berat']; ?> Gram</td>
                                                 <td><?= $data['total_berat'] / 1000?> KG</td>
+                                                <input type="hidden" class="berat" id="berat_Total" value="<?= $data['total_berat'] ?>" placeholder="Total Berat Di Keranjang" readonly>
                                                 <td>Rp. <?= $data['harga']; ?></td>
-                                                <td>Rp. <?= $data['harga'] * $data['qty_dibeli']; ?></td>
+                                                <td>Rp. <?= $data['harga'] * $data['qty_dibeli']; ?><input type="hidden" class="form-control harga_satuan1"value="<?= $data['harga'] * $data['qty_dibeli']; ?>"></td>
                                                 <td>
                                                     <a class="btn btn-primary btn-xs btn-round" data-toggle="modal" data-target="#modal_edit<?= $id; ?>"><i class="fa fa-pencil"></i></a>
                                                     <a class="btn btn-danger btn-xs btn-round" href="#modalDelete" data-toggle="modal" onclick="$('#modalDelete #formDelete').attr('action', '<?= base_url('User/Cart/delete/' . $data['kode_cart']); ?>')"><i class="fa fa-trash-o"></i></a>
@@ -68,12 +69,8 @@
                                 </table>
                             </div>
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="street">Alamat Kirim</label>
-                                        <textarea class="form-control" name="" id="" cols="" rows="" placeholder="Mohon di isi dengan alamat yang benar"></textarea>
-                                    </div>
-									<label for="">keseluruhan berat</label>
-								    <input type="text"  id="keseluruhanberat" value="" placeholder="ads">
+									<label for="">keseluruhan berat Di Keranjang</label>
+								    <input type="text" class="form-control" id="keseluruhanberat" value="" placeholder="Total Berat Di Keranjang" readonly>
 									<label for="kota_provinsi">Pilih provinsi anda</label>
 									<select name="kota_provinsi" id="kota_provinsi" class="form-control mb-3 pb-1" onchange="get_kota()">
 									</select>
@@ -86,7 +83,7 @@
 									</select>
 								
 								<?php foreach ($cart as $op) : 
-									$cs = $this->session->userdata('customerid');?>
+									$cs = $this->session->userdata('id_user');?>
                                     <!-- Inputan untuk kedalam detail transaksi(checkout) -->
                                         <input type="hidden" name="id_brg_tmp[]" value="<?= $op['kode_cart']; ?>">
                                         <input type="hidden" name="harga_brg_tmp[]" value="<?= $op['harga']; ?>">
@@ -109,8 +106,10 @@
                                     <label for="">Total Yang Harus Dibayar</label>
                                     <input type="text" class="form-control" placeholder="Total Pembayaran" name="total_bayar" id="total_bayar" readonly>
                                     
-                                    <label for="alamat">Alamat Barang yang akan di kirim*</label> <br>
-                                    <textarea name="alamat" id="alamat" class="form-control" cols="90" rows="10"></textarea>
+                                    <div class="form-group">
+                                        <label for="street">Alamat Kirim</label>
+                                        <textarea class="form-control" name="" id="" cols="" rows="8" placeholder="Mohon di isi dengan alamat yang benar"></textarea>
+                                    </div>
                                 </div>
                                 <!-- /.table-responsive-->
                                 <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">

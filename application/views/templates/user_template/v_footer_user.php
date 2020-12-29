@@ -134,16 +134,155 @@
             // add them and output it
         });
     </script>
-    <script>
-        // Menghitung total berat qty yg dibeli lurr
-	$('#formMu').click(function(){
-		var bil1 = parseInt($('#ratrat').val())
-		var bil2 = parseInt($('#jumlah_beli').val())	
+<script type="text/javascript">
+	$(function()
+	{
+		var total_berat = function()
+		{
+			var sum = 0;
 
-		var hasil = bil1 * bil2
-		$('#berat_input').attr('value', hasil);
-	})
-    </script>
+			$('.berat').each(function(){
+				var num = $(this).val();
+
+				if(num !== 0)
+				{
+					sum += parseInt(num);
+				}
+			});
+			$('#keseluruhanberat').val(sum);
+		}
+		$('#formKu').ready(function(){
+			total_berat();
+		});
+	});
+</script>
+<!-- Raja Ongkir -->
+<script type="text/javascript">
+    function get_ongkir() {
+        $('#opsi_ongkir').html('<option disabled hidden selected>Mohon Tunggu Sedang memproses ...</option>');
+        $.ajax({
+            method: 'GET',
+            url: '<?= base_url(); ?>Api_rajaongkir/getongkir',
+            data: {
+                'city_id': $('#kota_kirim').val(),
+                'berat': $('#keseluruhanberat').val()
+            },
+            dataType: 'JSON',
+            success: function(result) {
+                field_ongkir = '<ul>';
+                $.each(result.rajaongkir.results[0].costs, function(index1, jenis_ongkir) {
+                    $.each(jenis_ongkir.cost, function(index1, tarif) {
+                        field_ongkir += '<option value="' + tarif.value + '">Paket "' + jenis_ongkir.description + '" (Harga Rp. ' + tarif.value + ') Durasi (Selama ' + tarif.etd + ' Hari) Dengan Jumlah total berat barang (' + $('#keseluruhanberat').val() / 1000 + 'KG)</option>'
+                        // field_ongkir += '<li><input type="radio" value="' + tarif.value + '" name="kurir" id="harga_ongkier">' + jenis_ongkir.description + ' [' + tarif.value + ']</li>';
+						
+                    });
+                });
+                field_ongkir += '</ul>';
+                $('#opsi_ongkir').html(field_ongkir);
+            }
+        });
+    }
+	function get_harga_ongkir()
+	{
+		var a = document.getElementById("coba1");
+		a.value = parseInt($('#opsi_ongkir').val());
+		var b = document.getElementById("total_bayar");
+
+
+		$('#opsi_ongkir').ready(function(){
+		var bil1 = parseInt($('#coba1').val())
+		var bil2 = parseInt($('#final_total2').val())	
+
+		var hasil = bil1 + bil2
+		$('#total_bayar').attr('value', hasil);
+		})
+	}
+</script>
+<script type="text/javascript">
+    $.ajax({
+        method: 'GET',
+        url: '<?= base_url(); ?>Api_rajaongkir/getprovinsi',
+        dataType: 'JSON',
+        success: function(result) {
+            provinsi = '<option disabled selected hidden>Pilih Provinsi</option>';
+            $.each(result.rajaongkir.results, function(index, data) {
+                provinsi += '<option value="' + data.province_id + '">' + data.province + '</option>';
+            });
+            $('#kota_provinsi').html(provinsi);
+        }
+    });
+ 
+    function get_kota() {
+        $('#kota_kirim').html('<option disabled hidden selected>Mohon Tunggu ...</option>');
+        $.ajax({
+            method: 'GET',
+            url: '<?= base_url(); ?>Api_rajaongkir/getkota',
+            data: {
+                'province': $('#kota_provinsi').val()
+            },
+            dataType: 'JSON',
+            success: function(result) {
+                kota = '<option disabled selected hidden>Pilih Kota</option>';
+                $.each(result.rajaongkir.results, function(index, data) {
+                    kota += '<option value="' + data.city_id + '">' + data.city_name + '</option>';
+                });
+                $('#kota_kirim').html(kota);
+            }
+        });
+    }
+ 
+ 
+    // $('#kota_provinsi')
+ 
+    function autofill_kota(id) {
+        alert(id);
+        var kota_kirim = $("#kota_kirim").val();
+        $.ajax({
+            url: '../transaksi/autofill_ongkir.php',
+            data: 'id=' + kota_kirim,
+            success: function(data) {
+                var json = data,
+                    obj = JSON.parse(json);
+                $('#ongkir_kurir').val(obj.ongkir_kurir);
+            }
+        });
+    }
+</script>
+<!-- Akhiran Raja Ongkir -->
+<script>
+	$(function()
+		{
+			var total_harga = function()
+			{
+				var sum_harga = 0;
+
+				$('.harga_satuan1').each(function(){
+					var num_harga = $(this).val();
+
+					if(num_harga !== 0)
+					{
+						sum_harga += parseInt(num_harga);
+					}
+				});
+				$('#final_total1').text('Rp. '+sum_harga);
+				$('#final_total2').val(sum_harga);
+			}
+			$('#coba_hitung').ready(function(){
+				total_harga();
+			})
+		}
+	)
+</script>
+<script>
+    // Menghitung total berat qty yg dibeli lurr
+$('#formMu').click(function(){
+    var bil1 = parseInt($('#ratrat').val())
+    var bil2 = parseInt($('#jumlah_beli').val())	
+
+    var hasil = bil1 * bil2
+    $('#berat_input').attr('value', hasil);
+})
+</script>
 
     </body>
 
