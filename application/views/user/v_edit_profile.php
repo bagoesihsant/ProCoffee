@@ -1,8 +1,8 @@
 <div class="col-lg-9">
     <div class="box">
-        <h1>My account</h1>
-        <p class="lead">Change your personal details or your password here.</p>
-        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+        <h1>Akun Saya</h1>
+        <p class="lead">Halaman untuk mengubah data anda.</p>
+        <p class="text-muted">Silahkan ubah data anda dan biarkan jika anda tidak ingin mengubah data anda.</p>
         <h3 class="mt-5">Personal details</h3>
         <?= $this->session->flashdata('message_edit_user'); ?>
         <form action="<?= base_url('Users/C_user_profile/editprofil') ?>" method="POST">

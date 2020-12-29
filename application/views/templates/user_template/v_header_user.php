@@ -88,11 +88,11 @@
                 <div class="navbar-buttons">
                     <button type="button" data-toggle="collapse" data-target="#navigation" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
                     <!-- <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></button> -->
-                    <a href="basket.html" class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i></a>
+                    <a href="<?= base_url('User/Cart'); ?>" class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i></a>
                 </div>
                 <div id="navigation" class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
+                        <li class="nav-item"><a href="<?= base_url('User/LandingPage'); ?>" class="nav-link active">Home</a></li>
                         <?php if ($this->session->userdata('email')) : ?>
                             <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">User<b class="caret"></b></a>
                                 <ul class="dropdown-menu megamenu">
@@ -126,7 +126,7 @@
                     </ul>
                     <div class="navbar-buttons d-flex justify-content-end">
 
-                        <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="<?= base_url('User/Cart') ?>" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>Keranjang</span></a></div>
+                        <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="<?= base_url('User/Cart') ?>" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span>Keranjang</span>(<?= $jumlah_carto ?>)</a></div>
                     </div>
                 </div>
             </div>

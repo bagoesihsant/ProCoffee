@@ -11,10 +11,12 @@ class C_history_pembelian extends CI_Controller
         $params = array('server_key' => 'SB-Mid-server-sxX-L8vWKZeSFqBVj7BU9Kvj', 'production' => false);
         $this->load->library('midtrans');
         $this->midtrans->config($params);
+        $this->load->model('M_usero');
     }
 
     public function index()
     {
+        $data['jumlah_carto'] = $this->M_usero->count_cart();
         $data['title'] = "Histori Pembelian";
         $data['row'] = $this->db->get_where('transaksi_online', ['kode_usero' => $this->session->userdata('id_user')])->result();
 
@@ -25,6 +27,7 @@ class C_history_pembelian extends CI_Controller
 
     public function ambilVirtualaccount($id)
     {
+
         // $data['title'] = "Histori Pembelian";
         $query = $this->mhistory->get($id);
         if ($query->num_rows() > 0) {
@@ -33,6 +36,7 @@ class C_history_pembelian extends CI_Controller
                 'row' => $detail,
                 'title' => 'Ambil Virtual Akun'
             );
+            $data['jumlah_carto'] = $this->M_usero->count_cart();
             $this->load->view('templates/user_template/v_header_user', $data);
             $this->load->view('User/v_get_virtual_account', $data);
             $this->load->view('templates/user_template/v_footer_user');
