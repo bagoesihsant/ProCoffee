@@ -129,10 +129,261 @@ $(document).ready(function () {
                     $('#list-group-cart').empty();
                     // Menambahkan elemen html kedalam list-group-item
                     createCartItem(result.result);
+                    // Mengosongkan semua nominal
+                    emptyNominal();
+                    // Menghitung perubahan yang terjadi
+                    var totalHargaKeranjang = 0;
+                    var totalGrandBelanja = 0;
+                    var kembalianBelanja = 0;
+
+                    $('.total-harga-item').each(function (index) {
+                        totalHargaKeranjang += parseInt($(this).data('harga'));
+                        $('.total-belanja-transaksi').text(formatRupiah(totalHargaKeranjang));
+                        $('.total-belanja-transaksi').data('total', totalHargaKeranjang)
+                        totalGrandBelanja = totalHargaKeranjang;
+                        $('.grand-total-belanja-transaksi').text(formatRupiah(totalGrandBelanja));
+                        $('.grand-total-belanja-transaksi').data('total', totalGrandBelanja);
+                    });
+
+                    $('#diskonBelanja').on('keyup', function () {
+                        var diskon = $(this).val();
+
+                        // Memeriksa apakah diskon angka atau bukan
+                        if (parseInt(diskon)) {
+                            // Jika angka
+                            var totalHargaKLama = totalHargaKeranjang;
+                            // Memeriksa apakah jumlah diskon lebih besar dari total harga
+                            if (parseInt(diskon) > parseInt(totalHargaKeranjang)) {
+                                // Jika diskon lebih besar
+                                totalGrandBelanja = totalHargaKLama;
+                                $('.grand-total-belanja-transaksi').text(formatRupiah(totalHargaKLama));
+                                $('.grand-total-belanja-transaksi').data('total', totalGrandBelanja);
+                            } else {
+                                // Jika diskon lebih kecil
+                                totalGrandBelanja = parseInt(totalHargaKeranjang) - parseInt(diskon);
+                                $('.grand-total-belanja-transaksi').text(formatRupiah(parseInt(totalHargaKeranjang) - parseInt(diskon)));
+                                $('.grand-total-belanja-transaksi').data('total', totalGrandBelanja);
+                            }
+                        } else {
+                            // Jika bukan angka
+                            $('.grand-total-belanja-transaksi').text("Anda tidak memasukkan angka");
+                        }
+
+                    });
+
+                    $('#cashBelanja').on('keyup', function () {
+                        var cash = $(this).val();
+
+                        // Memeriksa apakah input berupa angka atau tidak
+                        if (parseInt(cash)) {
+                            // Jika input berupa angka
+                            // Memeriksa apakah jumlah pembayaran lebih besar dari cash
+                            if (totalGrandBelanja > cash) {
+                                $('.kembalian-belanja-transaksi').text(formatRupiah(0));
+                                $('.kembalian-belanja-transaksi').data('kembalian', kembalianBelanja);
+                            } else {
+                                kembalianBelanja = parseInt(cash) - parseInt(totalGrandBelanja);
+                                $('.kembalian-belanja-transaksi').text(formatRupiah(kembalianBelanja));
+                                $('.kembalian-belanja-transaksi').data('kembalian', kembalianBelanja);
+                            }
+                        } else {
+                            // Jika input bukan berupa angka
+                            $('.kembalian-belanja-transaksi').text("Anda tidak memasukkan angka");
+                        }
+
+                    });
+
                 }
             }
         });
     }
+
+    // Membuat fungsi ketika input diskon mendapatkan fokus
+    $('#diskonBelanja').on('focus', function () {
+        $(this).val('');
+    });
+
+    // Membuat fungsi ketika input diskon hilang focus
+    $('#diskonBelanja').on('focusout', function () {
+        // Mengambil isi dari diskon belanja
+        var isiInput = $('#diskonBelanja').val();
+
+        // Memeriksa isi dari diskon belanja
+        if (isiInput == '') {
+            // Jika isi input kosong
+            $('#diskonBelanja').val(0);
+        } else {
+            // Jika isi input tidak kosong
+            $('#diskonBelanja').val(isiInput);
+        }
+
+    });
+
+    // Membuat fungsi ketika input cash hilang focus
+    $('#cashBelanja').on('focusout', function () {
+        // Mengambil isi dari cash belanja
+        var isiInput = $('#cashBelanja').val();
+
+        // Memeriksa isi dari cash belanja
+        if (isiInput == '') {
+            // Jika isi input kosong
+            $('#cashBelanja').val(0);
+        } else {
+            // Jika isi input tidak kosong
+            $('#cashBelanja').val(isiInput);
+        }
+
+    });
+
+    // Membuat fungsi ketika input cash mendapatkan fokus
+    $('#cashBelanja').on('focus', function () {
+        $(this).val('');
+    });
+
+    // Membuat fungsi jika tombol proses transaksi ditekan maka akan mengambil data
+    $('#proses_transaksi').on('click', function () {
+
+        // Mengambil seluruh data yang diperlukan untuk memproses transaksi kedalam tabel transaksi dan detail transaksi
+        const kodeTransaksi = $('#kode_transaksi').val();
+        const kodePembeli = $('#pelanggan').data('id');
+        const totalHarga = $('.total-belanja-transaksi').data('total');
+        const grandTotal = $('.grand-total-belanja-transaksi').data('total');
+        const discount = $('#diskonBelanja').val();
+        const cash = $('#cashBelanja').val();
+        const remaining = $('.kembalian-belanja-transaksi').data('kembalian');
+        var arrayKodeBarang = new Array();
+        // Mengisi array kode barang
+        $('.harga-item-keranjang').each(function (index) {
+            arrayKodeBarang.push($(this).data('id'));
+        });
+        var arrayPembelianBarang = new Array();
+        // Mengisi array pembelian barang
+        $('.qty-item-keranjang').each(function (index) {
+            arrayPembelianBarang.push($(this).text());
+        });
+        const tanggalTransaksi = $('#tgl_transaksi').val();
+
+        if (kodePembeli == '' || kodePembeli == 'a') {
+            Swal.fire({
+                title: "Error",
+                text: "Pembeli tidak boleh kosong",
+                icon: "error",
+                buttonsStyling: false,
+                showCancelButton: false,
+                showConfirmButton: true,
+                confirmButtonText: "OK",
+                customClass: {
+                    confirmButton: "btn btn-primary px-4"
+                }
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = "http://localhost/ProCoffee/kasir/";
+                } else {
+                    window.location.href = "http://localhost/ProCoffee/kasir/";
+                }
+            });
+        } else if (parseInt(discount) >= parseInt(totalHarga)) {
+            Swal.fire({
+                title: "Error",
+                text: "Diskon anda melebihi total harga, apa anda yakin ?",
+                icon: "warning",
+                buttonsStyling: false,
+                showCancelButton: false,
+                showConfirmButton: true,
+                confirmButtonText: "OK",
+                customClass: {
+                    confirmButton: "btn btn-primary px-4"
+                }
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = "http://localhost/ProCoffee/kasir/";
+                } else {
+                    window.location.href = "http://localhost/ProCoffee/kasir/";
+                }
+            });
+        } else if (parseInt(cash) < parseInt(grandTotal)) {
+            Swal.fire({
+                title: "Error",
+                text: "Jumlah yang anda bayarkan kurang",
+                icon: "error",
+                buttonsStyling: false,
+                showCancelButton: false,
+                showConfirmButton: true,
+                confirmButtonText: "OK",
+                customClass: {
+                    confirmButton: "btn btn-primary px-4"
+                }
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = "http://localhost/ProCoffee/kasir/";
+                } else {
+                    window.location.href = "http://localhost/ProCoffee/kasir/";
+                }
+            });
+        } else {
+            // Menjalankan ajax
+            $.ajax({
+                url: "http://localhost/ProCoffee/kasir/prosesTransaksi",
+                method: "post",
+                dataType: 'json',
+                data: {
+                    kode_transaksi: kodeTransaksi,
+                    kode_pembeli: kodePembeli,
+                    total_harga: totalHarga,
+                    grand_total: grandTotal,
+                    diskon: discount,
+                    cash: cash,
+                    remaining: remaining,
+                    tgl_transaksi: tanggalTransaksi,
+                    array_barang: arrayKodeBarang,
+                    array_qty: arrayPembelianBarang
+                },
+                success: function (result) {
+                    console.log(result);
+                    if (result.error_status == false) {
+                        Swal.fire({
+                            title: "Success",
+                            text: "Transaksi Berhasil",
+                            icon: "success",
+                            buttonsStyling: false,
+                            showCancelButton: false,
+                            showConfirmButton: true,
+                            confirmButtonText: "OK",
+                            customClass: {
+                                confirmButton: "btn btn-primary px-4"
+                            }
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.href = "http://localhost/ProCoffee/kasir/";
+                            } else {
+                                window.location.href = "http://localhost/ProCoffee/kasir/";
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Error",
+                            text: "Transaksi Gagal",
+                            icon: "error",
+                            buttonsStyling: false,
+                            showCancelButton: false,
+                            showConfirmButton: true,
+                            confirmButtonText: "OK",
+                            customClass: {
+                                confirmButton: "btn btn-primary px-4"
+                            }
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.href = "http://localhost/ProCoffee/kasir/";
+                            } else {
+                                window.location.href = "http://localhost/ProCoffee/kasir/";
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+    });
 
     // Membuat fungsi untuk menambahkan elemen html yang dibuat dari fungsi ini kedalam view (Barang untuk daftar produk)
     function createItem(result) {
@@ -199,11 +450,11 @@ $(document).ready(function () {
             element += "<div class='row' id='row-item-cart'>";
             element += "<div class='col-sm-9'>";
             element += "<p class='my-0' id='cart-item-name'>" + namaBarang + "</p>";
-            element += "<small> Jumlah: <span id='qty-item-keranjang'>" + qtyBarang + "</span></small>";
+            element += "<small> Jumlah: <span id='qty-item-keranjang' class='qty-item-keranjang'>" + qtyBarang + "</span></small>";
             element += "<br>";
-            element += "<small class='text-success'>Harga per Unit: <span id='harga-item-keranjang'>" + formatRupiah(hargaBarang) + "</span></small>";
+            element += "<small class='text-success'>Harga per Unit: <span id='harga-item-keranjang' class='harga-item-keranjang' data-harga='" + hargaBarang + "' data-id='" + kodeBarang + "'>" + formatRupiah(hargaBarang) + "</span></small>";
             element += "<br>";
-            element += "<small>Total Harga: <span id='total-harga-item'>" + formatRupiah(hargaTotal) + "</span></small>";
+            element += "<small>Total Harga: <span id='total-harga-item' data-harga='" + hargaTotal + "' data-id='" + kodeBarang + "' class='total-harga-item'>" + formatRupiah(hargaTotal) + "</span></small>";
             element += "</div>";
             element += "<div class='col-sm-3 d-flex align-items-center'>";
             element += "<a href='javascript:void(0)' class='btn btn-xs btn-success rounded mx-1 my-auto add_stok_cart' data-id='" + kodeBarang + "' data-harga='" + hargaBarang + "'><i class='fas fa-fw fa-plus align-middle'></i></a>";

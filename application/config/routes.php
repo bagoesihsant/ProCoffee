@@ -154,6 +154,7 @@ $route['kasir/loadBarang/(:any)'] = "kasir/C_kasir/loadBarang/$1";
 $route['kasir/loadKeranjang'] = "kasir/C_kasir/loadKeranjang";
 $route['kasir/tambahKeranjang'] = "kasir/C_kasir/tambahKeranjang";
 $route['kasir/hapusKeranjang'] = "kasir/C_kasir/hapusKeranjang";
+$route['kasir/prosesTransaksi'] = "kasir/C_kasir/prosesTransaksi";
 
 // Data Stockin ['Stockin'] (There is a problem with this one, i'll solve it later)
 $route['kasir/datastockin'] = "kasir/C_stockin/index";
