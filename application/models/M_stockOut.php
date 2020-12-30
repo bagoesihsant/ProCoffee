@@ -44,7 +44,7 @@ class M_stockOut extends CI_Model
             'qty' => $post['qty_input'],
             'date' => time(),
             'created' => time(),
-            'kode_user' => 'USR602232001'
+            'kode_user' => $this->session->userdata('kode_user')
         ];
 
         $this->db->insert('tbl_stock', $params);
