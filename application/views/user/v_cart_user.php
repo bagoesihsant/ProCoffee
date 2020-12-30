@@ -51,6 +51,7 @@
                                     </tfoot>
                                 </table>
                             </div>
+<<<<<<< Updated upstream
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="street">Alamat Kirim</label>
@@ -67,6 +68,63 @@
                                 </div>
                             </div>
                         </form>
+=======
+                        <?php
+                                    else :
+                        ?>
+                            </table>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="">keseluruhan berat Di Keranjang (Gram)</label>
+                        <input type="text" class="form-control" id="keseluruhanberat" value="" placeholder="Total Berat Di Keranjang" readonly>
+                        <label for="kota_provinsi">Pilih provinsi anda</label>
+                        <select name="kota_provinsi" id="kota_provinsi" class="form-control mb-3 pb-1" onchange="get_kota()">
+                        </select>
+                        <label for="kota_kirim">Pilih kabupaten anda</label>
+                        <select name="kota_kirim" id="kota_kirim" class="form-control mb-3 pb-1" onchange="get_ongkir()">
+                        </select>
+
+                        <label for="opsi_ongkir">Opsi Ongkir anda</label>
+                        <select name="opsi_ongkir" id="opsi_ongkir" class="form-control mb-3 pb-1" onchange="get_harga_ongkir()">
+                        </select>
+
+                        <?php foreach ($cart as $op) :
+                                            $cs = $this->session->userdata('id_user'); ?>
+                            <!-- Inputan untuk kedalam detail transaksi(checkout) -->
+                            <input type="hidden" name="id_brg_tmp[]" value="<?= $op['kode_barang']; ?>">
+                            <input type="hidden" name="harga_brg_tmp[]" value="<?= $op['harga']; ?>">
+                            <input type="hidden" name="qty_brg_tmp[]" value="<?= $op['qty_dibeli']; ?>">
+                            <!-- Akhir inputan -->
+
+                            <!-- Inputan hidden -->
+                            <input type="hidden" value="<?= $cs; ?>" name="idcustomer" placeholder="id customer">
+                            <input type="hidden" value="<?= $op['kode_cart']; ?>" name="iditem" placeholder="id item">
+                            <input type="hidden" value="<?= $op['qty_dibeli']; ?>" name="qtybeli" id="qtybeli" placeholder="qty">
+                            <input type="hidden" value="<?= $op['total_berat']; ?>" name="berat" id="berat" class="berat">
+                            <input type="hidden" value="<?= $op['tgl_transaksi']; ?>" name="tglbeli" placeholder="tgl">
+                        <?php endforeach; ?>
+                        <!-- inputan yang akan di jumlahkan -->
+                        <label for="">Biaya Sementara (Rupiah)</label>
+                        <input type="text" class="form-control" name="final_total2" id="final_total2" placeholder="Total Sementara" readonly>
+                        <label for="">Biaya ONGKIR (Rupiah)</label>
+                        <input type="text" class="form-control" name="coba1" id="coba1" placeholder="Total Keseluruhan barang dan ongkir" readonly>
+                        <!-- Akhir Inputan hidden -->
+                        <label for="">Total Yang Harus Dibayar (Rupiah)</label>
+                        <input type="text" class="form-control" placeholder="Total Pembayaran" name="total_bayar" id="total_bayar" readonly>
+
+                        <div class="form-group">
+                            <label for="street">Alamat Kirim</label>
+                            <textarea class="form-control" name="alamat" id="" cols="" rows="8" placeholder="Mohon di isi dengan alamat yang benar" required></textarea>
+                        </div>
+                    </div>
+                    <!-- /.table-responsive-->
+                    <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
+                        <div class="left"><a href="<?= base_url('User/List') ?>" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Belanja Lagi</a></div>
+                        <div class="right">
+                            <button type="submit" name="transak" class="btn btn-success">Chechout</button>
+                            <!-- <button id="pay-button" class="btn btn-primary">Proses checkout <i class="fa fa-chevron-right"></i></button> -->
+                        </div>
+>>>>>>> Stashed changes
                     </div>
                     <!-- /.box-->
 
