@@ -2,15 +2,26 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_cetak_laporan_kasir extends CI_Model
+class M_cetak_laporan  extends CI_Model
 {
+    public function getAllData()
+    {
+        $this->db->select('*');
+        $this->db->from('transaksi_offline');
+        // $this->db->join('dtl_transaksi_offline', 'transaksi_offline.kode_transaksi = dtl_transaksi_offline.kode_transaksi');
+        // $this->db->join('user', 'transaksi_offline.kode_kasir = user.kode_user');
+        $this->db->join('user', 'transaksi_offline.kode_pembeli = user.kode_user');
+
+        return $this->db->get();
+    }
+
     //ITEMS ITEMS ITEMS
     public function getAllTransaksi($id)
     {
         $this->db->select('*');
         $this->db->from('transaksi_offline');
         $this->db->where(array('transaksi_offline.kode_transaksi' => $id));
-        $this->db->join('user', 'transaksi_offline.kode_user = user.kode_user');
+        $this->db->join('user', 'transaksi_offline.kode_pembeli = user.kode_user');
 
         return $this->db->get();
     }

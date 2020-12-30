@@ -128,8 +128,8 @@ $route['kategori/addDataCategories'] = "admin/C_kategori/addDataCategories";
 $route['kategori/editDataCategories'] = "admin/C_kategori/editDataCategories";
 
 // Data Laporan ['Kasir']
-$route['laporan/kasir'] = "kasir/C_kasir/index";
-$route['laporan/kasir/cetak_laporan'] = "admin/v_cetak_laporan_kasir";
+$route['laporan/kasir'] = "admin/C_laporan";
+$route['laporan/kasir/cetak_laporan/(:any)'] = "admin/C_laporan/Cetak_laporan/$1";
 
 // Data Satuan ['Satuan']
 $route['satuan'] = "admin/C_satuan/index";
