@@ -69,7 +69,7 @@
                             </table>
                     </div>
                     <div class="col-md-12">
-                        <label for="">keseluruhan berat Di Keranjang</label>
+                        <label for="">keseluruhan berat Di Keranjang (Gram)</label>
                         <input type="text" class="form-control" id="keseluruhanberat" value="" placeholder="Total Berat Di Keranjang" readonly>
                         <label for="kota_provinsi">Pilih provinsi anda</label>
                         <select name="kota_provinsi" id="kota_provinsi" class="form-control mb-3 pb-1" onchange="get_kota()">
@@ -98,12 +98,12 @@
                             <input type="hidden" value="<?= $op['tgl_transaksi']; ?>" name="tglbeli" placeholder="tgl">
                         <?php endforeach; ?>
                         <!-- inputan yang akan di jumlahkan -->
-                        <label for="">Biaya Sementara</label>
+                        <label for="">Biaya Sementara (Rupiah)</label>
                         <input type="text" class="form-control" name="final_total2" id="final_total2" placeholder="Total Sementara" readonly>
-                        <label for="">Biaya Setelah Dijumlah dengan ONGKIR</label>
+                        <label for="">Biaya ONGKIR (Rupiah)</label>
                         <input type="text" class="form-control" name="coba1" id="coba1" placeholder="Total Keseluruhan barang dan ongkir" readonly>
                         <!-- Akhir Inputan hidden -->
-                        <label for="">Total Yang Harus Dibayar</label>
+                        <label for="">Total Yang Harus Dibayar (Rupiah)</label>
                         <input type="text" class="form-control" placeholder="Total Pembayaran" name="total_bayar" id="total_bayar" readonly>
 
                         <div class="form-group">
