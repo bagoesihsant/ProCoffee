@@ -127,9 +127,11 @@ $route['kategori/deleteCategory/(:any)'] = "admin/C_kategori/deleteCategory/$1";
 $route['kategori/addDataCategories'] = "admin/C_kategori/addDataCategories";
 $route['kategori/editDataCategories'] = "admin/C_kategori/editDataCategories";
 
-// Data Laporan ['Kasir']
-$route['laporan/kasir'] = "kasir/C_kasir/index";
-$route['laporan/kasir/cetak_laporan'] = "admin/v_cetak_laporan_kasir";
+// Data Laporan ['Kasir']  
+$route['laporan/kasir'] = "admin/C_laporan";
+$route['laporan/cetak_laporan/(:any)'] = "admin/C_laporan/cetak_laporan/$1";
+$route['laporan/detail_laporan/(:any)'] = "admin/C_laporan/detail_laporan/$1";
+$route['laporan/hapus_laporan/(:any)'] = "admin/C_laporan/hapus_laporan/$1";
 
 // Data Satuan ['Satuan']
 $route['satuan'] = "admin/C_satuan/index";
@@ -189,3 +191,4 @@ $route['user/changepassword'] = "user/edit_password";
 $route['user/edit'] = "user/edit";
 
 // Akhiran irman bikin routes
+
