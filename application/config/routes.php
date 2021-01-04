@@ -129,7 +129,9 @@ $route['kategori/editDataCategories'] = "admin/C_kategori/editDataCategories";
 
 // Data Laporan ['Kasir']
 $route['laporan/kasir'] = "admin/C_laporan";
-$route['laporan/kasir/cetak_laporan/(:any)'] = "admin/C_laporan/Cetak_laporan/$1";
+$route['laporan/cetak_laporan/(:any)'] = "admin/C_laporan/cetak_laporan/$1";
+$route['laporan/detail_laporan/(:any)'] = "admin/C_laporan/detail_laporan/$1";
+$route['laporan/hapus_laporan/(:any)'] = "admin/C_laporan/hapus_laporan/$1";
 
 // Data Satuan ['Satuan']
 $route['satuan'] = "admin/C_satuan/index";

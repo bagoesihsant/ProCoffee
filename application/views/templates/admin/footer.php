@@ -60,6 +60,7 @@
 <script src="<?= base_url('assets/'); ?>custom/kasir/kasir.js"></script>
 <script src="<?= base_url('assets/'); ?>custom/admin/stockOut.js"></script>
 <script src="<?= base_url('assets/'); ?>custom/admin/stockIn.js"></script>
+<script src="<?= base_url('assets/'); ?>custom/admin/laporan.js"></script>
 <script src="<?= base_url('assets/'); ?>dist/js/display.js"></script>
 <?php 
     if($title != "Edit Data Mapping") :

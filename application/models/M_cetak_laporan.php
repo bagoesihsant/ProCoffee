@@ -30,6 +30,7 @@ class M_cetak_laporan  extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('dtl_transaksi_offline');
+        $this->db->join('tbl_barang', 'dtl_transaksi_offline.kode_barang = tbl_barang.kode_barang');
         $this->db->where(array('kode_transaksi' => $id));
 
         return $this->db->get();
@@ -50,5 +51,17 @@ class M_cetak_laporan  extends CI_Model
 
         // Output the generated PDF to Browser
         $dompdf->stream($filename, array('Attachment'=>0));
+    }
+
+    public function hapus_laporan1($data)
+    {
+        $this->db->delete('dtl_transaksi_offline', $data);
+        return $this->db->affected_rows();
+    }
+
+    public function hapus_laporan2($data)
+    {
+        $this->db->delete('transaksi_offline', $data);
+        return $this->db->affected_rows();
     }
 }
