@@ -47,6 +47,7 @@ class M_barang extends CI_Model
     //untuk menghapus items di barang
     public function hapus_items($data)
     {
+        $this->db->delete('tbl_stock', $data);
         $this->db->delete('tbl_barang', $data);
         return $this->db->affected_rows();
     }

@@ -84,14 +84,6 @@ class C_barang extends CI_Controller
                 'numeric' => 'Isian harus angka'
             )
         );
-        $this->form_validation->set_rules(
-            'deskripsi',
-            'Deskripsi',
-            'required',
-            array(
-                'required' => 'Isian tidak boleh kosong'
-            )
-        );
         // form validasi end 
 
         if ($this->form_validation->run() == false) {
