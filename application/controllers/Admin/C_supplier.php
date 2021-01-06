@@ -61,14 +61,6 @@ class C_supplier extends CI_Controller
                 'required' => 'Isian tidak boleh kosong'
             )
         );
-        $this->form_validation->set_rules(
-            'deskripsi',
-            'Deskripsi',
-            'required',
-            array(
-                'required' => 'Isian tidak boleh kosong'
-            )
-        );
         // form validasi end 
 
         if ($this->form_validation->run() == false) { //jika data gagal tervalidasi

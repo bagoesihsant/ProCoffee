@@ -59,7 +59,7 @@
         </tr>
         <?php foreach($dtl_transaksi as $d){ ?>
         <tr>
-            <td align="center">Kopi</td>
+            <td align="center"><?=$d->nama?></td>
             <td align="center"><?=$d->qty?></td>
             <td align="right"><?=rupiah($d->price)?></td>
             <td align="right"><?=rupiah($d->discount_item)?></td>
