@@ -22,19 +22,20 @@
 <div class="layout-print-struk">
     <table style="border-bottom: 1px solid #000;border-top: 1px solid #000;display: table;'" width="100%">
     <tr>
-        <td width="40%">
+        <td width="20%">
             <img src="<?= base_url('assets/'); ?>dist/img/coffee-bean-black.png" 
-            style="padding-top:12px; padding-bottom:12px;"
-            width="70px">
+            style="padding-top:2px; padding-bottom:2px;"
+            width="30px">
         </td>
 
-        <td>
+        <td width="60%"> 
         <table style="vertical-align: middle;display: table;">
             <tr><td align="center" style="text-transform: uppercase; font-size: 18px; font-weight:bold;">PROCOFFEE</td> </tr>
             <tr><td align="center" style="font-size: 12px;">JL. Banyuwangi No.2 Garahan Silo</td> </tr>
             <tr><td align="center" style="font-size: 12px;">Telp. 086695994871</td> </tr>
         </table>
         </td>
+        <td width="20%"> </td>
 
     </tr>
     </table>
@@ -58,7 +59,7 @@
         </tr>
         <?php foreach($dtl_transaksi as $d){ ?>
         <tr>
-            <td align="center">Kopi</td>
+            <td align="center"><?=$d->nama?></td>
             <td align="center"><?=$d->qty?></td>
             <td align="right"><?=rupiah($d->price)?></td>
             <td align="right"><?=rupiah($d->discount_item)?></td>

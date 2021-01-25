@@ -222,7 +222,7 @@
                         </label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="gambar" name="gambar">
+                                <input type="file" class="custom-file-input" id="gambar" name="gambar" required>
                                 <label for="image" class="custom-file-label">ekstensi gambar harus jpg/jpeg/png</label>
                             </div>
                         </div>

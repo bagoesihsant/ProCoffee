@@ -23,12 +23,12 @@ class C_laporan_kasir extends CI_Controller
         $this->load->view('admin/v_laporan_kasir');
     }
 
-    public function Cetak_laporan_kasir2($id) //ini untuk tes view saja
-    {
-        $data['transaksi'] = $this->laporan->getAllTransaksi($id)->result();
-        $data['dtl_transaksi'] = $this->laporan->getAllDtlTransaksi($id)->result();
-        $this->load->view('laporan/kasir/cetak_laporan', $data);
-    }
+    // public function Cetak_laporan_kasir2($id) //ini untuk tes view saja
+    // {
+    //     $data['transaksi'] = $this->laporan->getAllTransaksi($id)->result();
+    //     $data['dtl_transaksi'] = $this->laporan->getAllDtlTransaksi($id)->result();
+    //     $this->load->view('laporan/kasir/cetak_laporan', $data);
+    // }
 
     public function Cetak_laporan_kasir($id) //ini yang dipake
     {
