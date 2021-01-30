@@ -68,34 +68,34 @@
                                             <!-- Penutup Ini harga Barang -->
                                         </p>
                                         <p class="buttons">
-                                        <form action="<?= base_url('Users/C_barang_user/process'); ?>" method="post">
-                                            <input type="hidden" name="kode_barang_input" value="<?= $data->kode_barang; ?>">
-                                            <input type="hidden" name="nama_barang" value="<?= $data->nama_barang; ?>">
-                                            <input type="hidden" name="berat_input" value="<?= $data->berat; ?>">
-                                            <input type="hidden" name="jumlah_beli" value="1">
-                                            <!-- pembuka tombol langsung tambah barang ke chart -->
-                                            <!-- <a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a> -->
-                                            <!-- Penutup tombol langsung tambah barang ke chart -->
+                                            <form action="<?= base_url('User/TambahKeranjang'); ?>" method="post">
+                                                <input type="hidden" name="kode_barang_input" value="<?= $data->kode_barang; ?>">
+                                                <input type="hidden" name="nama_barang" value="<?= $data->nama_barang; ?>">
+                                                <input type="hidden" name="berat_input" value="<?= $data->berat; ?>">
+                                                <input type="hidden" name="jumlah_beli" value="1">
+                                                <!-- pembuka tombol langsung tambah barang ke chart -->
+                                                <!-- <a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a> -->
+                                                <!-- Penutup tombol langsung tambah barang ke chart -->
 
-                                            <!-- pembuka tombol langsung ke detail barang-->
-                                            <?php $sesion_login = $this->session->userdata('email');
-                                            if ($sesion_login) :
-                                            ?>
-                                                <?php
-                                                $kose_user_beli = $this->session->userdata('id_user');
-                                                $id_item = $data->kode_barang;
-                                                $query = "SELECT * FROM tbl_cart_online WHERE kode_barang = '$id_item' AND kode_usero = '$kose_user_beli'";
-                                                $qr = $this->db->query($query);
-                                                if ($qr->num_rows() > 0) : ?>
-                                                    <p class="text-center buttons"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a><a href="<?= base_url('User/Cart'); ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Lihat Cart</a></p>
+                                                <!-- pembuka tombol langsung ke detail barang-->
+                                                <?php $sesion_login = $this->session->userdata('email');
+                                                if ($sesion_login) :
+                                                ?>
+                                                    <?php
+                                                    $kose_user_beli = $this->session->userdata('id_user');
+                                                    $id_item = $data->kode_barang;
+                                                    $query = "SELECT * FROM tbl_cart_online WHERE kode_barang = '$id_item' AND kode_usero = '$kose_user_beli'";
+                                                    $qr = $this->db->query($query);
+                                                    if ($qr->num_rows() > 0) : ?>
+                                                        <p class="text-center buttons"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a><a href="<?= base_url('User/Cart'); ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Lihat Cart</a></p>
+                                                    <?php else : ?>
+                                                        <p class="text-center buttons"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a><button type="submit" name="tambah_cart_list" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</button></p>
+                                                    <?php endif; ?>
                                                 <?php else : ?>
-                                                    <p class="text-center buttons"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a><button type="submit" name="tambah_cart_list" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</button></p>
+                                                    <p class="text-center buttons"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a><a href="<?= base_url('User/Register'); ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Login dahulu</a></p>
                                                 <?php endif; ?>
-                                            <?php else : ?>
-                                                <p class="text-center buttons"><a href="<?= base_url('User/Detail/' . $data->kode_barang); ?>" class="btn btn-outline-secondary">View detail</a><a href="<?= base_url('User/Register'); ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Login dahulu</a></p>
-                                            <?php endif; ?>
-                                            <!-- Penutup tombol langsung ke detail barang-->
-                                        </form>
+                                                <!-- Penutup tombol langsung ke detail barang-->
+                                            </form>
                                         </p>
                                     </div>
                                     <!-- /.text-->

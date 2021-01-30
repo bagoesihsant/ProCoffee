@@ -66,6 +66,7 @@ $route['User/Profile'] = "Users/C_user_profile/index";
 $route['User/Profile/Edit'] = "Users/C_user_profile/editprofil";
 $route['User/Profile/ChangePassword'] = "Users/C_user_profile/ubahpassworduser";
 $route['User/List'] = "Users/C_barang_user/index";
+$route['User/TambahKeranjang'] = "Users/C_barang_user/process";
 $route['User/Detail/(:any)'] = "Users/C_detail_barang_user/index/$1";
 $route['User/Beli/process'] = "Users/C_detail_barang_user/process";
 
@@ -191,4 +192,3 @@ $route['user/changepassword'] = "user/edit_password";
 $route['user/edit'] = "user/edit";
 
 // Akhiran irman bikin routes
-
