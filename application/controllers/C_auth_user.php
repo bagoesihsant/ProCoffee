@@ -7,6 +7,7 @@ class C_auth_user extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('M_usero');
     }
 
     public function index()
@@ -14,6 +15,7 @@ class C_auth_user extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
         if ($this->form_validation->run() == false) {
+            $data['jumlah_carto'] = $this->M_usero->count_cart();
             $data['title'] = "Sign in / Sign Up";
             $this->load->view('auth_user/v_auth_header', $data);
             $this->load->view('auth_user/v_register');
@@ -273,6 +275,7 @@ class C_auth_user extends CI_Controller
     public function LupaPasswordUser()
     {
         $data['title'] = "Lupa Password";
+        $data['jumlah_carto'] = $this->M_usero->count_cart();
 
         $this->form_validation->set_rules('email_input', 'Email', 'required|trim|valid_email');
         if ($this->form_validation->run() == false) {
