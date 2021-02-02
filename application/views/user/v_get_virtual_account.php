@@ -15,7 +15,7 @@
                     <div class="box">
                         <h1>Invoice : <?= $row->kode_transaksi; ?></h1>
                         <div class="table">
-                            <form id="payment-form" method="post" action="<?= site_url() ?>/Users/C_history_pembelian/finish">
+                            <form id="payment-form" method="post" action="<?= site_url() ?>/User/History/checkout">
                                 <input type="hidden" name="result_type" id="result-type" value="">
                                 <input type="hidden" name="result_data" id="result-data" value="">
                                 <input type="hidden" name="id_transaksi" id="id_transaksi" value="<?= $row->kode_transaksi; ?>">

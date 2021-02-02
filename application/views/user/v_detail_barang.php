@@ -7,7 +7,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="<?= base_url('User/LandingPage'); ?>">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="<?= base_url('Users/C_barang_user'); ?>">Barang</a></li>
+                                    <li class="breadcrumb-item"><a href="<?= base_url('User/List'); ?>">Barang</a></li>
                                     <li class="breadcrumb-item active"><a href="#">Detail</a></li>
                                 </ol>
                             </nav>
@@ -39,7 +39,7 @@
                             <div id="productMain" class="row">
                                 <div class="col-md-6">
                                     <div data-slider-id="1" class="owl-carousel shop-detail-carousel">
-                                        <div class="item"> 
+                                        <div class="item">
                                             <img src="<?= base_url('assets/items_img/') . $row->gambar ?>" alt="" class="img-fluid">
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                                 $query = "SELECT * FROM tbl_cart_online WHERE kode_barang = '$id_item' AND kode_usero = '$kode_user_beli'";
                                                 $qr = $this->db->query($query);
                                                 if ($qr->num_rows() > 0) : ?>
-                                                <p class="price"><?= $row->harga; ?></p>
+                                                    <p class="price"><?= $row->harga; ?></p>
                                                     <p class="text-center buttons">
                                                         <a href="<?= base_url('User/LandingPage'); ?>" class="btn btn-outline-primary">
                                                             <i class="fa fa-arrow-left"></i> Kembali
@@ -76,9 +76,9 @@
                                                         </a>
                                                     </p>
                                                 <?php else : ?>
-                                                <label for="">Quantity</label>
-                                                <input  class="form-control" type="number" name="jumlah_beli" id="jumlah_beli" required>
-                                                <p class="price"><?= $row->harga; ?></p>
+                                                    <label for="">Quantity</label>
+                                                    <input class="form-control" type="number" name="jumlah_beli" id="jumlah_beli" required>
+                                                    <p class="price"><?= $row->harga; ?></p>
                                                     <p class="text-center buttons">
                                                         <a href="<?= base_url('User/LandingPage'); ?>" class="btn btn-outline-primary">
                                                             <i class="fa fa-arrow-left"></i> Kembali

@@ -62,6 +62,7 @@ $route['cart/check_out'] = "Users/C_cart/check_out";
 $route['User/Cart/delete/(:any)'] = "Users/C_cart/delete_cart/$1";
 $route['User/History/ambilnomorvirtual/(:any)'] = "Users/C_history_pembelian/ambilVirtualaccount/$1";
 $route['User/History'] = "Users/C_history_pembelian/index";
+$route['User/History/checkout'] = "Users/C_history_pembelian/finish";
 $route['User/Profile'] = "Users/C_user_profile/index";
 $route['User/Profile/Edit'] = "Users/C_user_profile/editprofil";
 $route['User/Profile/ChangePassword'] = "Users/C_user_profile/ubahpassworduser";

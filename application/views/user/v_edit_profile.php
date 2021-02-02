@@ -5,7 +5,7 @@
         <p class="text-muted">Silahkan ubah data anda dan biarkan jika anda tidak ingin mengubah data anda.</p>
         <h3 class="mt-5">Personal details</h3>
         <?= $this->session->flashdata('message_edit_user'); ?>
-        <form action="<?= base_url('Users/C_user_profile/editprofil') ?>" method="POST">
+        <form action="<?= base_url('User/Profile/Edit') ?>" method="POST">
             <div class="row">
                 <p class="text-muted">Tanda (<span class="text-danger">*</span>) artinya wajib di isi</p>
                 <div class="col-md-12">
