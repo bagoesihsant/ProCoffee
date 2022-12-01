@@ -9,6 +9,8 @@ class C_menu extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        // Temporary Debug
+        error_reporting(0);
         // Load Model
         $this->load->model('M_menu', 'menu');
         is_logged_in();
