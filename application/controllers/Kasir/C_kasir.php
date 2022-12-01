@@ -9,6 +9,9 @@ class C_kasir extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        // Temporary Bug Fix
+        error_reporting(0);
+        
         // Load Model
         $this->load->model('M_kasir', 'kasir');
 
